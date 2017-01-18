@@ -9,7 +9,7 @@ import java.util.Date;
 public class testCollectionPointModel {
     private int collctionPoingId;
     private String collectionPointName;
-    private Date deliverDate;
+    private String deliverDate;
 
     public testCollectionPointModel() {
     }
@@ -19,7 +19,7 @@ public class testCollectionPointModel {
         this.collectionPointName = collectionPointName;
     }
 
-    public testCollectionPointModel(int collctionPoingId, String collectionPointName, Date deliverDate) {
+    public testCollectionPointModel(int collctionPoingId, String collectionPointName, String deliverDate) {
 
         this.collctionPoingId = collctionPoingId;
         this.collectionPointName = collectionPointName;
@@ -42,11 +42,11 @@ public class testCollectionPointModel {
         this.collectionPointName = collectionPointName;
     }
 
-    public Date getDeliverDate() {
+    public String getDeliverDate() {
         return deliverDate;
     }
 
-    public void setDeliverDate(Date deliverDate) {
+    public void setDeliverDate(String deliverDate) {
         this.deliverDate = deliverDate;
     }
 }
