@@ -7,6 +7,6 @@ import java.util.List;
  */
 
 public interface testDao {
-    public testCollectionPointModel getCollectionPoint(int id);
-    public List<testCollectionPointModel> getAllCollectionPoints();
+    public testCollectionPoint getCollectionPoint(int id);
+    public List<testCollectionPoint> getAllCollectionPoints();
 }

@@ -6,20 +6,20 @@ import java.util.Date;
  * Created by EvEr on 2017/1/17.
  */
 
-public class testCollectionPointModel {
+public class testCollectionPoint {
     private int collctionPoingId;
     private String collectionPointName;
     private String deliverDate;
 
-    public testCollectionPointModel() {
+    public testCollectionPoint() {
     }
 
-    public testCollectionPointModel(int collctionPoingId, String collectionPointName) {
+    public testCollectionPoint(int collctionPoingId, String collectionPointName) {
         this.collctionPoingId = collctionPoingId;
         this.collectionPointName = collectionPointName;
     }
 
-    public testCollectionPointModel(int collctionPoingId, String collectionPointName, String deliverDate) {
+    public testCollectionPoint(int collctionPoingId, String collectionPointName, String deliverDate) {
 
         this.collctionPoingId = collctionPoingId;
         this.collectionPointName = collectionPointName;

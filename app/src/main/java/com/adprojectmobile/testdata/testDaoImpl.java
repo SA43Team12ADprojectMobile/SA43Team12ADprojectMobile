@@ -8,11 +8,11 @@ import java.util.List;
 
 public class testDaoImpl implements testDao {
     @Override
-    public testCollectionPointModel getCollectionPoint(int id) {
+    public testCollectionPoint getCollectionPoint(int id) {
         return testDummyData.collectionPoints.get(id);
     }
     @Override
-    public List<testCollectionPointModel> getAllCollectionPoints() {
+    public List<testCollectionPoint> getAllCollectionPoints() {
         return testDummyData.collectionPoints;
     }
 

@@ -10,20 +10,17 @@ import android.widget.TextView;
 
 import com.adprojectmobile.R;
 
-import java.util.Collection;
 import java.util.List;
-
-import static com.adprojectmobile.R.styleable.View;
 
 /**
  * Created by EvEr on 2017/1/18.
  */
 
-public class testAdapter extends ArrayAdapter<testCollectionPointModel> {
-    private List<testCollectionPointModel> collectionPoints;
+public class testAdapter extends ArrayAdapter<testCollectionPoint> {
+    private List<testCollectionPoint> collectionPoints;
     int resource;
 
-    public testAdapter(Context context, int resource, List<testCollectionPointModel> collectionPoints) {
+    public testAdapter(Context context, int resource, List<testCollectionPoint> collectionPoints) {
         super(context, resource, collectionPoints);
         this.resource = resource;
         this.collectionPoints = collectionPoints;
@@ -34,7 +31,7 @@ public class testAdapter extends ArrayAdapter<testCollectionPointModel> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        testCollectionPointModel collectionPoint=collectionPoints.get(position);
+        testCollectionPoint collectionPoint=collectionPoints.get(position);
         if (collectionPoint!=null){
             TextView textViewCollectionName=(TextView)v.findViewById(R.id.textView_collectionpoint_name);
             TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionpoint_date);
