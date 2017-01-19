@@ -9,13 +9,13 @@ import java.util.Date;
 public class ItemTransaction{
     private int itemTransactionId;
     private Item item;
-    private Date date;
+    private String date;
     private int actualQuantity;
 
     public ItemTransaction() {
     }
 
-    public ItemTransaction(int itemTransactionId, Item item, Date date, int actualQuantity) {
+    public ItemTransaction(int itemTransactionId, Item item, String date, int actualQuantity) {
         this.itemTransactionId = itemTransactionId;
         this.item = item;
         this.date = date;
@@ -38,11 +38,11 @@ public class ItemTransaction{
         this.item = item;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -5,7 +5,7 @@ package com.adprojectmobile.model;
  */
 
 public class Item {
-    private int itemId;
+    private String itemId;
     private Category category;
     private String photoFileName;
     private String description;
@@ -15,7 +15,7 @@ public class Item {
     private String unitOfMeasurement;
     private boolean isInInventory;
 
-    public Item(int itemId, Category category, String photoFileName, String description, int reorderLevel, int reorderQuantity, String bin, String unitOfMeasurement, boolean isInInventory) {
+    public Item(String itemId, Category category, String photoFileName, String description, int reorderLevel, int reorderQuantity, String bin, String unitOfMeasurement, boolean isInInventory) {
         this.itemId = itemId;
         this.category = category;
         this.photoFileName = photoFileName;
@@ -27,21 +27,22 @@ public class Item {
         this.isInInventory = isInInventory;
     }
 
-    public Item(String description, int itemId, Category category) {
+    public Item( String itemId, Category category,String description,String unitOfMeasurement) {
         this.description = description;
         this.itemId = itemId;
         this.category = category;
-        this.photoFileName = photoFileName;
+        this.unitOfMeasurement=unitOfMeasurement;
+
     }
 
     public Item() {
     }
 
-    public int getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 

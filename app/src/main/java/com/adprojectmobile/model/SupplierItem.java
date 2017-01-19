@@ -22,6 +22,7 @@ public class SupplierItem {
 
     public SupplierItem() {
 
+
     }
 
     public int getSupplierItemId() {

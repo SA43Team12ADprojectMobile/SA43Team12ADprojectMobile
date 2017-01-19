@@ -15,8 +15,8 @@ public class Employee {
     private int number;
     private String emailAddress;
     private boolean isDelegated;
-    private Date delegationStartDate;
-    private Date delegationEndDate;
+    private String delegationStartDate;
+    private String delegationEndDate;
 
     public Employee() {
     }
@@ -96,19 +96,19 @@ public class Employee {
         isDelegated = delegated;
     }
 
-    public Date getDelegationStartDate() {
+    public String getDelegationStartDate() {
         return delegationStartDate;
     }
 
-    public void setDelegationStartDate(Date delegationStartDate) {
+    public void setDelegationStartDate(String delegationStartDate) {
         this.delegationStartDate = delegationStartDate;
     }
 
-    public Date getDelegationEndDate() {
+    public String getDelegationEndDate() {
         return delegationEndDate;
     }
 
-    public void setDelegationEndDate(Date delegationEndDate) {
+    public void setDelegationEndDate(String delegationEndDate) {
         this.delegationEndDate = delegationEndDate;
     }
 }

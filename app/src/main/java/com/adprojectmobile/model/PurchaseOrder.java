@@ -9,19 +9,19 @@ import java.util.Date;
 public class PurchaseOrder {
     private int purchaseOrderId;
     private Supplier supplier;
-    private Date expectedDate;
+    private String expectedDate;
     private String orderBy;
-    private Date orderDate;
+    private String orderDate;
     private String approveStatus;
     private String approvedBy;
-    private Date ApproveDate;
+    private String ApproveDate;
     private String remarks;
     private String clerkChecked;
 
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder(int purchaseOrderId, Supplier supplier, Date expectedDate, String orderBy, Date orderDate, String approveStatus, String approvedBy, Date approveDate, String remarks, String clerkChecked) {
+    public PurchaseOrder(int purchaseOrderId, Supplier supplier, String expectedDate, String orderBy, String orderDate, String approveStatus, String approvedBy, String approveDate, String remarks, String clerkChecked) {
         this.purchaseOrderId = purchaseOrderId;
         this.supplier = supplier;
         this.expectedDate = expectedDate;
@@ -34,7 +34,7 @@ public class PurchaseOrder {
         this.clerkChecked = clerkChecked;
     }
 
-    public PurchaseOrder(Date orderDate, int purchaseOrderId, Supplier supplier, Date expectedDate, String orderBy) {
+    public PurchaseOrder(String orderDate, int purchaseOrderId, Supplier supplier, String expectedDate, String orderBy) {
         this.orderDate = orderDate;
         this.purchaseOrderId = purchaseOrderId;
         this.supplier = supplier;
@@ -58,11 +58,11 @@ public class PurchaseOrder {
         this.supplier = supplier;
     }
 
-    public Date getExpectedDate() {
+    public String getExpectedDate() {
         return expectedDate;
     }
 
-    public void setExpectedDate(Date expectedDate) {
+    public void setExpectedDate(String expectedDate) {
         this.expectedDate = expectedDate;
     }
 
@@ -74,11 +74,11 @@ public class PurchaseOrder {
         this.orderBy = orderBy;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -98,11 +98,11 @@ public class PurchaseOrder {
         this.approvedBy = approvedBy;
     }
 
-    public Date getApproveDate() {
+    public String getApproveDate() {
         return ApproveDate;
     }
 
-    public void setApproveDate(Date approveDate) {
+    public void setApproveDate(String approveDate) {
         ApproveDate = approveDate;
     }
 
