@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.adprojectmobile">
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -43,7 +48,12 @@
         <activity android:name=".activity.department.ConfirmDisbursement.ConfirmCollection" />
         <activity android:name=".activity.department.DelegateAuthority.FindEmployee" />
         <activity android:name=".activity.department.DelegateAuthority.DelegateAuthority" />
-        <activity android:name=".activity.department.DelegateAuthority.RevokeAuthority"></activity>
+        <activity android:name=".activity.department.DelegateAuthority.RevokeAuthority" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity android:name=".activity.StockClerkMainPage" />
+        <activity android:name=".activity.EmployeeMainPage"></activity>
     </application>
 
 </manifest>
