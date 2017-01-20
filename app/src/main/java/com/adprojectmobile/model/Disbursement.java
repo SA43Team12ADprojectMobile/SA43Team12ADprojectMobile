@@ -10,8 +10,8 @@ public class Disbursement {
     private String deliveryStatus;
     private String collectonPoint;
     private String repName;
-    private String repChecked;
-    private String clerkChecked;
+    private boolean repChecked;
+    private boolean clerkChecked;
 
     public Disbursement() {
     }
@@ -24,7 +24,7 @@ public class Disbursement {
         this.repName = repName;
     }
 
-    public Disbursement(int disbursementId, String retrievalTime, String deliveryStatus, String collectonPoint, String repName, String repChecked, String clerkChecked) {
+    public Disbursement(int disbursementId, String retrievalTime, String deliveryStatus, String collectonPoint, String repName, boolean repChecked, boolean clerkChecked) {
         this.disbursementId = disbursementId;
         this.retrievalTime = retrievalTime;
         this.deliveryStatus = deliveryStatus;
@@ -74,19 +74,19 @@ public class Disbursement {
         this.repName = repName;
     }
 
-    public String getRepChecked() {
+    public boolean getRepChecked() {
         return repChecked;
     }
 
-    public void setRepChecked(String repChecked) {
+    public void setRepChecked(boolean repChecked) {
         this.repChecked = repChecked;
     }
 
-    public String getClerkChecked() {
+    public boolean getClerkChecked() {
         return clerkChecked;
     }
 
-    public void setClerkChecked(String clerkChecked) {
+    public void setClerkChecked(boolean clerkChecked) {
         this.clerkChecked = clerkChecked;
     }
 }

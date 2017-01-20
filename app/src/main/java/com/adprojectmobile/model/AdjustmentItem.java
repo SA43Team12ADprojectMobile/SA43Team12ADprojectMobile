@@ -7,6 +7,7 @@ import java.util.Date;
  */
 
 public class AdjustmentItem{
+    private int adjustmentItemsId;
     private Adjustment adjustment;
     private ItemTransaction itemTransaction;
     private String reason;
@@ -14,13 +15,15 @@ public class AdjustmentItem{
     public AdjustmentItem() {
     }
 
-    public AdjustmentItem(Adjustment adjustment, ItemTransaction itemTransaction, String reason) {
+    public AdjustmentItem(int adjustmentItemsId,Adjustment adjustment, ItemTransaction itemTransaction, String reason) {
+        this.adjustmentItemsId=adjustmentItemsId;
         this.adjustment = adjustment;
         this.itemTransaction = itemTransaction;
         this.reason = reason;
     }
 
-    public AdjustmentItem(Adjustment adjustment, ItemTransaction itemTransaction) {
+    public AdjustmentItem(int adjustmentItemsId,Adjustment adjustment, ItemTransaction itemTransaction) {
+        this.adjustmentItemsId=adjustmentItemsId;
         this.adjustment = adjustment;
         this.itemTransaction = itemTransaction;
     }

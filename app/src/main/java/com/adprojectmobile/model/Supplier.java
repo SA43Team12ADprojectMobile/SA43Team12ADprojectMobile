@@ -5,32 +5,32 @@ package com.adprojectmobile.model;
  */
 
 public class Supplier {
-    private int supplierId;
+    private String supplierId;
     private String supplierName;
     private String contactName;
-    private int phoneNumber;
-    private int faxNumber;
+    private String phoneNumber;
+    private String faxNumber;
     private String address;
-    private int gstRegistrationNumber;
+    private String gstRegistrationNumber;
 
 
     public Supplier() {
     }
 
-    public Supplier(int supplierId, String supplierName, String contactName, int phoneNumber) {
+    public Supplier(String supplierId, String supplierName, String contactName, String phoneNumber) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.contactName = contactName;
         this.phoneNumber = phoneNumber;
     }
 
-    public Supplier(int supplierId, String supplierName, String contactName) {
+    public Supplier(String supplierId, String supplierName, String contactName) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.contactName = contactName;
     }
 
-    public Supplier(int supplierId, String supplierName, String contactName, int phoneNumber, int faxNumber, String address, int gstRegistrationNumber) {
+    public Supplier(String supplierId, String supplierName, String contactName, String phoneNumber, String faxNumber, String address, String gstRegistrationNumber) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.contactName = contactName;
@@ -40,11 +40,11 @@ public class Supplier {
         this.gstRegistrationNumber = gstRegistrationNumber;
     }
 
-    public int getSupplierId() {
+    public String getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(int supplierId) {
+    public void setSupplierId(String supplierId) {
         this.supplierId = supplierId;
     }
 
@@ -64,19 +64,19 @@ public class Supplier {
         this.contactName = contactName;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getFaxNumber() {
+    public String getFaxNumber() {
         return faxNumber;
     }
 
-    public void setFaxNumber(int faxNumber) {
+    public void setFaxNumber(String faxNumber) {
         this.faxNumber = faxNumber;
     }
 
@@ -88,11 +88,11 @@ public class Supplier {
         this.address = address;
     }
 
-    public int getGstRegistrationNumber() {
+    public String getGstRegistrationNumber() {
         return gstRegistrationNumber;
     }
 
-    public void setGstRegistrationNumber(int gstRegistrationNumber) {
+    public void setGstRegistrationNumber(String gstRegistrationNumber) {
         this.gstRegistrationNumber = gstRegistrationNumber;
     }
 

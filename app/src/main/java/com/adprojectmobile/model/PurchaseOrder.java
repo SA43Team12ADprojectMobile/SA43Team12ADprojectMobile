@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 public class PurchaseOrder {
-    private int purchaseOrderId;
+    private String purchaseOrderId;
     private Supplier supplier;
     private String expectedDate;
     private String orderBy;
@@ -21,7 +21,7 @@ public class PurchaseOrder {
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder(int purchaseOrderId, Supplier supplier, String expectedDate, String orderBy, String orderDate, String approveStatus, String approvedBy, String approveDate, String remarks, String clerkChecked) {
+    public PurchaseOrder(String purchaseOrderId, Supplier supplier, String expectedDate, String orderBy, String orderDate, String approveStatus, String approvedBy, String approveDate, String remarks, String clerkChecked) {
         this.purchaseOrderId = purchaseOrderId;
         this.supplier = supplier;
         this.expectedDate = expectedDate;
@@ -34,7 +34,7 @@ public class PurchaseOrder {
         this.clerkChecked = clerkChecked;
     }
 
-    public PurchaseOrder(String orderDate, int purchaseOrderId, Supplier supplier, String expectedDate, String orderBy) {
+    public PurchaseOrder(String orderDate, String purchaseOrderId, Supplier supplier, String expectedDate, String orderBy) {
         this.orderDate = orderDate;
         this.purchaseOrderId = purchaseOrderId;
         this.supplier = supplier;
@@ -42,11 +42,11 @@ public class PurchaseOrder {
         this.orderBy = orderBy;
     }
 
-    public int getPurchaseOrderId() {
+    public String getPurchaseOrderId() {
         return purchaseOrderId;
     }
 
-    public void setPurchaseOrderId(int purchaseOrderId) {
+    public void setPurchaseOrderId(String purchaseOrderId) {
         this.purchaseOrderId = purchaseOrderId;
     }
 

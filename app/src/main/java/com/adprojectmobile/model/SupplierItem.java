@@ -8,10 +8,10 @@ public class SupplierItem {
     private int supplierItemId;
     private Supplier supplier;
     private Item item;
-    private double tenderPrice;
-    private String priority;
+    private float tenderPrice;
+    private int priority;
 
-    public SupplierItem(int supplierItemId, Supplier supplier, Item item, double tenderPrice, String priority) {
+    public SupplierItem(int supplierItemId, Supplier supplier, Item item, float tenderPrice, int priority) {
         this.supplierItemId = supplierItemId;
         this.supplier = supplier;
         this.item = item;
@@ -49,19 +49,19 @@ public class SupplierItem {
         this.item = item;
     }
 
-    public double getTenderPrice() {
+    public float getTenderPrice() {
         return tenderPrice;
     }
 
-    public void setTenderPrice(double tenderPrice) {
+    public void setTenderPrice(float tenderPrice) {
         this.tenderPrice = tenderPrice;
     }
 
-    public String getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 }

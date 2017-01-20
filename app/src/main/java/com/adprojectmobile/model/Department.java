@@ -5,7 +5,7 @@ package com.adprojectmobile.model;
  */
 
 public class Department {
-    private int departmentId;
+    private String departmentId;
     private String departmentName;
     private String contactName;
     private int telephoneNumber;
@@ -15,7 +15,7 @@ public class Department {
     public Department() {
     }
 
-    public Department(int departmentId, String departmentName, String contactName, int telephoneNumber, int faxNumber, CollectionPoint collectionPoint) {
+    public Department(String departmentId, String departmentName, String contactName, int telephoneNumber, int faxNumber, CollectionPoint collectionPoint) {
         this.departmentId = departmentId;
         this.departmentName = departmentName;
         this.contactName = contactName;
@@ -24,11 +24,11 @@ public class Department {
         this.collectionPoint = collectionPoint;
     }
 
-    public int getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(int departmentId) {
+    public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
     }
 

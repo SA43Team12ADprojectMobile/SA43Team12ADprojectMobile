@@ -7,12 +7,12 @@ import java.util.Date;
  */
 
 public class Employee {
-    private int employeeId;
+    private String employeeId;
     private Department department;
     private String password;
     private String name;
     private String position;
-    private int number;
+    private String number;
     private String emailAddress;
     private boolean isDelegated;
     private String delegationStartDate;
@@ -21,7 +21,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int employeeId, Department department, String password, String name, String position, int number, String emailAddress, boolean isDelegated) {
+    public Employee(String employeeId, Department department, String password, String name, String position, String number, String emailAddress, boolean isDelegated) {
         this.employeeId = employeeId;
         this.department = department;
         this.password = password;
@@ -32,11 +32,11 @@ public class Employee {
         this.isDelegated = isDelegated;
     }
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -72,11 +72,11 @@ public class Employee {
         this.position = position;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

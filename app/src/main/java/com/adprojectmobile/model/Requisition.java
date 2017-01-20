@@ -7,16 +7,16 @@ import java.util.Date;
  */
 
 public class Requisition {
-    private int requisitionId;
+    private String requisitionId;
     private Employee employee;
     private Disbursement disbursement;
     private String requisitionDate;
     private String approvedBy;
     private String approvementStatus;
     private String remarks;
-    private int previousRequisitionId;
+    private String  previousRequisitionId;
 
-    public Requisition(int requisitionId, Employee employee, Disbursement disbursement, String requisitionDate) {
+    public Requisition(String requisitionId, Employee employee, Disbursement disbursement, String requisitionDate) {
         this.requisitionId = requisitionId;
         this.employee = employee;
         this.disbursement = disbursement;
@@ -26,7 +26,7 @@ public class Requisition {
     public Requisition() {
     }
 
-    public Requisition(int requisitionId, Employee employee, Disbursement disbursement, String requisitionDate, String approvedBy, String approvementStatus, String remarks, int previousRequisitionId) {
+    public Requisition(String requisitionId, Employee employee, Disbursement disbursement, String requisitionDate, String approvedBy, String approvementStatus, String remarks, String previousRequisitionId) {
         this.requisitionId = requisitionId;
         this.employee = employee;
         this.disbursement = disbursement;
@@ -37,6 +37,67 @@ public class Requisition {
         this.previousRequisitionId = previousRequisitionId;
     }
 
+    public String getRequisitionId() {
+        return requisitionId;
+    }
 
+    public void setRequisitionId(String requisitionId) {
+        this.requisitionId = requisitionId;
+    }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Disbursement getDisbursement() {
+        return disbursement;
+    }
+
+    public void setDisbursement(Disbursement disbursement) {
+        this.disbursement = disbursement;
+    }
+
+    public String getRequisitionDate() {
+        return requisitionDate;
+    }
+
+    public void setRequisitionDate(String requisitionDate) {
+        this.requisitionDate = requisitionDate;
+    }
+
+    public String getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(String approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public String getApprovementStatus() {
+        return approvementStatus;
+    }
+
+    public void setApprovementStatus(String approvementStatus) {
+        this.approvementStatus = approvementStatus;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getPreviousRequisitionId() {
+        return previousRequisitionId;
+    }
+
+    public void setPreviousRequisitionId(String previousRequisitionId) {
+        this.previousRequisitionId = previousRequisitionId;
+    }
 }

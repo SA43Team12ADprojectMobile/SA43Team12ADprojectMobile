@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 public class Adjustment {
-    private int adjustmentId;
+    private String adjustmentId;
     private String dateIssued;
     private String issuedBy;
     private String approvedBy;
@@ -17,7 +17,7 @@ public class Adjustment {
     public Adjustment() {
     }
 
-    public Adjustment(int adjustmentId, String dateIssued, String issuedBy, String approvedBy, String approvementStatus, String remarks) {
+    public Adjustment(String adjustmentId, String dateIssued, String issuedBy, String approvedBy, String approvementStatus, String remarks) {
         this.adjustmentId = adjustmentId;
         this.dateIssued = dateIssued;
         this.issuedBy = issuedBy;
@@ -26,7 +26,7 @@ public class Adjustment {
         this.remarks = remarks;
     }
 
-    public Adjustment(int adjustmentId, String dateIssued, String issuedBy, String approvedBy, String approvementStatus) {
+    public Adjustment(String adjustmentId, String dateIssued, String issuedBy, String approvedBy, String approvementStatus) {
         this.adjustmentId = adjustmentId;
         this.dateIssued = dateIssued;
         this.issuedBy = issuedBy;
@@ -34,11 +34,11 @@ public class Adjustment {
         this.approvementStatus = approvementStatus;
     }
 
-    public int getAdjustmentId() {
+    public String getAdjustmentId() {
         return adjustmentId;
     }
 
-    public void setAdjustmentId(int adjustmentId) {
+    public void setAdjustmentId(String adjustmentId) {
         this.adjustmentId = adjustmentId;
     }
 
