@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.testCollectionList" />
+        <activity android:name=".testCollectionList" />
         <activity android:name=".activity.inventoryStore.RetrievalForm.ItemsForCollection" />
         <activity android:name=".activity.inventoryStore.RetrievalForm.CollectionPoints" />
         <activity android:name=".activity.inventoryStore.RetrievalForm.ConfirmRetrieval" />
@@ -53,7 +53,7 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".activity.StockClerkMainPage" />
-        <activity android:name=".activity.EmployeeMainPage"></activity>
+        <activity android:name=".activity.department.EmployeeMainPage"></activity>
     </application>
 
 </manifest>

@@ -1,11 +1,9 @@
-package com.adprojectmobile.activity;
+package com.adprojectmobile;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
-
-import com.adprojectmobile.R;
 
 import java.util.List;
 import com.adprojectmobile.testdata.testAdapter;
