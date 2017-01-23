@@ -23,16 +23,32 @@ public class requisitionItemDaoImpl implements requisitionItemDao {
         return DummyData.requisitionItems;
     }
 
+
     @Override
     public List<RequisitionItem> getItemsInRequisition(Requisition requisition) {
         List<RequisitionItem> requisitionItemList=DummyData.requisitionItems;
-        List<RequisitionItem> requisitionsItemInReq=new ArrayList<RequisitionItem>() ;
-        for (RequisitionItem req:requisitionItemList) {
-           if (req.getRequisition().getRequisitionId().toString().equals(requisition.getRequisitionId().toString())){
-                RequisitionItem requisitionItem=req;
-                requisitionsItemInReq.add(requisitionItem);
-         }
+        List<RequisitionItem> requisitionsItemInReq = new ArrayList<RequisitionItem>();
+        for (RequisitionItem req : requisitionItemList) {
+
+                Requisition comparereq=req.getRequisition();
+                if (comparereq.getRequisitionId().contains(requisition.getRequisitionId())) {
+                    RequisitionItem requisitionItem = req;
+                    requisitionsItemInReq.add(requisitionItem);
+                }
+
         }
         return requisitionsItemInReq;
+    }
+
+    @Override
+    public void saveRetrievalQty(RequisitionItem requisitionItem) {
+
+
+
+        if(DummyData.requisitionItems.contains(requisitionItem)){
+            DummyData.requisitionItems.remove(requisitionItem);
+        }
+        DummyData.requisitionItems.add(requisitionItem.getRequisitionItemId(),requisitionItem);
+
     }
 }

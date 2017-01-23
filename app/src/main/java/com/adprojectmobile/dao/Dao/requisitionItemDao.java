@@ -13,4 +13,5 @@ public interface requisitionItemDao {
     public RequisitionItem getRequisitionItem(int id);
     public List<RequisitionItem> getAllRequisitionItems();
     public List<RequisitionItem> getItemsInRequisition(Requisition requisition);
+    public void saveRetrievalQty(RequisitionItem requisitionItem);
 }

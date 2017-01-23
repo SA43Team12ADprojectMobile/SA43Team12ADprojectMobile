@@ -43,5 +43,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button btnToDelivery=(Button)findViewById(R.id.btn_toDelivery_firstPage);
+        btnToDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
+                startActivity(intent);
+            }
+        });
     }
 }

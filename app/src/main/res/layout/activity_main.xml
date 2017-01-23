@@ -25,19 +25,27 @@
         android:layout_alignParentStart="true" />
 
     <Button
+        android:text="test button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_toRetrievalthirdPage"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Delivery Information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_toDelivery_firstPage"
+        android:layout_below="@+id/btn_toRetrieval_firstPage"
+        android:layout_alignParentStart="true" />
+
+    <Button
         android:text="Retrieval Form First Page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_toRetrieval_firstPage"
         android:layout_below="@+id/btn_toTestCollectionList"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="test 3rd page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_toRetrievalthirdPage"
-        android:layout_below="@+id/btn_toRetrieval_firstPage"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>
