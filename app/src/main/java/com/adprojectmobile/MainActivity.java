@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
+import com.adprojectmobile.testdata.testCollectionList;
 
 public class MainActivity extends AppCompatActivity {
 

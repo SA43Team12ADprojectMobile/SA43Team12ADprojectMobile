@@ -1,12 +1,15 @@
 package com.adprojectmobile.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
  * Created by EvEr on 2017/1/19.
  */
 
-public class Requisition {
+public class Requisition implements Parcelable {
     private String requisitionId;
     private Employee employee;
     private Disbursement disbursement;
@@ -36,6 +39,28 @@ public class Requisition {
         this.remarks = remarks;
         this.previousRequisitionId = previousRequisitionId;
     }
+
+    protected Requisition(Parcel in) {
+        requisitionId = in.readString();
+        disbursement = in.readParcelable(Disbursement.class.getClassLoader());
+        requisitionDate = in.readString();
+        approvedBy = in.readString();
+        approvementStatus = in.readString();
+        remarks = in.readString();
+        previousRequisitionId = in.readString();
+    }
+
+    public static final Creator<Requisition> CREATOR = new Creator<Requisition>() {
+        @Override
+        public Requisition createFromParcel(Parcel in) {
+            return new Requisition(in);
+        }
+
+        @Override
+        public Requisition[] newArray(int size) {
+            return new Requisition[size];
+        }
+    };
 
     public String getRequisitionId() {
         return requisitionId;
@@ -99,5 +124,21 @@ public class Requisition {
 
     public void setPreviousRequisitionId(String previousRequisitionId) {
         this.previousRequisitionId = previousRequisitionId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(requisitionId);
+        dest.writeParcelable(disbursement, flags);
+        dest.writeString(requisitionDate);
+        dest.writeString(approvedBy);
+        dest.writeString(approvementStatus);
+        dest.writeString(remarks);
+        dest.writeString(previousRequisitionId);
     }
 }
