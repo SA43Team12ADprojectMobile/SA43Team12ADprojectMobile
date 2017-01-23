@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.model.Requisition;
 import com.adprojectmobile.model.RequisitionItem;
 
 import java.util.List;
@@ -18,13 +19,14 @@ import java.util.List;
  */
 
 public class requisitionItemAdapter extends ArrayAdapter<RequisitionItem> {
-    private List<RequisitionItem> requisitionItemList;
+
+    private  List<RequisitionItem> requisitionItemList;
     int resource;
 
-    public requisitionItemAdapter(Context context, int resource, List<RequisitionItem> requisitionItemList) {
-        super(context, resource);
-        this.resource = resource;
-        this.requisitionItemList = requisitionItemList;
+    public requisitionItemAdapter(Context context, int resource, List<RequisitionItem> requisitionItems) {
+        super(context, resource, requisitionItems);
+        this.resource=resource;
+        this.requisitionItemList=requisitionItems;
     }
 
     @Override
@@ -33,16 +35,14 @@ public class requisitionItemAdapter extends ArrayAdapter<RequisitionItem> {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
         RequisitionItem requisitionItem=requisitionItemList.get(position);
-        if (requisitionItem!=null) {
-            TextView textViewRequisitionItemCode = (TextView) v.findViewById(R.id.textView_retrieval_disbursement_item_code);
-            TextView textViewRequisitionItemName = (TextView) v.findViewById(R.id.textView_retrieval_disbursement_item_name);
-            TextView textViewRequisitionItemQtyNeeded = (TextView) v.findViewById(R.id.textView_retrieval_disbursement_item_qty_needed);
-
-            textViewRequisitionItemCode.setText(requisitionItem.getItemTransaction().getItem().getItemId());
-            textViewRequisitionItemName.setText(requisitionItem.getItemTransaction().getItem().getDescription());
-            textViewRequisitionItemQtyNeeded.setText(requisitionItem.getNeededQuantity());
+        if (requisitionItem!=null){
+            TextView textViewEmployeeName=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_name);
+            TextView textViewEmployeeCode=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_code);
+            TextView textViewQtyNeeded=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_qty_needed);
+            textViewEmployeeName.setText(requisitionItem.getItemTransaction().getItem().getDescription());
+            textViewEmployeeCode.setText(requisitionItem.getItemTransaction().getItem().getItemId());
+            textViewQtyNeeded.setText(requisitionItem.getNeededQuantityStr().toString());
         }
         return v;
-
     }
 }

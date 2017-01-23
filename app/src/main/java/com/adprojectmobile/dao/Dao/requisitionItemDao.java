@@ -11,7 +11,6 @@ import java.util.List;
 
 public interface requisitionItemDao {
     public RequisitionItem getRequisitionItem(int id);
-    public List<RequisitionItem> getRequisitionItemsByRequisition(Requisition requisition);
     public List<RequisitionItem> getAllRequisitionItems();
     public List<RequisitionItem> getItemsInRequisition(Requisition requisition);
 }

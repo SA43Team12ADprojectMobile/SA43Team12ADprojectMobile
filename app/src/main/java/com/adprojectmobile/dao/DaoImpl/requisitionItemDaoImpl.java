@@ -19,21 +19,6 @@ public class requisitionItemDaoImpl implements requisitionItemDao {
     }
 
     @Override
-    public List<RequisitionItem> getRequisitionItemsByRequisition(Requisition requisition) {
-        List<RequisitionItem> requisitionItemList=DummyData.requisitionItems;
-        RequisitionItem reqItem;
-        List<RequisitionItem> reqItemsInReq=new ArrayList<>();
-        for (RequisitionItem req:requisitionItemList
-             ) {
-            if (req.getRequisition().getRequisitionId()==requisition.getRequisitionId()){
-                reqItem=req;
-                reqItemsInReq.add(reqItem);
-            }
-        }
-        return reqItemsInReq;
-    }
-
-    @Override
     public List<RequisitionItem> getAllRequisitionItems() {
         return DummyData.requisitionItems;
     }
@@ -42,11 +27,11 @@ public class requisitionItemDaoImpl implements requisitionItemDao {
     public List<RequisitionItem> getItemsInRequisition(Requisition requisition) {
         List<RequisitionItem> requisitionItemList=DummyData.requisitionItems;
         List<RequisitionItem> requisitionsItemInReq=new ArrayList<RequisitionItem>() ;
-        for (RequisitionItem req:requisitionsItemInReq) {
-            if (req.getRequisition().getRequisitionId()==requisition.getRequisitionId()){
+        for (RequisitionItem req:requisitionItemList) {
+           if (req.getRequisition().getRequisitionId().toString().equals(requisition.getRequisitionId().toString())){
                 RequisitionItem requisitionItem=req;
-                requisitionsItemInReq.add(req);
-            }
+                requisitionsItemInReq.add(requisitionItem);
+         }
         }
         return requisitionsItemInReq;
     }

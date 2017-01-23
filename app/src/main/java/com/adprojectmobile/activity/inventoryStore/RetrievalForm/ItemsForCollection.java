@@ -37,9 +37,31 @@ public class ItemsForCollection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieval_form_activity_collection_items);
-//        List<RequisitionItem> testList=reqItemDao.getAllRequisitionItems();
-//        final ListView requisitionItemList=(ListView)findViewById(R.id.listview_retrieval_disbursement_items);
-//        requisitionItemList.setAdapter(new requisitionItemAdapter(getApplicationContext(),R.layout.row_retrieval_form_disbursement_items,testList));
+
+        final Requisition requisition=getIntent().getParcelableExtra("data");
+       // Toast.makeText(getApplicationContext(),requisition.getRequisitionDate().toString(),Toast.LENGTH_LONG).show();
+
+        final ListView requisitionItemView=(ListView)findViewById(R.id.listview_retrieval_disbursement_items);
+
+
+        new AsyncTask<Requisition,Void,List<RequisitionItem>>() {
+            @Override
+            protected List<RequisitionItem> doInBackground(Requisition...params) {
+                //return reqItemDao.getAllRequisitionItems();
+                return reqItemDao.getItemsInRequisition(requisition);
+            }
+            @Override
+            protected void onPostExecute(List<RequisitionItem> requisitionItems)
+            {
+                //requisitionItemView.setAdapter(new requisitionItemAdapter(ItemsForCollection.this,R.layout.row_retrieval_form_disbursement_items,requisitionItems));
+                requisitionItemView.setAdapter(new requisitionItemAdapter(ItemsForCollection.this,R.layout.row_retrieval_form_disbursement_items,requisitionItems));
+            }
+        }.execute();
+
+
+
+
+
 
 
 //        Disbursement disbursement=(Disbursement)getIntent().getParcelableExtra("disbursement");

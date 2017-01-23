@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
+import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ItemsForCollection;
 import com.adprojectmobile.testdata.testCollectionList;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,CollectionPoints.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnToRequisitionItems=(Button)findViewById(R.id.btn_toRetrievalthirdPage);
+        btnToRequisitionItems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ItemsForCollection.class);
                 startActivity(intent);
             }
         });

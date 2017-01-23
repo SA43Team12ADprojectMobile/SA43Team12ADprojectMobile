@@ -77,6 +77,11 @@ public class RequisitionItem implements Parcelable{
     public int getNeededQuantity() {
         return neededQuantity;
     }
+    public String getNeededQuantityStr() {
+        Integer integer=neededQuantity;
+        String str=integer.toString();
+        return str;
+    }
 
     public void setNeededQuantity(int neededQuantity) {
         this.neededQuantity = neededQuantity;
@@ -84,6 +89,11 @@ public class RequisitionItem implements Parcelable{
 
     public int getRetrievedQuantity() {
         return retrievedQuantity;
+    }
+    public String getRetrievedQuantityStr() {
+        Integer integer=retrievedQuantity;
+        String str=integer.toString();
+        return str;
     }
 
     public void setRetrievedQuantity(int retrievedQuantity) {
@@ -94,6 +104,7 @@ public class RequisitionItem implements Parcelable{
     public int describeContents() {
         return 0;
     }
+
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
