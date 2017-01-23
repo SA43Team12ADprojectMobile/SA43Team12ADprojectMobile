@@ -22,7 +22,7 @@
         android:background="@color/colorPrimary"
         android:textColor="@android:color/background_light"
         android:textStyle="normal|bold"
-        android:text="Collection Points"
+        android:text="Disbursements"
         android:textAllCaps="true"
         android:gravity="center"
         android:fitsSystemWindows="true"

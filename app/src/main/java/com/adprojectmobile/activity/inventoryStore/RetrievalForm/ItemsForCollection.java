@@ -58,7 +58,16 @@ public class ItemsForCollection extends AppCompatActivity {
             }
         }.execute();
 
+        requisitionItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                RequisitionItem requisitionItem = (RequisitionItem) parent.getAdapter().getItem(position);
 
+                Intent intent = new Intent(getApplicationContext(), ConfirmRetrieval.class);
+                intent.putExtra("data", requisitionItem);
+                startActivity(intent);
+            }
+        });
 
 
 

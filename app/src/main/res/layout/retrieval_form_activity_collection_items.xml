@@ -13,12 +13,6 @@
     tools:context=".activity.inventoryStore.RetrievalForm.ItemsForCollection">
 
     <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textview_test" />
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -28,7 +22,7 @@
         android:background="@color/colorPrimary"
         android:textColor="@android:color/background_light"
         android:textStyle="normal|bold"
-        android:text="Collection Points"
+        android:text="Requisition Items"
         android:textAllCaps="true"
         android:gravity="center"
         android:fitsSystemWindows="true"

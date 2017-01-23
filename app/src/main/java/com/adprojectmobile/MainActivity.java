@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
+import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ConfirmRetrieval;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ItemsForCollection;
 import com.adprojectmobile.testdata.testCollectionList;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnToRequisitionItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,ItemsForCollection.class);
+                Intent intent=new Intent(MainActivity.this,ConfirmRetrieval.class);
                 startActivity(intent);
             }
         });
