@@ -29,10 +29,13 @@ public class itemTransactionDaoImpl implements itemTransactionDao {
         List<RequisitionItem> requisitionItems=DummyData.requisitionItems;
         for (RequisitionItem req:requisitionItems
              ) {
-            if(req.getRequisitionItemId()==requisitionItem.getRequisitionItemId()){
-                ItemTransaction item=req.getItemTransaction();
-                returnList.add(item);
+            if(req!=null&&requisitionItem!=null){
+                if(req.getRequisitionItemId()==requisitionItem.getRequisitionItemId()){
+                    ItemTransaction item=req.getItemTransaction();
+                    returnList.add(item);
+                }
             }
+
         }
         return returnList;
     }

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.adprojectmobile.activity.LoginActivity;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ConfirmRetrieval;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ItemsForCollection;
@@ -40,6 +42,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,ConfirmRetrieval.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnToDelivery=(Button)findViewById(R.id.btn_toDelivery_firstPage);
+        btnToDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnLogin=(Button)findViewById(R.id.btn_toLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);
             }
         });

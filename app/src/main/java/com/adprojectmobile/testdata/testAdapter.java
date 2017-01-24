@@ -34,10 +34,10 @@ public class testAdapter extends ArrayAdapter<testCollectionPoint> {
         testCollectionPoint collectionPoint=collectionPoints.get(position);
         if (collectionPoint!=null){
             TextView textViewCollectionName=(TextView)v.findViewById(R.id.textView_collectionpoint_name);
-            TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionpoint_date);
+//            TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionpoint_date);
 
             textViewCollectionName.setText(collectionPoint.getCollectionPointName());
-            textViewCollectionDate.setText(collectionPoint.getDeliverDate());
+//            textViewCollectionDate.setText(collectionPoint.getDeliverDate());
         }
         return v;
 

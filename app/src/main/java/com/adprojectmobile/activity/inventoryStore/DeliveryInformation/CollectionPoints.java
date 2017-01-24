@@ -1,11 +1,15 @@
 package com.adprojectmobile.activity.inventoryStore.DeliveryInformation;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.department.ConfirmDisbursement.ConfirmCollection;
 import com.adprojectmobile.adapter.collectionAdapter;
 import com.adprojectmobile.dao.Dao.collectionPointDao;
 import com.adprojectmobile.dao.DaoImpl.collectionPointDaoImpl;
@@ -35,6 +39,19 @@ public class CollectionPoints extends AppCompatActivity {
 
             }
         }.execute();
+
+        collectionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CollectionPoint collectionPoint=(CollectionPoint)parent.getAdapter().getItem(position);
+
+                Intent intent=new Intent(getApplicationContext(),DepartmentsInCollection.class);
+                intent.putExtra("data",collectionPoint);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
 
