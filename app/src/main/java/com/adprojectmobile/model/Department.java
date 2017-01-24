@@ -75,13 +75,22 @@ public class Department implements Parcelable {
     public int getTelephoneNumber() {
         return telephoneNumber;
     }
-
+    public String getTelephoneNumberStr() {
+        Integer integer=telephoneNumber;
+        String str=integer.toString();
+        return str;
+    }
     public void setTelephoneNumber(int telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 
     public int getFaxNumber() {
         return faxNumber;
+    }
+    public String getFaxNumberStr() {
+        Integer integer=faxNumber;
+        String str=integer.toString();
+        return str;
     }
 
     public void setFaxNumber(int faxNumber) {

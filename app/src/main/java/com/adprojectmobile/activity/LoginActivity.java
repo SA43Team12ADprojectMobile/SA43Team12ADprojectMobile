@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

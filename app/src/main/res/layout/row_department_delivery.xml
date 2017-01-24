@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:descendantFocusability="blocksDescendants"
     >
 
     <LinearLayout
@@ -18,7 +17,6 @@
             android:layout_weight="1"
             android:textSize="20sp"/>
     </LinearLayout>
-
 
 
 </LinearLayout>

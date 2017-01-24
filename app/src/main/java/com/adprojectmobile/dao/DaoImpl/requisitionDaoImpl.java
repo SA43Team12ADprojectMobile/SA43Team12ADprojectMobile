@@ -1,7 +1,9 @@
 package com.adprojectmobile.dao.DaoImpl;
 
+import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
 import com.adprojectmobile.dao.Dao.requisitionDao;
 import com.adprojectmobile.model.Disbursement;
+import com.adprojectmobile.model.Employee;
 import com.adprojectmobile.model.Requisition;
 import com.adprojectmobile.util.DummyData;
 
@@ -35,5 +37,22 @@ public class requisitionDaoImpl implements requisitionDao {
             }
         }
         return requisitionsInDisbursement;
+    }
+
+    @Override
+    public List<Requisition> getRequisitionByEmployee(Employee employee) {
+        List<Requisition> returnList=new ArrayList<>();
+        List<Requisition> requisitions=DummyData.requisitions;
+        for (Requisition req:requisitions
+                ) {
+            if (req!=null&&employee!=null){
+                Employee employeeCompare=req.getEmployee();
+                if(employeeCompare.equals(employee)){
+                    returnList.add(req);
+                }
+            }
+
+        }
+        return returnList;
     }
 }

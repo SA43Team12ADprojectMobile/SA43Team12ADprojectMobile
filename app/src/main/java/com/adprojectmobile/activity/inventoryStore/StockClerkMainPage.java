@@ -1,4 +1,4 @@
-package com.adprojectmobile.activity;
+package com.adprojectmobile.activity.inventoryStore;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
