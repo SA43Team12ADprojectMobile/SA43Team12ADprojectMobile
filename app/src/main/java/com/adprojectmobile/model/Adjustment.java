@@ -1,12 +1,15 @@
 package com.adprojectmobile.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
  * Created by EvEr on 2017/1/19.
  */
 
-public class Adjustment {
+public class Adjustment implements Parcelable {
     private String adjustmentId;
     private String dateIssued;
     private String issuedBy;
@@ -33,6 +36,27 @@ public class Adjustment {
         this.approvedBy = approvedBy;
         this.approvementStatus = approvementStatus;
     }
+
+    protected Adjustment(Parcel in) {
+        adjustmentId = in.readString();
+        dateIssued = in.readString();
+        issuedBy = in.readString();
+        approvedBy = in.readString();
+        approvementStatus = in.readString();
+        remarks = in.readString();
+    }
+
+    public static final Creator<Adjustment> CREATOR = new Creator<Adjustment>() {
+        @Override
+        public Adjustment createFromParcel(Parcel in) {
+            return new Adjustment(in);
+        }
+
+        @Override
+        public Adjustment[] newArray(int size) {
+            return new Adjustment[size];
+        }
+    };
 
     public String getAdjustmentId() {
         return adjustmentId;
@@ -80,5 +104,20 @@ public class Adjustment {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(adjustmentId);
+        dest.writeString(dateIssued);
+        dest.writeString(issuedBy);
+        dest.writeString(approvedBy);
+        dest.writeString(approvementStatus);
+        dest.writeString(remarks);
     }
 }

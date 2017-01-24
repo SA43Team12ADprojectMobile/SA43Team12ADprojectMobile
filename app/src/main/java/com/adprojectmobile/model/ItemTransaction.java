@@ -70,6 +70,11 @@ public class ItemTransaction implements Parcelable{
     public int getActualQuantity() {
         return actualQuantity;
     }
+    public String getActualQuantityStr() {
+        Integer integer=actualQuantity;
+        String str=integer.toString();
+        return str;
+    }
 
     public void setActualQuantity(int actualQuantity) {
         this.actualQuantity = actualQuantity;

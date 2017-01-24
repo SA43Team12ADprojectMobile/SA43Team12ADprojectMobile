@@ -1,6 +1,8 @@
 package com.adprojectmobile.dao.DaoImpl;
 
+import com.adprojectmobile.dao.Dao.adjustmentItemDao;
 import com.adprojectmobile.dao.Dao.itemTransactionDao;
+import com.adprojectmobile.model.AdjustmentItem;
 import com.adprojectmobile.model.ItemTransaction;
 import com.adprojectmobile.model.RequisitionItem;
 import com.adprojectmobile.util.DummyData;
@@ -38,5 +40,21 @@ public class itemTransactionDaoImpl implements itemTransactionDao {
 
         }
         return returnList;
+    }
+
+    @Override
+    public ItemTransaction getItemTransactionByAdjustmentItem(AdjustmentItem adjustmentItem) {
+        ItemTransaction returnItemTransaction=new ItemTransaction();
+        adjustmentItemDao adjItemDao=new adjustmentItemDaoImpl();
+        List<AdjustmentItem> adjustmentItems=adjItemDao.getAllAdjustmentItems();
+        for (AdjustmentItem adji :
+                adjustmentItems) {
+            if(adji!=null&&adjustmentItem!=null){
+                if (adji.getItemTransaction().equals(adjustmentItem.getItemTransaction())){
+                    returnItemTransaction=adji.getItemTransaction();
+                }
+            }
+        }
+        return returnItemTransaction;
     }
 }

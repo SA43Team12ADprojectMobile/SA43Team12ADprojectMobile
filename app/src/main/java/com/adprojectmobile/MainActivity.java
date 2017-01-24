@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.adprojectmobile.activity.LoginActivity;
+import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.AdjustmentMainPage;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ConfirmRetrieval;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ItemsForCollection;
@@ -60,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnToAdjust=(Button)findViewById(R.id.btn_toAdjustmentMainPage);
+        btnToAdjust.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,AdjustmentMainPage.class);
                 startActivity(intent);
             }
         });
