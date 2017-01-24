@@ -50,7 +50,7 @@
         <activity android:name=".activity.department.DelegateAuthority.DelegateAuthority" />
         <activity android:name=".activity.department.DelegateAuthority.RevokeAuthority" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".activity.StockClerkMainPage" />
         <activity android:name=".activity.department.EmployeeMainPage" />

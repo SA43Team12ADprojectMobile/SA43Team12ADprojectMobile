@@ -58,8 +58,7 @@ public class ConfirmRetrieval extends AppCompatActivity {
                 requisitionItem.setRetrievedQuantity(qtyChanged);
                 reqDao.saveRetrievalQty(requisitionItem);
 
-                Intent intent=new Intent(ConfirmRetrieval.this,ItemsForCollection.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
