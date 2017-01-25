@@ -1,12 +1,15 @@
 package com.adprojectmobile.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
  * Created by EvEr on 2017/1/19.
  */
 
-public class Employee {
+public class Employee implements Parcelable {
     private String employeeId;
     private Department department;
     private String password;
@@ -31,6 +34,50 @@ public class Employee {
         this.emailAddress = emailAddress;
         this.isDelegated = isDelegated;
     }
+
+    protected Employee(Parcel in) {
+        employeeId = in.readString();
+        department = in.readParcelable(Department.class.getClassLoader());
+        password = in.readString();
+        name = in.readString();
+        position = in.readString();
+        number = in.readString();
+        emailAddress = in.readString();
+        isDelegated = in.readByte() != 0;
+        delegationStartDate = in.readString();
+        delegationEndDate = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(employeeId);
+        dest.writeParcelable(department, flags);
+        dest.writeString(password);
+        dest.writeString(name);
+        dest.writeString(position);
+        dest.writeString(number);
+        dest.writeString(emailAddress);
+        dest.writeByte((byte) (isDelegated ? 1 : 0));
+        dest.writeString(delegationStartDate);
+        dest.writeString(delegationEndDate);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Employee> CREATOR = new Creator<Employee>() {
+        @Override
+        public Employee createFromParcel(Parcel in) {
+            return new Employee(in);
+        }
+
+        @Override
+        public Employee[] newArray(int size) {
+            return new Employee[size];
+        }
+    };
 
     public String getEmployeeId() {
         return employeeId;
