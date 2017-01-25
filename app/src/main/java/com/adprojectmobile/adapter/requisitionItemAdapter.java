@@ -34,14 +34,14 @@ public class requisitionItemAdapter extends ArrayAdapter<RequisitionItem> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        RequisitionItem requisitionItem=requisitionItemList.get(position);
-        if (requisitionItem!=null){
+        RequisitionItem requisitionItems =requisitionItemList.get(position);
+        if (requisitionItems!=null){
             TextView textViewItemName=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_name);
             TextView textViewItemCode=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_code);
             TextView textViewQtyNeeded=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_qty_needed);
-            textViewItemName.setText(requisitionItem.getItemTransaction().getItem().getDescription());
-            textViewItemCode.setText(requisitionItem.getItemTransaction().getItem().getItemId());
-            textViewQtyNeeded.setText(requisitionItem.getNeededQuantityStr().toString());
+            textViewItemName.setText(requisitionItems.getItemTransaction().getItem().getDescription());
+            textViewItemCode.setText(requisitionItems.getItemTransaction().getItem().getItemId());
+            textViewQtyNeeded.setText(requisitionItems.getNeededQuantityStr().toString());
         }
         return v;
     }

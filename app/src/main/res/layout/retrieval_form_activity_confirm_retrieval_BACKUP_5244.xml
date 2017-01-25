@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/retrieval_form_activity_confirm_retrieval"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.department.ApproveRequisition.RejectRequisition">
+<<<<<<< HEAD
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.CreateNewVoucher">
+=======
+    tools:context=".activity.inventoryStore.RetrievalForm.ConfirmRetrieval">
+>>>>>>> dcaa4c1869c55d50f3c077ade0bb79f118651b49
 
     <TableLayout
         android:layout_width="match_parent"
@@ -17,7 +26,7 @@
             android:layout_height="match_parent" >
 
             <TextView
-                android:text="Employee Name: "
+                android:text="Item Code: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -31,7 +40,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
-                android:id="@+id/editText_EmployeeName_rejectRequisition"
+                android:id="@+id/editText_create_new_voucherID"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
@@ -51,7 +60,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent">
             <TextView
-                android:text="Collection Time: "
+                android:text="Item Name: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -65,7 +74,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
-                android:id="@+id/editText_CollectionTime_rejectRequisition"
+                android:id="@+id/editText_create_new_voucher_date"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
@@ -78,7 +87,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent" >
             <TextView
-                android:text="Item Number: "
+                android:text="Qty Needed: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -92,7 +101,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
-                android:id="@+id/editText_ItemNumber_rejectRequisition"
+                android:id="@+id/editText_itemQtyNeeded_confirmCollection"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
@@ -105,7 +114,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent" >
             <TextView
-                android:text="Rejection Reason: "
+                android:text="Qty Retrieved: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -117,10 +126,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="Input the rejection reason"
+                android:hint="Input actual quantity retrieved"
                 android:ems="10"
                 android:layout_weight="2"
-                android:id="@+id/editText_RejectionReason_rejectRequisition"
+                android:id="@+id/editText_itemQtyRetrieval_confirmCollection"
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"
@@ -130,9 +139,9 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   >
             <TextView
                 android:layout_height="100dp"/>
 
@@ -151,7 +160,7 @@
                 android:background="@android:color/holo_purple"
                 android:textColor="@android:color/white"
                 android:textSize="25sp"
-                android:id="@+id/btn_save_reject_requisition"
+                android:id="@+id/btn_save_confirm_collection"
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"

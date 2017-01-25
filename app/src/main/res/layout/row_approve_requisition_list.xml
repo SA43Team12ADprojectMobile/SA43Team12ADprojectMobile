@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView_retrieval_disbursement_item_code"
+            android:id="@+id/textView_requisition_employee_name"
             android:layout_weight="3"
             android:textSize="20sp"
             android:paddingBottom="10dp"
@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView_retrieval_disbursement_item_name"
+            android:id="@+id/textView_requisition_requisition_date"
             android:layout_weight="3"
             android:textSize="20sp"
             android:paddingBottom="10dp"
@@ -38,26 +38,19 @@
         android:layout_alignParentRight="true"
         android:layoutDirection="rtl"
         android:layout_weight="3">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@android:color/black"
-            android:layoutDirection="ltr"
-            android:paddingRight="10dp"
-            android:textSize="15sp"
-            android:text="QTY:"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView_retrieval_disbursement_item_qty_needed"
+            android:id="@+id/textview_requisition_requisition_quantity"
+
             android:gravity="right"
             android:layout_weight="3"
             android:paddingBottom="10dp"
             android:layoutDirection="rtl"
             android:textSize="25sp"
             android:textColor="@android:color/black"/>
-       />
+        />
     </LinearLayout>
 
 

@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_collection_list"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context="com.adprojectmobile.activity.inventoryStore.RetrievalForm.RequisitionsInDisbursement">
@@ -19,12 +14,12 @@
         android:id="@+id/textview_retrival_collectionPoints_3"
         android:padding="20dp"
         android:textSize="20sp"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/holo_purple"
         android:textColor="@android:color/background_light"
         android:textStyle="normal|bold"
         android:text="Requisitions"
         android:textAllCaps="true"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:fitsSystemWindows="true"
         />
 
