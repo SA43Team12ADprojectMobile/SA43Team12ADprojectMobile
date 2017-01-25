@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface itemDao {
     public Item getItem(int id);
+    public Item getItem(String code);
+    public List<Item> getItemsByCode(String code);
     public List<Item> getAllItem();
     public List<Item> getItemByItemTransaction(ItemTransaction itemTransaction);
     public Item getItemByItemTrans(ItemTransaction itemTransaction);

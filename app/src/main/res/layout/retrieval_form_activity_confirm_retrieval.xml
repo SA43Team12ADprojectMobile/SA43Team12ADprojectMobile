@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.inventoryStore.RetrievalForm.ConfirmRetrieval">
+    tools:context=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.CreateNewVoucher">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
-                android:id="@+id/editText_itemCode_confirmCollection"
+                android:id="@+id/editText_create_new_voucherID"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
@@ -64,7 +64,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
-                android:id="@+id/editText_itemName_confirmCollection"
+                android:id="@+id/editText_create_new_voucher_date"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"

@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.adprojectmobile.activity.LoginActivity;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.AdjustmentMainPage;
+import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ConfirmRetrieval;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ItemsForCollection;
@@ -38,14 +39,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnToRequisitionItems=(Button)findViewById(R.id.btn_toRetrievalthirdPage);
-        btnToRequisitionItems.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,ConfirmRetrieval.class);
-                startActivity(intent);
-            }
-        });
 
         Button btnToDelivery=(Button)findViewById(R.id.btn_toDelivery_firstPage);
         btnToDelivery.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,AdjustmentMainPage.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnToTest=(Button)findViewById(R.id.btn_forTest);
+        btnToTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,AdjustmentVouchersForCRUD.class);
                 startActivity(intent);
             }
         });

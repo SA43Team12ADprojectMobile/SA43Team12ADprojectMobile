@@ -34,10 +34,10 @@ public class VoucherDetail extends AppCompatActivity {
         final EditText editTextItemAuthorizedBy=(EditText) findViewById(R.id.editText_itemAdjusted_authorized_by_employee_name);
         final EditText editTextReason=(EditText) findViewById(R.id.editText_itemAdjusted_reason);
 
-        ItemTransaction itemTransaction=itDao.getItemTransactionByAdjustmentItem(adjustmentItem);
-        Item item=itemDao.getItemByItemTrans(itemTransaction);
+        ItemTransaction itemTransaction=adjustmentItem.getItemTransaction();
+        Item item= itemTransaction.getItem();
 
-           editTextItemCode.setText(item.getItemId());
+//           editTextItemCode.setText(item.getItemId());
 //            editTextItemName.setText(item.getDescription());
 //
             editTextItemQty.setText(itemTransaction.getActualQuantityStr());

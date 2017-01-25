@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.adprojectmobile.MainActivity;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.ConfirmCollection;
+import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty;
 import com.adprojectmobile.dao.Dao.itemTransactionDao;
 import com.adprojectmobile.dao.DaoImpl.*;
 import com.adprojectmobile.dao.Dao.*;
@@ -30,19 +31,16 @@ public class ConfirmRetrieval extends AppCompatActivity {
         setContentView(R.layout.retrieval_form_activity_confirm_retrieval);
 
         final RequisitionItem requisitionItem = getIntent().getParcelableExtra("data");
-        List<ItemTransaction> itemTransactionList= itemTransactionDao.getItemTransationsByRequisitionItem(requisitionItem);
-        ItemTransaction itemTransaction=itemTransactionList.get(0);
-        List<Item> itemList=itemDao.getItemByItemTransaction(itemTransaction);
-
+        final ItemTransaction itemTransaction=requisitionItem.getItemTransaction();
+        final Item item=itemTransaction.getItem();
 
         final EditText editTextItemCode = (EditText) findViewById(R.id.editText_itemCode_confirmCollection);
         final EditText editTextName = (EditText) findViewById(R.id.editText_itemName_confirmCollection);
         final EditText editTextQtyNeeded = (EditText) findViewById(R.id.editText_itemQtyNeeded_confirmCollection);
         final EditText editTextQtyRetri= (EditText) findViewById(R.id.editText_itemQtyRetrieval_confirmCollection);
-        if (!itemList.isEmpty()){
-            Item itemGot =itemList.get(0);
-            editTextItemCode.setText(itemGot.getItemId());
-            editTextName.setText(itemGot.getDescription());
+        if (item!=null ){
+            editTextItemCode.setText(item.getItemId());
+            editTextName.setText(item.getDescription());
 
             editTextQtyNeeded.setText(requisitionItem.getNeededQuantityStr().toString());
             editTextQtyRetri.setText(requisitionItem.getRetrievedQuantityStr().toString());
@@ -58,7 +56,16 @@ public class ConfirmRetrieval extends AppCompatActivity {
                 requisitionItem.setRetrievedQuantity(qtyChanged);
                 reqDao.saveRetrievalQty(requisitionItem);
 
+                ItemTransaction tmpTransaction=requisitionItem.getItemTransaction();
+                Item dataItem=tmpTransaction.getItem();
+                Intent intent;
                 finish();
+                if(editTextQtyNeeded.getText().toString().contains(editTextQtyRetri.getText().toString())){
+                    intent=new Intent(getApplicationContext(), AdjustItemQty.class);
+                    intent.putExtra("data",dataItem);
+                    intent.putExtra("isAdd",true);
+                    startActivity(intent);
+                }
             }
         });
     }

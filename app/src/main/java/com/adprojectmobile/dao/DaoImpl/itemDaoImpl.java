@@ -20,6 +20,36 @@ public class itemDaoImpl implements itemDao {
     }
 
     @Override
+    public Item getItem(String code) {
+        Item returnItem=new Item();
+        List<Item> allItems=this.getAllItem();
+        for (Item i:allItems
+             ) {
+            if (code!=null&i!=null){
+                if(i.getItemId().equals(code)){
+                    returnItem=i;
+                }
+            }
+        }
+        return returnItem;
+    }
+
+    @Override
+    public List<Item> getItemsByCode(String code) {
+        Item returnItem=new Item();
+        List<Item> allItems=this.getAllItem();
+        for (Item i:allItems
+                ) {
+            if (code!=null&i!=null){
+                if(i.getItemId()==code){
+                    returnItem=i;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
     public List<Item> getAllItem() {
         return DummyData.items;
     }

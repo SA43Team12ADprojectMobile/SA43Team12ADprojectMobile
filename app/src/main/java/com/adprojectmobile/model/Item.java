@@ -1,10 +1,13 @@
 package com.adprojectmobile.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by EvEr on 2017/1/19.
  */
 
-public class Item {
+public class Item implements Parcelable{
     private String itemId;
     private Category category;
     private String photoFileName;
@@ -37,6 +40,29 @@ public class Item {
 
     public Item() {
     }
+
+    protected Item(Parcel in) {
+        itemId = in.readString();
+        photoFileName = in.readString();
+        description = in.readString();
+        reorderLevel = in.readInt();
+        reorderQuantity = in.readInt();
+        bin = in.readString();
+        unitOfMeasurement = in.readString();
+        isInInventory = in.readByte() != 0;
+    }
+
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
 
     public String getItemId() {
         return itemId;
@@ -100,5 +126,22 @@ public class Item {
 
     public void setUnitOfMeasurement(String unitOfMeasurement) {
         this.unitOfMeasurement = unitOfMeasurement;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(itemId);
+        dest.writeString(photoFileName);
+        dest.writeString(description);
+        dest.writeInt(reorderLevel);
+        dest.writeInt(reorderQuantity);
+        dest.writeString(bin);
+        dest.writeString(unitOfMeasurement);
+        dest.writeByte((byte) (isInInventory ? 1 : 0));
     }
 }
