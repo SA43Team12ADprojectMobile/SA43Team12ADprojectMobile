@@ -48,7 +48,7 @@ public class ItemsInVoucherAuthorize extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),ViewAdjustmentDetail.class);
                 intent.putExtra("data",adjustmentItem);
                 intent.putExtra("data1",adjustment);
-                intent.putExtra("isAdd",false);
+                //intent.putExtra("isAdd",false);
                 startActivity(intent);
             }
         });
