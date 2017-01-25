@@ -15,4 +15,6 @@ public interface requisitionDao {
     public List<Requisition> getAllRequisitions();
     public List<Requisition> getDisbursementRequisition(Disbursement disbursement);
     public List<Requisition> getRequisitionByEmployee(Employee employee);
+
+    public void saveRejectedReason(Requisition requisition);
 }

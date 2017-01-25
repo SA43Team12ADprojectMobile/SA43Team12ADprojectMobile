@@ -37,10 +37,10 @@ public class requisitionAdapter extends ArrayAdapter<Requisition> {
         if (requisition!=null){
             TextView textViewEmployeeName=(TextView)v.findViewById(R.id.textView_requisition_employee_name);
             TextView textViewDate=(TextView)v.findViewById(R.id.textView_requisition_requisition_date);
-
+            TextView textViewQuantitiy = (TextView)v.findViewById(R.id.textview_requisition_requisition_quantity);
             textViewEmployeeName.setText(requisition.getEmployee().getName());
             textViewDate.setText(requisition.getRequisitionDate());
-
+//            textViewQuantitiy.setText(requisition.getRequisitionQuantity());
         }
         return v;
     }

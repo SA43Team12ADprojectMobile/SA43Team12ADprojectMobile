@@ -56,4 +56,14 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/btn_toLogin" />
 
+    <Button
+        android:text="Requisition for approval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_toDelivery_firstPage"
+        android:layout_alignEnd="@+id/btn_toRetrievalthirdPage"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btn_approve_requisition" />
+
+
 </RelativeLayout>

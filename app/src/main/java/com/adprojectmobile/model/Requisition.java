@@ -18,6 +18,7 @@ public class Requisition implements Parcelable {
     private String approvementStatus;
     private String remarks;
     private String  previousRequisitionId;
+    private int requisitionQuantity;
 
     public Requisition(String requisitionId, Employee employee, Disbursement disbursement, String requisitionDate) {
         this.requisitionId = requisitionId;
@@ -29,7 +30,7 @@ public class Requisition implements Parcelable {
     public Requisition() {
     }
 
-    public Requisition(String requisitionId, Employee employee, Disbursement disbursement, String requisitionDate, String approvedBy, String approvementStatus, String remarks, String previousRequisitionId) {
+    public Requisition(String requisitionId, Employee employee, Disbursement disbursement, String requisitionDate, String approvedBy, String approvementStatus, String remarks, String previousRequisitionId, int requisitionQuantity) {
         this.requisitionId = requisitionId;
         this.employee = employee;
         this.disbursement = disbursement;
@@ -38,6 +39,7 @@ public class Requisition implements Parcelable {
         this.approvementStatus = approvementStatus;
         this.remarks = remarks;
         this.previousRequisitionId = previousRequisitionId;
+        this.requisitionQuantity = requisitionQuantity;
     }
 
     protected Requisition(Parcel in) {
@@ -125,10 +127,16 @@ public class Requisition implements Parcelable {
     public void setPreviousRequisitionId(String previousRequisitionId) {
         this.previousRequisitionId = previousRequisitionId;
     }
-
+    public int getRequisitionQuantity(){
+        return requisitionQuantity;
+    }
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public void setRequisitionQuantity(int requisitionQuantity) {
+        this.requisitionQuantity = requisitionQuantity;
     }
 
     @Override
@@ -138,7 +146,9 @@ public class Requisition implements Parcelable {
         dest.writeString(requisitionDate);
         dest.writeString(approvedBy);
         dest.writeString(approvementStatus);
+
         dest.writeString(remarks);
         dest.writeString(previousRequisitionId);
+        dest.writeInt(requisitionQuantity);
     }
 }

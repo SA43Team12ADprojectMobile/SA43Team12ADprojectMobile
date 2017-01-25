@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.adprojectmobile.activity.LoginActivity;
+import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ConfirmRetrieval;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.ItemsForCollection;
@@ -19,47 +20,55 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnToTestCollectionPoint=(Button)findViewById(R.id.btn_toTestCollectionList);
+        Button btnToTestCollectionPoint = (Button) findViewById(R.id.btn_toTestCollectionList);
         btnToTestCollectionPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,testCollectionList.class);
+                Intent intent = new Intent(MainActivity.this, testCollectionList.class);
                 startActivity(intent);
             }
         });
 
-        Button btnToCollectionPoint=(Button)findViewById(R.id.btn_toRetrieval_firstPage);
+        Button btnToCollectionPoint = (Button) findViewById(R.id.btn_toRetrieval_firstPage);
         btnToCollectionPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,CollectionPoints.class);
+                Intent intent = new Intent(MainActivity.this, CollectionPoints.class);
                 startActivity(intent);
             }
         });
 
-        Button btnToRequisitionItems=(Button)findViewById(R.id.btn_toRetrievalthirdPage);
+        Button btnToRequisitionItems = (Button) findViewById(R.id.btn_toRetrievalthirdPage);
         btnToRequisitionItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,ConfirmRetrieval.class);
+                Intent intent = new Intent(MainActivity.this, ConfirmRetrieval.class);
                 startActivity(intent);
             }
         });
 
-        Button btnToDelivery=(Button)findViewById(R.id.btn_toDelivery_firstPage);
+        Button btnToDelivery = (Button) findViewById(R.id.btn_toDelivery_firstPage);
         btnToDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
+                Intent intent = new Intent(MainActivity.this, com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
                 startActivity(intent);
             }
         });
 
-        Button btnLogin=(Button)findViewById(R.id.btn_toLogin);
+        Button btnLogin = (Button) findViewById(R.id.btn_toLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button btnApproveRequisition = (Button) findViewById(R.id.btn_approve_requisition);
+        btnApproveRequisition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Requisitions.class);
                 startActivity(intent);
             }
         });
