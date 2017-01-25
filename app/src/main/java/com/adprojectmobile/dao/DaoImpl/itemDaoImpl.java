@@ -1,6 +1,7 @@
 package com.adprojectmobile.dao.DaoImpl;
 
 import com.adprojectmobile.dao.Dao.itemDao;
+import com.adprojectmobile.dao.Dao.itemTransactionDao;
 import com.adprojectmobile.model.Item;
 import com.adprojectmobile.model.ItemTransaction;
 import com.adprojectmobile.util.DummyData;
@@ -40,5 +41,21 @@ public class itemDaoImpl implements itemDao {
         }
         return returnList;
 
+    }
+
+    @Override
+    public Item getItemByItemTrans(ItemTransaction itemTransaction) {
+        Item returnItemTransaction=new Item();
+        itemTransactionDao itDao =new itemTransactionDaoImpl();
+        List<ItemTransaction> itemTransactions=itDao.getAllItemTransactions();
+        for (ItemTransaction adji :
+                itemTransactions) {
+            if(adji!=null&&itemTransaction!=null){
+                if (adji.getItem().equals(itemTransaction.getItem())){
+                    returnItemTransaction=adji.getItem();
+                }
+            }
+        }
+        return returnItemTransaction;
     }
 }

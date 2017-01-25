@@ -1,5 +1,6 @@
 package com.adprojectmobile.dao.Dao;
 
+import com.adprojectmobile.model.AdjustmentItem;
 import com.adprojectmobile.model.ItemTransaction;
 import com.adprojectmobile.model.RequisitionItem;
 
@@ -13,4 +14,5 @@ public interface itemTransactionDao {
     public ItemTransaction getItemTransaction(int id);
     public List<ItemTransaction> getAllItemTransactions();
     public List<ItemTransaction> getItemTransationsByRequisitionItem(RequisitionItem requisitionItem);
+    public ItemTransaction getItemTransactionByAdjustmentItem(AdjustmentItem adjustmentItem);
 }

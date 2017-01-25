@@ -3,6 +3,8 @@ package com.adprojectmobile.activity.inventoryStore.DeliveryInformation;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.adprojectmobile.R;
@@ -38,5 +40,21 @@ public class RequisitionItems extends AppCompatActivity {
 
             }
         }.execute();
+
+        Button btnAcknowledge =(Button) findViewById(R.id.btn_item_delivery_acknowledge);
+        Button btnReject =(Button) findViewById(R.id.btn_item_delivery_reject);
+
+        btnAcknowledge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btnReject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }

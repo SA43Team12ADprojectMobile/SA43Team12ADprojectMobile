@@ -13,4 +13,5 @@ public interface itemDao {
     public Item getItem(int id);
     public List<Item> getAllItem();
     public List<Item> getItemByItemTransaction(ItemTransaction itemTransaction);
+    public Item getItemByItemTrans(ItemTransaction itemTransaction);
 }
