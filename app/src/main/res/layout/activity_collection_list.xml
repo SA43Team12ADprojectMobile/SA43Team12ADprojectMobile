@@ -12,6 +12,12 @@
     android:fitsSystemWindows="true"
     tools:context="com.adprojectmobile.testdata.testCollectionList">
 
+    <Button
+        android:text="Delegate Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_toDelegate" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

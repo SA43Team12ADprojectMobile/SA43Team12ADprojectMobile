@@ -19,6 +19,21 @@ public class employeeDaoImpl implements employeeDao {
     }
 
     @Override
+    public List<Employee> getEmployees(String name) {
+        List<Employee> returnList=new ArrayList<>();
+        List<Employee> allEmployees=this.getAllEmployees();
+        for (Employee e:
+             allEmployees) {
+            if(name!=null){
+                if(e.getName().contains(name)){
+                    returnList.add(e);
+                }
+            }
+        }
+        return returnList;
+    }
+
+    @Override
     public List<Employee> getAllEmployees() {
         return DummyData.employees;
     }

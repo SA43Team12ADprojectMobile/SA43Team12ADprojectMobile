@@ -1,13 +1,18 @@
 package com.adprojectmobile.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.adprojectmobile.R;
 
 import java.util.List;
+
+import com.adprojectmobile.activity.department.DelegateAuthority.FindEmployee;
 import com.adprojectmobile.testdata.testAdapter;
 import com.adprojectmobile.testdata.testCollectionPoint;
 import com.adprojectmobile.testdata.testDao;
@@ -35,5 +40,7 @@ public class testCollectionList extends AppCompatActivity {
 
             }
         }.execute();
+
+
     }
 }
