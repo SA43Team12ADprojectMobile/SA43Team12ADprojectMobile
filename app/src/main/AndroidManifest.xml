@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.adprojectmobile">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".testdata.testCollectionList" />
+        <activity android:name=".activity.inventoryStore.RetrievalForm.ItemsForCollection" />
+        <activity android:name=".activity.inventoryStore.RetrievalForm.CollectionPoints" />
+        <activity android:name=".activity.inventoryStore.RetrievalForm.ConfirmRetrieval" />
+        <activity android:name=".activity.inventoryStore.DeliveryInformation.CollectionPoints" />
+        <activity android:name=".activity.inventoryStore.DeliveryInformation.DepartmentsInCollection" />
+        <activity android:name=".activity.inventoryStore.DeliveryInformation.DepartmentDetail" />
+        <activity android:name=".activity.inventoryStore.DeliveryInformation.RequisitionItems" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.AdjustmentMainPage" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.VoucherDetail" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.CreateNewVoucher" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.ItemsVoucherIssue" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AddAdjustmentItem" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.AuthorizeAdjustment.AdjustmentVouchersAuthorize" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.AuthorizeAdjustment.ItemsInVoucherAuthorize" />
+        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.AuthorizeAdjustment.ViewAdjustmentDetail" />
+        <activity android:name=".activity.department.ApproveRequisition.Requisitions" />
+        <activity android:name=".activity.department.ApproveRequisition.RequisitionItemsforApprove" />
+        <activity android:name=".activity.department.ApproveRequisition.RejectRequisition" />
+        <activity android:name=".activity.department.ConfirmDisbursement.Disbursements" />
+        <activity android:name=".activity.department.ConfirmDisbursement.DisbursementItems" />
+        <activity android:name=".activity.department.ConfirmDisbursement.ConfirmCollection" />
+        <activity android:name=".activity.department.DelegateAuthority.FindEmployee" />
+        <activity android:name=".activity.department.DelegateAuthority.DelegateAuthority" />
+        <activity android:name=".activity.department.DelegateAuthority.RevokeAuthority" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity android:name=".activity.inventoryStore.StockClerkMainPage" />
+        <activity android:name=".activity.department.EmployeeMainPage" />
+        <activity
+            android:name=".activity.inventoryStore.RetrievalForm.RequisitionsInDisbursement"
+            android:label="@string/title_activity_requisitions_in_disbursement">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

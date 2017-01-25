@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_collection_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:padding="20dp"
+        android:textSize="20sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/background_light"
+        android:textStyle="normal|bold"
+        android:text="Adjustment Items"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:fitsSystemWindows="true"
+        />
+
+    <ListView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listview_adjustment_voucher_itemlist" />
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_collection_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.ItemsVoucherIssue">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:padding="20dp"
+        android:textSize="20sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/background_light"
+        android:textStyle="normal|bold"
+        android:text="Adjustment Items"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:fitsSystemWindows="true"
+        />
+
+    <ListView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview_adjustment_voucher_issue_itemlist" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="Create New Adjustment Item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_add_new_item" />
+
+        <Button
+            android:text="Delete This Voucher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_delete_voucher"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>
