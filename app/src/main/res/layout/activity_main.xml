@@ -73,4 +73,12 @@
         android:layout_centerVertical="true"
         android:layout_alignEnd="@+id/btn_toDelivery_firstPage" />
 
+    <Button
+        android:text="Confirm Disbursements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_forTest"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/btn_confirm_disbursements" />
+
 </RelativeLayout>
