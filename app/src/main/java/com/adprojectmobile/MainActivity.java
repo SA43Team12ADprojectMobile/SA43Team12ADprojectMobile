@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.adprojectmobile.activity.LoginActivity;
+import com.adprojectmobile.activity.department.ApproveRequisition.RequisitionItemsforApprove;
+import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.AdjustmentMainPage;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
@@ -72,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,AdjustmentVouchersForCRUD.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnApprove=(Button)findViewById(R.id.btn_approve_requisition);
+        btnApprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,Requisitions.class);
                 startActivity(intent);
             }
         });

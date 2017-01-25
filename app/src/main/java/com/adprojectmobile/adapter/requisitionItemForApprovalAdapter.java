@@ -18,30 +18,33 @@ import java.util.List;
  */
 
 public class requisitionItemForApprovalAdapter extends ArrayAdapter {
-        private List<RequisitionItem> requisitionItemForApprovalList;
-        int resource;
+    private List<RequisitionItem> requisitionItemForApprovalList;
+    int resource;
 
-        public requisitionItemForApprovalAdapter(Context context, int resource, List<RequisitionItem> requisitionItems) {
-            super(context, resource, requisitionItems);
-            this.resource=resource;
-            this.requisitionItemForApprovalList = requisitionItems;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            View v = inflater.inflate(resource, null);
-            RequisitionItem requisitionItems= requisitionItemForApprovalList.get(position);
-            if (requisitionItems!=null){
-                TextView textViewItemName=(TextView)v.findViewById(R.id.textView_requisition_requisition_item_name);
-                TextView textViewQtyRequired=(TextView)v.findViewById(R.id.textview_requisition_requisition_quantity_required);
-                textViewItemName.setText(requisitionItems.getItemTransaction().getItem().getDescription());
-                textViewQtyRequired.setText(requisitionItems.getNeededQuantityStr().toString());
-            }
-            return v;
-        }
+    public requisitionItemForApprovalAdapter(Context context, int resource, List<RequisitionItem> requisitionItems) {
+        super(context, resource, requisitionItems);
+        this.resource=resource;
+        this.requisitionItemForApprovalList = requisitionItems;
     }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(resource, null);
+        RequisitionItem requisitionItems= requisitionItemForApprovalList.get(position);
+        if (requisitionItems!=null){
+            TextView textViewItemName=(TextView)v.findViewById(R.id.textView_requisition_requisition_item_name);
+            TextView textViewQtyRequired=(TextView)v.findViewById(R.id.textview_requisition_requisition_quantity_required);
+            textViewItemName.setText(requisitionItems.getItemTransaction().getItem().getDescription());
+            textViewQtyRequired.setText(requisitionItems.getNeededQuantityStr().toString());
+        }
+        return v;
+    }
+}
+
+
+
 
 
 

@@ -55,4 +55,15 @@ public class requisitionDaoImpl implements requisitionDao {
         }
         return returnList;
     }
+    @Override
+    public void saveRejectedReason(Requisition requisition) {
+
+
+
+        if(DummyData.requisitions.contains(requisition)){
+            DummyData.requisitions.remove(requisition);
+        }
+        DummyData.requisitions.add(Integer.parseInt(requisition.getRemarks()),requisition);
+
+    }
 }

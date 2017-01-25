@@ -33,7 +33,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
-                android:id="@+id/editText_itemCode_confirmCollection"
+                android:id="@+id/editText_create_new_voucherID"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
@@ -64,7 +64,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
-                android:id="@+id/editText_itemName_confirmCollection"
+                android:id="@+id/editText_create_new_voucher_date"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false" />
