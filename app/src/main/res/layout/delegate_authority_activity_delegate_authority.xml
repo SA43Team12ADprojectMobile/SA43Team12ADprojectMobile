@@ -1,13 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/delegate_authority_activity_delegate_authority"
+    android:id="@+id/retrieval_form_activity_confirm_retrieval"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.adprojectmobile.activity.department.DelegateAuthority.DelegateAuthority">
+    tools:context=".activity.department.DelegateAuthority.DelegateAuthority">
 
-</RelativeLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_weight="0"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Employee Name: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_weight="2"
+                android:id="@+id/editText_delegate_employeeName"
+                android:enabled="false"
+                android:clickable="false"
+                android:longClickable="false"
+                />
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_weight="0"
+            android:layout_height="match_parent" />
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_weight="0"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="Delegation Status: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_weight="2"
+                android:id="@+id/editText_delegate_status"
+                android:enabled="false"
+                android:clickable="false"
+                android:longClickable="false"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView android:layout_height="20dp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_weight="0"
+            android:layout_height="match_parent" >
+            <TextView
+                android:text="Start Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_weight="2"
+                android:id="@+id/editText_delegate_startDate"
+                android:enabled="true"
+                android:clickable="true"
+                android:longClickable="false"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_weight="0"
+            android:layout_height="match_parent" >
+            <TextView
+                android:text="End Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_weight="2"
+                android:id="@+id/editText_delegate_enDate"
+                android:enabled="true"
+                android:clickable="true"
+                android:longClickable="false"
+                />
+        </TableRow>
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0">
+
+            <Button
+                android:text="Delegate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/btn_delegate_confirm" />
+        </TableRow>
+
+
+
+    </TableLayout>
+
+    </RelativeLayout>
