@@ -32,15 +32,15 @@ public class ConfirmRetrieval extends AppCompatActivity {
 
         final RequisitionItem requisitionItem = getIntent().getParcelableExtra("data");
         final ItemTransaction itemTransaction=requisitionItem.getItemTransaction();
-        final Item item=itemTransaction.getItem();
+//        final Item item=itemTransaction.getItem();
 
         final EditText editTextItemCode = (EditText) findViewById(R.id.editText_itemCode_confirmCollection);
         final EditText editTextName = (EditText) findViewById(R.id.editText_itemName_confirmCollection);
         final EditText editTextQtyNeeded = (EditText) findViewById(R.id.editText_itemQtyNeeded_confirmCollection);
         final EditText editTextQtyRetri= (EditText) findViewById(R.id.editText_itemQtyRetrieval_confirmCollection);
-        if (item!=null ){
-            editTextItemCode.setText(item.getItemId());
-            editTextName.setText(item.getDescription());
+        if (requisitionItem!=null ){
+//            editTextItemCode.setText(item.getItemId());
+//            editTextName.setText(item.getDescription());
 
             editTextQtyNeeded.setText(requisitionItem.getNeededQuantityStr().toString());
             editTextQtyRetri.setText(requisitionItem.getRetrievedQuantityStr().toString());

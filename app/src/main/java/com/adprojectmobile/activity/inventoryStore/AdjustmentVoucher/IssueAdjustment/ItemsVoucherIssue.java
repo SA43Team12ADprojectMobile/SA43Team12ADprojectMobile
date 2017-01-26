@@ -30,12 +30,12 @@ public class ItemsVoucherIssue extends AppCompatActivity {
 
         final Adjustment adjustment=getIntent().getParcelableExtra("data");
 
-        final ListView adjustmentItemView=(ListView)findViewById(R.id.listview_adjustment_voucher_approve_itemlist);
+        final ListView adjustmentItemView=(ListView)findViewById(R.id.listview_adjustment_voucher_issue_itemlist);
 
         new AsyncTask<Adjustment,Void,List<AdjustmentItem>>(){
             @Override
             protected List<AdjustmentItem> doInBackground(Adjustment...params){
-                //return adjItemDao.getAllAdjustmentItems();
+               // return adjItemDao.getAllAdjustmentItems();
                 return adjItemDao.getAdjustmentItemsByAdjustment(adjustment);
             }
 

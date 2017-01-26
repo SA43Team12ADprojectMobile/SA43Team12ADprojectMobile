@@ -48,9 +48,9 @@ public class RejectRequisition extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String rejectedReason=editTextRejectedReason.getText().toString();
+ //               String rejectedReason=editTextRejectedReason.getText().toString();
                 //String reasonChanged=String.(retrievedQty);
-                requisition.setRemarks(rejectedReason);
+//                requisition.setRemarks(rejectedReason);
                 //     requisitionDao.saveRejectedReason(requisitionItem);
 
                 finish();

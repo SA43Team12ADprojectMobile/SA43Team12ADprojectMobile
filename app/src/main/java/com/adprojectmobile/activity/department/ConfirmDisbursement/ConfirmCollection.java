@@ -57,22 +57,22 @@ public class ConfirmCollection extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String QuantityRetrieved =editTextQuantityRetrieved.getText().toString();
-                Integer quantityChanged=Integer.parseInt(QuantityRetrieved);
-                requisitionItem.setRetrievedQuantity(quantityChanged);
-                requisitionitemDao.saveRetrievalQty(requisitionItem);
-
-
-                ItemTransaction tmpTransaction=requisitionItem.getItemTransaction();
-                Item dataItem=tmpTransaction.getItem();
-                Intent intent;
+//                String QuantityRetrieved =editTextQuantityRetrieved.getText().toString();
+//                Integer quantityChanged=Integer.parseInt(QuantityRetrieved);
+//                requisitionItem.setRetrievedQuantity(quantityChanged);
+//                requisitionitemDao.saveRetrievalQty(requisitionItem);
+//
+//
+//                ItemTransaction tmpTransaction=requisitionItem.getItemTransaction();
+//                Item dataItem=tmpTransaction.getItem();
+//                Intent intent;
                 finish();
-                if(editTextQuantityRequired.getText().toString().contains(editTextQuantityRetrieved.getText().toString())){
-                    intent=new Intent(getApplicationContext(), AdjustItemQty.class);
-                    intent.putExtra("data",dataItem);
-                    intent.putExtra("isAdd",true);
-                    startActivity(intent);
-                }
+//                if(editTextQuantityRequired.getText().toString().contains(editTextQuantityRetrieved.getText().toString())){
+//                    intent=new Intent(getApplicationContext(), AdjustItemQty.class);
+//                    intent.putExtra("data",dataItem);
+//                    intent.putExtra("isAdd",true);
+//                    startActivity(intent);
+//                }
             }
         });
 
