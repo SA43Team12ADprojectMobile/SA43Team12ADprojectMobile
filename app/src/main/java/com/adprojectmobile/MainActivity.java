@@ -10,6 +10,7 @@ import com.adprojectmobile.activity.LoginActivity;
 import com.adprojectmobile.activity.department.ApproveRequisition.RequisitionItemsforApprove;
 import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.Disbursements;
+import com.adprojectmobile.activity.department.DelegateAuthority.FindEmployee;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.AdjustmentMainPage;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
 import com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints;
@@ -92,6 +93,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this, Disbursements.class);
+                startActivity(intent);
+            }
+
+        });
+        Button btnToDelegate=(Button)findViewById(R.id.btn_to_Delegate);
+        btnToDelegate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, FindEmployee.class);
                 startActivity(intent);
             }
         });

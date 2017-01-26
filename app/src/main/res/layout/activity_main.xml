@@ -81,4 +81,12 @@
         android:layout_marginBottom="16dp"
         android:id="@+id/btn_confirm_disbursements" />
 
+    <Button
+        android:text="Delegate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_toDelivery_firstPage"
+        android:layout_alignParentStart="true"
+        android:id="@+id/btn_to_Delegate" />
+
 </RelativeLayout>
