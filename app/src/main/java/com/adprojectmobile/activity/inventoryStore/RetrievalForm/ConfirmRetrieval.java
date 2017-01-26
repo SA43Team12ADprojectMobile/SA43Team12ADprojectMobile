@@ -47,7 +47,7 @@ public class ConfirmRetrieval extends AppCompatActivity {
         }
 
 
-        Button btn_save=(Button)findViewById(R.id.btn_save_confirm_collection);
+        Button btn_save=(Button)findViewById(R.id.btn_save_confirm_retrieval);
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
