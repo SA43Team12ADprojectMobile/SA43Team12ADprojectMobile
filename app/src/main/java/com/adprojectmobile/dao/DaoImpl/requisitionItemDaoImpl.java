@@ -9,6 +9,12 @@ import com.adprojectmobile.model.Employee;
 import com.adprojectmobile.model.Requisition;
 import com.adprojectmobile.model.RequisitionItem;
 import com.adprojectmobile.util.DummyData;
+import com.adprojectmobile.util.JSONPaser;
+import com.adprojectmobile.util.url;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +24,7 @@ import java.util.List;
  */
 
 public class requisitionItemDaoImpl implements requisitionItemDao {
+    final String host= url.host;
     @Override
     public RequisitionItem getRequisitionItem(int id) {
         return DummyData.requisitionItems.get(id);
@@ -31,20 +38,21 @@ public class requisitionItemDaoImpl implements requisitionItemDao {
 
     @Override
     public List<RequisitionItem> getItemsInRequisition(Requisition requisition) {
-        List<RequisitionItem> requisitionItemList=DummyData.requisitionItems;
-        List<RequisitionItem> requisitionsItemInReq = new ArrayList<RequisitionItem>();
-        for (RequisitionItem req : requisitionItemList) {
-
-                Requisition comparereq=req.getRequisition();
-            if(req!=null&&requisition!=null){
-                if (comparereq.getRequisitionId().equals(requisition.getRequisitionId())) {
-                    RequisitionItem requisitionItem = req;
-                    requisitionsItemInReq.add(requisitionItem);
-                }
-            }
-
-        }
-        return requisitionsItemInReq;
+//        List<RequisitionItem> requisitionItemList=DummyData.requisitionItems;
+//        List<RequisitionItem> requisitionsItemInReq = new ArrayList<RequisitionItem>();
+//        for (RequisitionItem req : requisitionItemList) {
+//
+//                Requisition comparereq=req.getRequisition();
+//            if(req!=null&&requisition!=null){
+//                if (comparereq.getRequisitionId().equals(requisition.getRequisitionId())) {
+//                    RequisitionItem requisitionItem = req;
+//                    requisitionsItemInReq.add(requisitionItem);
+//                }
+//            }
+//
+//        }
+//        return requisitionsItemInReq;
+        return null;
     }
 
     @Override
@@ -84,14 +92,33 @@ public class requisitionItemDaoImpl implements requisitionItemDao {
     }
 
     @Override
+    public List<RequisitionItem> getItemsByDisbursementID(String id) {
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/disbursement/"+id);
+        List<RequisitionItem> requisitionItemList=new ArrayList<>();
+        try {
+            for(int i =0;i<jsonArray.length();i++){
+                JSONObject jsonObject=jsonArray.getJSONObject(0);
+                RequisitionItem requisitionItem=new RequisitionItem(jsonObject.getString("TransactionID"),jsonObject.getString("Description"),jsonObject.getString("NeededQuantity"),jsonObject.getString("ActualQuantity"));
+                requisitionItemList.add(requisitionItem);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return requisitionItemList;
+    }
+
+    @Override
     public void saveRetrievalQty(RequisitionItem requisitionItem) {
 
 
 
-        if(DummyData.requisitionItems.contains(requisitionItem)){
-            DummyData.requisitionItems.remove(requisitionItem);
-        }
-        DummyData.requisitionItems.add(requisitionItem.getRequisitionItemId(),requisitionItem);
+//        if(DummyData.requisitionItems.contains(requisitionItem)){
+//            DummyData.requisitionItems.remove(requisitionItem);
+//        }
+//        //DummyData.requisitionItems.add(requisitionItem.getRequisitionItemId(),requisitionItem);
+//
+//    }
 
     }
 }

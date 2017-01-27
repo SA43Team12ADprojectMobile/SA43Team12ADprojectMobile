@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
+import com.adprojectmobile.apiModel.RetrievalCollectionPoint;
+import com.adprojectmobile.apiModel.RetrievalItem;
+import com.adprojectmobile.daoApi.retrievalDao;
 import com.adprojectmobile.model.Disbursement;
 import com.adprojectmobile.dao.Dao.*;
 import com.adprojectmobile.dao.DaoImpl.*;
@@ -25,91 +28,59 @@ import com.adprojectmobile.testdata.testDao;
 import com.adprojectmobile.testdata.testDaoImpl;
 import com.adprojectmobile.util.DummyData;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsForCollection extends AppCompatActivity {
-
-    requisitionItemDao reqItemDao=new requisitionItemDaoImpl();
-    requisitionDao reqDao=new requisitionDaoImpl();
+    retrievalDao rDao=new retrievalDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieval_form_activity_collection_items);
 
-        final Requisition requisition=getIntent().getParcelableExtra("data");
-       // Toast.makeText(getApplicationContext(),requisition.getRequisitionDate().toString(),Toast.LENGTH_LONG).show();
+        final String id = getIntent().getStringExtra("json");
 
-        final ListView requisitionItemView=(ListView)findViewById(R.id.listview_retrieval_disbursement_items);
+        final ListView requisitionItemView = (ListView) findViewById(R.id.listview_retrieval_disbursement_items);
 
 
-        new AsyncTask<Requisition,Void,List<RequisitionItem>>() {
+        new AsyncTask<RetrievalCollectionPoint, Void, List<RetrievalItem>>() {
             @Override
-            protected List<RequisitionItem> doInBackground(Requisition...params) {
-                //return reqItemDao.getAllRequisitionItems();
-                return reqItemDao.getItemsInRequisition(requisition);
+            protected List<RetrievalItem> doInBackground(RetrievalCollectionPoint... params) {
+                List<RetrievalCollectionPoint> collectionPoints = rDao.getAllCollectionPoint();
+                RetrievalCollectionPoint retrievalCP = new RetrievalCollectionPoint();
+                for (RetrievalCollectionPoint rc :
+                        collectionPoints) {
+                    if (rc.getCollectionPointID() != null && id != null) {
+                        if (rc.getCollectionPointID().toString().equals(id)) {
+                            retrievalCP = rc;
+                        }
+                    }
+
+                }
+
+                final List<RetrievalItem> retrievalItems = rDao.getItemsByCollection(retrievalCP);
+                return retrievalItems;
             }
+
             @Override
-            protected void onPostExecute(List<RequisitionItem> requisitionItems)
-            {
-                //requisitionItemView.setAdapter(new requisitionItemAdapter(ItemsForCollection.this,R.layout.row_retrieval_form_disbursement_items,requisitionItems));
-                requisitionItemView.setAdapter(new requisitionItemAdapter(ItemsForCollection.this,R.layout.row_retrieval_form_disbursement_items,requisitionItems));
+            protected void onPostExecute(List<RetrievalItem> requisitionItems) {
+                requisitionItemView.setAdapter(new requisitionItemAdapter(ItemsForCollection.this, R.layout.row_retrieval_form_disbursement_items, requisitionItems));
             }
         }.execute();
 
         requisitionItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RequisitionItem requisitionItem = (RequisitionItem) parent.getAdapter().getItem(position);
+                RetrievalItem retrievalItem = (RetrievalItem) parent.getAdapter().getItem(position);
 
                 Intent intent = new Intent(getApplicationContext(), ConfirmRetrieval.class);
-                intent.putExtra("data", requisitionItem);
+                intent.putExtra("data", retrievalItem);
                 startActivity(intent);
             }
         });
-
-
-
-
-
-//        Disbursement disbursement=(Disbursement)getIntent().getParcelableExtra("disbursement");
-//        List<Requisition> requisitions= reqDao.getDisbursementRequisition(disbursement);
-//        List<RequisitionItem> allRequisitionItemsInRequisition = new ArrayList<>();
-//
-//        List<RequisitionItem> requisitionItems = new ArrayList<>();
-//        for (Requisition req : requisitions
-//                ) {
-//            if (requisitions != null) {
-//                requisitionItems = reqItemDao.getItemsInRequisition(req);
-//                for (RequisitionItem reqItem : requisitionItems
-//                        ) {
-//                    if (requisitionItems != null) {
-//                        RequisitionItem reqAdd = reqItem;
-//                        allRequisitionItemsInRequisition.add(reqAdd);
-//                    }
-//                }
-//            }
-//        }
-//        final TextView testview=(TextView)findViewById(R.id.textview_test);
-//        if (allRequisitionItemsInRequisition!=null){
-//            testview.setText(allRequisitionItemsInRequisition.get(0).toString());
-//        }
-//
-//        final ListView requisitionItemList=(ListView)findViewById(R.id.listview_retrieval_disbursement_items);
-//
-//        requisitionItemList.setAdapter(new requisitionItemAdapter(getApplicationContext(),R.layout.row_retrieval_form_disbursement_items,allRequisitionItemsInRequisition));
-//
-//        requisitionItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                RequisitionItem requisitionItem = (RequisitionItem) parent.getAdapter().getItem(position);
-//
-//                Intent intent = new Intent(getApplicationContext(), ConfirmRetrieval.class);
-//                intent.putExtra("req", requisitionItem);
-//                startActivity(intent);
-//            }
-//        });
 
     }
 }

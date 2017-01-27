@@ -8,34 +8,26 @@ import android.os.Parcelable;
  */
 
 public class RequisitionItem implements Parcelable{
-    private int requisitionItemId;
-    private Requisition requisition;
-    private ItemTransaction itemTransaction;
-    private int neededQuantity;
-    private int retrievedQuantity;
+    private String requisitionItemId;
+    private String transactionID;
+    private String name;
+    private String neededQuantity;
+    private String retrievedQuantity;
 
-    public RequisitionItem() {
-    }
-
-    public RequisitionItem(int requisitionItemId, Requisition requisition, ItemTransaction itemTransaction, int neededQuantity, int retrievedQuantity) {
-        this.requisitionItemId = requisitionItemId;
-        this.requisition = requisition;
-        this.itemTransaction = itemTransaction;
+    public RequisitionItem(String transactionID, String name, String neededQuantity, String retrievedQuantity) {
+        this.transactionID = transactionID;
+        this.name = name;
         this.neededQuantity = neededQuantity;
         this.retrievedQuantity = retrievedQuantity;
-    }
 
-    public RequisitionItem(int requisitionItemId, Requisition requisition, ItemTransaction itemTransaction, int neededQuantity) {
-        this.requisitionItemId = requisitionItemId;
-        this.requisition = requisition;
-        this.itemTransaction = itemTransaction;
-        this.neededQuantity = neededQuantity;
     }
 
     protected RequisitionItem(Parcel in) {
-        requisitionItemId = in.readInt();
-        neededQuantity = in.readInt();
-        retrievedQuantity = in.readInt();
+        requisitionItemId = in.readString();
+        transactionID = in.readString();
+        name = in.readString();
+        neededQuantity = in.readString();
+        retrievedQuantity = in.readString();
     }
 
     public static final Creator<RequisitionItem> CREATOR = new Creator<RequisitionItem>() {
@@ -50,53 +42,43 @@ public class RequisitionItem implements Parcelable{
         }
     };
 
-    public int getRequisitionItemId() {
+    public String getRequisitionItemId() {
         return requisitionItemId;
     }
 
-    public void setRequisitionItemId(int requisitionItemId) {
+    public void setRequisitionItemId(String requisitionItemId) {
         this.requisitionItemId = requisitionItemId;
     }
 
-    public Requisition getRequisition() {
-        return requisition;
+    public String getTransactionID() {
+        return transactionID;
     }
 
-    public void setRequisition(Requisition requisition) {
-        this.requisition = requisition;
+    public void setTransactionID(String transactionID) {
+        this.transactionID = transactionID;
     }
 
-    public ItemTransaction getItemTransaction() {
-        return itemTransaction;
+    public String getName() {
+        return name;
     }
 
-    public void setItemTransaction(ItemTransaction itemTransaction) {
-        this.itemTransaction = itemTransaction;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getNeededQuantity() {
+    public String getNeededQuantity() {
         return neededQuantity;
     }
-    public String getNeededQuantityStr() {
-        Integer integer=neededQuantity;
-        String str=integer.toString();
-        return str;
-    }
 
-    public void setNeededQuantity(int neededQuantity) {
+    public void setNeededQuantity(String neededQuantity) {
         this.neededQuantity = neededQuantity;
     }
 
-    public int getRetrievedQuantity() {
+    public String getRetrievedQuantity() {
         return retrievedQuantity;
     }
-    public String getRetrievedQuantityStr() {
-        Integer integer=retrievedQuantity;
-        String str=integer.toString();
-        return str;
-    }
 
-    public void setRetrievedQuantity(int retrievedQuantity) {
+    public void setRetrievedQuantity(String retrievedQuantity) {
         this.retrievedQuantity = retrievedQuantity;
     }
 
@@ -105,11 +87,12 @@ public class RequisitionItem implements Parcelable{
         return 0;
     }
 
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(requisitionItemId);
-        dest.writeInt(neededQuantity);
-        dest.writeInt(retrievedQuantity);
+        dest.writeString(requisitionItemId);
+        dest.writeString(transactionID);
+        dest.writeString(name);
+        dest.writeString(neededQuantity);
+        dest.writeString(retrievedQuantity);
     }
 }

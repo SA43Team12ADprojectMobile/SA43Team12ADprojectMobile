@@ -38,10 +38,10 @@ public class reqItemForDepAdapter extends ArrayAdapter<RequisitionItem> {
             TextView textViewItemCode=(TextView)v.findViewById(R.id.textView_delivery_department_item_code);
             TextView textViewQtyNeeded=(TextView)v.findViewById(R.id.textView_delivery_department_item_qty_needed);
             TextView textViewQtyActual=(TextView)v.findViewById(R.id.textView_delivery_department_item_qty_actual);
-            textViewItemName.setText(requisitionItem.getItemTransaction().getItem().getDescription());
-            textViewItemCode.setText(requisitionItem.getItemTransaction().getItem().getItemId());
-            textViewQtyNeeded.setText(requisitionItem.getNeededQuantityStr());
-            textViewQtyActual.setText(requisitionItem.getRetrievedQuantityStr());
+            textViewItemName.setText(requisitionItem.getName());
+//            textViewItemCode.setText(requisitionItem.);
+            textViewQtyNeeded.setText(requisitionItem.getNeededQuantity());
+            textViewQtyActual.setText(requisitionItem.getRetrievedQuantity());
         }
         return v;
     }
