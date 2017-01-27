@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 
 public class Disbursement implements Parcelable {
-    private int disbursementId;
+    private String disbursementId;
     private String retrievalTime;
     private String deliveryStatus;
     private String collectonPoint;
@@ -19,7 +19,7 @@ public class Disbursement implements Parcelable {
     public Disbursement() {
     }
 
-    public Disbursement(int disbursementId, String retrievalTime, String deliveryStatus, String collectonPoint, String repName) {
+    public Disbursement(String disbursementId, String retrievalTime, String deliveryStatus, String collectonPoint, String repName) {
         this.disbursementId = disbursementId;
         this.retrievalTime = retrievalTime;
         this.deliveryStatus = deliveryStatus;
@@ -27,7 +27,7 @@ public class Disbursement implements Parcelable {
         this.repName = repName;
     }
 
-    public Disbursement(int disbursementId, String retrievalTime, String deliveryStatus, String collectonPoint, String repName, boolean repChecked, boolean clerkChecked) {
+    public Disbursement(String disbursementId, String retrievalTime, String deliveryStatus, String collectonPoint, String repName, boolean repChecked, boolean clerkChecked) {
         this.disbursementId = disbursementId;
         this.retrievalTime = retrievalTime;
         this.deliveryStatus = deliveryStatus;
@@ -38,7 +38,7 @@ public class Disbursement implements Parcelable {
     }
 
     protected Disbursement(Parcel in) {
-        disbursementId = in.readInt();
+        disbursementId = in.readString();
         retrievalTime = in.readString();
         deliveryStatus = in.readString();
         collectonPoint = in.readString();
@@ -59,11 +59,11 @@ public class Disbursement implements Parcelable {
         }
     };
 
-    public int getDisbursementId() {
+    public String getDisbursementId() {
         return disbursementId;
     }
 
-    public void setDisbursementId(int disbursementId) {
+    public void setDisbursementId(String disbursementId) {
         this.disbursementId = disbursementId;
     }
 
@@ -122,7 +122,7 @@ public class Disbursement implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(disbursementId);
+        dest.writeString(disbursementId);
         dest.writeString(retrievalTime);
         dest.writeString(deliveryStatus);
         dest.writeString(collectonPoint);

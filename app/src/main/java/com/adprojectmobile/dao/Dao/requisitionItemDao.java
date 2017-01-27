@@ -15,5 +15,6 @@ public interface requisitionItemDao {
     public List<RequisitionItem> getAllRequisitionItems();
     public List<RequisitionItem> getItemsInRequisition(Requisition requisition);
     public List<RequisitionItem> getItemsInDepartment(Department department);
+    public List<RequisitionItem> getItemsByDisbursementID(String id);
     public void saveRetrievalQty(RequisitionItem requisitionItem);
 }

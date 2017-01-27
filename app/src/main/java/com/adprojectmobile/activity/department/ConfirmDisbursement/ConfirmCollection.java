@@ -35,7 +35,7 @@ public class ConfirmCollection extends AppCompatActivity {
         setContentView(R.layout.confirm_disbursement_activity_confirm_collection);
 
         final RequisitionItem requisitionItem = getIntent().getParcelableExtra("data");
-        final ItemTransaction itemTransaction=requisitionItem.getItemTransaction();
+     //   final ItemTransaction itemTransaction=requisitionItem.getItemTransaction();
       //  final Item item=itemTransaction.getItem();
 
 
@@ -47,8 +47,8 @@ public class ConfirmCollection extends AppCompatActivity {
         if (requisitionItem!=null){
         //    Requisition requisition1 =requisitionList.get(0);
           //  editTextItemName.setText(requisitionItem.getItemTransaction().getItem().getDescription());
-            editTextQuantityRequired.setText(requisitionItem.getNeededQuantityStr().toString());
-            editTextQuantityRetrieved.setText(requisitionItem.getRetrievedQuantityStr().toString());
+         //   editTextQuantityRequired.setText(requisitionItem.getNeededQuantityStr().toString());
+          //  editTextQuantityRetrieved.setText(requisitionItem.getRetrievedQuantityStr().toString());
 
         }
 

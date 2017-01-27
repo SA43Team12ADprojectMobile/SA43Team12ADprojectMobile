@@ -33,8 +33,8 @@ public class itemTransactionDaoImpl implements itemTransactionDao {
              ) {
             if(req!=null&&requisitionItem!=null){
                 if(req.getRequisitionItemId()==requisitionItem.getRequisitionItemId()){
-                    ItemTransaction item=req.getItemTransaction();
-                    returnList.add(item);
+//                    ItemTransaction item= req.getTransactionID();
+//                    returnList.add(item);
                 }
             }
 

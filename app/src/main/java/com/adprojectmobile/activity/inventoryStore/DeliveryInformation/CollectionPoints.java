@@ -11,14 +11,17 @@ import android.widget.ListView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.ConfirmCollection;
 import com.adprojectmobile.adapter.collectionAdapter;
+import com.adprojectmobile.apiModel.DeliveryDisbursement;
 import com.adprojectmobile.dao.Dao.collectionPointDao;
 import com.adprojectmobile.dao.DaoImpl.collectionPointDaoImpl;
+import com.adprojectmobile.daoApi.deliveryDao;
 import com.adprojectmobile.model.CollectionPoint;
 
 
 import java.util.List;
 
 public class CollectionPoints extends AppCompatActivity {
+    deliveryDao dDao=new deliveryDao();
     collectionPointDao cpDao=new collectionPointDaoImpl();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +30,14 @@ public class CollectionPoints extends AppCompatActivity {
 
         final ListView collectionList=(ListView)findViewById(R.id.listview_delivery_collectionPoints);
 
-        new AsyncTask<Void,Void,List<CollectionPoint>>(){
+        new AsyncTask<Void,Void,List<DeliveryDisbursement>>(){
             @Override
-            protected List<CollectionPoint> doInBackground(Void...params){
-                return cpDao.getAllCollectionPoints();
+            protected List<DeliveryDisbursement> doInBackground(Void...params){
+                return dDao.getAllDeliveryDisbursements();
             }
 
             @Override
-            protected void onPostExecute(List<CollectionPoint> collections){
+            protected void onPostExecute(List<DeliveryDisbursement> collections){
                 collectionList.setAdapter(new collectionAdapter(CollectionPoints.this,R.layout.row_collection_point,collections));
 
             }
@@ -43,10 +46,10 @@ public class CollectionPoints extends AppCompatActivity {
         collectionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CollectionPoint collectionPoint=(CollectionPoint)parent.getAdapter().getItem(position);
+                DeliveryDisbursement deliveryDisbursement=(DeliveryDisbursement)parent.getAdapter().getItem(position);
 
                 Intent intent=new Intent(getApplicationContext(),DepartmentsInCollection.class);
-                intent.putExtra("data",collectionPoint);
+                intent.putExtra("data",deliveryDisbursement);
                 startActivity(intent);
             }
         });

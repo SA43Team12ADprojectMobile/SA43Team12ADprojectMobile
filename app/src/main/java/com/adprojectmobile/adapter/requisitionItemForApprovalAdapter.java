@@ -36,8 +36,8 @@ public class requisitionItemForApprovalAdapter extends ArrayAdapter {
         if (requisitionItems!=null){
             TextView textViewItemName=(TextView)v.findViewById(R.id.textView_requisition_requisition_item_name);
             TextView textViewQtyRequired=(TextView)v.findViewById(R.id.textview_requisition_requisition_quantity_required);
-            textViewItemName.setText(requisitionItems.getItemTransaction().getItem().getDescription());
-            textViewQtyRequired.setText(requisitionItems.getNeededQuantityStr().toString());
+            textViewItemName.setText(requisitionItems.getName());
+            textViewQtyRequired.setText(requisitionItems.getNeededQuantity());
         }
         return v;
     }

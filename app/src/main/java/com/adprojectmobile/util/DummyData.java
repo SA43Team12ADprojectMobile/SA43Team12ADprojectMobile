@@ -112,14 +112,14 @@ public class DummyData {
 
     public static List<Disbursement> disbursements = new ArrayList<Disbursement>();
     static {
-        disbursements.add(new Disbursement(1, "01/01/2017 9am", "Prepared", collectionPoints.get(0).getCollectionPointName(), null));
-        disbursements.add(new Disbursement(2, "01/01/2017 11am", "Prepared", collectionPoints.get(2).getCollectionPointName(), null));
-        disbursements.add(new Disbursement(3, "02/01/2017 9am", "Prepared", collectionPoints.get(1).getCollectionPointName(), null));
-        disbursements.add(new Disbursement(4, "02/01/2017 11am", "Prepared", collectionPoints.get(0).getCollectionPointName(), null));
-        disbursements.add(new Disbursement(5, "03/01/2017 9am", "Unprepared", collectionPoints.get(3).getCollectionPointName(), null));
-        disbursements.add(new Disbursement(6, "03/01/2017 11am", "Unprepared", collectionPoints.get(1).getCollectionPointName(), null));
-        disbursements.add(new Disbursement(7, "04/01/2017 9am", "Unprepared", collectionPoints.get(1).getCollectionPointName(), null));
-        disbursements.add(new Disbursement(8, "04/01/2017 11am", "Unprepared", collectionPoints.get(2).getCollectionPointName(), null));
+        disbursements.add(new Disbursement("1", "01/01/2017 9am", "Prepared", collectionPoints.get(0).getCollectionPointName(), null));
+        disbursements.add(new Disbursement("2", "01/01/2017 11am", "Prepared", collectionPoints.get(2).getCollectionPointName(), null));
+        disbursements.add(new Disbursement("3", "02/01/2017 9am", "Prepared", collectionPoints.get(1).getCollectionPointName(), null));
+        disbursements.add(new Disbursement("4", "02/01/2017 11am", "Prepared", collectionPoints.get(0).getCollectionPointName(), null));
+        disbursements.add(new Disbursement("5", "03/01/2017 9am", "Unprepared", collectionPoints.get(3).getCollectionPointName(), null));
+        disbursements.add(new Disbursement("6", "03/01/2017 11am", "Unprepared", collectionPoints.get(1).getCollectionPointName(), null));
+        disbursements.add(new Disbursement("7", "04/01/2017 9am", "Unprepared", collectionPoints.get(1).getCollectionPointName(), null));
+        disbursements.add(new Disbursement("8", "04/01/2017 11am", "Unprepared", collectionPoints.get(2).getCollectionPointName(), null));
     }
 
     public static List<Employee> employees = new ArrayList<Employee>();
@@ -201,31 +201,31 @@ public class DummyData {
 
     public static List<RequisitionItem> requisitionItems = new ArrayList<RequisitionItem>();
     static {
-        ItemTransaction item1=new ItemTransaction();item1=itemTransactions.get(1);
-        ItemTransaction item2=new ItemTransaction();item2=itemTransactions.get(2);
-        ItemTransaction item3=new ItemTransaction();item3=itemTransactions.get(3);
-        ItemTransaction item4=new ItemTransaction();item4=itemTransactions.get(4);
-        ItemTransaction item5=new ItemTransaction();item5=itemTransactions.get(5);
-        ItemTransaction item6=new ItemTransaction();item6=itemTransactions.get(6);
-        ItemTransaction item7=new ItemTransaction();item7=itemTransactions.get(7);
-        ItemTransaction item8=new ItemTransaction();item8=itemTransactions.get(8);
-        ItemTransaction item9=new ItemTransaction();item9=itemTransactions.get(9);
-        ItemTransaction item0=new ItemTransaction();item0=itemTransactions.get(0);
-
-        requisitionItems.add(0,new RequisitionItem(0,requisitions.get(0),item1,100,100));
-        requisitionItems.add(1,new RequisitionItem(1,requisitions.get(0),item2,100,100));
-        requisitionItems.add(2,new RequisitionItem(2,requisitions.get(0),item3,120,100));
-        requisitionItems.add(3,new RequisitionItem(3,requisitions.get(1),item0,120,100));
-        requisitionItems.add(4,new RequisitionItem(4,requisitions.get(1),item0,100,100));
-        requisitionItems.add(5,new RequisitionItem(5,requisitions.get(1),item0,100,100));
-        requisitionItems.add(6,new RequisitionItem(6,requisitions.get(1),item0,100,100));
-        requisitionItems.add(7,new RequisitionItem(7,requisitions.get(2),item0,100,100));
-        requisitionItems.add(8,new RequisitionItem(8,requisitions.get(2),item0,100,100));
-        requisitionItems.add(9,new RequisitionItem(9,requisitions.get(2),item0,100,100));
-        requisitionItems.add(10,new RequisitionItem(10,requisitions.get(5),item0,100,100));
-        requisitionItems.add(11,new RequisitionItem(11,requisitions.get(3),item0,100,100));
-        requisitionItems.add(12,new RequisitionItem(12,requisitions.get(3),item0,100,100));
-        requisitionItems.add(13,new RequisitionItem(13,requisitions.get(4),item0,100,100));
+//        ItemTransaction item1=new ItemTransaction();item1=itemTransactions.get(1);
+//        ItemTransaction item2=new ItemTransaction();item2=itemTransactions.get(2);
+//        ItemTransaction item3=new ItemTransaction();item3=itemTransactions.get(3);
+//        ItemTransaction item4=new ItemTransaction();item4=itemTransactions.get(4);
+//        ItemTransaction item5=new ItemTransaction();item5=itemTransactions.get(5);
+//        ItemTransaction item6=new ItemTransaction();item6=itemTransactions.get(6);
+//        ItemTransaction item7=new ItemTransaction();item7=itemTransactions.get(7);
+//        ItemTransaction item8=new ItemTransaction();item8=itemTransactions.get(8);
+//        ItemTransaction item9=new ItemTransaction();item9=itemTransactions.get(9);
+//        ItemTransaction item0=new ItemTransaction();item0=itemTransactions.get(0);
+//
+//        requisitionItems.add(0,new RequisitionItem(0,requisitions.get(0),item1,100,100));
+//        requisitionItems.add(1,new RequisitionItem(1,requisitions.get(0),item2,100,100));
+//        requisitionItems.add(2,new RequisitionItem(2,requisitions.get(0),item3,120,100));
+//        requisitionItems.add(3,new RequisitionItem(3,requisitions.get(1),item0,120,100));
+//        requisitionItems.add(4,new RequisitionItem(4,requisitions.get(1),item0,100,100));
+//        requisitionItems.add(5,new RequisitionItem(5,requisitions.get(1),item0,100,100));
+//        requisitionItems.add(6,new RequisitionItem(6,requisitions.get(1),item0,100,100));
+//        requisitionItems.add(7,new RequisitionItem(7,requisitions.get(2),item0,100,100));
+//        requisitionItems.add(8,new RequisitionItem(8,requisitions.get(2),item0,100,100));
+//        requisitionItems.add(9,new RequisitionItem(9,requisitions.get(2),item0,100,100));
+//        requisitionItems.add(10,new RequisitionItem(10,requisitions.get(5),item0,100,100));
+//        requisitionItems.add(11,new RequisitionItem(11,requisitions.get(3),item0,100,100));
+//        requisitionItems.add(12,new RequisitionItem(12,requisitions.get(3),item0,100,100));
+//        requisitionItems.add(13,new RequisitionItem(13,requisitions.get(4),item0,100,100));
 
     }
 
