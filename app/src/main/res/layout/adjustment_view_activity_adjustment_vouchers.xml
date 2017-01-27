@@ -14,11 +14,11 @@
 
 
         android:padding="@dimen/activity_horizontal_margin"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:background="@android:color/holo_purple"
         android:textColor="@android:color/white"
         android:textStyle="normal|bold"
-        android:text="Vouchers"
+        android:text="adjustment Vouchers"
         android:textAllCaps="true"
         android:gravity="center_horizontal"
         android:fitsSystemWindows="true" />
@@ -29,7 +29,8 @@
         android:id="@+id/listview_adjustment_voucher"
         android:background="@android:color/background_light"
         android:textColor="@color/colorAccent"
-        android:textSize="30sp" android:paddingTop="15dip" android:paddingBottom="15dip"
+        android:textSize="30sp" android:paddingBottom="15dip"
+
         style="@style/Widget.AppCompat.ListView.Menu"
         android:contextClickable="false"
         android:elevation="1dp" />

@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.department.ApproveRequisition.RejectRequisition">
+    tools:context=".activity.department.ApproveRequisition.RejectRequisition"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="25sp"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:textStyle="normal|bold"
+        android:text="Rejection Page"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:fitsSystemWindows="true" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -21,13 +35,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="2"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
@@ -35,7 +49,7 @@
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
         </TableRow>
 
@@ -55,13 +69,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="2"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
@@ -69,7 +83,7 @@
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 />
         </TableRow>
 
@@ -82,13 +96,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="2"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
@@ -96,7 +110,7 @@
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 />
         </TableRow>
 
@@ -109,22 +123,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="2"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
-                android:hint="Input the rejection reason"
+                android:hint="Input the reason"
                 android:ems="10"
                 android:layout_weight="2"
                 android:id="@+id/editText_RejectionReason_rejectRequisition"
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 />
 
         </TableRow>
@@ -134,7 +148,7 @@
             android:layout_height="match_parent"
             >
             <TextView
-                android:layout_height="100dp"/>
+                android:layout_height="50dp"/>
 
         </TableRow>
 
@@ -144,11 +158,11 @@
             android:layout_weight="0">
 
             <Button
-                android:text="Save"
+                android:text="Confirm"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="@android:color/holo_purple"
+                android:background="@android:color/holo_green_dark"
                 android:textColor="@android:color/white"
                 android:textSize="25sp"
                 android:id="@+id/btn_save_reject_requisition"
@@ -165,4 +179,4 @@
     </TableLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

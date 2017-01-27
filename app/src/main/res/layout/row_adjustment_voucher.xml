@@ -1,49 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="60dp"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
+
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView_adjustment_date"
-                android:layout_weight="1"
-                android:textSize="15sp"/>
-
-        </LinearLayout>
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Issue By: "
-                android:textSize="15sp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView_adjustment_employeeName"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_adjustment_date"
                 android:layout_weight="1"
-                android:textSize="15sp"/>
+                android:textSize="25sp"
+                android:paddingBottom="10dp"
+                android:textColor="@android:color/black"/>
+
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:text="Issued By: "
+                    android:layout_weight="1"
+                    android:paddingBottom="10dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:id="@+id/textView_adjustment_employeeName"
+                    android:gravity="right"
+                    android:textSize="25sp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

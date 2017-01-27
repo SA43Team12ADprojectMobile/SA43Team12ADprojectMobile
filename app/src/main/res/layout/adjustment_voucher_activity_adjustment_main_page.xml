@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".activity.inventoryStore.AdjustmentVoucher.AdjustmentMainPage">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textSize="25sp"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:textStyle="normal|bold"
+        android:text="Main page"
+        android:textAllCaps="true"
+        android:gravity="center_horizontal"
+        android:fitsSystemWindows="true" />
+
 
         <ListView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/listview_voucher_main"/>
-    </LinearLayout>
-</RelativeLayout>
+            android:id="@+id/listview_voucher_main"
+            android:background="@android:color/background_light"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"  android:paddingBottom="15dip"
+            style="@style/Widget.AppCompat.ListView.Menu"
+            android:contextClickable="false"
+            android:elevation="1dp" />
+
+</LinearLayout>

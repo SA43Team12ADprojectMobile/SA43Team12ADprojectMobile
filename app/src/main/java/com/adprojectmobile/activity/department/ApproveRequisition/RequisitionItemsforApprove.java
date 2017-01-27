@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.adprojectmobile.R;
@@ -50,16 +51,22 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
             }
         }.execute();
 
-        requisitionItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RequisitionItem requisitionItem = (RequisitionItem) parent.getAdapter().getItem(position);
+//        requisitionItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                RequisitionItem requisitionItem = (RequisitionItem) parent.getAdapter().getItem(position);
+//
+//                Intent intent = new Intent(getApplicationContext(), RejectRequisition.class);
+//                intent.putExtra("data", requisitionItem);
+//                intent.putExtra("data1", requisition);
+//                startActivity(intent);
 
-                Intent intent = new Intent(getApplicationContext(), RejectRequisition.class);
-                intent.putExtra("data", requisitionItem);
-                intent.putExtra("data1", requisition);
-                startActivity(intent);
-            }
+        Button btnRejectRequisition =(Button)findViewById(R.id.btn_reject_requisition);
+        btnRejectRequisition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RequisitionItemsforApprove.this, RejectRequisition.class);
+                startActivity(intent);}
         });
     }
 }
