@@ -46,7 +46,7 @@ public class deliveryDao {
 
     public List<DepartmentApi> getDepartmentByCollectionPoint(DeliveryDisbursement deliveryDisbursement){
         List<DepartmentApi> departmentApis=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/ackdisbursement/3");
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/ackdisbursement/3");//need collection pointID
         try {
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject jsonDepartment=jsonArray.getJSONObject(i);

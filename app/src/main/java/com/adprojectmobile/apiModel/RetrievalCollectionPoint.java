@@ -16,7 +16,6 @@ public class RetrievalCollectionPoint implements Parcelable{
     private String collectionPointName;
    private JSONArray itemJson;
     private String prepared;
-    private String itemID;
 
     public RetrievalCollectionPoint(String collectionPointID, String collectionPointName, JSONArray itemJson, String prepared) {
         this.collectionPointID = collectionPointID;
