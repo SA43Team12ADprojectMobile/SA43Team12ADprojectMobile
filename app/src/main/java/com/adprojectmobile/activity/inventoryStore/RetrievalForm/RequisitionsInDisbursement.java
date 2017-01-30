@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.requisitionAdapter;
+import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.dao.Dao.requisitionDao;
 import com.adprojectmobile.dao.DaoImpl.*;
 import com.adprojectmobile.model.CollectionPoint;
@@ -34,14 +35,15 @@ public class RequisitionsInDisbursement extends Activity {
 
         final ListView requisitionView=(ListView)findViewById(R.id.listview_retrival_requisitions);
 
-        new AsyncTask<Disbursement,Void,List<Requisition>>() {
+        new AsyncTask<Disbursement,Void,List<RequisitionApi>>() {
             @Override
-            protected List<Requisition> doInBackground(Disbursement...params) {
-                return reqDao.getDisbursementRequisition(disbursement);
+            protected List<RequisitionApi> doInBackground(Disbursement...params) {
+              // return reqDao.getDisbursementRequisition(disbursement);
+                return null;
             }
 
             @Override
-            protected void onPostExecute(List<Requisition> requisitions){
+            protected void onPostExecute(List<RequisitionApi> requisitions){
                 requisitionView.setAdapter(new requisitionAdapter(RequisitionsInDisbursement.this,R.layout.row_requisitions_retrieval,requisitions));
             }
         }.execute();

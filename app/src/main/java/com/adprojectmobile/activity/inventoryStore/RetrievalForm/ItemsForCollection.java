@@ -53,9 +53,9 @@ public class ItemsForCollection extends AppCompatActivity {
                 RetrievalCollectionPoint retrievalCP = new RetrievalCollectionPoint();
                 for (RetrievalCollectionPoint rc :
                         collectionPoints) {
-                    if (rc.getCollectionPointID() != null && id != null) {
+                    if (rc.getCollectionPointID() != null) {
                         if (rc.getCollectionPointID().toString().equals(id)) {
-                            retrievalCP = rc;
+                                retrievalCP = rc;
                         }
                     }
 

@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.DepartmentApi;
 import com.adprojectmobile.model.Department;
 
 public class DepartmentDetail extends AppCompatActivity {
@@ -18,7 +19,7 @@ public class DepartmentDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delivery_information_activity_department_detail);
-        final Department department=getIntent().getParcelableExtra("data");
+        final DepartmentApi department=getIntent().getParcelableExtra("data");
 
         EditText textViewDepName=(EditText)findViewById(R.id.editText_delivery_departmentName);
         EditText textViewConName=(EditText)findViewById(R.id.editText_delivery_contactName);
@@ -26,7 +27,7 @@ public class DepartmentDetail extends AppCompatActivity {
 
         textViewDepName.setText(department.getDepartmentName());
         textViewConName.setText(department.getContactName());
-        textViewPhone.setText(department.getTelephoneNumberStr());
+        textViewPhone.setText(department.getTelephoneNumber());
 
         Button btnViewReq=(Button) findViewById(R.id.btn_save_delivery_viewRequisition);
         btnViewReq.setOnClickListener(new View.OnClickListener() {

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.model.Employee;
 
 import java.util.List;
@@ -17,11 +18,11 @@ import java.util.List;
  * Created by EvEr on 2017/1/25.
  */
 
-public class employeeAdapter extends ArrayAdapter<Employee> {
+public class employeeAdapter extends ArrayAdapter<EmployeeApi> {
     int resource;
-    private List<Employee> employeeList;
+    private List<EmployeeApi> employeeList;
 
-    public employeeAdapter(Context context, int resource, List<Employee> employees) {
+    public employeeAdapter(Context context, int resource, List<EmployeeApi> employees) {
         super(context, resource, employees);
         this.resource = resource;
         this.employeeList = employees;
@@ -32,7 +33,7 @@ public class employeeAdapter extends ArrayAdapter<Employee> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        Employee employee = employeeList.get(position);
+        EmployeeApi employee = employeeList.get(position);
         if (employee != null) {
             TextView textViewName = (TextView) v.findViewById(R.id.textView_employee_name);
 

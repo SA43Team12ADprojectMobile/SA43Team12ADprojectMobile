@@ -10,32 +10,40 @@ import android.widget.ListView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.reqItemForDepAdapter;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
+import com.adprojectmobile.apiModel.DepartmentApi;
 import com.adprojectmobile.dao.Dao.requisitionItemDao;
 import com.adprojectmobile.dao.DaoImpl.requisitionItemDaoImpl;
+import com.adprojectmobile.daoApi.deliveryDao;
 import com.adprojectmobile.model.Department;
 import com.adprojectmobile.model.RequisitionItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RequisitionItems extends AppCompatActivity {
     requisitionItemDao riDao=new requisitionItemDaoImpl();
+    deliveryDao dDao=new deliveryDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delivery_information_activity_requisition_items);
-        final Department department=getIntent().getParcelableExtra("data");
+        final DepartmentApi department=getIntent().getParcelableExtra("data");
 
         final ListView itemList=(ListView)findViewById(R.id.listview_delivery_itemList);
+        final List<DepartmentApi> apis=new ArrayList<>();
 
-        new AsyncTask<Department,Void,List<RequisitionItem>>(){
+        new AsyncTask<Void,Void,List<DepartmentApi>>(){
             @Override
-            protected List<RequisitionItem> doInBackground(Department...params){
-                return riDao.getItemsInDepartment(department);
+            //protected List<DepartmentApi> doInBackground(Department...params){
+            protected List<DepartmentApi> doInBackground(Void...params){
+               // return riDao.getItemsInDepartment(department);
+                apis.add(department);
+               return apis;
             }
 
             @Override
-            protected void onPostExecute(List<RequisitionItem> requisitionItems){
+            protected void onPostExecute(List<DepartmentApi> requisitionItems){
                 itemList.setAdapter(new reqItemForDepAdapter(getApplicationContext(),R.layout.row_delivery_department_item,requisitionItems));
 
             }

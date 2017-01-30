@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.model.Employee;
 
 public class RevokeAuthority extends AppCompatActivity {
@@ -16,9 +17,9 @@ public class RevokeAuthority extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delegate_authority_activity_revoke_authority);
-        final Employee employee=getIntent().getParcelableExtra("data");
-        final String startDate=getIntent().getStringExtra("start");
-        final String endDate=getIntent().getStringExtra("end");
+        final EmployeeApi employee=getIntent().getParcelableExtra("data");
+       // final String startDate=getIntent().getStringExtra("start");
+       // final String endDate=getIntent().getStringExtra("end");
 
         EditText editTextName=(EditText)findViewById(R.id.editText_revoke_employeeName);
         EditText editTextStatus=(EditText)findViewById(R.id.editText_revoke_status);
@@ -28,7 +29,7 @@ public class RevokeAuthority extends AppCompatActivity {
 
 
         editTextName.setText(employee.getName());
-        editTextStatus.setText("UnAuthorized");
+        editTextStatus.setText("Authorized");
         editTextName.setText(employee.getDelegationStartDate());
         editTextName.setText(employee.getDelegationEndDate());
 

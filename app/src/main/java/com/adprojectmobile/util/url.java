@@ -5,7 +5,7 @@ package com.adprojectmobile.util;
  */
 
 public class url {
-    static public String host="http://172.17.252.116/AP/api";
+    static public String host="http://172.23.197.104/API/api";
 
     public String getHost() {
         return host;

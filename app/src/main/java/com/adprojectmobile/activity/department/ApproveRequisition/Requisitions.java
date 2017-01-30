@@ -12,9 +12,11 @@ import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.DeliveryInformation.RequisitionItems;
 import com.adprojectmobile.adapter.disbursementAdapter;
 import com.adprojectmobile.adapter.requisitionAdapter;
+import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.dao.Dao.disbursementDao;
 import com.adprojectmobile.dao.Dao.requisitionDao;
 import com.adprojectmobile.dao.DaoImpl.requisitionDaoImpl;
+import com.adprojectmobile.daoApi.approveDao;
 import com.adprojectmobile.model.Disbursement;
 import com.adprojectmobile.model.Employee;
 import com.adprojectmobile.model.Requisition;
@@ -23,6 +25,7 @@ import java.util.List;
 
 public class Requisitions extends AppCompatActivity {
     requisitionDao requisitionDao = new requisitionDaoImpl();
+    approveDao aDao=new approveDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +34,14 @@ public class Requisitions extends AppCompatActivity {
 
         final ListView requisitionList =(ListView)findViewById(R.id.listview_approve_requisitions);
 
-        new AsyncTask<Void,Void,List<Requisition>>(){
+        new AsyncTask<Void,Void,List<RequisitionApi>>(){
             @Override
-            protected List<Requisition> doInBackground(Void...params){
-                return requisitionDao.getAllRequisitions();
+            protected List<RequisitionApi> doInBackground(Void...params){
+                return aDao.getAllRequisition();
             }
 
             @Override
-            protected void onPostExecute(List<Requisition> requisitionses){
+            protected void onPostExecute(List<RequisitionApi> requisitionses){
                 requisitionList.setAdapter(new requisitionAdapter(Requisitions.this,R.layout.row_approve_requisition_list, requisitionses));
 
             }
@@ -47,11 +50,12 @@ public class Requisitions extends AppCompatActivity {
         requisitionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Requisition requisition = (Requisition) parent.getAdapter().getItem(position);
+                RequisitionApi requisition = (RequisitionApi) parent.getAdapter().getItem(position);
 
                 Intent intent = new Intent(Requisitions.this, RequisitionItemsforApprove.class);
 
                 intent.putExtra("requisition", requisition);
+                intent.putExtra("data",requisition.getId());
                 startActivity(intent);
             }
         });
