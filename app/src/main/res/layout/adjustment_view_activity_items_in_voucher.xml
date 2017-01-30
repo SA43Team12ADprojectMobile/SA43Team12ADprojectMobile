@@ -21,7 +21,8 @@
         android:text="adjustment Items"
         android:textAllCaps="true"
         android:gravity="center_horizontal"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textView" />
 
     <ListView
 

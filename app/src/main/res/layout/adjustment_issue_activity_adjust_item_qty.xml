@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/retrieval_form_activity_confirm_retrieval"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="25sp"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:textStyle="normal|bold"
+        android:text="Item details"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:fitsSystemWindows="true" />
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="215dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:layout_weight="0.23">
 
         <TableRow
             android:layout_width="match_parent"
@@ -25,18 +35,22 @@
                 android:text="Item Code: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:paddingBottom="10dp"
+                android:layout_weight="0"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="textPersonName"
                 android:ems="10"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:id="@+id/editText_issue_itemAdjusted_item_code"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                />
+                android:textSize="25sp" />
 
         </TableRow>
 
@@ -51,23 +65,27 @@
             android:layout_width="match_parent"
             android:layout_weight="0"
             android:layout_height="match_parent">
+
             <TextView
                 android:text="Item Name: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:paddingBottom="10dp"
+                android:layout_weight="0"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:id="@+id/editText_issue_itemAdjusted_item_name"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                />
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -76,22 +94,25 @@
             android:layout_height="match_parent" >
             <TextView
                 android:text="Qty Adjusted: "
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:paddingBottom="10dp"
+                android:layout_weight="0"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:id="@+id/editText_issue_itemAdjusted_qty"
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"
-                android:hint="Please Input Qty adjusted"
-                />
+                android:hint="Input Qty adjusted"
+                android:textSize="25sp" />
         </TableRow>
 
 
@@ -103,43 +124,57 @@
                 android:text="Reason: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:paddingBottom="10dp"
+                android:layout_weight="0"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:hint="Input reason adjusted"
+                android:inputType="textPersonName"
+                android:hint="Input the reason "
                 android:ems="10"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:id="@+id/editText_issue_itemAdjusted_reason"
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"
-                android:maxLines="5"
-                />
+                android:textSize="25sp" />
 
         </TableRow>
 
     </TableLayout>
 
-    <Button
-        android:text="Save"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="205dp"
-        android:id="@+id/btn_save_issue"
-        android:layout_alignParentStart="true" />
+        android:gravity="center|bottom"
+        android:orientation="horizontal"
+        android:layout_weight="0.02">
+        <Button
+            android:text="DELETE"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:id="@+id/btn_delete_issue"
+            android:background="@android:color/holo_red_dark"
+            android:layout_weight="1" />
 
-    <Button
-        android:text="Delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_delete_issue"
-        android:layout_alignBaseline="@+id/btn_save_issue"
-        android:layout_alignBottom="@+id/btn_save_issue"
-        android:layout_alignParentEnd="true" />
+        <Button
+            android:text="SAVE"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_save_issue"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_gravity="bottom"
+            android:background="@android:color/holo_green_dark"
+            android:layout_weight="0.90" />
+
+    </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>
