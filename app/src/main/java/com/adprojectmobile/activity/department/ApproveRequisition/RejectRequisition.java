@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.dao.Dao.itemTransactionDao;
 import com.adprojectmobile.dao.Dao.requisitionDao;
 import com.adprojectmobile.dao.Dao.requisitionItemDao;
@@ -26,22 +27,19 @@ public class RejectRequisition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.approve_req_activity_reject_requisition);
 
-        final RequisitionItem requisitionItem = getIntent().getParcelableExtra("data");
-        final Requisition requisition = getIntent().getParcelableExtra("data1");
-        List<Requisition> requisitionList= requisitionDao.getAllRequisitions();
+        final RequisitionApi requisition = getIntent().getParcelableExtra("data");
 
 
         final EditText editTextEmployeeName = (EditText) findViewById(R.id.editText_EmployeeName_rejectRequisition);
         final EditText editTextCollectionTime = (EditText) findViewById(R.id.editText_CollectionTime_rejectRequisition);
         final EditText editTextItemNumber = (EditText) findViewById(R.id.editText_ItemNumber_rejectRequisition);
         final EditText editTextRejectedReason= (EditText) findViewById(R.id.editText_RejectionReason_rejectRequisition);
-        if (!requisitionList.isEmpty()){
-            Requisition requisition1 =requisitionList.get(0);
-            editTextEmployeeName.setText(requisition1.getEmployee().getName());
-            editTextCollectionTime.setText(requisition1.getRequisitionDate());
 
-            //  editTextItemNumber.setText(requisitionItem.());
-        }
+            editTextEmployeeName.setText(requisition.getCreatedBy());
+            editTextCollectionTime.setText(requisition.getIssuedDate());
+            editTextItemNumber.setText(requisition.getNumberOfItem());
+            //editTextRejectedReason.setText(requisition.getRemarks());
+
 
 
         Button btn_save=(Button)findViewById(R.id.btn_save_reject_requisition);

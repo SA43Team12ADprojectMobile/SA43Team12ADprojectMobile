@@ -13,8 +13,10 @@ import android.widget.ListView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.employeeAdapter;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.dao.Dao.employeeDao;
 import com.adprojectmobile.dao.DaoImpl.employeeDaoImpl;
+import com.adprojectmobile.daoApi.delegateDao;
 import com.adprojectmobile.model.Employee;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import java.util.List;
 
 public class FindEmployee extends AppCompatActivity {
 
+    delegateDao dDao=new delegateDao();
     employeeDao empDao=new employeeDaoImpl();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +34,15 @@ public class FindEmployee extends AppCompatActivity {
         final ListView employeeView=(ListView)findViewById(R.id.listview_delegate_employee_find_list);
         final EditText editTextSearch=(EditText) findViewById(R.id.editText_delegate_search_employee_name);
 
-        new AsyncTask<Void,Void,List<Employee>>(){
+        new AsyncTask<Void,Void,List<EmployeeApi>>(){
             @Override
-            protected List<Employee> doInBackground(Void...params){
-                return empDao.getAllEmployees();
+            protected List<EmployeeApi> doInBackground(Void...params){
+               // return empDao.getAllEmployees();
+                return dDao.getAllEmployee();
             }
 
             @Override
-            protected void onPostExecute(List<Employee> employees){
+            protected void onPostExecute(List<EmployeeApi> employees){
                 employeeView.setAdapter(new employeeAdapter(getApplicationContext(),R.layout.row_employee,employees));
             }
         }.execute();
@@ -48,17 +52,18 @@ public class FindEmployee extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String searchName=editTextSearch.getText().toString();
-                new AsyncTask<Void,Void,List<Employee>>(){
+                new AsyncTask<Void,Void,List<EmployeeApi>>(){
                     @Override
-                    protected List<Employee> doInBackground(Void...params){
+                    protected List<EmployeeApi> doInBackground(Void...params){
 
-                        List<Employee> tmpEmpList=empDao.getEmployees(searchName);
+                     //   List<EmployeeApi> tmpEmpList=empDao.getEmployees(searchName);
+                        List<EmployeeApi> tmpEmpList=dDao.searchEmployeeByName(searchName);
 
                         return  tmpEmpList;
                     }
 
                     @Override
-                    protected void onPostExecute(List<Employee> items){
+                    protected void onPostExecute(List<EmployeeApi> items){
                         employeeView.setAdapter(new employeeAdapter(getApplicationContext(),R.layout.row_employee,items));
                     }
                 }.execute();
@@ -68,11 +73,19 @@ public class FindEmployee extends AppCompatActivity {
         employeeView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Employee employee=(Employee) parent.getAdapter().getItem(position);
+                EmployeeApi employee=(EmployeeApi) parent.getAdapter().getItem(position);
+                Intent intent;
+                if (!Boolean.parseBoolean(employee.getIsDelegated())){
+                    intent=new Intent(getApplicationContext(),DelegateAuthority.class);
+                    intent.putExtra("data",employee);
+                    startActivity(intent);
+                }
+                else {
+                    intent=new Intent(getApplicationContext(),RevokeAuthority.class);
+                    intent.putExtra("data",employee);
+                    startActivity(intent);
+                }
 
-                Intent intent=new Intent(getApplicationContext(),DelegateAuthority.class);
-                intent.putExtra("data",employee);
-                startActivity(intent);
             }
         });
 

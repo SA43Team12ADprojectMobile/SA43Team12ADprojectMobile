@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.model.Employee;
 
 public class DelegateAuthority extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class DelegateAuthority extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delegate_authority_activity_delegate_authority);
 
-        final Employee employee=getIntent().getParcelableExtra("data");
+        final EmployeeApi employee=getIntent().getParcelableExtra("data");
 
         EditText editTextName=(EditText)findViewById(R.id.editText_delegate_employeeName);
         EditText editTextStatus=(EditText)findViewById(R.id.editText_delegate_status);
@@ -26,7 +27,7 @@ public class DelegateAuthority extends AppCompatActivity {
         Button btnConfirmDelegate=(Button) findViewById(R.id.btn_delegate_confirm);
 
         editTextName.setText(employee.getName());
-        if(!employee.isDelegated()){
+        if(!Boolean.parseBoolean(employee.getIsDelegated())){
             editTextStatus.setText("UnAuthorized");
         }
         else {
@@ -39,7 +40,7 @@ public class DelegateAuthority extends AppCompatActivity {
                 String startDate=editTextStartDate.getText().toString();
                 String endDate=editTextEndDate.getText().toString();
 
-                Intent intent=new Intent(getApplicationContext(),RevokeAuthority.class);
+                Intent intent=new Intent(getApplicationContext(),FindEmployee.class);
                 intent.putExtra("data",employee);
                 intent.putExtra("start",startDate);
                 intent.putExtra("end",endDate);

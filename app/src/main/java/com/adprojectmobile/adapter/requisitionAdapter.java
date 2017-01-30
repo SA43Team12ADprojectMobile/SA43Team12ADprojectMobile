@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.model.Requisition;
 
 import java.util.List;
@@ -17,11 +18,11 @@ import java.util.List;
  * Created by EvEr on 2017/1/23.
  */
 
-public class requisitionAdapter extends ArrayAdapter<Requisition> {
-    private List<Requisition> requisitionList;
+public class requisitionAdapter extends ArrayAdapter<RequisitionApi> {
+    private List<RequisitionApi> requisitionList;
     int resource;
 
-    public requisitionAdapter(Context context, int resource, List<Requisition> requisitions) {
+    public requisitionAdapter(Context context, int resource, List<RequisitionApi> requisitions) {
         super(context, resource, requisitions);
 
         this.resource=resource;
@@ -33,14 +34,14 @@ public class requisitionAdapter extends ArrayAdapter<Requisition> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        Requisition requisition=requisitionList.get(position);
+        RequisitionApi requisition=requisitionList.get(position);
         if (requisition!=null){
             TextView textViewEmployeeName=(TextView)v.findViewById(R.id.textView_requisition_employee_name);
             TextView textViewDate=(TextView)v.findViewById(R.id.textView_requisition_requisition_date);
             TextView textViewQuantitiy = (TextView)v.findViewById(R.id.textview_requisition_requisition_quantity);
-            textViewEmployeeName.setText(requisition.getEmployee().getName());
-            textViewDate.setText(requisition.getRequisitionDate());
-//            textViewQuantitiy.setText(requisition.getRequisitionQuantity());
+            textViewEmployeeName.setText(requisition.getCreatedBy());
+            textViewDate.setText(requisition.getIssuedDate());
+           textViewQuantitiy.setText(requisition.getNumberOfItem());
         }
         return v;
     }

@@ -12,10 +12,13 @@ import android.widget.ListView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
 import com.adprojectmobile.adapter.requisitionItemForApprovalAdapter;
+import com.adprojectmobile.apiModel.RequisitionApi;
+import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.dao.Dao.requisitionDao;
 import com.adprojectmobile.dao.Dao.requisitionItemDao;
 import com.adprojectmobile.dao.DaoImpl.requisitionDaoImpl;
 import com.adprojectmobile.dao.DaoImpl.requisitionItemDaoImpl;
+import com.adprojectmobile.daoApi.approveDao;
 import com.adprojectmobile.model.Requisition;
 import com.adprojectmobile.model.RequisitionItem;
 
@@ -23,6 +26,7 @@ import java.util.List;
 
 public class RequisitionItemsforApprove extends AppCompatActivity {
 
+    approveDao aDao=new approveDao();
     requisitionItemDao reqItemDao = new requisitionItemDaoImpl();
     requisitionDao reqDao = new requisitionDaoImpl();
 
@@ -31,21 +35,35 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.approve_req_activity_requisition_itemsfor_approve);
 
-        final Requisition requisition = getIntent().getParcelableExtra("data");
+        final RequisitionApi requisition = getIntent().getParcelableExtra("requisition");
+        final String id=getIntent().getStringExtra("data");
         // Toast.makeText(getApplicationContext(),requisition.getRequisitionDate().toString(),Toast.LENGTH_LONG).show();
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_approve_requisitions_items);
 
 
-        new AsyncTask<Requisition, Void, List<RequisitionItem>>() {
+        new AsyncTask<RequisitionApi, Void, List<RequisitionItemApi>>() {
             @Override
-            protected List<RequisitionItem> doInBackground(Requisition... params) {
-                return reqItemDao.getAllRequisitionItems();
-                //return reqItemDao.getItemsInRequisition(requisition);
+            protected List<RequisitionItemApi> doInBackground(RequisitionApi... params) {
+              //  return reqItemDao.getAllRequisitionItems();
+                List<RequisitionApi> requisitionApis = aDao.getAllRequisition();
+                RequisitionApi requisitionApi = new RequisitionApi();
+                for (RequisitionApi rc :
+                        requisitionApis) {
+                    if (rc.getId() != null) {
+                        if (rc.getId().toString().equals(id)) {
+                            requisitionApi = rc;
+                        }
+                    }
+
+                }
+
+                final List<RequisitionItemApi> retrievalItems = aDao.getItemByRequisition(requisitionApi);
+                return retrievalItems;
             }
 
             @Override
-            protected void onPostExecute(List<RequisitionItem> requisitionItems) {
+            protected void onPostExecute(List<RequisitionItemApi> requisitionItems) {
                 //requisitionItemView.setAdapter(new requisitionItemAdapter(ItemsForCollection.this,R.layout.row_retrieval_form_disbursement_items,requisitionItems));
                 requisitionItemView.setAdapter(new requisitionItemForApprovalAdapter(RequisitionItemsforApprove.this, R.layout.row_approve_requisition_items, requisitionItems));
             }
@@ -66,7 +84,9 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(RequisitionItemsforApprove.this, RejectRequisition.class);
-                startActivity(intent);}
+                intent.putExtra("data",requisition);
+                startActivity(intent);
+            }
         });
     }
 }

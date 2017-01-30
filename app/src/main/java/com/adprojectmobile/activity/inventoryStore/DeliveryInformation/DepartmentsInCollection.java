@@ -11,8 +11,11 @@ import android.widget.ListView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.collectionAdapter;
 import com.adprojectmobile.adapter.departmentAdapter;
+import com.adprojectmobile.apiModel.DeliveryDisbursement;
+import com.adprojectmobile.apiModel.DepartmentApi;
 import com.adprojectmobile.dao.Dao.departmentDao;
 import com.adprojectmobile.dao.DaoImpl.departmentDaoImpl;
+import com.adprojectmobile.daoApi.deliveryDao;
 import com.adprojectmobile.model.CollectionPoint;
 import com.adprojectmobile.model.Department;
 
@@ -20,23 +23,26 @@ import java.util.List;
 
 public class DepartmentsInCollection extends AppCompatActivity {
     departmentDao depDao=new departmentDaoImpl();
+    deliveryDao dDao=new deliveryDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delivery_information_activity_departments_in_collection);
-        final CollectionPoint collectionPoint=getIntent().getParcelableExtra("data");
+        //final CollectionPoint collectionPoint=getIntent().getParcelableExtra("data");
+          final DeliveryDisbursement deliveryDisbursement=getIntent().getParcelableExtra("data");
 
         final ListView departmentView =(ListView)findViewById(R.id.listview_delivery_department);
 
-        new AsyncTask<CollectionPoint,Void,List<Department>>() {
+        new AsyncTask<DeliveryDisbursement,Void,List<DepartmentApi>>() {
             @Override
-            protected List<Department> doInBackground(CollectionPoint...params) {
-                return depDao.getDepartmentsByPoint(collectionPoint);
+            protected List<DepartmentApi> doInBackground(DeliveryDisbursement...params) {
+               // return depDao.getDepartmentsByPoint(collectionPoint);
+                return  dDao.getDepartmentByCollectionPoint(deliveryDisbursement);
             }
 
             @Override
-            protected void onPostExecute(List<Department> departments){
+            protected void onPostExecute(List<DepartmentApi> departments){
                 departmentView.setAdapter(new departmentAdapter(DepartmentsInCollection.this,R.layout.row_department_delivery,departments));
             }
         }.execute();
@@ -44,7 +50,7 @@ public class DepartmentsInCollection extends AppCompatActivity {
         departmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Department department=(Department) parent.getAdapter().getItem(position);
+                DepartmentApi department=(DepartmentApi) parent.getAdapter().getItem(position);
 
                 Intent intent=new Intent(getApplicationContext(),DepartmentDetail.class);
                 intent.putExtra("data",department);

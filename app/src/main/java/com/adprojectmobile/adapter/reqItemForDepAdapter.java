@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.DepartmentApi;
 import com.adprojectmobile.model.RequisitionItem;
 
 import java.util.List;
@@ -17,11 +18,11 @@ import java.util.List;
  * Created by EvEr on 2017/1/24.
  */
 
-public class reqItemForDepAdapter extends ArrayAdapter<RequisitionItem> {
-    private List<RequisitionItem> requisitionItemList;
+public class reqItemForDepAdapter extends ArrayAdapter<DepartmentApi> {
+    private List<DepartmentApi> requisitionItemList;
     int resource;
 
-    public reqItemForDepAdapter(Context context, int resource, List<RequisitionItem> requisitionItems) {
+    public reqItemForDepAdapter(Context context, int resource, List<DepartmentApi> requisitionItems) {
         super(context, resource, requisitionItems);
         this.resource=resource;
         this.requisitionItemList=requisitionItems;
@@ -32,16 +33,16 @@ public class reqItemForDepAdapter extends ArrayAdapter<RequisitionItem> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        RequisitionItem requisitionItem=requisitionItemList.get(position);
+        DepartmentApi requisitionItem=requisitionItemList.get(position);
         if (requisitionItem!=null){
             TextView textViewItemName=(TextView)v.findViewById(R.id.textView_delivery_department_item_name);
             TextView textViewItemCode=(TextView)v.findViewById(R.id.textView_delivery_department_item_code);
             TextView textViewQtyNeeded=(TextView)v.findViewById(R.id.textView_delivery_department_item_qty_needed);
             TextView textViewQtyActual=(TextView)v.findViewById(R.id.textView_delivery_department_item_qty_actual);
-            textViewItemName.setText(requisitionItem.getName());
-//            textViewItemCode.setText(requisitionItem.);
-            textViewQtyNeeded.setText(requisitionItem.getNeededQuantity());
-            textViewQtyActual.setText(requisitionItem.getRetrievedQuantity());
+//            textViewItemName.setText(requisitionItem.ItemID);
+            textViewItemCode.setText(requisitionItem.getItemID());
+            textViewQtyNeeded.setText(requisitionItem.getNeededQty());
+            textViewQtyActual.setText(requisitionItem.getActualQty());
         }
         return v;
     }
