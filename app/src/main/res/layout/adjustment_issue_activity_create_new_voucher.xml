@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/retrieval_form_activity_confirm_retrieval"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".activity.inventoryStore.RetrievalForm.ConfirmRetrieval">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="25sp"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:textStyle="normal|bold"
+        android:text="New Voucher"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:fitsSystemWindows="true" />
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="374dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true">
 
@@ -25,19 +35,22 @@
                 android:text="Voucher ID: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:paddingBottom="10dp"
+                android:layout_weight="0"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:id="@+id/editText_create_new_voucherID"
-                android:enabled="false"
-                android:clickable="false"
-                android:longClickable="false"
-                />
+                android:enabled="true"
+                android:clickable="true"
+                android:longClickable="true"
+                android:textSize="25sp" />
 
         </TableRow>
 
@@ -56,18 +69,22 @@
                 android:text="Issue Date: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:paddingBottom="10dp"
+                android:layout_weight="0"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:id="@+id/editText_create_new_voucher_date"
-                android:enabled="false"
-                android:clickable="false"
-                android:longClickable="false" />
+                android:enabled="true"
+                android:clickable="true"
+                android:longClickable="true"
+                android:textSize="25sp"/>
         </TableRow>
 
         <TableRow
@@ -76,14 +93,17 @@
             android:layout_weight="0">
 
 
-            <Button
-                android:text="Create Voucher"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/btn_create_new_voucher" />
         </TableRow>
     </TableLayout>
 
+    <Button
+        android:text="Create Voucher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/btn_create_new_voucher"
+        android:textSize="20sp"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="@android:color/white" />
 
-</RelativeLayout>
+
+</LinearLayout>

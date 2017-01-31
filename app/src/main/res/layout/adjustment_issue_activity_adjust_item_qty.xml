@@ -111,7 +111,7 @@
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"
-                android:hint="Input Qty adjusted"
+                android:hint="Input Quantity"
                 android:textSize="25sp" />
         </TableRow>
 

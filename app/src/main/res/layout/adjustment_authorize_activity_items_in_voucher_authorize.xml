@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_collection_list"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
@@ -13,22 +13,29 @@
         android:layout_height="wrap_content"
 
 
-        android:padding="20dp"
+        android:padding="@dimen/activity_horizontal_margin"
         android:textSize="20sp"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/background_light"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
         android:textStyle="normal|bold"
         android:text="Adjustment Items"
         android:textAllCaps="true"
-        android:gravity="center"
-        android:fitsSystemWindows="true"
-        />
+        android:gravity="center_horizontal"
+        android:fitsSystemWindows="true" />
 
     <ListView
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listview_adjustment_voucher_approve_itemlist" />
+        android:layout_width="wrap_content"
+        android:layout_height="325dp"
+        android:id="@+id/listview_adjustment_voucher_approve_itemlist"
+        android:background="@android:color/background_light"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp" android:paddingBottom="15dip"
+
+        style="@style/Widget.AppCompat.ListView.Menu"
+        android:contextClickable="false"
+        android:elevation="1dp"
+        android:layout_weight="0.48" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -38,8 +45,11 @@
         <Button
             android:text="Authorize Voucher"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/btn_voucher_authorize" />
+            android:layout_height="60dp"
+            android:id="@+id/btn_voucher_authorize"
+            android:background="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
