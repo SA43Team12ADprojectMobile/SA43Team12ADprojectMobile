@@ -9,9 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adprojectmobile.MainActivity;
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.department.EmployeeMainPage;
+import com.adprojectmobile.activity.department.HeadMainPage;
+import com.adprojectmobile.activity.department.RepresentativeMainPage;
+import com.adprojectmobile.activity.inventoryStore.ManagerMainPage;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
+import com.adprojectmobile.activity.inventoryStore.SupervisorMainPage;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.daoApi.authenticationDao;
 import com.adprojectmobile.util.JSONPaser;
@@ -50,15 +57,40 @@ public class Login extends AppCompatActivity {
                     @Override
                     protected void onPostExecute(EmployeeApi employeeApi){
                         Intent intent;
-                        if (employeeApi.getIsDelegated().contains("true")||employeeApi.getPosition().equals("Store Manager")){
-                            intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
-                            intent.putExtra("data",employeeApi);
-                            startActivity(intent);
+                        if(employeeApi==null){
+                            Toast.makeText(getApplicationContext(),"Invalid UserId or Password",Toast.LENGTH_LONG);
                         }
-                        if (employeeApi.getPosition().equals("Representative")){
-                            intent=new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("data",employeeApi);
-                            startActivity(intent);
+                        else {
+                            if (employeeApi.getPosition().equals("Head")){
+                                intent=new Intent(getApplicationContext(), HeadMainPage.class);
+                                intent.putExtra("role",employeeApi);
+                                startActivity(intent);
+                            }
+                            else if (employeeApi.getPosition().equals("Representative")){
+                                intent=new Intent(getApplicationContext(), RepresentativeMainPage.class);
+                                intent.putExtra("role",employeeApi);
+                                startActivity(intent);
+                            }
+                            else if (employeeApi.getIsDelegated().contains("true")&&employeeApi.getPosition().equals("Employee")){
+                                intent=new Intent(getApplicationContext(), HeadMainPage.class);
+                                intent.putExtra("role",employeeApi);
+                                startActivity(intent);
+                            }
+                            else if (employeeApi.getPosition().equals("Store Manager")){
+                                intent=new Intent(getApplicationContext(), ManagerMainPage.class);
+                                intent.putExtra("role",employeeApi);
+                                startActivity(intent);
+                            }
+                            else if (employeeApi.getPosition().equals("Store Supervisor")){
+                                intent=new Intent(getApplicationContext(), SupervisorMainPage.class);
+                                intent.putExtra("role",employeeApi);
+                                startActivity(intent);
+                            }
+                            else if (employeeApi.getPosition().equals("Clerk")){
+                                intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                                intent.putExtra("role",employeeApi);
+                                startActivity(intent);
+                            }
                         }
                     }
                 }.execute();

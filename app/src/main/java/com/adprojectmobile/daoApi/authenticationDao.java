@@ -1,6 +1,7 @@
 package com.adprojectmobile.daoApi;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.util.JSONPaser;
@@ -21,13 +22,15 @@ public class authenticationDao {
         try{
             jUser.put("UserId",id);
             jUser.put("Password",password);
-        }catch (Exception e){}
-        Log.e("json",jUser.toString());
-        String returnJson = JSONPaser.postStream(host+"/user",jUser.toString());
-        Gson gson=new Gson();
-        EmployeeApi employeeApi=gson.fromJson(returnJson,EmployeeApi.class);
-        Log.e("employee",employeeApi.toString());
-        return employeeApi;
+            Log.e("json",jUser.toString());
+            String returnJson = JSONPaser.postStream(host+"/user",jUser.toString());
+            Gson gson=new Gson();
+            EmployeeApi employeeApi=gson.fromJson(returnJson,EmployeeApi.class);
+            Log.e("employee",employeeApi.toString());
+            return employeeApi;
+        }catch (Exception e){
+            return null;
+        }
     }
 
     public String testPost(String id,String password){
