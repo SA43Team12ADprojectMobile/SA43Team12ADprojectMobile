@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.adprojectmobile.activity.Login;
-import com.adprojectmobile.activity.LoginActivity;
 import com.adprojectmobile.activity.department.ApproveRequisition.RequisitionItemsforApprove;
 import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.Disbursements;
