@@ -12,11 +12,11 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:id="@+id/textView_collectionpoint_name"
             android:layout_weight="1"
             android:textSize="25sp"
-            android:paddingBottom="10dp"
+
             android:textColor="@android:color/black" />
     </LinearLayout>
 
@@ -30,11 +30,11 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
+                android:layout_height="80dp"
                 android:id="@+id/textView_collectionpoint_date"
                 android:gravity="right"
                 android:layout_weight="1"
-                android:paddingBottom="10dp"
+
                 android:layoutDirection="rtl"
                 android:textSize="25sp"
                 android:textColor="@android:color/black" />

@@ -23,7 +23,7 @@
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/listview_approve_requisitions_items"
-        android:layout_height="380dp" />
+        android:layout_height="375dp" />
 
 
     <LinearLayout
@@ -32,6 +32,7 @@
     android:layout_weight="1"
     android:gravity="center|bottom"
     android:orientation="horizontal" >
+
     <Button
         android:text="Reject"
         android:textColor="@android:color/white"
@@ -41,7 +42,8 @@
         android:layout_gravity="bottom"
         android:id="@+id/btn_reject_requisition"
         android:background="@android:color/holo_red_dark"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:textSize="20sp"/>
 
     <Button
         android:text="Approve"
@@ -52,7 +54,8 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_gravity="bottom"
         android:background="@android:color/holo_green_dark"
-        android:layout_weight="0.90" />
+        android:layout_weight="0.90"
+        android:textSize="20sp"/>
 
     </LinearLayout>
 </LinearLayout>

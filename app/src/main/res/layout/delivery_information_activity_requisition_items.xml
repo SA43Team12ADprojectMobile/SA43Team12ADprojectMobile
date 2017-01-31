@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_collection_list"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context="com.adprojectmobile.activity.inventoryStore.DeliveryInformation.RequisitionItems">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="70dp"
         android:padding="20dp"
-        android:textSize="20sp"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/background_light"
+        android:textSize="25sp"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
         android:textStyle="normal|bold"
         android:text="Items in Department"
         android:textAllCaps="true"
-        android:gravity="center"
-        android:fitsSystemWindows="true"
-        />
+        android:gravity="center_horizontal"
+        android:fitsSystemWindows="true" />
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listview_delivery_itemList" />
+        android:layout_width="wrap_content"
+        android:layout_height="370dp"
+        android:id="@+id/listview_delivery_itemList"
+        android:background="@android:color/background_light"
+        android:textColor="@color/colorAccent"
+        android:layout_weight="0.02" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dip"
+        android:layout_weight="0.19"
+        android:gravity="center|bottom">
+
+        <Button
+            android:text="Reject"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            style="@style/Widget.AppCompat.Button"
+            android:id="@+id/btn_item_delivery_acknowledge"
+            android:background="@android:color/holo_red_dark"
+            android:layout_weight="0.39"
+            android:textSize="20sp" />
 
         <Button
             android:text="Acknowledge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_item_delivery_acknowledge"
-            android:layout_weight="1" />
-
-        <Button
-            android:text="Reject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/white"
             android:id="@+id/btn_item_delivery_reject"
-            android:layout_weight="1" />
+            style="@style/Widget.AppCompat.Button"
+            android:layout_gravity="bottom"
+            android:background="@android:color/holo_green_dark"
+            android:layout_weight="0.17"
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>
