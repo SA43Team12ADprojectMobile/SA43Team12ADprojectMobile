@@ -22,7 +22,7 @@ public class deliveryDao {
     public List<DeliveryDisbursement> getAllDeliveryDisbursements(){
         List<DeliveryDisbursement> deliveryDisbursements=new ArrayList<>();
         //List<RetrievalItem> retrievalItems=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/disbursement");
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/ackdisbursement");
 
         try {
             for(int i=0;i<jsonArray.length();i++){
@@ -46,7 +46,7 @@ public class deliveryDao {
 
     public List<DepartmentApi> getDepartmentByCollectionPoint(DeliveryDisbursement deliveryDisbursement){
         List<DepartmentApi> departmentApis=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/ackdisbursement/3");//need collection pointID
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/ackdisbursement/"+deliveryDisbursement.getCollectionPointName());//need collection pointID
         try {
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject jsonDepartment=jsonArray.getJSONObject(i);
