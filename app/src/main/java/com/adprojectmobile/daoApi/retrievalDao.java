@@ -52,7 +52,6 @@ public class retrievalDao {
 
     public List<RetrievalItem> getItemsByCollection(RetrievalCollectionPoint r){
         List<RetrievalItem> retrievalItemList=new ArrayList<>();
-        Log.e("before if","1");
         if(r.getItemJson()!=null){
             JSONArray jsonArray=r.getItemJson();
             try {

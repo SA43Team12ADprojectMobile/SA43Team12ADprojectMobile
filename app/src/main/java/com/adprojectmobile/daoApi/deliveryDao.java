@@ -50,14 +50,18 @@ public class deliveryDao {
         try {
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject jsonDepartment=jsonArray.getJSONObject(i);
-//                JSONArray retrievalItemsJson=new JSONArray();
+                JSONArray departmentItemsJson=new JSONArray();
                 DepartmentApi departmentApi=new DepartmentApi();
 
+                if(jsonDepartment.getString("Items")!="null"){
+                    departmentItemsJson=jsonDepartment.getJSONArray("Items");
+                    departmentApi=new DepartmentApi(jsonDepartment.getString("DepartmentID"),jsonDepartment.getString("DepartmentName"),jsonDepartment.getString("ContactName"),jsonDepartment.getString("TelephoneNumber"),jsonDepartment.getString("FaxNumber"),jsonDepartment.getString("CollectionPointID"),jsonDepartment.getString("CollectionPointName"),departmentItemsJson);
+                }
+                else {
 
-                departmentApi = new DepartmentApi(jsonDepartment.getString("DisbursementID"),jsonDepartment.getString("RetrievalTime"),jsonDepartment.getString("DeliveryStatus"),jsonDepartment.getString("CollectionPointName"),jsonDepartment.getString("RepName"),jsonDepartment.getString("RepChecked"),jsonDepartment.getString("ClerkChecked"),jsonDepartment.getString("DepartmentName"),jsonDepartment.getString("ContactName"),jsonDepartment.getString("TelephoneNumber"),jsonDepartment.getString("Description"),jsonDepartment.getString("ItemID"),jsonDepartment.getString("ActualQty"),jsonDepartment.getString("NeededQty"));
-               // public DepartmentApi(String disbursementID, String retrievalTime, String deliveryStatus, String collectionPointName, String repName, String repChecked, String clerkChecked, String departmentName, String contactName, String telephoneNumber, String description, String itemID, String actualQty, String neededQty)
+                    departmentApi=new DepartmentApi(jsonDepartment.getString("DepartmentID"),jsonDepartment.getString("DepartmentName"),jsonDepartment.getString("ContactName"),jsonDepartment.getString("TelephoneNumber"),jsonDepartment.getString("FaxNumber"),jsonDepartment.getString("CollectionPointID"),jsonDepartment.getString("CollectionPointName"));
+                }
 
-                //  retrievalItems.add(retrievalItem);
                 departmentApis.add(departmentApi);
             }
         } catch (JSONException e) {
@@ -65,4 +69,6 @@ public class deliveryDao {
         }
         return departmentApis;
     }
+
+
 }

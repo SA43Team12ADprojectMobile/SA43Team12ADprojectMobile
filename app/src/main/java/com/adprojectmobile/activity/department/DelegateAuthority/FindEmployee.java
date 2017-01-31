@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class FindEmployee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delegate_authority_activity_find_employee);
+        final EmployeeApi employeeApi=getIntent().getParcelableExtra("role");
 
         final ListView employeeView=(ListView)findViewById(R.id.listview_delegate_employee_find_list);
         final EditText editTextSearch=(EditText) findViewById(R.id.editText_delegate_search_employee_name);
@@ -37,8 +39,8 @@ public class FindEmployee extends AppCompatActivity {
         new AsyncTask<Void,Void,List<EmployeeApi>>(){
             @Override
             protected List<EmployeeApi> doInBackground(Void...params){
-               // return empDao.getAllEmployees();
-                return dDao.getAllEmployee();
+               return  dDao.getEmployeeByDepartment(employeeApi.getDepartmentName());
+                //return dDao.getAllEmployee();
             }
 
             @Override
@@ -57,7 +59,7 @@ public class FindEmployee extends AppCompatActivity {
                     protected List<EmployeeApi> doInBackground(Void...params){
 
                      //   List<EmployeeApi> tmpEmpList=empDao.getEmployees(searchName);
-                        List<EmployeeApi> tmpEmpList=dDao.searchEmployeeByName(searchName);
+                        List<EmployeeApi> tmpEmpList=dDao.searchDepEmployeeByName(searchName,employeeApi.getDepartmentName());
 
                         return  tmpEmpList;
                     }

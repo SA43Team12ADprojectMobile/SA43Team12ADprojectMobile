@@ -22,7 +22,6 @@ import com.adprojectmobile.model.Department;
 import java.util.List;
 
 public class DepartmentsInCollection extends AppCompatActivity {
-    departmentDao depDao=new departmentDaoImpl();
     deliveryDao dDao=new deliveryDao();
 
     @Override
