@@ -33,6 +33,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.adprojectmobile.MainActivity;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 
@@ -196,7 +197,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
@@ -338,7 +339,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             //TODO: Login Success
             if (success) {
-                Intent intent=new Intent(LoginActivity.this,StockClerkMainPage.class);
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
 
                 startActivity(intent);
 

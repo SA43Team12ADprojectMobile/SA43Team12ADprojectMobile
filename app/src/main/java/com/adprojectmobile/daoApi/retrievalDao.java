@@ -52,14 +52,15 @@ public class retrievalDao {
 
     public List<RetrievalItem> getItemsByCollection(RetrievalCollectionPoint r){
         List<RetrievalItem> retrievalItemList=new ArrayList<>();
+        Log.e("before if","1");
         if(r.getItemJson()!=null){
             JSONArray jsonArray=r.getItemJson();
-
-
             try {
                 for (int i=0;i<jsonArray.length();i++){
                     JSONObject jsonObject= jsonArray.getJSONObject(i);
-                    RetrievalItem retrievalItem=new RetrievalItem(jsonObject.getString("Id"),jsonObject.getString("ItemName"),jsonObject.getString("NeededQuantity"),jsonObject.getString("RetrievedQuantity"));
+
+                    RetrievalItem retrievalItem=new RetrievalItem(jsonObject.getString("ItemId"),jsonObject.getString("ItemName"),jsonObject.getString("NeededQuantity"),jsonObject.getString("RetrievedQuantity"));
+                    Log.e("success add one",retrievalItem.toString());
                     retrievalItemList.add(retrievalItem);
                 }
             } catch (JSONException e) {
