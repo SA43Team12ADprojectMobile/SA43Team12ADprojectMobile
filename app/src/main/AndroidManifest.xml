@@ -51,9 +51,6 @@
         <activity android:name=".activity.department.DelegateAuthority.FindEmployee" />
         <activity android:name=".activity.department.DelegateAuthority.DelegateAuthority" />
         <activity android:name=".activity.department.DelegateAuthority.RevokeAuthority" />
-        <activity
-            android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login" />
         <activity android:name=".activity.inventoryStore.StockClerkMainPage" />
         <activity android:name=".activity.department.EmployeeMainPage" />
         <activity
@@ -65,7 +62,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.Login"></activity>
+        <activity android:name=".activity.Login" />
+        <activity android:name=".activity.department.RepresentativeMainPage" />
+        <activity android:name=".activity.department.HeadMainPage" />
+        <activity android:name=".activity.inventoryStore.SupervisorMainPage" />
+        <activity android:name=".activity.inventoryStore.ManagerMainPage"></activity>
     </application>
 
 </manifest>

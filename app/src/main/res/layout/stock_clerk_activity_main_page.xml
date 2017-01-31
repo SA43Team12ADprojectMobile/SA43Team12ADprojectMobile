@@ -10,4 +10,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.adprojectmobile.activity.inventoryStore.StockClerkMainPage">
 
+    <Button
+        android:text="Issue Adjustment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="77dp"
+        android:id="@+id/btn_clerk_issue_adjustment_voucher" />
+
+    <Button
+        android:text="Delivery Information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_clerk_issue_adjustment_voucher"
+        android:layout_alignStart="@+id/btn_clerk_issue_adjustment_voucher"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btn_clerk_delivery_info" />
+
+    <Button
+        android:text="Retrieval Form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/btn_clerk_delivery_info"
+        android:id="@+id/btn_clerk_retrieval_form" />
+
+    <Button
+        android:text="View Adjustment Voucher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_clerk_retrieval_form"
+        android:layout_alignStart="@+id/btn_clerk_retrieval_form"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btn_clerk_view_adjustment_voucher" />
 </RelativeLayout>
