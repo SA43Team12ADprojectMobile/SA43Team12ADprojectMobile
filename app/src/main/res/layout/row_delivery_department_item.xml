@@ -52,7 +52,6 @@
                 android:id="@+id/textView_delivery_department_item_qty_needed"
                 android:layoutDirection="rtl"
                 android:gravity="right"
-
                 android:layout_weight="1"
                 android:textSize="25sp"
                 android:textColor="@android:color/black" />

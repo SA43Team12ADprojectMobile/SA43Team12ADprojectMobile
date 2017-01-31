@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/retrieval_form_activity_confirm_retrieval"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.inventoryStore.RetrievalForm.ConfirmRetrieval">
+    tools:context=".activity.inventoryStore.RetrievalForm.ConfirmRetrieval"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="25sp"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:textStyle="normal|bold"
+        android:text="Confirm Retrieval"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:fitsSystemWindows="true" />
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:layout_weight="0.10">
 
         <TableRow
             android:layout_width="match_parent"
@@ -22,13 +36,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="2"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
@@ -36,7 +50,7 @@
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
         </TableRow>
 
@@ -56,13 +70,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="2"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
@@ -70,7 +84,7 @@
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 />
         </TableRow>
 
@@ -83,13 +97,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="2"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="2"
@@ -97,7 +111,7 @@
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 />
         </TableRow>
 
@@ -110,60 +124,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="2"/>
 
             <EditText
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="textPersonName"
-                android:hint="Input actual quantity retrieved"
+                android:hint="Input retrieved quantity"
                 android:ems="10"
                 android:layout_weight="2"
                 android:id="@+id/editText_itemQtyRetrieval_confirmCollection"
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"
-                android:textSize="20sp"
-                />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <TextView
-                android:layout_height="100dp"/>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0">
-
-            <Button
-                android:text="Save"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@android:color/holo_purple"
-                android:textColor="@android:color/white"
                 android:textSize="25sp"
-                android:id="@+id/btn_save_confirm_retrieval"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:layout_margin="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+                android:maxLines="1"/>
+
         </TableRow>
 
     </TableLayout>
 
+        <Button
+            android:text="Confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.02"
+            android:background="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:id="@+id/btn_save_confirm_retrieval"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
 
-</RelativeLayout>
+</LinearLayout>

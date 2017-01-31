@@ -33,7 +33,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Delivery Information"
+        android:text="Acknowledge Delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_toDelivery_firstPage"
@@ -41,7 +41,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Retrieval Form First Page"
+        android:text="Read|Update Stationery Retrieval Form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_toRetrieval_firstPage"
@@ -57,7 +57,7 @@
         android:id="@+id/btn_toLogin" />
 
     <Button
-        android:text="Requisition for approval"
+        android:text="Approve Stationery Requisition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -66,7 +66,7 @@
         android:layout_alignEnd="@+id/btn_toRetrieval_firstPage" />
 
     <Button
-        android:text="AdjustmentVoucher"
+        android:text="Adjustment Voucher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_toAdjustmentMainPage"
@@ -74,7 +74,7 @@
         android:layout_alignEnd="@+id/btn_toDelivery_firstPage" />
 
     <Button
-        android:text="Confirm Disbursements"
+        android:text="Confirm Delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_forTest"
@@ -82,7 +82,7 @@
         android:id="@+id/btn_confirm_disbursements" />
 
     <Button
-        android:text="Delegate"
+        android:text="Delegate|Revoke Store Authority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_toDelivery_firstPage"
