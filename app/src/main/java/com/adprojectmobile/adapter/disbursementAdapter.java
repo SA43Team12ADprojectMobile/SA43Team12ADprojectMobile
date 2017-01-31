@@ -44,9 +44,9 @@ public class disbursementAdapter extends ArrayAdapter<RetrievalCollectionPoint> 
             textViewDisbursementCollectionName.setText(retrievalCollectionPoint.getCollectionPointName());
            // textViewDisbursementDate.setText(retrievalCollectionPoint.get.getRetrievalTime());
             if(retrievalCollectionPoint.getPrepared()!="null"){
-                textViewDisbursementStatus.setText(retrievalCollectionPoint.getPrepared());
+                textViewDisbursementStatus.setText("All Item Prepared");
             }else {
-                textViewDisbursementStatus.setText("false");
+                textViewDisbursementStatus.setText("Unprepared");
             }
 
         }

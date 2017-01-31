@@ -37,11 +37,14 @@ public class collectionAdapter extends ArrayAdapter<DeliveryDisbursement> {
         DeliveryDisbursement collectionPoint=collectionPoints.get(position);
         if (collectionPoint!=null){
             TextView textViewCollectionName=(TextView)v.findViewById(R.id.textView_collectionpoint_name);
-            //TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionpoint_date);
-            TextView textViewCollectionDeliverBy=(TextView)v.findViewById(R.id.textView_collectionpoint_date);
+            //TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionp);
+            TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionpoint_date);
 
             textViewCollectionName.setText(collectionPoint.getCollectionPointName());
-            textViewCollectionDeliverBy.setText(collectionPoint.getRetrievalDate());
+            String date=collectionPoint.getRetrievalDate().substring(0,10);
+            String time=collectionPoint.getRetrievalDate().substring(11,16);
+            String dateTime=time+" "+date;
+            textViewCollectionDate.setText(dateTime);
         }
         return v;
 
