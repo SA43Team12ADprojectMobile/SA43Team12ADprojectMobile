@@ -57,38 +57,40 @@ public class Login extends AppCompatActivity {
                     @Override
                     protected void onPostExecute(EmployeeApi employeeApi){
                         Intent intent;
+                        EmployeeApi employee=employeeApi;
+                        Log.e("Dep",employee.getDepartmentName());
                         if(employeeApi==null){
                             Toast.makeText(getApplicationContext(),"Invalid UserId or Password",Toast.LENGTH_LONG);
                         }
                         else {
                             if (employeeApi.getPosition().equals("Head")){
                                 intent=new Intent(getApplicationContext(), HeadMainPage.class);
-                                intent.putExtra("role",employeeApi);
+                                intent.putExtra("role",employee);
                                 startActivity(intent);
                             }
                             else if (employeeApi.getPosition().equals("Representative")){
                                 intent=new Intent(getApplicationContext(), RepresentativeMainPage.class);
-                                intent.putExtra("role",employeeApi);
+                                intent.putExtra("role",employee);
                                 startActivity(intent);
                             }
                             else if (employeeApi.getIsDelegated().contains("true")&&employeeApi.getPosition().equals("Employee")){
                                 intent=new Intent(getApplicationContext(), HeadMainPage.class);
-                                intent.putExtra("role",employeeApi);
+                                intent.putExtra("role",employee);
                                 startActivity(intent);
                             }
                             else if (employeeApi.getPosition().equals("Store Manager")){
                                 intent=new Intent(getApplicationContext(), ManagerMainPage.class);
-                                intent.putExtra("role",employeeApi);
+                                intent.putExtra("role",employee);
                                 startActivity(intent);
                             }
                             else if (employeeApi.getPosition().equals("Store Supervisor")){
                                 intent=new Intent(getApplicationContext(), SupervisorMainPage.class);
-                                intent.putExtra("role",employeeApi);
+                                intent.putExtra("role",employee);
                                 startActivity(intent);
                             }
                             else if (employeeApi.getPosition().equals("Clerk")){
                                 intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
-                                intent.putExtra("role",employeeApi);
+                                intent.putExtra("role",employee);
                                 startActivity(intent);
                             }
                         }

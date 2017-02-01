@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty;
+import com.adprojectmobile.apiModel.DisbursementItemApi;
 import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.dao.Dao.requisitionItemDao;
@@ -36,20 +37,18 @@ public class ConfirmCollection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm_disbursement_activity_confirm_collection);
 
-        final RequisitionItemApi requisitionItem = getIntent().getParcelableExtra("data");
-        final RequisitionApi requisitionApi = getIntent().getParcelableExtra("requisition");
-     //   final ItemTransaction itemTransaction=requisitionItem.getItemTransaction();
-      //  final Item item=itemTransaction.getItem();
+        final DisbursementItemApi disbursementItemApi=getIntent().getParcelableExtra("data");
 
 
 
 
         final EditText editTextItemName = (EditText) findViewById(R.id.editText_itemDescription_confirmCollection);
-        final EditText editTextQuantityRequired = (EditText) findViewById(R.id.editText_itemQtyRequired_confirmCollection);
-        final EditText editTextQuantityRetrieved= (EditText) findViewById(R.id.editText_itemQtyRetrieval_confirmCollection);
+        final EditText editTextQuantityRetrieved = (EditText) findViewById(R.id.editText_itemQtyRequired_confirmCollection);
+        final EditText editTextQuantityActual= (EditText) findViewById(R.id.editText_itemQtyRetrieval_confirmCollection);
 
-        editTextItemName.setText(requisitionItem.getItemName());
-        editTextQuantityRequired.setText(requisitionItem.getQuantity());
+        editTextItemName.setText(disbursementItemApi.getDescription());
+        editTextQuantityRetrieved.setText(disbursementItemApi.getActualQuantity());
+        editTextQuantityActual.setText(disbursementItemApi.getRetrievedQuantity());
 
 
         Button btn_save=(Button)findViewById(R.id.btn_save_confirm_disbursement_confirm_collection);

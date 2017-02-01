@@ -11,19 +11,18 @@ import android.widget.TextView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.apiModel.DisbursementApi;
 import com.adprojectmobile.apiModel.RequisitionApi;
-import com.adprojectmobile.model.Requisition;
 
 import java.util.List;
 
 /**
- * Created by EvEr on 2017/1/23.
+ * Created by EvEr on 2017/1/31.
  */
 
-public class requisitionAdapter extends ArrayAdapter<RequisitionApi> {
-    private List<RequisitionApi> requisitionList;
+public class disbursementApiAdapter extends ArrayAdapter<DisbursementApi>{
+    private List<DisbursementApi> requisitionList;
     int resource;
 
-    public requisitionAdapter(Context context, int resource, List<RequisitionApi> requisitions) {
+    public disbursementApiAdapter(Context context, int resource, List<DisbursementApi> requisitions) {
         super(context, resource, requisitions);
 
         this.resource=resource;
@@ -35,14 +34,17 @@ public class requisitionAdapter extends ArrayAdapter<RequisitionApi> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        RequisitionApi requisition=requisitionList.get(position);
+        DisbursementApi requisition=requisitionList.get(position);
         if (requisition!=null){
             TextView textViewEmployeeName=(TextView)v.findViewById(R.id.textView_requisition_employee_name);
             TextView textViewDate=(TextView)v.findViewById(R.id.textView_requisition_requisition_date);
             TextView textViewQuantitiy = (TextView)v.findViewById(R.id.textview_requisition_requisition_quantity);
-            textViewEmployeeName.setText(requisition.getCreatedBy());
-            textViewDate.setText(requisition.getIssuedDate());
-           textViewQuantitiy.setText(requisition.getNumberOfItem());
+            textViewEmployeeName.setText(requisition.getRepName());
+            String date=requisition.getRetrievalDate().substring(0,10);
+            String time=requisition.getRetrievalDate().substring(11,16);
+            String dateTime=date+" "+time;
+            textViewDate.setText(dateTime);
+            textViewQuantitiy.setText(requisition.getDeliveryStatus());
         }
         return v;
     }

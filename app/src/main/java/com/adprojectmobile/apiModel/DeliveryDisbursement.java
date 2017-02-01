@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public class DeliveryDisbursement implements Parcelable{
     public String disbursementID;
+    public String collectionPointID;
     public String collectionPointName;
     public String retrievalDate;
     public String deliveryStatus;
@@ -19,28 +20,12 @@ public class DeliveryDisbursement implements Parcelable{
 
     public String clerkChecked;
 
-    public DeliveryDisbursement(String disbursementID, String collectionPointName, String retrievalDate, String deliveryStatus, String repName, String cepChecked, String clerkChecked) {
-        this.disbursementID = disbursementID;
-        this.collectionPointName = collectionPointName;
-        this.retrievalDate = retrievalDate;
-        this.deliveryStatus = deliveryStatus;
-        this.repName = repName;
-        this.cepChecked = cepChecked;
-        this.clerkChecked = clerkChecked;
-    }
-
     public DeliveryDisbursement() {
-    }
-
-    public DeliveryDisbursement(String disbursementID, String collectionPointName, String retrievalDate, String deliveryStatus) {
-        this.disbursementID = disbursementID;
-        this.collectionPointName = collectionPointName;
-        this.retrievalDate = retrievalDate;
-        this.deliveryStatus = deliveryStatus;
     }
 
     protected DeliveryDisbursement(Parcel in) {
         disbursementID = in.readString();
+        collectionPointID = in.readString();
         collectionPointName = in.readString();
         retrievalDate = in.readString();
         deliveryStatus = in.readString();
@@ -67,6 +52,14 @@ public class DeliveryDisbursement implements Parcelable{
 
     public void setDisbursementID(String disbursementID) {
         this.disbursementID = disbursementID;
+    }
+
+    public String getCollectionPointID() {
+        return collectionPointID;
+    }
+
+    public void setCollectionPointID(String collectionPointID) {
+        this.collectionPointID = collectionPointID;
     }
 
     public String getCollectionPointName() {
@@ -117,6 +110,18 @@ public class DeliveryDisbursement implements Parcelable{
         this.clerkChecked = clerkChecked;
     }
 
+    public DeliveryDisbursement(String disbursementID, String collectionPointID, String collectionPointName, String retrievalDate, String deliveryStatus, String repName, String cepChecked, String clerkChecked) {
+
+        this.disbursementID = disbursementID;
+        this.collectionPointID = collectionPointID;
+        this.collectionPointName = collectionPointName;
+        this.retrievalDate = retrievalDate;
+        this.deliveryStatus = deliveryStatus;
+        this.repName = repName;
+        this.cepChecked = cepChecked;
+        this.clerkChecked = clerkChecked;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -125,6 +130,7 @@ public class DeliveryDisbursement implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(disbursementID);
+        dest.writeString(collectionPointID);
         dest.writeString(collectionPointName);
         dest.writeString(retrievalDate);
         dest.writeString(deliveryStatus);

@@ -8,20 +8,44 @@ import android.os.Parcelable;
  */
 
 public class RequisitionItemApi implements Parcelable{
+    public String ItemCode ;
     public String ItemName ;
     public String Quantity ;
+    public String NeededQuantity ;
+    public String RetrieveQuantity;
+
 
     public RequisitionItemApi() {
     }
 
-    public RequisitionItemApi(String itemName, String quantity) {
+    public RequisitionItemApi(String itemCode, String itemName, String quantity, String neededQuantity, String retrieveQuantity) {
+        ItemCode = itemCode;
         ItemName = itemName;
         Quantity = quantity;
+        NeededQuantity = neededQuantity;
+        RetrieveQuantity = retrieveQuantity;
     }
 
     protected RequisitionItemApi(Parcel in) {
+        ItemCode = in.readString();
         ItemName = in.readString();
         Quantity = in.readString();
+        NeededQuantity = in.readString();
+        RetrieveQuantity = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(ItemCode);
+        dest.writeString(ItemName);
+        dest.writeString(Quantity);
+        dest.writeString(NeededQuantity);
+        dest.writeString(RetrieveQuantity);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<RequisitionItemApi> CREATOR = new Creator<RequisitionItemApi>() {
@@ -35,6 +59,14 @@ public class RequisitionItemApi implements Parcelable{
             return new RequisitionItemApi[size];
         }
     };
+
+    public String getItemCode() {
+        return ItemCode;
+    }
+
+    public void setItemCode(String itemCode) {
+        ItemCode = itemCode;
+    }
 
     public String getItemName() {
         return ItemName;
@@ -52,14 +84,19 @@ public class RequisitionItemApi implements Parcelable{
         Quantity = quantity;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getNeededQuantity() {
+        return NeededQuantity;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(ItemName);
-        dest.writeString(Quantity);
+    public void setNeededQuantity(String neededQuantity) {
+        NeededQuantity = neededQuantity;
+    }
+
+    public String getRetrieveQuantity() {
+        return RetrieveQuantity;
+    }
+
+    public void setRetrieveQuantity(String retrieveQuantity) {
+        RetrieveQuantity = retrieveQuantity;
     }
 }

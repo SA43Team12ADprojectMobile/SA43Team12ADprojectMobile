@@ -41,10 +41,96 @@ public class delegateDao {
         return employeeApis;
     }
 
+    public List<EmployeeApi> getEmployeeByDepartment(String depName){
+        List<EmployeeApi> employeeApis=new ArrayList<>();
+        String depId=new String();
+        if (depName!=null){
+            if (depName.equals("Commerce Department")){
+                depId="COMM";
+            }
+            else if (depName.equals("Computer Science")){
+                depId="CPSC";
+            }
+            else if (depName.equals("English Department")){
+                depId="ENGL";
+            }
+            else if (depName.equals("Registrar Department")){
+                depId="REGR";
+            }
+            else if (depName.equals("Store")){
+                depId="ST";
+            }
+            else if (depName.equals("Zoology Department")){
+                depId="ZOOL";
+            }
+            else {
+                depId=null;
+            }
+        }
+
+        JSONArray jsonArray = JSONPaser.getJSONArrayFromUrl(host + "/deligation/"+depId);
+        try {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonEmployee = jsonArray.getJSONObject(i);
+                EmployeeApi employeeApi = new EmployeeApi();
+                employeeApi = new EmployeeApi(jsonEmployee.getString("EmployeeID"), jsonEmployee.getString("DepartmentName"), jsonEmployee.getString("Name"), jsonEmployee.getString("Position"), jsonEmployee.getString("Number"), jsonEmployee.getString("EmailAddress"), jsonEmployee.getString("IsDelegated"), jsonEmployee.getString("DelegationStartDate"), jsonEmployee.getString("DelegationEndDate"));
+                employeeApis.add(employeeApi);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return employeeApis;
+    }
+
     public List<EmployeeApi> searchEmployeeByName(String name){
         List<EmployeeApi> employeeApis = new ArrayList<>();
         //List<RetrievalItem> retrievalItems=new ArrayList<>();
         JSONArray jsonArray = JSONPaser.getJSONArrayFromUrl(host + "/deligation");
+
+        try {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonEmployee = jsonArray.getJSONObject(i);
+                EmployeeApi employeeApi = new EmployeeApi();
+                employeeApi = new EmployeeApi(jsonEmployee.getString("EmployeeID"), jsonEmployee.getString("DepartmentName"), jsonEmployee.getString("Name"), jsonEmployee.getString("Position"), jsonEmployee.getString("Number"), jsonEmployee.getString("EmailAddress"), jsonEmployee.getString("IsDelegated"), jsonEmployee.getString("DelegationStartDate"), jsonEmployee.getString("DelegationEndDate"));
+                if (employeeApi!=null&&employeeApi.getName().contains(name)){
+                    employeeApis.add(employeeApi);
+                }
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return employeeApis;
+    }
+
+    public List<EmployeeApi> searchDepEmployeeByName(String name,String depName){
+        List<EmployeeApi> employeeApis = new ArrayList<>();
+        String depId=new String();
+        if (depName!=null){
+            if (depName.equals("Commerce Department")){
+                depId="COMM";
+            }
+            else if (depName.equals("Computer Science")){
+                depId="CPSC";
+            }
+            else if (depName.equals("English Department")){
+                depId="ENGL";
+            }
+            else if (depName.equals("Registrar Department")){
+                depId="REGR";
+            }
+            else if (depName.equals("Store")){
+                depId="ST";
+            }
+            else if (depName.equals("Zoology Department")){
+                depId="ZOOL";
+            }
+            else {
+                depId=null;
+            }
+        }
+        JSONArray jsonArray = JSONPaser.getJSONArrayFromUrl(host + "/deligation/"+depId);
 
         try {
             for (int i = 0; i < jsonArray.length(); i++) {

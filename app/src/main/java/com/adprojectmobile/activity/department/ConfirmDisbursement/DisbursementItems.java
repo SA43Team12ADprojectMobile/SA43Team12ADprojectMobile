@@ -9,7 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.adapter.disbursementItemAdapter;
 import com.adprojectmobile.adapter.requisitionItemForApprovalAdapter;
+import com.adprojectmobile.apiModel.DisbursementApi;
 import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.dao.Dao.requisitionDao;
@@ -17,63 +19,49 @@ import com.adprojectmobile.dao.Dao.requisitionItemDao;
 import com.adprojectmobile.dao.DaoImpl.requisitionDaoImpl;
 import com.adprojectmobile.dao.DaoImpl.requisitionItemDaoImpl;
 import com.adprojectmobile.daoApi.approveDao;
+import com.adprojectmobile.daoApi.confirmDao;
 import com.adprojectmobile.model.Requisition;
 import com.adprojectmobile.model.RequisitionItem;
+import com.adprojectmobile.apiModel.DisbursementItemApi;
 
 import java.util.List;
 
 public class DisbursementItems extends AppCompatActivity {
-    requisitionItemDao reqItemDao = new requisitionItemDaoImpl();
-    requisitionDao reqDao = new requisitionDaoImpl();
     approveDao aDao=new approveDao();
+    confirmDao cDao=new confirmDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm_disbursement_activity_disbursement_items);
 
-        final RequisitionApi requisition = getIntent().getParcelableExtra("requisition");
-        final String id=getIntent().getStringExtra("data");
-        // Toast.makeText(getApplicationContext(),requisition.getRequisitionDate().toString(),Toast.LENGTH_LONG).show();
+        final DisbursementApi disbursementApi = getIntent().getParcelableExtra("data");
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_confirm_disbursements_items);
+        final String id=disbursementApi.getDisbursementID();
 
 
-        new AsyncTask<RequisitionApi, Void, List<RequisitionItemApi>>() {
+        new AsyncTask<String, Void, List<DisbursementItemApi>>() {
             @Override
-            protected List<RequisitionItemApi> doInBackground(RequisitionApi... params) {
-                //return reqItemDao.getAllRequisitionItems();
-                //return reqItemDao.getItemsInRequisition(requisition);
-                List<RequisitionApi> requisitionApis = aDao.getAllRequisition();
-                RequisitionApi requisitionApi = new RequisitionApi();
-                for (RequisitionApi rc :
-                        requisitionApis) {
-                    if (rc.getId() != null) {
-                        if (rc.getId().toString().equals(id)) {
-                            requisitionApi = rc;
-                        }
-                    }
+            protected List<DisbursementItemApi> doInBackground(String... params) {
+                List<DisbursementItemApi> disbursementItemApis = cDao.getDisbursementItem(id);
 
-                }
-
-                final List<RequisitionItemApi> retrievalItems = aDao.getItemByRequisition(requisitionApi);
-                return retrievalItems;
+                return disbursementItemApis;
             }
 
             @Override
-            protected void onPostExecute(List<RequisitionItemApi> requisitionItems) {
+            protected void onPostExecute(List<DisbursementItemApi> disbursementItemApis) {
                 //requisitionItemView.setAdapter(new requisitionItemAdapter(ItemsForCollection.this,R.layout.row_retrieval_form_disbursement_items,requisitionItems));
-                requisitionItemView.setAdapter(new requisitionItemForApprovalAdapter(DisbursementItems.this, R.layout.row_confirm_disbursements_items, requisitionItems));
+                requisitionItemView.setAdapter(new disbursementItemAdapter(DisbursementItems.this, R.layout.row_confirm_disbursements_items, disbursementItemApis));
             }
         }.execute();
 
         requisitionItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RequisitionItemApi requisitionItem = (RequisitionItemApi) parent.getAdapter().getItem(position);
+                DisbursementItemApi disbursementItemApi = (DisbursementItemApi) parent.getAdapter().getItem(position);
 
                 Intent intent = new Intent(getApplicationContext(), ConfirmCollection.class);
-                intent.putExtra("data", requisitionItem);
-                intent.putExtra("requisition", requisition);
+                intent.putExtra("data",disbursementItemApi);
                 startActivity(intent);
             }
         });

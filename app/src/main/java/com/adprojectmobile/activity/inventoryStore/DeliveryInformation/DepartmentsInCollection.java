@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -13,6 +14,7 @@ import com.adprojectmobile.adapter.collectionAdapter;
 import com.adprojectmobile.adapter.departmentAdapter;
 import com.adprojectmobile.apiModel.DeliveryDisbursement;
 import com.adprojectmobile.apiModel.DepartmentApi;
+import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.dao.Dao.departmentDao;
 import com.adprojectmobile.dao.DaoImpl.departmentDaoImpl;
 import com.adprojectmobile.daoApi.deliveryDao;
@@ -22,7 +24,6 @@ import com.adprojectmobile.model.Department;
 import java.util.List;
 
 public class DepartmentsInCollection extends AppCompatActivity {
-    departmentDao depDao=new departmentDaoImpl();
     deliveryDao dDao=new deliveryDao();
 
     @Override
@@ -31,6 +32,7 @@ public class DepartmentsInCollection extends AppCompatActivity {
         setContentView(R.layout.delivery_information_activity_departments_in_collection);
         //final CollectionPoint collectionPoint=getIntent().getParcelableExtra("data");
           final DeliveryDisbursement deliveryDisbursement=getIntent().getParcelableExtra("data");
+        Log.e("delivery",deliveryDisbursement.getCollectionPointName());
 
         final ListView departmentView =(ListView)findViewById(R.id.listview_delivery_department);
 
@@ -52,8 +54,11 @@ public class DepartmentsInCollection extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DepartmentApi department=(DepartmentApi) parent.getAdapter().getItem(position);
 
+
                 Intent intent=new Intent(getApplicationContext(),DepartmentDetail.class);
                 intent.putExtra("data",department);
+                intent.putExtra("id",department.getDepartmentID());
+                intent.putExtra("dis",deliveryDisbursement);
                 startActivity(intent);
             }
         });
