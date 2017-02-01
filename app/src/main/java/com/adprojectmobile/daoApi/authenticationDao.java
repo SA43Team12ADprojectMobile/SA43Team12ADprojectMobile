@@ -3,6 +3,7 @@ package com.adprojectmobile.daoApi;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.adprojectmobile.activity.Login;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.util.JSONPaser;
 import com.adprojectmobile.util.url;
@@ -19,17 +20,20 @@ public class authenticationDao {
     String host=url.host;
     public EmployeeApi login(String id,String password){
         JSONObject jUser=new JSONObject();
+        EmployeeApi employeeApi=new EmployeeApi();
         try{
             jUser.put("UserId",id);
             jUser.put("Password",password);
             Log.e("json",jUser.toString());
             String returnJson = JSONPaser.postStream(host+"/user",jUser.toString());
             Gson gson=new Gson();
-            EmployeeApi employeeApi=gson.fromJson(returnJson,EmployeeApi.class);
+            employeeApi=gson.fromJson(returnJson,EmployeeApi.class);
             Log.e("employee",employeeApi.toString());
             return employeeApi;
         }catch (Exception e){
-            return null;
+//            Toast.makeText("Invalid User, Please try again!",Toast.LENGTH_LONG);
+            employeeApi=null;
+            return employeeApi;
         }
     }
 

@@ -46,23 +46,32 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String id=textViewId.getText().toString();
-                final String password=editTextPassword.getText().toString();
+                final String id = textViewId.getText().toString();
+                final String password = editTextPassword.getText().toString();
                 new AsyncTask<String, Void, EmployeeApi>() {
                     @Override
                     protected EmployeeApi doInBackground(String... params) {
-                        EmployeeApi employeeApi=aDao.login(id,password);
-                        return employeeApi;
+                        EmployeeApi employeeApi = aDao.login(id, password);
+                        if (employeeApi!=null){
+                            return employeeApi;
+                        }
+                        else {
+                            employeeApi=null;
+                            return employeeApi;
+                        }
+
                     }
+
                     @Override
                     protected void onPostExecute(EmployeeApi employeeApi){
                         Intent intent;
-                        EmployeeApi employee=employeeApi;
-                        Log.e("Dep",employee.getDepartmentName());
+
                         if(employeeApi==null){
                             Toast.makeText(getApplicationContext(),"Invalid UserId or Password",Toast.LENGTH_LONG);
                         }
                         else {
+                            EmployeeApi employee=employeeApi;
+                            Log.e("Dep",employee.getDepartmentName());
                             if (employeeApi.getPosition().equals("Head")){
                                 intent=new Intent(getApplicationContext(), HeadMainPage.class);
                                 intent.putExtra("role",employee);
