@@ -40,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_height="110dp">
+            android:layout_height="110dp"
+            android:weightSum="1">
 
             <CheckBox
                 android:text="Has Prepared Finished?"
@@ -50,23 +51,23 @@
                 android:layout_gravity="center_horizontal"
                 android:textSize="20sp"
                 android:textColorLink="?attr/actionMenuTextColor"
-                android:layout_marginLeft="40dp"
-                android:checked="true"
+                android:layout_marginLeft="45dp"
+                android:checked="false"
                 android:duplicateParentState="false"
-                android:button="@android:drawable/checkbox_on_background" />
+                android:layout_weight="0.56"
+                android:layout_marginBottom="15dp" />
 
             <Button
             android:text="SAVE"
             android:textColor="@android:color/white"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:id="@+id/btn_reject_requisition"
             android:background="@android:color/holo_green_dark"
             android:textSize="20sp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginBottom="10dp" />
+                />
 
 
         </LinearLayout>
