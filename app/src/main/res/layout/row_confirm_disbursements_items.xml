@@ -47,19 +47,19 @@
                     android:gravity="right"
                     android:paddingBottom="10dp"
                     android:layoutDirection="rtl"
-                    android:textSize="25sp"
-                    android:textColor="@android:color/black"/>
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="2"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
-                    android:layoutDirection="rtl"
-                    android:gravity="right"
+
                     android:paddingRight="10dp"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:text="REQ QTY:" />
+                    android:layout_weight="0"
+                    android:textSize="16sp"
+                    android:text="Qty Required:" />
 
 
             </LinearLayout>
@@ -77,22 +77,22 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textview_requisition_requisition_quantity_retrieved"
                     android:gravity="right"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:paddingBottom="10dp"
                     android:layoutDirection="rtl"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     android:textColor="@android:color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+
                     android:textColor="@android:color/black"
-                    android:layoutDirection="rtl"
+
                     android:paddingRight="10dp"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:text="RTV QTY:"/>
+                    android:layout_weight="0"
+                    android:textSize="16sp"
+                    android:text="Qty Retrieved:"/>
                 />
             </LinearLayout>
 

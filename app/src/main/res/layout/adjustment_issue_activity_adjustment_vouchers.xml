@@ -29,7 +29,7 @@
         android:id="@+id/listview_adjustment_voucher_for_CRUD"
         android:background="@android:color/background_light"
         android:textColor="@color/colorAccent"
-        android:textSize="30sp" android:paddingTop="15dip" android:paddingBottom="15dip"
+        android:textSize="30sp"
         style="@style/Widget.AppCompat.ListView.Menu"
         android:contextClickable="false"
         android:elevation="1dp"

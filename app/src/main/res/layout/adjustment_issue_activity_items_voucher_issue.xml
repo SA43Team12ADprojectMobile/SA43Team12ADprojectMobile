@@ -35,7 +35,7 @@
         style="@style/Widget.AppCompat.ListView.Menu"
         android:contextClickable="false"
         android:elevation="1dp"
-        android:layout_weight="0.48" />
+        android:layout_weight="2.63" />
 
 
     <LinearLayout
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:text="Create New Adjustment Item"
+            android:text="Add New Adjustment Item"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:id="@+id/btn_add_new_item"
@@ -54,10 +54,10 @@
         <Button
             android:text="Delete This Voucher"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
             android:id="@+id/btn_delete_voucher"
             android:textColor="@android:color/white"
-            android:background="@android:color/holo_red_dark" />
+            android:background="@android:color/holo_red_dark"
+            android:layout_height="60dp" />
     </LinearLayout>
 
 </LinearLayout>
