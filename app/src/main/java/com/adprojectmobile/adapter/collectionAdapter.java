@@ -41,9 +41,18 @@ public class collectionAdapter extends ArrayAdapter<DeliveryDisbursement> {
             TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionpoint_date);
 
             textViewCollectionName.setText(collectionPoint.getCollectionPointName());
-            String date=collectionPoint.getRetrievalDate().substring(0,10);
-            String time=collectionPoint.getRetrievalDate().substring(11,16);
-            String dateTime=time+" "+date;
+            String dateTime=new String();
+            if (collectionPoint.getRetrievalDate()!=null){
+                try{
+                    String date=collectionPoint.getRetrievalDate().substring(0,10);
+                    String time=collectionPoint.getRetrievalDate().substring(11,16);
+                    dateTime=time+" "+date;
+                }catch (Exception e){
+                    dateTime=null;
+                }
+
+            }
+
             textViewCollectionDate.setText(dateTime);
         }
         return v;

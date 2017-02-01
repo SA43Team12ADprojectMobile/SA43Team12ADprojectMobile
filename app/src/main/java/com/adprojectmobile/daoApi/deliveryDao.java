@@ -94,5 +94,37 @@ public class deliveryDao {
         return  retrievalItemList;
     }
 
+    public void acknowledgeDelivery(DeliveryDisbursement d){
+        JSONObject jDis=new JSONObject();
+        try{
+            jDis.put("DisbursementID",d.getDisbursementID());
+            jDis.put("CollectionPointName",d.getCollectionPointName());
+            jDis.put("DeliveryStatus","Delivered");
+            jDis.put("RepName",d.getRepName());
+            jDis.put("RepChecked","true");
+            jDis.put("ClerkChecked","true");
+
+        }catch (Exception e){}
+        Log.e("JsonDis",jDis.toString());
+        Log.e("Ack","Acknowledge");
+        JSONPaser.postStream(host+"/ackdisbursement",jDis.toString());
+    }
+
+    public void rejectDelivery(DeliveryDisbursement d){
+        JSONObject jDis=new JSONObject();
+        try{
+            jDis.put("DisbursementID",d.getDisbursementID());
+            jDis.put("CollectionPointName",d.getCollectionPointName());
+            jDis.put("DeliveryStatus","Prepared");
+            jDis.put("RepName",d.getRepName());
+            jDis.put("RepChecked","false");
+            jDis.put("ClerkChecked","false");
+
+        }catch (Exception e){}
+        Log.e("JsonDis",jDis.toString());
+        Log.e("Reject","Reject");
+        JSONPaser.postStream(host+"/ackdisbursement",jDis.toString());
+    }
+
 
 }

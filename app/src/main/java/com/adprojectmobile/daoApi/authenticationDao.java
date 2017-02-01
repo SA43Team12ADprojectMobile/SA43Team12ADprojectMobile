@@ -31,7 +31,7 @@ public class authenticationDao {
             Log.e("employee",employeeApi.toString());
             return employeeApi;
         }catch (Exception e){
-//            Toast.makeText("Invalid User, Please try again!",Toast.LENGTH_LONG);
+
             employeeApi=null;
             return employeeApi;
         }
