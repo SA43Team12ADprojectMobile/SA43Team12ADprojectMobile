@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
 import com.adprojectmobile.adapter.requisitionItemForApprovalAdapter;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.dao.Dao.requisitionDao;
@@ -37,6 +39,9 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
 
         final RequisitionApi requisition = getIntent().getParcelableExtra("requisition");
         final String id=getIntent().getStringExtra("data");
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
+        final String empId=employee.getEmployeeID();
+        final String reqId=requisition.getId();
         // Toast.makeText(getApplicationContext(),requisition.getRequisitionDate().toString(),Toast.LENGTH_LONG).show();
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_approve_requisitions_items);
@@ -46,7 +51,7 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
             @Override
             protected List<RequisitionItemApi> doInBackground(RequisitionApi... params) {
               //  return reqItemDao.getAllRequisitionItems();
-                List<RequisitionApi> requisitionApis = aDao.getAllRequisition();
+                List<RequisitionApi> requisitionApis = aDao.getAllRequisition(empId);
                 RequisitionApi requisitionApi = new RequisitionApi();
                 for (RequisitionApi rc :
                         requisitionApis) {
@@ -78,6 +83,23 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
 //                intent.putExtra("data", requisitionItem);
 //                intent.putExtra("data1", requisition);
 //                startActivity(intent);
+        Button btnApproveRequisition=(Button)findViewById(R.id.btn_approve_requisition);
+        btnApproveRequisition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        aDao.approveRequisition(reqId,empId);
+                        return null;
+                    }
+                }.execute();
+
+                Intent intent=new Intent(getApplicationContext(),Requisitions.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
 
         Button btnRejectRequisition =(Button)findViewById(R.id.btn_reject_requisition);
         btnRejectRequisition.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +107,7 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(RequisitionItemsforApprove.this, RejectRequisition.class);
                 intent.putExtra("data",requisition);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });

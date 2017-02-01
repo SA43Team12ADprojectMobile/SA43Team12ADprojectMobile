@@ -1,5 +1,7 @@
 package com.adprojectmobile.daoApi;
 
+import android.util.Log;
+
 import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.model.RequisitionItem;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.adprojectmobile.util.url;
+import com.google.gson.Gson;
 
 /**
  * Created by EvEr on 2017/1/30.
@@ -20,9 +23,9 @@ import com.adprojectmobile.util.url;
 
 public class approveDao {
     final String host= url.host;
-    public List<RequisitionApi> getAllRequisition(){
+    public List<RequisitionApi> getAllRequisition(String id){
         List<RequisitionApi> requisitionApis=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/requisition");
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/requisition?eId="+id);
 
         try {
             for(int i=0;i<jsonArray.length();i++){
@@ -61,6 +64,37 @@ public class approveDao {
         return requisitionItemApis;
     }
 
-    public void approveRequisition(){}
-    public void rejectRequisition(){}
+    public void approveRequisition(String id,String approveBy){
+
+        JSONObject jReq=new JSONObject();
+        RequisitionApi requisitionApi=new RequisitionApi();
+        try{
+            jReq.put("Id",id);
+            jReq.put("ApprovedBy",approveBy);
+            jReq.put("ApprovementStatus","Approve");
+            jReq.put("Remarks","");
+            Log.e("postReq",jReq.toString());
+            JSONPaser.postStream(host+"/requisition",jReq.toString());
+            Log.e("Message","Approve Sucess");
+        }catch (Exception e){
+
+        }
+    }
+    public void rejectRequisition(String id,String approveBy,String remark){
+        JSONObject jReq=new JSONObject();
+        RequisitionApi requisitionApi=new RequisitionApi();
+        try{
+            jReq.put("Id",id);
+            jReq.put("ApprovedBy",approveBy);
+            jReq.put("ApprovementStatus","Reject");
+            if(remark!=null){
+                jReq.put("Remarks",remark);
+            }
+            Log.e("postReq",jReq.toString());
+            JSONPaser.postStream(host+"/requisition",jReq.toString());
+            Log.e("Message","Reject Sucess");
+        }catch (Exception e){
+
+        }
+    }
 }
