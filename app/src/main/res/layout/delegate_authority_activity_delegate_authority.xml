@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,12 +27,18 @@
         android:gravity="center"
         android:fitsSystemWindows="true" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
     <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="359dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_weight="0.88">
+        android:layout_height="342dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="0.91">
 
         <TableRow
             android:layout_width="match_parent"
@@ -88,10 +101,6 @@
                 android:textSize="25sp" />
         </TableRow>
 
-        <!--<TableRow>-->
-            <!--<TextView android:layout_height="20dp"/>-->
-        <!--</TableRow>-->
-
         <TableRow
             android:layout_width="match_parent"
             android:layout_weight="0"
@@ -104,25 +113,15 @@
                 android:textSize="25sp"
                 android:paddingBottom="10dp"
                 android:layout_weight="0"/>
-
-            <!--<DatePicker-->
-                <!--android:id="@+id/editText_delegate_startDate"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:datePickerMode="calendar"-->
-                <!--android:headerBackground="@android:color/black"-->
-                <!--android:layout_height="100dp" />-->
-
-            <EditText
+            <DatePicker
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:layout_weight="2"
-                android:id="@+id/editText_delegate_startDate"
-                android:enabled="true"
-                android:clickable="true"
-                android:longClickable="false"
-                />
+                android:id="@+id/datePicker_delegate_startDate"
+                android:layout_height="150dp"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:layout_weight="1"
+                android:spinnersShown="true" />
+
         </TableRow>
 
         <TableRow
@@ -138,28 +137,15 @@
                 android:paddingBottom="10dp"
                 android:layout_weight="0"/>
 
-            <EditText
+            <DatePicker
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:layout_weight="2"
-                android:id="@+id/editText_delegate_enDate"
-                android:enabled="true"
-                android:clickable="true"
-                android:longClickable="false"
-                />
-        </TableRow>
-
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0">
+                android:id="@+id/datePicker_delegate_endDate"
+                android:layout_height="150dp"
+                android:datePickerMode="spinner"
+                android:layout_weight="1"
+                android:calendarViewShown="false" />
 
         </TableRow>
-
 
 
     </TableLayout>
@@ -167,15 +153,16 @@
     <Button
         android:text="Delegate"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_centerVertical="true"
+        android:layout_height="51dp"
         android:id="@+id/btn_delegate_confirm"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
         android:background="@android:color/holo_green_dark"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:paddingBottom="10dp"
-        android:layout_weight="1.06" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="0.32" />
 
-</LinearLayout>
+
+</LinearLayout >
+</ScrollView>
