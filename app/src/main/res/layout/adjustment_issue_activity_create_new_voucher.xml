@@ -97,7 +97,7 @@
     </TableLayout>
 
     <Button
-        android:text="Create Voucher"
+        android:text="Create"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/btn_create_new_voucher"

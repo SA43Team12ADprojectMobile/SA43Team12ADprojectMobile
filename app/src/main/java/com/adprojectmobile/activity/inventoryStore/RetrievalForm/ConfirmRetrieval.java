@@ -35,7 +35,7 @@ public class ConfirmRetrieval extends AppCompatActivity {
         //final ItemTransaction itemTransaction=requisitionItem.getItemTransaction();
 //        final Item item=itemTransaction.getItem();
 
-        final EditText editTextItemCode = (EditText) findViewById(R.id.editText_itemCode_confirmCollection);
+//        final EditText editTextItemCode = (EditText) findViewById(R.id.editText_itemCode_confirmCollection);
         final EditText editTextName = (EditText) findViewById(R.id.editText_itemName_confirmCollection);
         final EditText editTextQtyNeeded = (EditText) findViewById(R.id.editText_itemQtyNeeded_confirmCollection);
         final EditText editTextQtyRetri= (EditText) findViewById(R.id.editText_itemQtyRetrieval_confirmCollection);

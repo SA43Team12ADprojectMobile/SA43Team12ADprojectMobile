@@ -64,7 +64,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent">
             <TextView
-                android:text="REQ QTY: "
+                android:text="Qty Required:"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:textColor="@android:color/black"
@@ -91,7 +91,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent" >
             <TextView
-                android:text="RTV QTY: "
+                android:text="Qty Retrieved: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -118,7 +118,7 @@
     </TableLayout>
 
         <Button
-            android:text="CONFIRM"
+            android:text="SAVE"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_centerVertical="true"
