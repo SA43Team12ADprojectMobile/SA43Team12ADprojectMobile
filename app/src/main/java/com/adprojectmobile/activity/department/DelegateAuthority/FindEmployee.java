@@ -31,7 +31,7 @@ public class FindEmployee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delegate_authority_activity_find_employee);
-        final EmployeeApi employeeApi=getIntent().getParcelableExtra("role");
+        final EmployeeApi employeeApi=getIntent().getParcelableExtra("data");
 
         final ListView employeeView=(ListView)findViewById(R.id.listview_delegate_employee_find_list);
         final EditText editTextSearch=(EditText) findViewById(R.id.editText_delegate_search_employee_name);
@@ -75,18 +75,18 @@ public class FindEmployee extends AppCompatActivity {
         employeeView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                EmployeeApi employee=(EmployeeApi) parent.getAdapter().getItem(position);
-                Intent intent;
-                if (!Boolean.parseBoolean(employee.getIsDelegated())){
-                    intent=new Intent(getApplicationContext(),DelegateAuthority.class);
-                    intent.putExtra("data",employee);
-                    startActivity(intent);
-                }
-                else {
-                    intent=new Intent(getApplicationContext(),RevokeAuthority.class);
-                    intent.putExtra("data",employee);
-                    startActivity(intent);
-                }
+                final EmployeeApi employee=(EmployeeApi) parent.getAdapter().getItem(position);
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        Intent intent;
+                            intent=new Intent(getApplicationContext(),DelegateAuthority.class);
+                            intent.putExtra("data",employee);
+                            startActivity(intent);
+                       return  null;
+                    }
+                }.execute();
+
 
             }
         });
