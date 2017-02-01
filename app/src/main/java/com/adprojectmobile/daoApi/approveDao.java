@@ -51,7 +51,7 @@ public class approveDao {
             try {
                 for (int i=0;i<jsonArray.length();i++){
                     JSONObject jsonObject= jsonArray.getJSONObject(i);
-                    RequisitionItemApi retrievalItem=new RequisitionItemApi(jsonObject.getString("ItemName"),jsonObject.getString("Quantity"));
+                    RequisitionItemApi retrievalItem=new RequisitionItemApi(jsonObject.getString("ItemCode"),jsonObject.getString("ItemName"),jsonObject.getString("Quantity"),jsonObject.getString("NeededQuantity"),jsonObject.getString("RetrieveQuantity"));
                     requisitionItemApis.add(retrievalItem);
                 }
             } catch (JSONException e) {
