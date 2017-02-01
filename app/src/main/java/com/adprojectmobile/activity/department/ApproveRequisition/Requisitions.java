@@ -12,6 +12,7 @@ import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.DeliveryInformation.RequisitionItems;
 import com.adprojectmobile.adapter.disbursementAdapter;
 import com.adprojectmobile.adapter.requisitionAdapter;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.dao.Dao.disbursementDao;
 import com.adprojectmobile.dao.Dao.requisitionDao;
@@ -31,13 +32,15 @@ public class Requisitions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.approve_req_activity_requisitions);
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
+        final String empId=employee.getEmployeeID();
 
         final ListView requisitionList =(ListView)findViewById(R.id.listview_approve_requisitions);
 
         new AsyncTask<Void,Void,List<RequisitionApi>>(){
             @Override
             protected List<RequisitionApi> doInBackground(Void...params){
-                return aDao.getAllRequisition();
+                return aDao.getAllRequisition(empId);
             }
 
             @Override
@@ -56,6 +59,7 @@ public class Requisitions extends AppCompatActivity {
 
                 intent.putExtra("requisition", requisition);
                 intent.putExtra("data",requisition.getId());
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });

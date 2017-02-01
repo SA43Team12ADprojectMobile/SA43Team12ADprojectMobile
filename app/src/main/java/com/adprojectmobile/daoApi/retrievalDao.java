@@ -22,10 +22,10 @@ import java.util.logging.Logger;
 
 public class retrievalDao {
     final String host= url.host;
-    public List<RetrievalCollectionPoint> getAllCollectionPoint(){
+    public List<RetrievalCollectionPoint> getAllCollectionPoint(String id){
         List<RetrievalCollectionPoint> retrievalCollectionPointList=new ArrayList<>();
         //List<RetrievalItem> retrievalItems=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/collectionpoint");
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/collectionpoint?eId="+id);
 
         try {
             for(int i=0;i<jsonArray.length();i++){
@@ -69,15 +69,26 @@ public class retrievalDao {
         return retrievalItemList;
     }
 
-    public void updateRetrievalQty(RetrievalItem retrievalItem){
+    public void updateRetrievalQty(String collectionPointId,String itemId,String itemName,String neededQty,String retrieveQty  ){
        JSONObject jRetrieval=new JSONObject();
         try{
-            jRetrieval.put("Id",Integer.parseInt( retrievalItem.getId()));
-            jRetrieval.put("ItemName",retrievalItem.getName());
-            jRetrieval.put("NeededQuantity",Integer.parseInt(retrievalItem.getQtyNeeded()));
-            jRetrieval.put("RetrievedQuantity",Integer.parseInt(retrievalItem.getQtyRetrieved()));
+            jRetrieval.put("CollectionPointID",collectionPointId);
+            jRetrieval.put("ItemId",itemId);
+            jRetrieval.put("ItemName",itemName);
+            jRetrieval.put("NeededQuantity",neededQty);
+            jRetrieval.put("RetrievedQuantity",retrieveQty);
+            Log.e("json",jRetrieval.toString());
         }catch (Exception e){}
-        Log.e("json",jRetrieval.toString());
+
         JSONPaser.postStream(host+"/collectionpoint/UpdateItemRetrievalQty",jRetrieval.toString());
+    }
+    public void savePrepared(String collectionPointId){
+        JSONObject jCol=new JSONObject();
+        try{
+            jCol.put("CollectionPointID",collectionPointId);
+
+        }catch (Exception e){}
+        JSONPaser.postStream(host+"/collectionpoint/UpdateStatusByCollectionPoint",jCol.toString());
+
     }
 }

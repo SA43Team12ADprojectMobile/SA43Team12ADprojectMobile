@@ -67,7 +67,7 @@ public class Login extends AppCompatActivity {
                         Intent intent;
 
                         if(employeeApi==null){
-                            Toast.makeText(getApplicationContext(),"Invalid UserId or Password",Toast.LENGTH_LONG);
+                            Toast.makeText(getApplicationContext(),"Invalid UserId or Password",Toast.LENGTH_LONG).show();
                         }
                         else {
                             EmployeeApi employee=employeeApi;

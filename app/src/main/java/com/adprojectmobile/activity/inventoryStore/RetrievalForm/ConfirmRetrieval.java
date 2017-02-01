@@ -1,8 +1,10 @@
 package com.adprojectmobile.activity.inventoryStore.RetrievalForm;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +13,8 @@ import com.adprojectmobile.MainActivity;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.ConfirmCollection;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty;
+import com.adprojectmobile.apiModel.EmployeeApi;
+import com.adprojectmobile.apiModel.RetrievalCollectionPoint;
 import com.adprojectmobile.apiModel.RetrievalItem;
 import com.adprojectmobile.dao.Dao.itemTransactionDao;
 import com.adprojectmobile.dao.DaoImpl.*;
@@ -30,7 +34,12 @@ public class ConfirmRetrieval extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieval_form_activity_confirm_retrieval);
+        final String cpId=getIntent().getStringExtra("id");
+        final RetrievalCollectionPoint retrievalCollectionPoint=getIntent().getParcelableExtra("collection");
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
+        final String colId=retrievalCollectionPoint.getCollectionPointID();
+        Log.e("cpId",colId);
         final RetrievalItem retrievalItem = getIntent().getParcelableExtra("data");
         //final ItemTransaction itemTransaction=requisitionItem.getItemTransaction();
 //        final Item item=itemTransaction.getItem();
@@ -50,11 +59,27 @@ public class ConfirmRetrieval extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               String retriQty= editTextQtyRetri.getText().toString();
 
-                rDao.updateRetrievalQty(retrievalItem);
+               final String itemID=retrievalItem.getId();
+                final String itemName=retrievalItem.getName();
+                final String neededQty=retrievalItem.getQtyNeeded();
+                final String retriQty= editTextQtyRetri.getText().toString();
 
-                finish();
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        rDao.updateRetrievalQty(colId,itemID,itemName,neededQty,retriQty);
+                        return null;
+                    }
+                }.execute();
+
+                Intent intent = new Intent(getApplicationContext(), ItemsForCollection.class);
+
+                intent.putExtra("json",retrievalCollectionPoint.getCollectionPointID().toString() );
+                intent.putExtra("role",employee);
+                intent.putExtra("collection",retrievalCollectionPoint);
+
+                startActivity(intent);
                 }
             }
         );

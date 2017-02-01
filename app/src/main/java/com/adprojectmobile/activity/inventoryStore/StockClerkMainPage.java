@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
+import com.adprojectmobile.apiModel.EmployeeApi;
 
 public class StockClerkMainPage extends AppCompatActivity {
 
@@ -16,6 +17,7 @@ public class StockClerkMainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stock_clerk_activity_main_page);
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
         Button btnView=(Button)findViewById(R.id.btn_clerk_view_adjustment_voucher);
         Button btnIssue=(Button)findViewById(R.id.btn_clerk_issue_adjustment_voucher);
@@ -40,6 +42,7 @@ public class StockClerkMainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints.class);
+                intent.putExtra("data",employee);
                 startActivity(intent);
             }
         });

@@ -47,7 +47,7 @@
                 android:text="Has Prepared Finished?"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
-                android:id="@+id/checkBox2"
+                android:id="@+id/checkBox_prepared"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20sp"
                 android:textColorLink="?attr/actionMenuTextColor"
@@ -64,7 +64,7 @@
             android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
-            android:id="@+id/btn_reject_requisition"
+            android:id="@+id/btn_save_retrieval_info"
             android:background="@android:color/holo_green_dark"
             android:textSize="20sp"
                 />

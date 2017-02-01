@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RetrievalCollectionPoint;
 import com.adprojectmobile.apiModel.RetrievalItem;
 import com.adprojectmobile.dao.Dao.*;
@@ -30,6 +31,7 @@ public class CollectionPoints extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retreival_form_activity_collection_points);
+        final EmployeeApi employee=getIntent().getParcelableExtra("data");
 
         final ListView disbursementList=(ListView)findViewById(R.id.listview_retrival_collectionPoints);
 
@@ -37,7 +39,7 @@ public class CollectionPoints extends AppCompatActivity  {
             @Override
             protected List<RetrievalCollectionPoint> doInBackground(Void...params){
                // return disbursementDao.getAllDisbursement();
-                return rDao.getAllCollectionPoint();
+                return rDao.getAllCollectionPoint(employee.getEmployeeID());
             }
 
             @Override
@@ -55,6 +57,8 @@ public class CollectionPoints extends AppCompatActivity  {
                 Intent intent = new Intent(CollectionPoints.this, ItemsForCollection.class);
 
                 intent.putExtra("json",retrievalCollectionPoint.getCollectionPointID().toString() );
+                intent.putExtra("role",employee);
+                intent.putExtra("collection",retrievalCollectionPoint);
 
                 startActivity(intent);
             }

@@ -58,6 +58,7 @@ public class HeadMainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), Requisitions.class);
+                intent.putExtra("role",employeeApi);
                 startActivity(intent);
             }
         });
