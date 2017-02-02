@@ -42,8 +42,7 @@ public class DisbursementItems extends AppCompatActivity {
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_confirm_disbursements_items);
-        final String id=disbursementApi.getDisbursementID();;
-
+        final String id=disbursementApi.getDisbursementID();
 
         new AsyncTask<String, Void, List<DisbursementItemApi>>() {
             @Override

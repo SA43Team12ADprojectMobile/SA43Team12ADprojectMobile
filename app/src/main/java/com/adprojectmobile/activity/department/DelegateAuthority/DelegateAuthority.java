@@ -45,20 +45,22 @@ public class DelegateAuthority extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final int dayS = datePickerStartDate.getDayOfMonth();
-                final int monthS = datePickerStartDate.getMonth()+1;
+                final int monthS = datePickerStartDate.getMonth();
                 final int yearS = datePickerStartDate.getYear();
                 final int dayE = datePickerEndDate.getDayOfMonth();
-                final int monthE = datePickerEndDate.getMonth()+1;
+                final int monthE = datePickerEndDate.getMonth();
                 final int yearE = datePickerEndDate.getYear();
+
+                String startDate=dDao.dateFormat(yearS,monthS,dayS);
+                String endDate=dDao.dateFormat(yearE,monthE,dayE);
 
                 delegateEmployee.setEmployeeID(employee.getEmployeeID());
                 delegateEmployee.setName(employee.getName());
                 delegateEmployee.setPosition(employee.getPosition());
-                String startDate=dDao.dateFormat(yearS,monthS,dayS);
-                String endDate=dDao.dateFormat(yearE,monthE,dayE);
                 delegateEmployee.setDelegationStartDate(startDate);
                 delegateEmployee.setDelegationEndDate(endDate);
-
+                delegateEmployee.setNumber(employee.getNumber());
+                delegateEmployee.setEmailAddress(employee.getEmailAddress());
 
                 Boolean compareYear= (yearS<=yearE);
                 Boolean compareMonth= (monthS<=monthE);

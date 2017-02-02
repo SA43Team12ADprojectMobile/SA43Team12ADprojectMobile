@@ -43,7 +43,10 @@ public class RevokeAuthority extends AppCompatActivity {
         String dateTime=date+" "+time;
         editTextStartDate.setText(dateTime);
         if (authorEmp.DelegationEndDate!="null"){
-            editTextEndDate.setText(authorEmp.DelegationEndDate);
+            String dateEnd=authorEmp.DelegationEndDate.substring(0,10);
+            String timeEnd=authorEmp.DelegationEndDate.substring(11,16);
+            String dateTimeEnd=dateEnd+" "+timeEnd;
+            editTextEndDate.setText(dateTimeEnd);
         }
 
         Button btnConfirmDelegate=(Button) findViewById(R.id.btn_revoke_confirm);
@@ -54,6 +57,8 @@ public class RevokeAuthority extends AppCompatActivity {
                 delegateEmployee.setEmployeeID(authorEmp.getEmployeeID());
                 delegateEmployee.setName(authorEmp.getName());
                 delegateEmployee.setPosition(authorEmp.getPosition());
+                delegateEmployee.setNumber(authorEmp.getNumber());
+                delegateEmployee.setEmailAddress(authorEmp.getEmailAddress());
 
                 new AsyncTask<DelegateEmployee, Void, Void>() {
                     @Override

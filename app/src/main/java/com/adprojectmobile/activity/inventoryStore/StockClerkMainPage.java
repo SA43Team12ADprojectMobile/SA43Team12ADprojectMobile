@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
@@ -18,6 +19,9 @@ public class StockClerkMainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stock_clerk_activity_main_page);
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
+
+        TextView textViewWelcome=(TextView)findViewById(R.id.textView_welcome_storeclerk);
+        textViewWelcome.setText("Welcome "+employee.getName());
 
         Button btnView=(Button)findViewById(R.id.btn_clerk_view_adjustment_voucher);
         Button btnIssue=(Button)findViewById(R.id.btn_clerk_issue_adjustment_voucher);

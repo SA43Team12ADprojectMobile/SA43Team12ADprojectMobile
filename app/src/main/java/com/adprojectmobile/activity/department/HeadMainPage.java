@@ -29,7 +29,7 @@ public class HeadMainPage extends AppCompatActivity {
         final EmployeeApi employeeApi=getIntent().getParcelableExtra("role");
         final String password=getIntent().getStringExtra("password");
         String depId=dDao.convertDepIdFromName(employeeApi.getDepartmentName());
-        final DelegateEmployee delegateEmployee=new DelegateEmployee(employeeApi.getEmployeeID(),password,depId,employeeApi.getName(),employeeApi.getPosition(),employeeApi.getIsDelegated(),employeeApi.getDelegationStartDate(),employeeApi.getDelegationEndDate());
+        final DelegateEmployee delegateEmployee=new DelegateEmployee(employeeApi.getEmployeeID(),password,depId,employeeApi.getName(),employeeApi.getPosition(),employeeApi.getIsDelegated(),employeeApi.getDelegationStartDate(),employeeApi.getDelegationEndDate(),employeeApi.getNumber(),employeeApi.getEmailAddress());
 
         TextView textViewHello=(TextView) findViewById(R.id.textView_welcome_departmentHead);
         textViewHello.setText("Welcome "+employeeApi.getName());

@@ -232,6 +232,8 @@ public class delegateDao {
             jEmp.put("DepartmentId",employee.getDepartmentID());
             jEmp.put("Name",employee.getName());
             jEmp.put("Position",employee.getPosition());
+            jEmp.put("Number",employee.getNumber());
+            jEmp.put("EmailAddress",employee.getEmailAddress());
             jEmp.put("IsDelegated",employee.getIsDelegated());
             jEmp.put("DelegationStartDate",employee.getDelegationStartDate());
             jEmp.put("DelegationEndDate",employee.getDelegationEndDate());
@@ -252,6 +254,8 @@ public class delegateDao {
             jEmp.put("DepartmentId",employee.getDepartmentID());
             jEmp.put("Name",employee.getName());
             jEmp.put("Position",employee.getPosition());
+            jEmp.put("Number",employee.getNumber());
+            jEmp.put("EmailAddress",employee.getEmailAddress());
             jEmp.put("IsDelegated",employee.getIsDelegated());
             Log.e("json",jEmp.toString());
         }catch (Exception e){
