@@ -26,14 +26,12 @@ public class delegateDao {
         List<EmployeeApi> employeeApis = new ArrayList<>();
         //List<RetrievalItem> retrievalItems=new ArrayList<>();
         JSONArray jsonArray = JSONPaser.getJSONArrayFromUrl(host + "/deligation");
+        Log.e("Json",jsonArray.toString());
 
         try {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonEmployee = jsonArray.getJSONObject(i);
-
                 EmployeeApi employeeApi = new EmployeeApi();
-
-
                 employeeApi = new EmployeeApi(jsonEmployee.getString("EmployeeID"), jsonEmployee.getString("DepartmentName"), jsonEmployee.getString("Name"), jsonEmployee.getString("Position"), jsonEmployee.getString("Number"), jsonEmployee.getString("EmailAddress"), jsonEmployee.getString("IsDelegated"), jsonEmployee.getString("DelegationStartDate"), jsonEmployee.getString("DelegationEndDate"));
 
                 //  retrievalItems.add(retrievalItem);
@@ -87,6 +85,50 @@ public class delegateDao {
         }
 
         return employeeApis;
+    }
+    public EmployeeApi getHaedByDepartment(String depName){
+        List<EmployeeApi> employeeApis=new ArrayList<>();
+        EmployeeApi employee=new EmployeeApi();
+        String depId=new String();
+        if (depName!=null){
+            if (depName.equals("Commerce Department")){
+                depId="COMM";
+            }
+            else if (depName.equals("Computer Science")){
+                depId="CPSC";
+            }
+            else if (depName.equals("English Department")){
+                depId="ENGL";
+            }
+            else if (depName.equals("Registrar Department")){
+                depId="REGR";
+            }
+            else if (depName.equals("Store")){
+                depId="ST";
+            }
+            else if (depName.equals("Zoology Department")){
+                depId="ZOOL";
+            }
+            else {
+                depId=null;
+            }
+        }
+
+        JSONArray jsonArray = JSONPaser.getJSONArrayFromUrl(host + "/deligation/"+depId);
+        try {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonEmployee = jsonArray.getJSONObject(i);
+                EmployeeApi employeeApi = new EmployeeApi();
+                employeeApi = new EmployeeApi(jsonEmployee.getString("EmployeeID"), jsonEmployee.getString("DepartmentName"), jsonEmployee.getString("Name"), jsonEmployee.getString("Position"), jsonEmployee.getString("Number"), jsonEmployee.getString("EmailAddress"), jsonEmployee.getString("IsDelegated"), jsonEmployee.getString("DelegationStartDate"), jsonEmployee.getString("DelegationEndDate"));
+                if(employeeApi.getPosition().contains("Head")){
+                    employeeApis.add(employeeApi);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        employee=employeeApis.get(0);
+        return employee;
     }
 
     public List<EmployeeApi> getAuthorizedEmployeeByDepartment(String depName){

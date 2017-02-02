@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,6 +19,7 @@ import com.adprojectmobile.dao.Dao.disbursementDao;
 import com.adprojectmobile.dao.Dao.requisitionDao;
 import com.adprojectmobile.dao.DaoImpl.requisitionDaoImpl;
 import com.adprojectmobile.daoApi.approveDao;
+import com.adprojectmobile.daoApi.delegateDao;
 import com.adprojectmobile.model.Disbursement;
 import com.adprojectmobile.model.Employee;
 import com.adprojectmobile.model.Requisition;
@@ -27,20 +29,31 @@ import java.util.List;
 public class Requisitions extends AppCompatActivity {
     requisitionDao requisitionDao = new requisitionDaoImpl();
     approveDao aDao=new approveDao();
+    delegateDao dDao=new delegateDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.approve_req_activity_requisitions);
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
-        final String empId=employee.getEmployeeID();
+        final String eid=getIntent().getStringExtra("eid");
+        Log.e("isDelegated",employee.getIsDelegated());
+        String empId=new String();
+        if (employee.getPosition().equals("Employee")||employee.getPosition().equals("Representative")){
+            empId=eid;
+        }
+        else {
+            empId=employee.getEmployeeID();
+        }
+
+        final String employeeId=empId;
 
         final ListView requisitionList =(ListView)findViewById(R.id.listview_approve_requisitions);
 
         new AsyncTask<Void,Void,List<RequisitionApi>>(){
             @Override
             protected List<RequisitionApi> doInBackground(Void...params){
-                return aDao.getAllRequisition(empId);
+                return aDao.getAllRequisition(employeeId);
             }
 
             @Override

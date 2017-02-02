@@ -11,18 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.adprojectmobile.activity.department.EmployeeMainPage">
 
-    <TextView
-        android:text="Welcome   "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:id="@+id/textView_welcome_employee"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="13dp"
-        android:layout_alignParentTop="true"
-        android:textSize="20sp"
-        android:paddingLeft="220dp" />
-
     <ImageView
         android:layout_height="150dp"
         app:srcCompat="@drawable/storeclerk"
@@ -41,14 +29,14 @@
         android:background="@android:color/holo_purple"
         android:textSize="20sp"
         android:layout_marginBottom="41dp"
-        android:layout_above="@+id/btn_representative_confirm"
+        android:layout_above="@+id/btn_employee_confirm"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Confirm Delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_representative_confirm"
+        android:id="@+id/btn_employee_confirm"
         android:textSize="20sp"
         android:background="@android:color/holo_purple"
         android:textColor="@android:color/white"
@@ -56,4 +44,15 @@
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/btn_employee_approve"
         android:layout_alignStart="@+id/btn_employee_approve" />
+
+    <TextView
+        android:text="Welcome   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:id="@+id/textView_welcome_employee"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
