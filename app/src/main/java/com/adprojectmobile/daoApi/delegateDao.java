@@ -77,7 +77,9 @@ public class delegateDao {
                 JSONObject jsonEmployee = jsonArray.getJSONObject(i);
                 EmployeeApi employeeApi = new EmployeeApi();
                 employeeApi = new EmployeeApi(jsonEmployee.getString("EmployeeID"), jsonEmployee.getString("DepartmentName"), jsonEmployee.getString("Name"), jsonEmployee.getString("Position"), jsonEmployee.getString("Number"), jsonEmployee.getString("EmailAddress"), jsonEmployee.getString("IsDelegated"), jsonEmployee.getString("DelegationStartDate"), jsonEmployee.getString("DelegationEndDate"));
-                employeeApis.add(employeeApi);
+                if(!employeeApi.getPosition().contains("Head")){
+                    employeeApis.add(employeeApi);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
