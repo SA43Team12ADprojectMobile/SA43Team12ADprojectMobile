@@ -16,10 +16,11 @@
         android:background="@android:color/holo_purple"
         android:textColor="@android:color/white"
         android:textStyle="normal|bold"
-        android:text="Requisition List"
+        android:text="Disbursements"
         android:textAllCaps="true"
         android:gravity="center_horizontal"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textView_title_confirm_disbursements"/>
 
     <ListView
         android:layout_width="wrap_content"

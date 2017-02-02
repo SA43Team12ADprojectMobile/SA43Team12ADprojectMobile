@@ -17,7 +17,9 @@
         android:text="Confirm Collection"
         android:textAllCaps="true"
         android:gravity="center"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textView_title_confirmCollection"/>
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="375dp"

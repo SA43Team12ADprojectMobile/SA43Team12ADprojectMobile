@@ -13,28 +13,6 @@
     android:background="@android:color/background_light">
 
 
-    <ImageView
-        android:layout_height="200dp"
-        app:srcCompat="@drawable/storesupervisor"
-        android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp" />
-
-    <Button
-        android:text="Approve Adjustment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_supervisor_supervisor_authorize_adjustment"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/btn_supervisor_view_adjustment_voucher"
-        android:layout_alignEnd="@+id/btn_supervisor_view_adjustment_voucher"
-        android:textColor="@android:color/white"
-        android:background="@android:color/holo_purple"
-        android:textSize="20sp"
-        android:layout_alignStart="@+id/btn_supervisor_view_adjustment_voucher" />
-
     <TextView
         android:text="Welcome   "
         android:layout_width="wrap_content"
@@ -48,14 +26,24 @@
         android:layout_marginEnd="18dp" />
 
     <Button
-        android:text="View Adjustment Voucher"
+        android:text="Approve Adjustment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="58dp"
-        android:id="@+id/btn_supervisor_view_adjustment_voucher"
-        android:textSize="20sp"
+        android:id="@+id/btn_supervisor_supervisor_authorize_adjustment"
+        android:layout_marginTop="87dp"
         android:textColor="@android:color/white"
         android:background="@android:color/holo_purple"
+        android:textSize="20sp"
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/storesupervisor"
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/textView_welcome_storesupervisor"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

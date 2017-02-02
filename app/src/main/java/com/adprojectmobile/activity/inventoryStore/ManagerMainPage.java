@@ -17,16 +17,9 @@ public class ManagerMainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_main_page);
 
-        Button btnView=(Button)findViewById(R.id.btn_manager_view_adjustment_voucher);
         Button btnAuthorize=(Button)findViewById(R.id.btn_manager_authorize_adjustment);
 
-        btnView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), AdjustmentVouchers.class);
-                startActivity(intent);
-            }
-        });
+
         btnAuthorize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

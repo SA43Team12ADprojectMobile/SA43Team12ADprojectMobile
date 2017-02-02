@@ -10,23 +10,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:id="@+id/textView_requisition_requisition_item_name"
+        android:id="@+id/textView_title_retrieval_disbursement_item_name"
         android:padding="20dp"
         android:textSize="20sp"
         android:background="@android:color/holo_purple"
         android:textColor="@android:color/white"
         android:textStyle="normal|bold"
-        android:text="Requisition Items"
+        android:text="Items"
         android:textAllCaps="true"
         android:gravity="center"
         android:fitsSystemWindows="true"
         />
 
     <ListView
-        android:layout_below="@id/textview_retrival_collectionPoints"
         android:layout_width="match_parent"
-        android:layout_height="311dp"
+        android:layout_height="289dp"
         android:id="@+id/listview_retrieval_disbursement_items" />
 
     <LinearLayout

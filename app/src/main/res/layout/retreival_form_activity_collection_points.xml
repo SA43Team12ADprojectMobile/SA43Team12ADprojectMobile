@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textview_retrival_collectionPoints"
+        android:id="@+id/textview_title_retrivalForm_disbursements"
         android:padding="@dimen/activity_horizontal_margin"
         android:textSize="20sp"
         android:background="@android:color/holo_purple"
@@ -22,7 +22,6 @@
         android:fitsSystemWindows="true" />
 
     <ListView
-        android:layout_below="@id/textview_retrival_collectionPoints"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/listview_retrival_collectionPoints"

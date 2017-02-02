@@ -18,7 +18,8 @@
         android:text="New Voucher"
         android:textAllCaps="true"
         android:gravity="center"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textView_title_issueAdjustment_newVoucher"/>
 
     <TableLayout
         android:layout_width="match_parent"

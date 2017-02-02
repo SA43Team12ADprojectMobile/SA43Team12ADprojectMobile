@@ -12,15 +12,6 @@
     tools:context="com.adprojectmobile.activity.department.RepresentativeMainPage"
     android:background="@android:color/background_light">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/representative1"
-        android:id="@+id/imageView3"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" />
-
     <TextView
         android:text="Welcome   "
         android:layout_width="wrap_content"
@@ -32,16 +23,25 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/representative3"
+        android:id="@+id/imageView3"
+        android:layout_below="@+id/textView_welcome_departmentRepresentative"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp" />
+
     <Button
         android:text="Confirm Delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_representative_confirm"
-        android:layout_below="@+id/imageView3"
-        android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:background="@android:color/holo_purple"
         android:textColor="@android:color/white"
-        android:layout_marginTop="40dp" />
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp" />
 
 </RelativeLayout>

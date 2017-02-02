@@ -17,7 +17,8 @@
         android:text="Confirm Retrieval"
         android:textAllCaps="true"
         android:gravity="center"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textview_title_retrivalForm_confirmRetrieval"/>
 
     <TableLayout
         android:layout_width="match_parent"

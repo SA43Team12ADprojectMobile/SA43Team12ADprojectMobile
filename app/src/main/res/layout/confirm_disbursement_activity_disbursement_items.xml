@@ -15,11 +15,11 @@
         android:background="@android:color/holo_purple"
         android:textColor="@android:color/white"
         android:textStyle="normal|bold"
-        android:text="Requisition Items"
+        android:text="Disbursement Items"
         android:textAllCaps="true"
         android:gravity="center"
         android:fitsSystemWindows="true"
-        />
+        android:id="@+id/textView_title_confirm_disbursementItems"/>
 
     <ListView
         android:layout_width="match_parent"

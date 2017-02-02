@@ -17,7 +17,8 @@
         android:text="Voucher Details"
         android:textAllCaps="true"
         android:gravity="center"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textview_title_view_voucherDetails"/>
 
     <TableLayout
         android:layout_width="match_parent"

@@ -17,16 +17,9 @@ public class SupervisorMainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supervisor_main_page);
 
-        Button btnView=(Button)findViewById(R.id.btn_supervisor_view_adjustment_voucher);
+
         Button btnApprove=(Button)findViewById(R.id.btn_supervisor_supervisor_authorize_adjustment);
 
-        btnView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), AdjustmentVouchers.class);
-                startActivity(intent);
-            }
-        });
         btnApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
