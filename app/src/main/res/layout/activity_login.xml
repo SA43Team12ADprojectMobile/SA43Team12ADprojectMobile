@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.adprojectmobile.activity.Login">
+    tools:context="com.adprojectmobile.activity.Login"
+    android:background="@android:color/background_light">
 
     <!-- Login progress -->
     <ProgressBar
@@ -19,15 +21,25 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
+    <ImageView
+        android:layout_width="344dp"
+        android:layout_height="155dp"
+        app:srcCompat="@drawable/user"
+        android:id="@+id/imageView"
+        android:layout_marginRight="5dp" />
+
     <ScrollView
         android:id="@+id/ad_login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="335dp"
+        android:background="@android:color/white"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
                 <AutoCompleteTextView
                     android:id="@+id/textView_employeeId"
@@ -36,6 +48,8 @@
                     android:hint="Employee ID"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
                     android:singleLine="true" />
 
                 <EditText
@@ -48,17 +62,23 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
                     android:singleLine="true" />
 
             <Button
                 android:id="@+id/btn_login"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="16dp"
                 android:text="Login"
-                android:textStyle="bold" />
+                android:background="@android:color/holo_purple"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_weight="1" />
 
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

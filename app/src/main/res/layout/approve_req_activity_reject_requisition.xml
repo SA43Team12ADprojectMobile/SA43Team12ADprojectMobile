@@ -17,7 +17,8 @@
         android:text="Rejection Page"
         android:textAllCaps="true"
         android:gravity="center"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textView_title_rejectionPage"/>
 
     <TableLayout
         android:layout_width="match_parent"

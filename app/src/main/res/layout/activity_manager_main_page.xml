@@ -1,31 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_manager_main_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.adprojectmobile.activity.inventoryStore.ManagerMainPage">
+    tools:context="com.adprojectmobile.activity.inventoryStore.ManagerMainPage"
+    android:background="@android:color/background_light">
+
+    <TextView
+        android:text="Welcome   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_welcome_storemanager"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="250dp"
+        android:layout_marginTop="13dp" />
 
     <Button
         android:text="View Adjustment Voucher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="45dp"
         android:id="@+id/btn_manager_view_adjustment_voucher"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_below="@+id/imageView6"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Authorize Adjustment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:id="@+id/btn_manager_authorize_adjustment"
+        android:textSize="20sp"
         android:layout_below="@+id/btn_manager_view_adjustment_voucher"
         android:layout_alignStart="@+id/btn_manager_view_adjustment_voucher"
-        android:layout_marginTop="14dp"
-        android:id="@+id/btn_manager_authorize_adjustment" />
+        android:layout_alignEnd="@+id/btn_manager_view_adjustment_voucher" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/storemanager"
+        android:id="@+id/imageView6"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView_welcome_storemanager"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

@@ -9,40 +9,47 @@
     android:background="@android:color/background_light">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_head_approve"
-        android:text="Approve Requisition"
-        android:layout_below="@+id/btn_head_delegation"
-        android:layout_alignStart="@+id/btn_head_delegation"
-        android:layout_marginTop="23dp" />
-
-    <Button
         android:text="Delegate Authority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_head_delegation"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/imageView5"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
 
     <TextView
         android:text="Welcome   "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="43dp"
+        android:layout_marginEnd="0dp"
         android:id="@+id/textView_welcome_departmentHead"
         android:textColor="@android:color/black"
         android:layout_marginTop="13dp"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/imageView5" />
+        android:layout_alignEnd="@+id/imageView5"
+        android:textSize="20sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_head_approve"
+        android:text="Approve Requisition"
+        android:layout_marginTop="37dp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_purple"
+        android:textSize="20sp"
+        android:layout_below="@+id/btn_head_delegation"
+        android:layout_alignStart="@+id/btn_head_delegation" />
 
     <ImageView
         android:layout_width="wrap_content"
         app:srcCompat="@drawable/head"
         android:id="@+id/imageView5"
         android:layout_height="200dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
         android:layout_below="@+id/textView_welcome_departmentHead"
         android:layout_centerHorizontal="true" />
 

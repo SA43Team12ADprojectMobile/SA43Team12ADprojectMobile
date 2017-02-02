@@ -25,7 +25,8 @@
         android:text="Delegate Authority"
         android:textAllCaps="true"
         android:gravity="center"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textView_title_delegateAuthority"/>
 
 
     <LinearLayout
