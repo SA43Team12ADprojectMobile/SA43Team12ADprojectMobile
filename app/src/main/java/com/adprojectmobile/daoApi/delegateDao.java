@@ -345,7 +345,7 @@ public class delegateDao {
         Integer Day = day;
         String DateDay = Day.toString();
 
-        String date =DateYear+"/"+DateMonth+"/"+DateDay;
+        String date =DateYear+"-"+DateMonth+"-"+DateDay+"    ";
         Log.e("date", date);
 
         return date;

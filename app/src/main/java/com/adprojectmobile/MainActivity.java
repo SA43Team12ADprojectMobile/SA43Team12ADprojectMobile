@@ -25,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Intent intent=new Intent(getApplicationContext(),Login.class);
+        startActivity(intent);
+
         Button btnToTestCollectionPoint=(Button)findViewById(R.id.btn_toTestCollectionList);
         btnToTestCollectionPoint.setOnClickListener(new View.OnClickListener() {
             @Override

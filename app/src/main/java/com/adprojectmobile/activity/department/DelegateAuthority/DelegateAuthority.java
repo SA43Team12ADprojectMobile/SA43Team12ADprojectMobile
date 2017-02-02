@@ -15,11 +15,15 @@ import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.HeadMainPage;
 import com.adprojectmobile.apiModel.DelegateEmployee;
 import com.adprojectmobile.apiModel.EmployeeApi;
+import com.adprojectmobile.daoApi.authenticationDao;
 import com.adprojectmobile.daoApi.delegateDao;
 import com.adprojectmobile.model.Employee;
 
+import java.util.Date;
+
 public class DelegateAuthority extends AppCompatActivity {
     delegateDao dDao=new delegateDao();
+    authenticationDao aDao=new authenticationDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +66,10 @@ public class DelegateAuthority extends AppCompatActivity {
                 delegateEmployee.setNumber(employee.getNumber());
                 delegateEmployee.setEmailAddress(employee.getEmailAddress());
 
-                Boolean compareYear= (yearS<=yearE);
-                Boolean compareMonth= (monthS<=monthE);
-                Boolean compareDay= (dayS<dayE);
-                if(compareYear&&compareMonth&&compareDay){
+                Date start =aDao.parseDate(startDate);
+                Date end = aDao.parseDate(endDate);
+
+                if(start.before(end)){
                     new AsyncTask<DelegateEmployee, Void, Void>() {
                         @Override
                         protected Void doInBackground(DelegateEmployee... params) {

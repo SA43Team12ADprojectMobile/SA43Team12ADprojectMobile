@@ -12,6 +12,10 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by EvEr on 2017/1/31.
  */
@@ -50,5 +54,35 @@ public class authenticationDao {
         String returnJson = JSONPaser.postStream(host+"/user",jUser.toString());
         Log.i("postback",returnJson.toString());
         return returnJson;
+    }
+
+    public Date parseDate(String d){
+        SimpleDateFormat sft=new SimpleDateFormat("yyyy-MM-dd");
+        d.substring(0,10);
+        Date date=new Date();
+        try {
+            date=sft.parse(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public String parseDate(Date d){
+        SimpleDateFormat sft=new SimpleDateFormat("yyyy-MM-dd");
+        String date=sft.format(d);
+        return date;
+    }
+
+    public Boolean checkDate(String startDate,String endDate){
+        Date s=parseDate(startDate);
+        Date e=parseDate(endDate);
+        Date today=new Date();
+        if(s.before(today)&&e.after(today)){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
