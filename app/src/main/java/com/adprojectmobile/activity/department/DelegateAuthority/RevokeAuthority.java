@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.department.HeadMainPage;
+import com.adprojectmobile.apiModel.DelegateEmployee;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.daoApi.delegateDao;
 import com.adprojectmobile.model.Employee;
@@ -24,6 +27,7 @@ public class RevokeAuthority extends AppCompatActivity {
         setContentView(R.layout.delegate_authority_activity_revoke_authority);
         final EmployeeApi employee=getIntent().getParcelableExtra("data");
         final EmployeeApi authorEmp=getIntent().getParcelableExtra("auth");
+        final DelegateEmployee delegateEmployee=getIntent().getParcelableExtra("delegate");
         Log.e("emp",employee.getDepartmentName());
         Log.e("authEmp",authorEmp.getName());
 
@@ -39,7 +43,10 @@ public class RevokeAuthority extends AppCompatActivity {
         String dateTime=date+" "+time;
         editTextStartDate.setText(dateTime);
         if (authorEmp.DelegationEndDate!="null"){
-            editTextEndDate.setText(authorEmp.DelegationEndDate);
+            String dateEnd=authorEmp.DelegationEndDate.substring(0,10);
+            String timeEnd=authorEmp.DelegationEndDate.substring(11,16);
+            String dateTimeEnd=dateEnd+" "+timeEnd;
+            editTextEndDate.setText(dateTimeEnd);
         }
 
         Button btnConfirmDelegate=(Button) findViewById(R.id.btn_revoke_confirm);
@@ -47,12 +54,26 @@ public class RevokeAuthority extends AppCompatActivity {
         btnConfirmDelegate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String startDate=editTextStartDate.getText().toString();
-//                String endDate=editTextEndDate.getText().toString();
-//
-//                Intent intent=new Intent(getApplicationContext(),FindEmployee.class);
-//                intent.putExtra("data",employee);
-//                startActivity(intent);
+                delegateEmployee.setEmployeeID(authorEmp.getEmployeeID());
+                delegateEmployee.setName(authorEmp.getName());
+                delegateEmployee.setPosition(authorEmp.getPosition());
+                delegateEmployee.setNumber(authorEmp.getNumber());
+                delegateEmployee.setEmailAddress(authorEmp.getEmailAddress());
+
+                new AsyncTask<DelegateEmployee, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(DelegateEmployee... params) {
+                        dDao.revokeAuthority(delegateEmployee);
+                        return null;
+                    }
+                }.execute();
+
+                Toast.makeText(getApplicationContext(),"Revoke Successfully",Toast.LENGTH_LONG).show();
+
+                Intent intent=new Intent(getApplicationContext(), HeadMainPage.class);
+                intent.putExtra("role",employee);
+                intent.putExtra("password",delegateEmployee.getPassword());
+                startActivity(intent);
             }
         });
     }

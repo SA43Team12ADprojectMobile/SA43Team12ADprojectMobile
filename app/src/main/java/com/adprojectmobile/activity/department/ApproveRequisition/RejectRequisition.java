@@ -66,6 +66,7 @@ public class RejectRequisition extends AppCompatActivity {
                     }
                 }.execute();
 
+                Toast.makeText(getApplicationContext(),"Rejected",Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getApplicationContext(),Requisitions.class);
                 intent.putExtra("role",employee);
                 startActivity(intent);

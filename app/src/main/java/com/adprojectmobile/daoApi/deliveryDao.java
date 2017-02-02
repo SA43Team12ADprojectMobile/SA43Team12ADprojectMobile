@@ -98,7 +98,7 @@ public class deliveryDao {
         JSONObject jDis=new JSONObject();
         try{
             jDis.put("DisbursementID",d.getDisbursementID());
-            jDis.put("CollectionPointName",d.getCollectionPointName());
+            jDis.put("CollectionPointName",d.getDisbursementID());
             jDis.put("DeliveryStatus","Delivered");
             jDis.put("RepName",d.getRepName());
             jDis.put("RepChecked","true");
@@ -114,7 +114,7 @@ public class deliveryDao {
         JSONObject jDis=new JSONObject();
         try{
             jDis.put("DisbursementID",d.getDisbursementID());
-            jDis.put("CollectionPointName",d.getCollectionPointName());
+            jDis.put("CollectionPointName",d.getCollectionPointID());
             jDis.put("DeliveryStatus","Prepared");
             jDis.put("RepName",d.getRepName());
             jDis.put("RepChecked","false");

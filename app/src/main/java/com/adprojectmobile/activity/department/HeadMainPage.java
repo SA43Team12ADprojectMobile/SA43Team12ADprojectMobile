@@ -14,6 +14,7 @@ import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
 import com.adprojectmobile.activity.department.DelegateAuthority.DelegateAuthority;
 import com.adprojectmobile.activity.department.DelegateAuthority.FindEmployee;
 import com.adprojectmobile.activity.department.DelegateAuthority.RevokeAuthority;
+import com.adprojectmobile.apiModel.DelegateEmployee;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.daoApi.delegateDao;
 
@@ -26,6 +27,9 @@ public class HeadMainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_head_main_page);
         final EmployeeApi employeeApi=getIntent().getParcelableExtra("role");
+        final String password=getIntent().getStringExtra("password");
+        String depId=dDao.convertDepIdFromName(employeeApi.getDepartmentName());
+        final DelegateEmployee delegateEmployee=new DelegateEmployee(employeeApi.getEmployeeID(),password,depId,employeeApi.getName(),employeeApi.getPosition(),employeeApi.getIsDelegated(),employeeApi.getDelegationStartDate(),employeeApi.getDelegationEndDate(),employeeApi.getNumber(),employeeApi.getEmailAddress());
 
         TextView textViewHello=(TextView) findViewById(R.id.textView_welcome_departmentHead);
         textViewHello.setText("Welcome "+employeeApi.getName());
@@ -46,11 +50,13 @@ public class HeadMainPage extends AppCompatActivity {
                         if (!dDao.checkIsRevoke(employeeApi.getDepartmentName())) {
                             intent = new Intent(getApplicationContext(), FindEmployee.class);
                             intent.putExtra("data", employeeApi);
+                            intent.putExtra("delegate",delegateEmployee);
                             startActivity(intent);
                         } else {
                             intent = new Intent(getApplicationContext(), RevokeAuthority.class);
                             intent.putExtra("data", employeeApi);
                             intent.putExtra("auth",authorEmp);
+                            intent.putExtra("delegate",delegateEmployee);
                             startActivity(intent);
                         }
                         return null;

@@ -14,6 +14,7 @@ import android.widget.ListView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.employeeAdapter;
+import com.adprojectmobile.apiModel.DelegateEmployee;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.dao.Dao.employeeDao;
 import com.adprojectmobile.dao.DaoImpl.employeeDaoImpl;
@@ -32,6 +33,7 @@ public class FindEmployee extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delegate_authority_activity_find_employee);
         final EmployeeApi employeeApi=getIntent().getParcelableExtra("data");
+        final DelegateEmployee delegateEmployee=getIntent().getParcelableExtra("delegate");
 
         final ListView employeeView=(ListView)findViewById(R.id.listview_delegate_employee_find_list);
         final EditText editTextSearch=(EditText) findViewById(R.id.editText_delegate_search_employee_name);
@@ -82,6 +84,7 @@ public class FindEmployee extends AppCompatActivity {
                         Intent intent;
                             intent=new Intent(getApplicationContext(),DelegateAuthority.class);
                             intent.putExtra("data",employee);
+                            intent.putExtra("delegate",delegateEmployee);
                             startActivity(intent);
                        return  null;
                     }

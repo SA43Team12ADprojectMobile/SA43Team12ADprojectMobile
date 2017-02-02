@@ -75,32 +75,50 @@ public class Login extends AppCompatActivity {
                             if (employeeApi.getPosition().equals("Head")){
                                 intent=new Intent(getApplicationContext(), HeadMainPage.class);
                                 intent.putExtra("role",employee);
+                                intent.putExtra("password",password);
+                                Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
+                                startActivity(intent);
+                            }
+                            else if (employeeApi.getPosition().equals("Representative")&&employeeApi.getIsDelegated().contains("true")){
+                                intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
+                                intent.putExtra("role",employee);
+                                Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                             }
                             else if (employeeApi.getPosition().equals("Representative")){
                                 intent=new Intent(getApplicationContext(), RepresentativeMainPage.class);
                                 intent.putExtra("role",employee);
+                                Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                             }
                             else if (employeeApi.getIsDelegated().contains("true")&&employeeApi.getPosition().equals("Employee")){
-                                intent=new Intent(getApplicationContext(), HeadMainPage.class);
+                                intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
                                 intent.putExtra("role",employee);
+                                Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                             }
                             else if (employeeApi.getPosition().equals("Store Manager")){
                                 intent=new Intent(getApplicationContext(), ManagerMainPage.class);
                                 intent.putExtra("role",employee);
+                                Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                             }
                             else if (employeeApi.getPosition().equals("Store Supervisor")){
                                 intent=new Intent(getApplicationContext(), SupervisorMainPage.class);
                                 intent.putExtra("role",employee);
+                                Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
+
                             }
                             else if (employeeApi.getPosition().equals("Clerk")){
                                 intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
                                 intent.putExtra("role",employee);
+                                Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
+
+                            }
+                            else if(employeeApi.getPosition().equals("Employee")){
+                                Toast.makeText(getApplicationContext(),"Sorry, you have no authority",Toast.LENGTH_LONG).show();
                             }
                         }
                     }
