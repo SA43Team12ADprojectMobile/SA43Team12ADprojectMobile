@@ -64,7 +64,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent">
             <TextView
-                android:text="Qty Required:"
+                android:text="Qty Retrieved:"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:textColor="@android:color/black"
@@ -78,7 +78,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="1"
-                android:id="@+id/editText_itemQtyRequired_confirmCollection"
+                android:id="@+id/editText_itemQtyRetrieve_confirmCollection"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
@@ -91,7 +91,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent" >
             <TextView
-                android:text="Qty Retrieved: "
+                android:text="Qty Actual: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -105,7 +105,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="1"
-                android:id="@+id/editText_itemQtyRetrieval_confirmCollection"
+                android:id="@+id/editText_itemQtyActual_confirmCollection"
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"

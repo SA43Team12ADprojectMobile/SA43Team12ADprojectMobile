@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.disbursementItemAdapter;
 import com.adprojectmobile.adapter.requisitionItemForApprovalAdapter;
 import com.adprojectmobile.apiModel.DisbursementApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.dao.Dao.requisitionDao;
@@ -35,15 +39,16 @@ public class DisbursementItems extends AppCompatActivity {
         setContentView(R.layout.confirm_disbursement_activity_disbursement_items);
 
         final DisbursementApi disbursementApi = getIntent().getParcelableExtra("data");
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_confirm_disbursements_items);
-        final String id=disbursementApi.getDisbursementID();
+        final String id=disbursementApi.getDisbursementID();;
 
 
         new AsyncTask<String, Void, List<DisbursementItemApi>>() {
             @Override
             protected List<DisbursementItemApi> doInBackground(String... params) {
-                List<DisbursementItemApi> disbursementItemApis = cDao.getDisbursementItem(id);
+                List<DisbursementItemApi> disbursementItemApis = cDao.getDisbursementItem(employee,disbursementApi.getDisbursementID());
 
                 return disbursementItemApis;
             }
@@ -61,8 +66,29 @@ public class DisbursementItems extends AppCompatActivity {
                 DisbursementItemApi disbursementItemApi = (DisbursementItemApi) parent.getAdapter().getItem(position);
 
                 Intent intent = new Intent(getApplicationContext(), ConfirmCollection.class);
+                intent.putExtra("dis",disbursementApi);
                 intent.putExtra("data",disbursementItemApi);
+                intent.putExtra("role",employee);
                 startActivity(intent);
+            }
+        });
+
+        Button btnConfirmDis=(Button)findViewById(R.id.btn_confirm_disbursements_disbursement);
+        btnConfirmDis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    new AsyncTask<String, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(String... params) {
+                            cDao.confirmDisbursement(disbursementApi.getDisbursementID());
+                            return null;
+                        }
+                    }.execute();
+                    Toast.makeText(getApplicationContext(),"Confirm Successfully",Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(getApplicationContext(),Disbursements.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+
             }
         });
     }
