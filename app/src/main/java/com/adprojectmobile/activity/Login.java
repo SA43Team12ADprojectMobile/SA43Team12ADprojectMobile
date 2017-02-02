@@ -79,6 +79,12 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                             }
+                            else if (employeeApi.getPosition().equals("Representative")&&employeeApi.getIsDelegated().contains("true")){
+                                intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
+                                intent.putExtra("role",employee);
+                                Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
+                                startActivity(intent);
+                            }
                             else if (employeeApi.getPosition().equals("Representative")){
                                 intent=new Intent(getApplicationContext(), RepresentativeMainPage.class);
                                 intent.putExtra("role",employee);

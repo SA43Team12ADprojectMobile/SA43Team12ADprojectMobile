@@ -40,8 +40,8 @@ public class disbursementItemAdapter extends ArrayAdapter<DisbursementItemApi> {
             TextView textViewQtyRequired=(TextView)v.findViewById(R.id.textview_requisition_requisition_quantity_required);
             TextView textViewQtyActual=(TextView)v.findViewById(R.id.textview_requisition_requisition_quantity_retrieved) ;
             textViewItemName.setText(requisitionItems.getDescription());
-            textViewQtyRequired.setText(requisitionItems.getActualQuantity());
-            textViewQtyActual.setText(requisitionItems.getRetrievedQuantity());
+            textViewQtyRequired.setText(requisitionItems.getRetrievedQuantity());
+            textViewQtyActual.setText(requisitionItems.getActualQuantity());
         }
         return v;
     }
