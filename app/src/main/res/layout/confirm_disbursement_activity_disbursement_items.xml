@@ -30,7 +30,7 @@
         android:text="Confirm Collection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/button"
+        android:id="@+id/btn_confirm_disbursements_disbursement"
         android:background="@android:color/holo_green_dark"
         android:textColor="@android:color/white"
         android:textSize="20sp"/>

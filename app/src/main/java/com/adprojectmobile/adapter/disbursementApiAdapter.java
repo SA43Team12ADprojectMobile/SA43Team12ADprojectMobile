@@ -39,12 +39,12 @@ public class disbursementApiAdapter extends ArrayAdapter<DisbursementApi>{
             TextView textViewEmployeeName=(TextView)v.findViewById(R.id.textView_requisition_employee_name);
             TextView textViewDate=(TextView)v.findViewById(R.id.textView_requisition_requisition_date);
             TextView textViewQuantitiy = (TextView)v.findViewById(R.id.textview_requisition_requisition_quantity);
-            textViewEmployeeName.setText(requisition.getRepName());
-            String date=requisition.getRetrievalDate().substring(0,10);
-            String time=requisition.getRetrievalDate().substring(11,16);
-            String dateTime=date+" "+time;
-            textViewDate.setText(dateTime);
-            textViewQuantitiy.setText(requisition.getDeliveryStatus());
+            textViewEmployeeName.setText(requisition.getCollectionPointName());
+//            String date=requisition.getRetrievalDate().substring(0,10);
+//            String time=requisition.getRetrievalDate().substring(11,16);
+//            String dateTime=date+" "+time;
+            textViewDate.setText(requisition.getDeliveryStatus());
+            //textViewQuantitiy.setText(requisition.getDeliveryStatus());
         }
         return v;
     }

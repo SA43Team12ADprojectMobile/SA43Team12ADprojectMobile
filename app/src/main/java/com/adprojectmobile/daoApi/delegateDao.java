@@ -222,8 +222,39 @@ public class delegateDao {
         return returnEmployee;
     }
 
-    public void deligateAuthority(){
+    public void deligateAuthority(EmployeeApi employee){
+        String depId=new String();
+        if (employee.getDepartmentName()!=null){
+            if (employee.getDepartmentName().equals("Commerce Department")){
+                depId="COMM";
+            }
+            else if (employee.getDepartmentName().equals("Computer Science")){
+                depId="CPSC";
+            }
+            else if (employee.getDepartmentName().equals("English Department")){
+                depId="ENGL";
+            }
+            else if (employee.getDepartmentName().equals("Registrar Department")){
+                depId="REGR";
+            }
+            else if (employee.getDepartmentName().equals("Store")){
+                depId="ST";
+            }
+            else if (employee.getDepartmentName().equals("Zoology Department")){
+                depId="ZOOL";
+            }
+            else {
+                depId=null;
+            }
+        }
+        JSONObject jEmp=new JSONObject();
 
+        try{
+            jEmp.put("",employee.EmployeeID); //TODO:fill in all post info
+            Log.e("json",jEmp.toString());
+        }catch (Exception e){}
+
+        JSONPaser.postStream(host + "/deligation/"+depId,jEmp.toString());
     }
 
     public void revokeAuthority(){

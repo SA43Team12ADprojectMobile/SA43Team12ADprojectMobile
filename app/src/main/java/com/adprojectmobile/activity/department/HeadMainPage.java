@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
@@ -25,6 +26,9 @@ public class HeadMainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_head_main_page);
         final EmployeeApi employeeApi=getIntent().getParcelableExtra("role");
+
+        TextView textViewHello=(TextView) findViewById(R.id.textView_welcome_departmentHead);
+        textViewHello.setText("Welcome "+employeeApi.getName());
 
         Button btnDelegate=(Button)findViewById(R.id.btn_head_delegation);
         Button btnApprove=(Button)findViewById(R.id.btn_head_approve);

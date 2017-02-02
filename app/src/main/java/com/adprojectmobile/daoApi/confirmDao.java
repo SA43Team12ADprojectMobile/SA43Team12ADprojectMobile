@@ -1,7 +1,11 @@
 package com.adprojectmobile.daoApi;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import com.adprojectmobile.apiModel.DisbursementApi;
 import com.adprojectmobile.apiModel.DisbursementItemApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.util.JSONPaser;
 import com.adprojectmobile.util.url;
@@ -19,9 +23,9 @@ import java.util.List;
 
 public class confirmDao {
     final String host= url.host;
-    public List<DisbursementApi> getPreparedDisbursement(){
+    public List<DisbursementApi> getPreparedDisbursement(EmployeeApi employeeApi){
         List<DisbursementApi> disbursementApis=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/disbursement");
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/disbursement/"+employeeApi.getEmployeeID());
 
         try {
             for(int i=0;i<jsonArray.length();i++){
@@ -36,9 +40,9 @@ public class confirmDao {
         }
         return disbursementApis;
     }
-    public List<DisbursementItemApi> getDisbursementItem(String id){
+    public List<DisbursementItemApi> getDisbursementItem(EmployeeApi employeeApi,String disId){
         List<DisbursementItemApi> disbursementApis=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/disbursement/"+id);
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/disbursement/"+employeeApi.getEmployeeID()+"/"+disId);
 
         try {
             for(int i=0;i<jsonArray.length();i++){
@@ -52,5 +56,33 @@ public class confirmDao {
             e.printStackTrace();
         }
         return disbursementApis;
+    }
+
+    public void confirmDisbursement(String disbursementId){
+        try{
+            JSONPaser.postStream(host+"/disbursement/ConfirmCollection/"+disbursementId,"");
+        }catch (Exception e){
+            Log.e("error","error");
+        }
+
+    }
+
+    public  void saveActualQty(String disId,String description,String unit,String retrQty,String actualQty,String needQty,String transId,String itemId){
+        JSONObject jItem=new JSONObject();
+        try{
+            jItem.put("Description",description);
+            jItem.put("UnitMeasured",unit);
+            jItem.put("RetrievedQuantity",retrQty);
+            jItem.put("ActualQuantity",actualQty);
+            jItem.put("NeededQuantity",needQty);
+            jItem.put("TransactionID",transId);
+            jItem.put("ItemID",itemId);
+            Log.e("json",jItem.toString());
+        }catch (Exception e){
+            Log.e("error","error");
+        }
+
+        JSONPaser.postStream(host+"/disbursement/"+disId,jItem.toString());
+
     }
 }
