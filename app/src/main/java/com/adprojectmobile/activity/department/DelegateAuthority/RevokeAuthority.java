@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.department.HeadMainPage;
 import com.adprojectmobile.apiModel.DelegateEmployee;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.daoApi.delegateDao;
@@ -49,14 +51,24 @@ public class RevokeAuthority extends AppCompatActivity {
         btnConfirmDelegate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                delegateEmployee.setEmployeeID(authorEmp.getEmployeeID());
+                delegateEmployee.setName(authorEmp.getName());
+                delegateEmployee.setPosition(authorEmp.getPosition());
 
                 new AsyncTask<DelegateEmployee, Void, Void>() {
                     @Override
                     protected Void doInBackground(DelegateEmployee... params) {
-                        dDao.delegateAuthority(delegateEmployee);
+                        dDao.revokeAuthority(delegateEmployee);
                         return null;
                     }
                 }.execute();
+
+                Toast.makeText(getApplicationContext(),"Revoke Successfully",Toast.LENGTH_LONG).show();
+
+                Intent intent=new Intent(getApplicationContext(), HeadMainPage.class);
+                intent.putExtra("role",employee);
+                intent.putExtra("password",delegateEmployee.getPassword());
+                startActivity(intent);
             }
         });
     }

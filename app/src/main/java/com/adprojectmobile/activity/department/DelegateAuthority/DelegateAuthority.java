@@ -33,14 +33,8 @@ public class DelegateAuthority extends AppCompatActivity {
         EditText editTextStatus=(EditText)findViewById(R.id.editText_delegate_status);
 
         final DatePicker datePickerStartDate =(DatePicker)findViewById(R.id.datePicker_delegate_startDate);
-        final int dayS = datePickerStartDate.getDayOfMonth();
-        final int monthS = datePickerStartDate.getMonth()+1;
-        final int yearS = datePickerStartDate.getYear();
 
         final DatePicker datePickerEndDate=(DatePicker) findViewById(R.id.datePicker_delegate_endDate);
-        final int dayE = datePickerEndDate.getDayOfMonth();
-        final int monthE = datePickerEndDate.getMonth()+1;
-        final int yearE = datePickerEndDate.getYear();
 
         Button btnConfirmDelegate=(Button) findViewById(R.id.btn_delegate_confirm);
 
@@ -50,6 +44,13 @@ public class DelegateAuthority extends AppCompatActivity {
         btnConfirmDelegate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final int dayS = datePickerStartDate.getDayOfMonth();
+                final int monthS = datePickerStartDate.getMonth()+1;
+                final int yearS = datePickerStartDate.getYear();
+                final int dayE = datePickerEndDate.getDayOfMonth();
+                final int monthE = datePickerEndDate.getMonth()+1;
+                final int yearE = datePickerEndDate.getYear();
+
                 delegateEmployee.setEmployeeID(employee.getEmployeeID());
                 delegateEmployee.setName(employee.getName());
                 delegateEmployee.setPosition(employee.getPosition());
@@ -59,9 +60,10 @@ public class DelegateAuthority extends AppCompatActivity {
                 delegateEmployee.setDelegationEndDate(endDate);
 
 
-                Boolean compare=startDate.compareTo(endDate)<0;
-                Log.e("date Compare",compare.toString());
-                if(compare){
+                Boolean compareYear= (yearS<=yearE);
+                Boolean compareMonth= (monthS<=monthE);
+                Boolean compareDay= (dayS<dayE);
+                if(compareYear&&compareMonth&&compareDay){
                     new AsyncTask<DelegateEmployee, Void, Void>() {
                         @Override
                         protected Void doInBackground(DelegateEmployee... params) {
@@ -71,7 +73,7 @@ public class DelegateAuthority extends AppCompatActivity {
                     }.execute();
                     Toast.makeText(getApplicationContext(),"Delegate Successfully",Toast.LENGTH_LONG).show();
                     Intent intent=new Intent(getApplicationContext(),HeadMainPage.class);
-                    intent.putExtra("data",employee);
+                    intent.putExtra("role",employee);
                     intent.putExtra("password",delegateEmployee.getPassword());
                     startActivity(intent);
                 }

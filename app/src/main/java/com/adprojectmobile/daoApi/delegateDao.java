@@ -243,8 +243,8 @@ public class delegateDao {
 
     public void revokeAuthority(DelegateEmployee employee){
         employee.setIsDelegated("false");
-        employee.setDelegationStartDate("NULL");
-        employee.setDelegationEndDate("NULL");
+        employee.setDelegationStartDate("null");
+        employee.setDelegationEndDate("null");
         JSONObject jEmp=new JSONObject();
         try{
             jEmp.put("EmployeeID",employee.getEmployeeID());
@@ -253,8 +253,6 @@ public class delegateDao {
             jEmp.put("Name",employee.getName());
             jEmp.put("Position",employee.getPosition());
             jEmp.put("IsDelegated",employee.getIsDelegated());
-            jEmp.put("DelegationStartDate",employee.getDelegationStartDate());
-            jEmp.put("DelegationEndDate",employee.getDelegationEndDate());
             Log.e("json",jEmp.toString());
         }catch (Exception e){
             Log.e("revoke","error");
@@ -293,15 +291,15 @@ public class delegateDao {
 
     public String dateFormat(int year,int month,int day){
         Integer Year = year;
-        String DateDay = Year.toString();
+        String DateYear = Year.toString();
 
         Integer Month = month+1;
         String DateMonth = Month.toString();
 
         Integer Day = day;
-        String DateYear = Day.toString();
+        String DateDay = Day.toString();
 
-        String date = DateDay+"/"+DateMonth+"/"+DateYear;
+        String date =DateYear+"/"+DateMonth+"/"+DateDay;
         Log.e("date", date);
 
         return date;
