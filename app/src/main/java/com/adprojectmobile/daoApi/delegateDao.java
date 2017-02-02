@@ -2,6 +2,7 @@ package com.adprojectmobile.daoApi;
 
 import android.util.Log;
 
+import com.adprojectmobile.apiModel.DelegateEmployee;
 import com.adprojectmobile.apiModel.DepartmentApi;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.model.Employee;
@@ -222,42 +223,87 @@ public class delegateDao {
         return returnEmployee;
     }
 
-    public void deligateAuthority(EmployeeApi employee){
+    public void delegateAuthority(DelegateEmployee employee){
+        employee.setIsDelegated("true");
+        JSONObject jEmp=new JSONObject();
+        try{
+            jEmp.put("EmployeeID",employee.getEmployeeID());
+            jEmp.put("Password",employee.getPassword());
+            jEmp.put("DepartmentId",employee.getDepartmentID());
+            jEmp.put("Name",employee.getName());
+            jEmp.put("Position",employee.getPosition());
+            jEmp.put("IsDelegated",employee.getIsDelegated());
+            jEmp.put("DelegationStartDate",employee.getDelegationStartDate());
+            jEmp.put("DelegationEndDate",employee.getDelegationEndDate());
+            Log.e("json",jEmp.toString());
+        }catch (Exception e){}
+
+        JSONPaser.postStream(host + "/deligation",jEmp.toString());
+    }
+
+    public void revokeAuthority(DelegateEmployee employee){
+        employee.setIsDelegated("false");
+        employee.setDelegationStartDate("NULL");
+        employee.setDelegationEndDate("NULL");
+        JSONObject jEmp=new JSONObject();
+        try{
+            jEmp.put("EmployeeID",employee.getEmployeeID());
+            jEmp.put("Password",employee.getPassword());
+            jEmp.put("DepartmentId",employee.getDepartmentID());
+            jEmp.put("Name",employee.getName());
+            jEmp.put("Position",employee.getPosition());
+            jEmp.put("IsDelegated",employee.getIsDelegated());
+            jEmp.put("DelegationStartDate",employee.getDelegationStartDate());
+            jEmp.put("DelegationEndDate",employee.getDelegationEndDate());
+            Log.e("json",jEmp.toString());
+        }catch (Exception e){
+            Log.e("revoke","error");
+        }
+
+        JSONPaser.postStream(host + "/deligation",jEmp.toString());
+    }
+
+    public String convertDepIdFromName(String depName){
         String depId=new String();
-        if (employee.getDepartmentName()!=null){
-            if (employee.getDepartmentName().equals("Commerce Department")){
+        if (depName!=null){
+            if (depName.equals("Commerce Department")){
                 depId="COMM";
             }
-            else if (employee.getDepartmentName().equals("Computer Science")){
+            else if (depName.equals("Computer Science")){
                 depId="CPSC";
             }
-            else if (employee.getDepartmentName().equals("English Department")){
+            else if (depName.equals("English Department")){
                 depId="ENGL";
             }
-            else if (employee.getDepartmentName().equals("Registrar Department")){
+            else if (depName.equals("Registrar Department")){
                 depId="REGR";
             }
-            else if (employee.getDepartmentName().equals("Store")){
+            else if (depName.equals("Store")){
                 depId="ST";
             }
-            else if (employee.getDepartmentName().equals("Zoology Department")){
+            else if (depName.equals("Zoology Department")){
                 depId="ZOOL";
             }
             else {
                 depId=null;
             }
         }
-        JSONObject jEmp=new JSONObject();
-
-        try{
-            jEmp.put("",employee.EmployeeID); //TODO:fill in all post info
-            Log.e("json",jEmp.toString());
-        }catch (Exception e){}
-
-        JSONPaser.postStream(host + "/deligation/"+depId,jEmp.toString());
+        return depId;
     }
 
-    public void revokeAuthority(){
+    public String dateFormat(int year,int month,int day){
+        Integer Year = year;
+        String DateDay = Year.toString();
 
+        Integer Month = month+1;
+        String DateMonth = Month.toString();
+
+        Integer Day = day;
+        String DateYear = Day.toString();
+
+        String date = DateDay+"/"+DateMonth+"/"+DateYear;
+        Log.e("date", date);
+
+        return date;
     }
 }

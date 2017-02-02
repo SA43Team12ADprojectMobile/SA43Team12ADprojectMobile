@@ -75,6 +75,7 @@ public class Login extends AppCompatActivity {
                             if (employeeApi.getPosition().equals("Head")){
                                 intent=new Intent(getApplicationContext(), HeadMainPage.class);
                                 intent.putExtra("role",employee);
+                                intent.putExtra("password",password);
                                 startActivity(intent);
                             }
                             else if (employeeApi.getPosition().equals("Representative")){
@@ -101,6 +102,9 @@ public class Login extends AppCompatActivity {
                                 intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
                                 intent.putExtra("role",employee);
                                 startActivity(intent);
+                            }
+                            else if(employeeApi.getPosition().equals("Employee")){
+                                Toast.makeText(getApplicationContext(),"Sorry, you have no authority",Toast.LENGTH_LONG).show();
                             }
                         }
                     }

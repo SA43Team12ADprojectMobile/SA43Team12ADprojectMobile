@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.DelegateEmployee;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.daoApi.delegateDao;
 import com.adprojectmobile.model.Employee;
@@ -24,6 +25,7 @@ public class RevokeAuthority extends AppCompatActivity {
         setContentView(R.layout.delegate_authority_activity_revoke_authority);
         final EmployeeApi employee=getIntent().getParcelableExtra("data");
         final EmployeeApi authorEmp=getIntent().getParcelableExtra("auth");
+        final DelegateEmployee delegateEmployee=getIntent().getParcelableExtra("delegate");
         Log.e("emp",employee.getDepartmentName());
         Log.e("authEmp",authorEmp.getName());
 
@@ -47,12 +49,14 @@ public class RevokeAuthority extends AppCompatActivity {
         btnConfirmDelegate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String startDate=editTextStartDate.getText().toString();
-//                String endDate=editTextEndDate.getText().toString();
-//
-//                Intent intent=new Intent(getApplicationContext(),FindEmployee.class);
-//                intent.putExtra("data",employee);
-//                startActivity(intent);
+
+                new AsyncTask<DelegateEmployee, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(DelegateEmployee... params) {
+                        dDao.delegateAuthority(delegateEmployee);
+                        return null;
+                    }
+                }.execute();
             }
         });
     }
