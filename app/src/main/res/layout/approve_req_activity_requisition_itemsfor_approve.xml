@@ -18,7 +18,8 @@
         android:text="Requisition Items"
         android:textAllCaps="true"
         android:gravity="center"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:id="@+id/textView_title_requisitionItems"/>
 
     <ListView
         android:layout_width="match_parent"
