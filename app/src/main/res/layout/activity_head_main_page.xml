@@ -5,25 +5,8 @@
     android:id="@+id/activity_head_main_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.adprojectmobile.activity.department.HeadMainPage">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        app:srcCompat="@drawable/Head"
-        android:id="@+id/imageView5"
-        android:layout_centerHorizontal="true"
-        android:layout_height="200dp"
-        android:layout_marginTop="40dp" />
-
-    <Button
-        android:text="Delegate Authority"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_head_delegation"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/imageView5"
-        android:layout_alignStart="@+id/imageView5" />
+    tools:context="com.adprojectmobile.activity.department.HeadMainPage"
+    android:background="@android:color/background_light">
 
     <Button
         android:layout_width="wrap_content"
@@ -33,5 +16,34 @@
         android:layout_below="@+id/btn_head_delegation"
         android:layout_alignStart="@+id/btn_head_delegation"
         android:layout_marginTop="23dp" />
+
+    <Button
+        android:text="Delegate Authority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_head_delegation"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/imageView5"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Welcome   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="43dp"
+        android:id="@+id/textView_welcome_departmentHead"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="13dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/imageView5" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        app:srcCompat="@drawable/head"
+        android:id="@+id/imageView5"
+        android:layout_height="200dp"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/textView_welcome_departmentHead"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
