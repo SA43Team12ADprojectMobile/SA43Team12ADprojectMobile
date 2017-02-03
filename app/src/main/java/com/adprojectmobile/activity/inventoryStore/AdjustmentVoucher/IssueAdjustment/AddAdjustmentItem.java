@@ -84,6 +84,7 @@ public class AddAdjustmentItem extends AppCompatActivity {
                 intent.putExtra("data",item);
                 intent.putExtra("data1",adjustment);
                 intent.putExtra("isAdd",true);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });

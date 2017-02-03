@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.VoucherDetail;
 import com.adprojectmobile.adapter.adjustmentItemAdapter;
@@ -95,10 +97,15 @@ public class ItemsVoucherIssue extends AppCompatActivity {
                 finish();
             }
         });
+
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(getApplicationContext(), AdjustmentVouchersForCRUD.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
             }
         });
     }
