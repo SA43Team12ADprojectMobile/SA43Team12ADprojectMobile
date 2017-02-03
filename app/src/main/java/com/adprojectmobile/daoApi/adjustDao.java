@@ -99,6 +99,38 @@ public class adjustDao {
     public List<AdjustmentItemApi> getAdjustItemById(String id){
         return null;
     }
+
+    public List<AdjustmentItemApi> getAllItemsForAdd(){
+        List<AdjustmentItemApi> adjustmentItemApis=new ArrayList<>();
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/authorizeadjustment");
+
+        try {
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonAdjustmentItem=jsonArray.getJSONObject(i);
+                AdjustmentItemApi adjustmentItemApi=new AdjustmentItemApi();
+
+                adjustmentItemApi = new AdjustmentItemApi(jsonAdjustmentItem.getString("Id"),jsonAdjustmentItem.getString("Description"),jsonAdjustmentItem.getString("price"));
+                    Log.e("ItemJson",jsonAdjustmentItem.toString());
+
+                adjustmentItemApis.add(adjustmentItemApi);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return adjustmentItemApis;
+
+    }
+    public List<AdjustmentItemApi> searchItems(String code){
+        List<AdjustmentItemApi> itemApis=new ArrayList<>();
+        List<AdjustmentItemApi> allItems= getAllItemsForAdd();
+        for (AdjustmentItemApi a :
+                allItems) {
+            if(a.getItemID().contains(code)||a.getDescription().contains(code)){
+                itemApis.add(a);
+            }
+        }
+        return itemApis;
+    }
     public void saveAdjustment(){}
     public void createNewVoucher(){}
     public void deleteVoucher(){}

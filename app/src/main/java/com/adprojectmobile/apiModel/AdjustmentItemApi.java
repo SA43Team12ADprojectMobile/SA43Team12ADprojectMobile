@@ -19,6 +19,12 @@ public class AdjustmentItemApi implements Parcelable{
     public AdjustmentItemApi() {
     }
 
+    public AdjustmentItemApi(String itemID, String description, String tenderPrice) {
+        ItemID = itemID;
+        Description = description;
+        TenderPrice = tenderPrice;
+    }
+
     public AdjustmentItemApi(String adjustment_ItemsID, String adjustmentID, String itemTransactionID, String itemID, String description, String tenderPrice, String actualQuantity, String reason) {
         Adjustment_ItemsID = adjustment_ItemsID;
         AdjustmentID = adjustmentID;
