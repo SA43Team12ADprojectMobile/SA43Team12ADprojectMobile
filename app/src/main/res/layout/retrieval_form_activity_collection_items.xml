@@ -42,14 +42,14 @@
             android:weightSum="1">
 
             <CheckBox
-                android:text="Has Prepared Finished?"
+                android:text="Has Preparation Finished?"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:id="@+id/checkBox_prepared"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20sp"
                 android:textColorLink="?attr/actionMenuTextColor"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="35dp"
                 android:checked="false"
                 android:duplicateParentState="false"
                 android:layout_weight="0.56"

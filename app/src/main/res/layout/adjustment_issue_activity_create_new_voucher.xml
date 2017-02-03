@@ -48,10 +48,11 @@
                 android:ems="10"
                 android:layout_weight="1"
                 android:id="@+id/editText_create_new_voucherID"
-                android:enabled="true"
-                android:clickable="true"
-                android:longClickable="true"
-                android:textSize="25sp" />
+                android:enabled="false"
+                android:clickable="false"
+                android:longClickable="false"
+                android:textSize="25sp"
+                android:text="A150010004"/>
 
         </TableRow>
 
@@ -85,7 +86,8 @@
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"
-                android:textSize="25sp"/>
+                android:textSize="25sp"
+                android:text="2017-02-03"/>
         </TableRow>
 
         <TableRow

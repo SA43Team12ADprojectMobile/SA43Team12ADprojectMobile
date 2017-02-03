@@ -11,18 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.adprojectmobile.activity.department.EmployeeMainPage">
 
-    <TextView
-        android:text="Welcome   "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:id="@+id/textView_welcome_employee"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="13dp"
-        android:layout_alignParentTop="true"
-        android:textSize="20sp"
-        android:paddingLeft="220dp" />
-
     <ImageView
         android:layout_height="150dp"
         app:srcCompat="@drawable/storeclerk"
@@ -56,4 +44,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/btn_employee_approve"
         android:layout_alignStart="@+id/btn_employee_approve" />
+
+    <TextView
+        android:text="Welcome   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:id="@+id/textView_welcome_employee"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="13dp"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

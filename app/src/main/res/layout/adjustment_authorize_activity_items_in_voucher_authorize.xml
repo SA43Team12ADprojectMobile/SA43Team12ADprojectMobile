@@ -43,11 +43,19 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:text="Authorize Voucher"
+            android:text="Approve Voucher"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:id="@+id/btn_voucher_authorize"
             android:background="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+        <Button
+            android:text="Reject Voucher"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/btn_voucher_reject"
+            android:background="@android:color/holo_red_dark"
             android:textColor="@android:color/white"
             android:textSize="20sp"/>
 

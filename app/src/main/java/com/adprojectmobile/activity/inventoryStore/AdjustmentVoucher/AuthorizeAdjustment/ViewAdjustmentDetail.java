@@ -32,12 +32,5 @@ public class ViewAdjustmentDetail extends AppCompatActivity {
         editTextItemIssueBy.setText("apple");
         editTextItemReason.setText("no reason");
 
-        Button btnAuthorize=(Button)findViewById(R.id.btn_authorize_adjustmentItem);
-        btnAuthorize.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 }
