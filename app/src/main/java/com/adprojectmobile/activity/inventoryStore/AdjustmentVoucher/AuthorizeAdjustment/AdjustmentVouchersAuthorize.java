@@ -14,14 +14,17 @@ import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjust
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.ItemsVoucherIssue;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher;
 import com.adprojectmobile.adapter.adjustmentAdapter;
+import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.dao.Dao.adjustmentDao;
 import com.adprojectmobile.dao.DaoImpl.adjustmentDaoImpl;
+import com.adprojectmobile.daoApi.adjustDao;
 import com.adprojectmobile.model.Adjustment;
 
 import java.util.List;
 
 public class AdjustmentVouchersAuthorize extends AppCompatActivity {
     adjustmentDao adDao=new adjustmentDaoImpl();
+    adjustDao aDao=new adjustDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +32,15 @@ public class AdjustmentVouchersAuthorize extends AppCompatActivity {
 
         final ListView adjustmentView=(ListView)findViewById(R.id.listview_adjustment_voucher_for_approve);
 
-        new AsyncTask<Void,Void,List<Adjustment>>(){
+        new AsyncTask<Void,Void,List<AdjustmentApi>>(){
             @Override
-            protected List<Adjustment> doInBackground(Void...params){
-                return adDao.getAllAdjustments();
+            protected List<AdjustmentApi> doInBackground(Void...params){
+               // return aDao.getAllAdjustments();
+                return null;
             }
 
             @Override
-            protected void onPostExecute(List<Adjustment> adjustments){
+            protected void onPostExecute(List<AdjustmentApi> adjustments){
                 adjustmentView.setAdapter(new adjustmentAdapter(getApplicationContext(),R.layout.row_adjustment_voucher,adjustments));
             }
         }.execute();

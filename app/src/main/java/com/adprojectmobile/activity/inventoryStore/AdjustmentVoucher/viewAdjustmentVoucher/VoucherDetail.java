@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.AdjustmentApi;
+import com.adprojectmobile.apiModel.AdjustmentItemApi;
 import com.adprojectmobile.dao.Dao.itemDao;
 import com.adprojectmobile.dao.Dao.itemTransactionDao;
 import com.adprojectmobile.dao.DaoImpl.itemDaoImpl;
@@ -16,16 +18,13 @@ import com.adprojectmobile.model.ItemTransaction;
 
 public class VoucherDetail extends AppCompatActivity {
 
-    itemTransactionDao itDao=new itemTransactionDaoImpl();
-    itemDao itemDao=new itemDaoImpl();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjustment_view_activity_voucher_detail);
 
-        AdjustmentItem adjustmentItem=getIntent().getParcelableExtra("data");
-        Adjustment adjustment=getIntent().getParcelableExtra("data1");
+        AdjustmentItemApi adjustmentItem=getIntent().getParcelableExtra("data");
+        AdjustmentApi adjustment=getIntent().getParcelableExtra("data1");
 
         final EditText editTextItemCode=(EditText) findViewById(R.id.editText_itemAdjusted_item_code);
         final EditText editTextItemName=(EditText) findViewById(R.id.editText_itemAdjusted_item_name);
@@ -34,15 +33,17 @@ public class VoucherDetail extends AppCompatActivity {
         final EditText editTextItemAuthorizedBy=(EditText) findViewById(R.id.editText_itemAdjusted_authorized_by_employee_name);
         final EditText editTextReason=(EditText) findViewById(R.id.editText_itemAdjusted_reason);
 
-        ItemTransaction itemTransaction=adjustmentItem.getItemTransaction();
-        Item item= itemTransaction.getItem();
-
-//           editTextItemCode.setText(item.getItemId());
-//            editTextItemName.setText(item.getDescription());
-//
-            editTextItemQty.setText(itemTransaction.getActualQuantityStr());
+           editTextItemCode.setText(adjustmentItem.getItemID());
+          editTextItemName.setText(adjustmentItem.getDescription());
+            editTextItemQty.setText(adjustmentItem.getActualQuantity());
             editTextItemIssueBy.setText(adjustment.getIssuedBy());
+        if(adjustment.getApprovedBy()!=null){
+            editTextItemAuthorizedBy.setText(" ");
+        }
+        else {
             editTextItemAuthorizedBy.setText(adjustment.getApprovedBy());
+        }
+
             editTextItemAuthorizedBy.setText(adjustmentItem.getReason());
 
 

@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.AdjustmentApi;
+import com.adprojectmobile.apiModel.AdjustmentItemApi;
 import com.adprojectmobile.dao.Dao.itemDao;
 import com.adprojectmobile.dao.Dao.itemTransactionDao;
 import com.adprojectmobile.dao.DaoImpl.itemDaoImpl;
@@ -18,24 +20,21 @@ import com.adprojectmobile.model.ItemTransaction;
 
 public class AdjustItemQty extends AppCompatActivity {
 
-    itemTransactionDao itDao=new itemTransactionDaoImpl();
-    itemDao itemDao=new itemDaoImpl();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjustment_issue_activity_adjust_item_qty);
 
         final boolean isAdd=getIntent().getBooleanExtra("isAdd",true);
-        Item item=new Item();
-        AdjustmentItem adjustmentItem=new AdjustmentItem();
+        AdjustmentItemApi adjustmentItem=new AdjustmentItemApi();
         if(isAdd){
-            item=getIntent().getParcelableExtra("data");
+            adjustmentItem=getIntent().getParcelableExtra("data");
         }
         if(!isAdd){
             adjustmentItem=getIntent().getParcelableExtra("data");
         }
 
-        final Adjustment adjustment=getIntent().getParcelableExtra("data1");
+        final AdjustmentApi adjustment=getIntent().getParcelableExtra("data1");
 
 
         EditText editTextItemCode=(EditText) findViewById(R.id.editText_issue_itemAdjusted_item_code);
@@ -44,20 +43,16 @@ public class AdjustItemQty extends AppCompatActivity {
         EditText editTextReason=(EditText) findViewById(R.id.editText_issue_itemAdjusted_reason);
 
         if(isAdd){
-            editTextItemCode.setText(item.getItemId());
-            editTextItemName.setText(item.getDescription());
+            editTextItemCode.setText(adjustmentItem.getItemID());
+            editTextItemName.setText(adjustmentItem.getDescription());
         }
 
         if (!isAdd){
-            ItemTransaction itemTransaction=adjustmentItem.getItemTransaction();
-            Item tmp= itemTransaction.getItem();
-//
-//                editTextItemCode.setText(tmp.getItemId());
-//                editTextItemName.setText(tmp.getDescription());
 
-
-            //editTextQty.setText();
             if(adjustmentItem!=null){
+                editTextItemCode.setText(adjustmentItem.getItemID());
+                editTextItemName.setText(adjustmentItem.getDescription());
+                editTextQty.setText(adjustmentItem.getActualQuantity());
                 editTextReason.setText(adjustmentItem.getReason());
             }
 

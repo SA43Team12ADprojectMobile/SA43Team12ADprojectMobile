@@ -37,7 +37,7 @@ public class ItemsInVoucherAuthorize extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(List<AdjustmentItem> adjustmentItems){
-                adjustmentItemView.setAdapter(new adjustmentItemAdapter(getApplicationContext(),R.layout.row_adjustment_item,adjustmentItems));
+            //    adjustmentItemView.setAdapter(new adjustmentItemAdapter(getApplicationContext(),R.layout.row_adjustment_item,adjustmentItems));
             }
         }.execute();
         adjustmentItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

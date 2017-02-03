@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.model.Adjustment;
 
 import java.util.List;
@@ -17,11 +18,11 @@ import java.util.List;
  * Created by EvEr on 2017/1/24.
  */
 
-public class adjustmentAdapter extends ArrayAdapter<Adjustment> {
-    private List<Adjustment> adjustmentList;
+public class adjustmentAdapter extends ArrayAdapter<AdjustmentApi> {
+    private List<AdjustmentApi> adjustmentList;
     int resource;
 
-    public adjustmentAdapter(Context context, int resource, List<Adjustment> adjustments) {
+    public adjustmentAdapter(Context context, int resource, List<AdjustmentApi> adjustments) {
         super(context, resource, adjustments);
         this.resource = resource;
         this.adjustmentList = adjustments;
@@ -32,7 +33,7 @@ public class adjustmentAdapter extends ArrayAdapter<Adjustment> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        Adjustment adjustment=adjustmentList.get(position);
+        AdjustmentApi adjustment=adjustmentList.get(position);
         if (adjustment!=null){
             TextView textViewDate=(TextView)v.findViewById(R.id.textView_adjustment_date);
             TextView textViewIssueBy=(TextView)v.findViewById(R.id.textView_adjustment_employeeName);

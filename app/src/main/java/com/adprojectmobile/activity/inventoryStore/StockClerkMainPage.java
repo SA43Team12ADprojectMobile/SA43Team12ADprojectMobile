@@ -32,6 +32,7 @@ public class StockClerkMainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), AdjustmentVouchers.class);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });
@@ -39,6 +40,7 @@ public class StockClerkMainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), AdjustmentVouchersForCRUD.class);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });

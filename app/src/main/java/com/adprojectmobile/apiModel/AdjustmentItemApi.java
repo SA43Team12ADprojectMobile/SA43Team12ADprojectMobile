@@ -8,68 +8,37 @@ import android.os.Parcelable;
  */
 
 public class AdjustmentItemApi implements Parcelable{
-    public String Id ;
-    public String PhotoFileName;
-    public String Description ;
-
-    public String ReorderLevel;
-    public String ReorderQuantity ;
-    public String BinNo ;
-
-    public String UnitOfMeasure ;
-
-    public String IsInInventory ;
-
-    public String CategoryID ;
-
-    public String CategoryName ;
-
+    private String Adjustment_ItemsID ;
+    private String AdjustmentID ;
+    private String ItemTransactionID ;
+    private String ItemID ;
+    private String Description ;
+    private String TenderPrice ;
+    private String ActualQuantity ;
+    private String Reason ;
     public AdjustmentItemApi() {
     }
 
-    public AdjustmentItemApi(String id, String photoFileName, String description, String reorderLevel, String reorderQuantity, String binNo, String unitOfMeasure, String isInInventory, String categoryID, String categoryName) {
-        Id = id;
-        PhotoFileName = photoFileName;
+    public AdjustmentItemApi(String adjustment_ItemsID, String adjustmentID, String itemTransactionID, String itemID, String description, String tenderPrice, String actualQuantity, String reason) {
+        Adjustment_ItemsID = adjustment_ItemsID;
+        AdjustmentID = adjustmentID;
+        ItemTransactionID = itemTransactionID;
+        ItemID = itemID;
         Description = description;
-        ReorderLevel = reorderLevel;
-        ReorderQuantity = reorderQuantity;
-        BinNo = binNo;
-        UnitOfMeasure = unitOfMeasure;
-        IsInInventory = isInInventory;
-        CategoryID = categoryID;
-        CategoryName = categoryName;
+        TenderPrice = tenderPrice;
+        ActualQuantity = actualQuantity;
+        Reason = reason;
     }
 
     protected AdjustmentItemApi(Parcel in) {
-        Id = in.readString();
-        PhotoFileName = in.readString();
+        Adjustment_ItemsID = in.readString();
+        AdjustmentID = in.readString();
+        ItemTransactionID = in.readString();
+        ItemID = in.readString();
         Description = in.readString();
-        ReorderLevel = in.readString();
-        ReorderQuantity = in.readString();
-        BinNo = in.readString();
-        UnitOfMeasure = in.readString();
-        IsInInventory = in.readString();
-        CategoryID = in.readString();
-        CategoryName = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(Id);
-        dest.writeString(PhotoFileName);
-        dest.writeString(Description);
-        dest.writeString(ReorderLevel);
-        dest.writeString(ReorderQuantity);
-        dest.writeString(BinNo);
-        dest.writeString(UnitOfMeasure);
-        dest.writeString(IsInInventory);
-        dest.writeString(CategoryID);
-        dest.writeString(CategoryName);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        TenderPrice = in.readString();
+        ActualQuantity = in.readString();
+        Reason = in.readString();
     }
 
     public static final Creator<AdjustmentItemApi> CREATOR = new Creator<AdjustmentItemApi>() {
@@ -84,20 +53,36 @@ public class AdjustmentItemApi implements Parcelable{
         }
     };
 
-    public String getId() {
-        return Id;
+    public String getAdjustment_ItemsID() {
+        return Adjustment_ItemsID;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setAdjustment_ItemsID(String adjustment_ItemsID) {
+        Adjustment_ItemsID = adjustment_ItemsID;
     }
 
-    public String getPhotoFileName() {
-        return PhotoFileName;
+    public String getAdjustmentID() {
+        return AdjustmentID;
     }
 
-    public void setPhotoFileName(String photoFileName) {
-        PhotoFileName = photoFileName;
+    public void setAdjustmentID(String adjustmentID) {
+        AdjustmentID = adjustmentID;
+    }
+
+    public String getItemTransactionID() {
+        return ItemTransactionID;
+    }
+
+    public void setItemTransactionID(String itemTransactionID) {
+        ItemTransactionID = itemTransactionID;
+    }
+
+    public String getItemID() {
+        return ItemID;
+    }
+
+    public void setItemID(String itemID) {
+        ItemID = itemID;
     }
 
     public String getDescription() {
@@ -108,59 +93,44 @@ public class AdjustmentItemApi implements Parcelable{
         Description = description;
     }
 
-    public String getReorderLevel() {
-        return ReorderLevel;
+    public String getTenderPrice() {
+        return TenderPrice;
     }
 
-    public void setReorderLevel(String reorderLevel) {
-        ReorderLevel = reorderLevel;
+    public void setTenderPrice(String tenderPrice) {
+        TenderPrice = tenderPrice;
     }
 
-    public String getReorderQuantity() {
-        return ReorderQuantity;
+    public String getActualQuantity() {
+        return ActualQuantity;
     }
 
-    public void setReorderQuantity(String reorderQuantity) {
-        ReorderQuantity = reorderQuantity;
+    public void setActualQuantity(String actualQuantity) {
+        ActualQuantity = actualQuantity;
     }
 
-    public String getBinNo() {
-        return BinNo;
+    public String getReason() {
+        return Reason;
     }
 
-    public void setBinNo(String binNo) {
-        BinNo = binNo;
+    public void setReason(String reason) {
+        Reason = reason;
     }
 
-    public String getUnitOfMeasure() {
-        return UnitOfMeasure;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setUnitOfMeasure(String unitOfMeasure) {
-        UnitOfMeasure = unitOfMeasure;
-    }
-
-    public String getIsInInventory() {
-        return IsInInventory;
-    }
-
-    public void setIsInInventory(String isInInventory) {
-        IsInInventory = isInInventory;
-    }
-
-    public String getCategoryID() {
-        return CategoryID;
-    }
-
-    public void setCategoryID(String categoryID) {
-        CategoryID = categoryID;
-    }
-
-    public String getCategoryName() {
-        return CategoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        CategoryName = categoryName;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Adjustment_ItemsID);
+        dest.writeString(AdjustmentID);
+        dest.writeString(ItemTransactionID);
+        dest.writeString(ItemID);
+        dest.writeString(Description);
+        dest.writeString(TenderPrice);
+        dest.writeString(ActualQuantity);
+        dest.writeString(Reason);
     }
 }

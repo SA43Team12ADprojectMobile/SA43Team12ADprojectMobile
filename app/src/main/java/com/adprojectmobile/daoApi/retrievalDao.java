@@ -24,7 +24,6 @@ public class retrievalDao {
     final String host= url.host;
     public List<RetrievalCollectionPoint> getAllCollectionPoint(String id){
         List<RetrievalCollectionPoint> retrievalCollectionPointList=new ArrayList<>();
-        //List<RetrievalItem> retrievalItems=new ArrayList<>();
         JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/collectionpoint?eId="+id);
 
         try {
@@ -40,7 +39,7 @@ public class retrievalDao {
                 else {
                     retrievalCollectionPoint = new RetrievalCollectionPoint(jsonCollectionPoint.getString("CollectionPointID"), jsonCollectionPoint.getString("CollectionPointName"), jsonCollectionPoint.getString("AreAllItemPrepared"));
                 }
-              //  retrievalItems.add(retrievalItem);
+
                 retrievalCollectionPointList.add(retrievalCollectionPoint);
             }
         } catch (JSONException e) {
