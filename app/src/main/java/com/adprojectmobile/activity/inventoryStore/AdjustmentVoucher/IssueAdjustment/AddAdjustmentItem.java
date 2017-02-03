@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.adjustmentItemAdapter;
 import com.adprojectmobile.adapter.itemAdapter;
+import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.dao.Dao.adjustmentItemDao;
 import com.adprojectmobile.dao.Dao.itemDao;
 import com.adprojectmobile.dao.DaoImpl.adjustmentItemDaoImpl;
@@ -33,7 +34,7 @@ public class AddAdjustmentItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjustment_issue_activity_add_adjustment_item);
 
-        final Adjustment adjustment=getIntent().getParcelableExtra("data");
+        final AdjustmentApi adjustment=getIntent().getParcelableExtra("data");
 
         final ListView itemView=(ListView)findViewById(R.id.listview_select_add_item);
         final EditText editTextSearch=(EditText) findViewById(R.id.editText_issue_search_item_code);

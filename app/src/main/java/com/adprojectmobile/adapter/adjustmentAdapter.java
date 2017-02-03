@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.apiModel.AdjustmentApi;
+import com.adprojectmobile.daoApi.adjustDao;
 import com.adprojectmobile.model.Adjustment;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 
 public class adjustmentAdapter extends ArrayAdapter<AdjustmentApi> {
+    adjustDao aDao=new adjustDao();
     private List<AdjustmentApi> adjustmentList;
     int resource;
 
@@ -38,8 +40,8 @@ public class adjustmentAdapter extends ArrayAdapter<AdjustmentApi> {
             TextView textViewDate=(TextView)v.findViewById(R.id.textView_adjustment_date);
             TextView textViewIssueBy=(TextView)v.findViewById(R.id.textView_adjustment_employeeName);
 
-            textViewDate.setText(adjustment.getDateIssued());
-            textViewIssueBy.setText(adjustment.getIssuedBy());
+            textViewDate.setText(aDao.formatJsonDate(adjustment.getDateIssued()));
+            textViewIssueBy.setText("Issued By "+ adjustment.getIssuedBy());
         }
         return v;
 

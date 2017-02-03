@@ -94,7 +94,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent" >
             <TextView
-                android:text="Qty Adjusted: "
+                android:text="Actual Qty: "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"

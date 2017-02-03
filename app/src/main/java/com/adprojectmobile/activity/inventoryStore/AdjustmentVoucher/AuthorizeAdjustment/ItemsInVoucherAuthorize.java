@@ -11,44 +11,61 @@ import android.widget.ListView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty;
 import com.adprojectmobile.adapter.adjustmentItemAdapter;
+import com.adprojectmobile.apiModel.AdjustmentApi;
+import com.adprojectmobile.apiModel.AdjustmentItemApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.dao.Dao.adjustmentItemDao;
 import com.adprojectmobile.dao.DaoImpl.adjustmentItemDaoImpl;
+import com.adprojectmobile.daoApi.adjustDao;
 import com.adprojectmobile.model.Adjustment;
 import com.adprojectmobile.model.AdjustmentItem;
+import com.adprojectmobile.model.Employee;
 
 import java.util.List;
 
 public class ItemsInVoucherAuthorize extends AppCompatActivity {
-    adjustmentItemDao adjItemDao=new adjustmentItemDaoImpl();
+    adjustDao aDao=new adjustDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjustment_authorize_activity_items_in_voucher_authorize);
-        final Adjustment adjustment=getIntent().getParcelableExtra("data");
+        final AdjustmentApi adjustment=getIntent().getParcelableExtra("data");
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
+        final String id=getIntent().getStringExtra("id");
 
         final ListView adjustmentItemView=(ListView)findViewById(R.id.listview_adjustment_voucher_approve_itemlist);
 
-        new AsyncTask<Adjustment,Void,List<AdjustmentItem>>(){
+        new AsyncTask<AdjustmentApi,Void,List<AdjustmentItemApi>>(){
             @Override
-            protected List<AdjustmentItem> doInBackground(Adjustment...params){
-                //return adjItemDao.getAllAdjustmentItems();
-                return adjItemDao.getAdjustmentItemsByAdjustment(adjustment);
+            protected List<AdjustmentItemApi> doInBackground(AdjustmentApi...params){
+                List<AdjustmentApi> adjustmentApis = aDao.getAuthorizeVoucher(employee.getEmployeeID());
+                AdjustmentApi adjustmentApi = new AdjustmentApi();
+                for (AdjustmentApi rc :
+                        adjustmentApis) {
+                    if (rc.getAdjustmentID() != null) {
+                        if (rc.getAdjustmentID().toString().equals(id)) {
+                            adjustmentApi = rc;
+                        }
+                    }
+
+                }
+                return aDao.getAllAdjustItem(adjustmentApi);
             }
 
             @Override
-            protected void onPostExecute(List<AdjustmentItem> adjustmentItems){
-            //    adjustmentItemView.setAdapter(new adjustmentItemAdapter(getApplicationContext(),R.layout.row_adjustment_item,adjustmentItems));
+            protected void onPostExecute(List<AdjustmentItemApi> adjustmentItems){
+                adjustmentItemView.setAdapter(new adjustmentItemAdapter(getApplicationContext(),R.layout.row_adjustment_item,adjustmentItems));
             }
         }.execute();
         adjustmentItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AdjustmentItem adjustmentItem=(AdjustmentItem) parent.getAdapter().getItem(position);
+                AdjustmentItemApi adjustmentItem=(AdjustmentItemApi) parent.getAdapter().getItem(position);
 
                 Intent intent=new Intent(getApplicationContext(),ViewAdjustmentDetail.class);
                 intent.putExtra("data",adjustmentItem);
                 intent.putExtra("data1",adjustment);
-                //intent.putExtra("isAdd",false);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });

@@ -15,6 +15,7 @@ import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjust
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher;
 import com.adprojectmobile.adapter.adjustmentAdapter;
 import com.adprojectmobile.apiModel.AdjustmentApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.dao.Dao.adjustmentDao;
 import com.adprojectmobile.dao.DaoImpl.adjustmentDaoImpl;
 import com.adprojectmobile.daoApi.adjustDao;
@@ -23,20 +24,19 @@ import com.adprojectmobile.model.Adjustment;
 import java.util.List;
 
 public class AdjustmentVouchersAuthorize extends AppCompatActivity {
-    adjustmentDao adDao=new adjustmentDaoImpl();
     adjustDao aDao=new adjustDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjustment_authorize_activity_adjustment_vouchers_authorize);
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
         final ListView adjustmentView=(ListView)findViewById(R.id.listview_adjustment_voucher_for_approve);
 
         new AsyncTask<Void,Void,List<AdjustmentApi>>(){
             @Override
             protected List<AdjustmentApi> doInBackground(Void...params){
-               // return aDao.getAllAdjustments();
-                return null;
+                return aDao.getAuthorizeVoucher(employee.getEmployeeID());
             }
 
             @Override
@@ -48,10 +48,12 @@ public class AdjustmentVouchersAuthorize extends AppCompatActivity {
         adjustmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Adjustment adjustment=(Adjustment) parent.getAdapter().getItem(position);
+                AdjustmentApi adjustment=(AdjustmentApi) parent.getAdapter().getItem(position);
 
                 Intent intent=new Intent(getApplicationContext(), ItemsInVoucherAuthorize.class);
                 intent.putExtra("data",adjustment);
+                intent.putExtra("role",employee);
+                intent.putExtra("id",adjustment.getAdjustmentID());
                 startActivity(intent);
             }
         });

@@ -52,8 +52,8 @@ public class AdjustItemQty extends AppCompatActivity {
             if(adjustmentItem!=null){
                 editTextItemCode.setText(adjustmentItem.getItemID());
                 editTextItemName.setText(adjustmentItem.getDescription());
-                editTextQty.setText(adjustmentItem.getActualQuantity());
-                editTextReason.setText(adjustmentItem.getReason());
+               // editTextQty.setText(adjustmentItem.getActualQuantity());
+                //editTextReason.setText(adjustmentItem.getReason());
             }
 
         }

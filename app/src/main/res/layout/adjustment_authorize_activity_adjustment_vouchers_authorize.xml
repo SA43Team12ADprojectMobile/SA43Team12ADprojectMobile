@@ -24,7 +24,7 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/listview_adjustment_voucher_for_approve"
         android:background="@android:color/background_light"
         android:textColor="@color/colorAccent"

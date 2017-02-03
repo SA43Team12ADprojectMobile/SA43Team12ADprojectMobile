@@ -19,7 +19,7 @@ public class ManagerMainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_main_page);
 
-        EmployeeApi employeeApi=getIntent().getParcelableExtra("role");
+        final EmployeeApi employeeApi=getIntent().getParcelableExtra("role");
 
         TextView textViewWelcome=(TextView)findViewById(R.id.textView_welcome_storemanager);
         textViewWelcome.setText("Welcome "+employeeApi.getName());
@@ -31,6 +31,7 @@ public class ManagerMainPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), AdjustmentVouchersAuthorize.class);
+                intent.putExtra("role",employeeApi);
                 startActivity(intent);
             }
         });

@@ -72,15 +72,19 @@ public class Login extends AppCompatActivity {
                         String today=aDao.parseDate(new Date());
                         Log.e("date",today);
                         Boolean check=false;
-                        if(employeeApi.getDelegationStartDate()!=null&&employeeApi.getDelegationEndDate()!=null){
-                            check=aDao.checkDate(employeeApi.getDelegationStartDate(),employeeApi.getDelegationEndDate());
-                            Log.e("check",check.toString());
-                        }
+
+
 
                         if(employeeApi==null){
                             Toast.makeText(getApplicationContext(),"Invalid UserId or Password",Toast.LENGTH_LONG).show();
                         }
                         else {
+                            if (employeeApi.getEmployeeID()!=null){
+                                if(employeeApi.getDelegationStartDate()!=null&&employeeApi.getDelegationEndDate()!=null){
+                                    check=aDao.checkDate(employeeApi.getDelegationStartDate(),employeeApi.getDelegationEndDate());
+                                    Log.e("check",check.toString());
+                                }
+                            }
                             EmployeeApi employee=employeeApi;
                             Log.e("Dep",employee.getDepartmentName());
                             if (employeeApi.getPosition().equals("Head")){

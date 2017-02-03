@@ -85,4 +85,9 @@ public class authenticationDao {
             return false;
         }
     }
+
+    public String formatJsonDate(String d){
+        String date=d.substring(0,10);
+        return date;
+    }
 }

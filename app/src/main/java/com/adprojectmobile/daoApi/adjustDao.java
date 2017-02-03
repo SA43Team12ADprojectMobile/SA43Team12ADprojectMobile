@@ -67,6 +67,34 @@ public class adjustDao {
         }
         return adjustmentItemApis;
     }
+    public List<AdjustmentApi> getAuthorizeVoucher(String empId){
+        List<AdjustmentApi> adjustmentApis=new ArrayList<>();
+        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/authorizeadjustment/"+empId);
+
+        try {
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonAdjustment=jsonArray.getJSONObject(i);
+                JSONArray adjustItemJson=new JSONArray();
+                AdjustmentApi adjustment=new AdjustmentApi();
+                if (jsonAdjustment.getString("AdjustmentItems")!="null") {
+                    adjustItemJson = jsonAdjustment.getJSONArray("AdjustmentItems");
+                    adjustment = new AdjustmentApi(jsonAdjustment.getString("AdjustmentID"),jsonAdjustment.getString("DateIssued"),jsonAdjustment.getString("IssuedBy"),jsonAdjustment.getString("ApprovedBy"),adjustItemJson);
+                    Log.e("AdjustJson",jsonAdjustment.toString());
+                    Log.e("ItemJson",adjustItemJson.toString());
+                }
+                else {
+                    adjustment = new AdjustmentApi(jsonAdjustment.getString("AdjustmentID"),jsonAdjustment.getString("DateIssued"),jsonAdjustment.getString("IssuedBy"),jsonAdjustment.getString("ApprovedBy"));
+                    Log.e("AdjustJson",jsonAdjustment.toString());
+                    Log.e("ItemJson",adjustItemJson.toString());
+                }
+
+                adjustmentApis.add(adjustment);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return adjustmentApis;
+    }
 
     public List<AdjustmentItemApi> getAdjustItemById(String id){
         return null;
@@ -75,5 +103,10 @@ public class adjustDao {
     public void createNewVoucher(){}
     public void deleteVoucher(){}
     public void authorizeVoucher(){}
+
+    public String formatJsonDate(String d){
+        String date=d.substring(0,10);
+        return date;
+    }
 
 }

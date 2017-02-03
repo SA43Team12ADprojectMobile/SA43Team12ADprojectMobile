@@ -78,6 +78,7 @@ public class ItemsVoucherIssue extends AppCompatActivity {
 
         Button btnCreateNew=(Button)findViewById(R.id.btn_add_new_item);
         Button btnDelete=(Button)findViewById(R.id.btn_delete_voucher);
+        Button btnSubmit=(Button)findViewById(R.id.btn_submit_voucher);
 
         btnCreateNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +90,12 @@ public class ItemsVoucherIssue extends AppCompatActivity {
             }
         });
         btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
