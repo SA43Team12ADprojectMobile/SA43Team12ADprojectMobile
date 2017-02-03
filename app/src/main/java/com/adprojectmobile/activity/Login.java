@@ -28,6 +28,10 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Login extends AppCompatActivity {
     String host=url.host;
     @Override
@@ -65,6 +69,13 @@ public class Login extends AppCompatActivity {
                     @Override
                     protected void onPostExecute(EmployeeApi employeeApi){
                         Intent intent;
+                        String today=aDao.parseDate(new Date());
+                        Log.e("date",today);
+                        Boolean check=false;
+                        if(employeeApi.getDelegationStartDate()!=null&&employeeApi.getDelegationEndDate()!=null){
+                            check=aDao.checkDate(employeeApi.getDelegationStartDate(),employeeApi.getDelegationEndDate());
+                            Log.e("check",check.toString());
+                        }
 
                         if(employeeApi==null){
                             Toast.makeText(getApplicationContext(),"Invalid UserId or Password",Toast.LENGTH_LONG).show();
@@ -79,7 +90,7 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                             }
-                            else if (employeeApi.getPosition().equals("Representative")&&employeeApi.getIsDelegated().contains("true")){
+                            else if (employeeApi.getPosition().equals("Representative")&&employeeApi.getIsDelegated().contains("true")&&check){
                                 intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
                                 intent.putExtra("role",employee);
                                 Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
@@ -91,7 +102,7 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
                                 startActivity(intent);
                             }
-                            else if (employeeApi.getIsDelegated().contains("true")&&employeeApi.getPosition().equals("Employee")){
+                            else if (employeeApi.getIsDelegated().contains("true")&&employeeApi.getPosition().equals("Employee")&&check){
                                 intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
                                 intent.putExtra("role",employee);
                                 Toast.makeText(getApplicationContext(),"Welcome "+employee.getName(),Toast.LENGTH_LONG).show();
