@@ -131,10 +131,46 @@ public class adjustDao {
         }
         return itemApis;
     }
-    public void saveAdjustment(){}
-    public void createNewVoucher(){}
+
+    public void createNewVoucher(){
+
+    }
     public void deleteVoucher(){}
-    public void authorizeVoucher(){}
+
+    public void approveVoucher(String empId,String adjustId){
+        JSONObject jAdj=new JSONObject();
+        try {
+            jAdj.put("AdjustmentID", adjustId);
+            jAdj.put("ApprovementStatus","Approved");
+            Log.e("JAdj",jAdj.toString());
+        }catch (Exception e){
+        }
+        JSONPaser.postStream(host+"/authorizeadjustment/"+empId,jAdj.toString());
+    }
+
+    public void rejectVoucher(String empId,String adjustId){
+        JSONObject jAdj=new JSONObject();
+        try {
+            jAdj.put("AdjustmentID", adjustId);
+            jAdj.put("ApprovementStatus","Rejected");
+            Log.e("JAdj",jAdj.toString());
+        }catch (Exception e){
+        }
+        JSONPaser.postStream(host+"/authorizeadjustment/"+empId,jAdj.toString());
+    }
+
+    public void addNewItemIntoVoucher(String empId, String itemId, String actualQty,String adjustId,String reason){
+        JSONObject jItem=new JSONObject();
+        try {
+            jItem.put("ItemID", itemId);
+            jItem.put("ActualQuantity",actualQty);
+            jItem.put("AdjustmentID", adjustId);
+            jItem.put("Reason", reason);
+            Log.e("jItem",jItem.toString());
+        }catch (Exception e){
+        }
+        JSONPaser.postStream(host+"/adjustmentitems/"+empId,jItem.toString());
+    }
 
     public String formatJsonDate(String d){
         String date=d.substring(0,10);

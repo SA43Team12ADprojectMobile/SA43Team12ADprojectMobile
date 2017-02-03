@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.adprojectmobile.R;
@@ -47,7 +48,6 @@ public class ItemsInVoucherAuthorize extends AppCompatActivity {
                             adjustmentApi = rc;
                         }
                     }
-
                 }
                 return aDao.getAllAdjustItem(adjustmentApi);
             }
@@ -65,6 +65,39 @@ public class ItemsInVoucherAuthorize extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),ViewAdjustmentDetail.class);
                 intent.putExtra("data",adjustmentItem);
                 intent.putExtra("data1",adjustment);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
+
+        Button btnApprove=(Button)findViewById(R.id.btn_voucher_authorize);
+        btnApprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        aDao.approveVoucher(employee.getEmployeeID(),adjustment.getAdjustmentID());
+                        return null;
+                    }
+                }.execute();
+                Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersAuthorize.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
+        Button btnReject=(Button)findViewById(R.id.btn_voucher_reject);
+        btnReject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        aDao.rejectVoucher(employee.getEmployeeID(),adjustment.getAdjustmentID());
+                        return null;
+                    }
+                }.execute();
+                Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersAuthorize.class);
                 intent.putExtra("role",employee);
                 startActivity(intent);
             }

@@ -37,6 +37,7 @@ public class AdjustmentVouchersForCRUD extends AppCompatActivity {
                 @Override
                 protected List<AdjustmentApi> doInBackground(Void...params){
                     return aDao.getAllAdjustment(employee.getEmployeeID());
+
                     //return null;
                 }
 

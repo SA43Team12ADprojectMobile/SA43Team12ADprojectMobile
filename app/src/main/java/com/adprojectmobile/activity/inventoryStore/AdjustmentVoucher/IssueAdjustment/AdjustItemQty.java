@@ -1,24 +1,30 @@
 package com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.AdjustmentItemApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.dao.Dao.itemDao;
 import com.adprojectmobile.dao.Dao.itemTransactionDao;
 import com.adprojectmobile.dao.DaoImpl.itemDaoImpl;
 import com.adprojectmobile.dao.DaoImpl.itemTransactionDaoImpl;
+import com.adprojectmobile.daoApi.adjustDao;
 import com.adprojectmobile.model.Adjustment;
 import com.adprojectmobile.model.AdjustmentItem;
 import com.adprojectmobile.model.Item;
 import com.adprojectmobile.model.ItemTransaction;
 
 public class AdjustItemQty extends AppCompatActivity {
+    adjustDao aDao=new adjustDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +32,16 @@ public class AdjustItemQty extends AppCompatActivity {
         setContentView(R.layout.adjustment_issue_activity_adjust_item_qty);
 
         final boolean isAdd=getIntent().getBooleanExtra("isAdd",true);
-        AdjustmentItemApi adjustmentItem=new AdjustmentItemApi();
-        if(isAdd){
-            adjustmentItem=getIntent().getParcelableExtra("data");
-        }
-        if(!isAdd){
-            adjustmentItem=getIntent().getParcelableExtra("data");
-        }
+        final AdjustmentItemApi adjustmentItem=getIntent().getParcelableExtra("data");
 
         final AdjustmentApi adjustment=getIntent().getParcelableExtra("data1");
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
 
         EditText editTextItemCode=(EditText) findViewById(R.id.editText_issue_itemAdjusted_item_code);
         EditText editTextItemName=(EditText) findViewById(R.id.editText_issue_itemAdjusted_item_name);
-        EditText editTextQty=(EditText) findViewById(R.id.editText_issue_itemAdjusted_qty);
-        EditText editTextReason=(EditText) findViewById(R.id.editText_issue_itemAdjusted_reason);
+        final EditText editTextQty=(EditText) findViewById(R.id.editText_issue_itemAdjusted_qty);
+        final EditText editTextReason=(EditText) findViewById(R.id.editText_issue_itemAdjusted_reason);
 
         if(isAdd){
             editTextItemCode.setText(adjustmentItem.getItemID());
@@ -48,21 +49,51 @@ public class AdjustItemQty extends AppCompatActivity {
         }
 
         if (!isAdd){
-
             if(adjustmentItem!=null){
                 editTextItemCode.setText(adjustmentItem.getItemID());
                 editTextItemName.setText(adjustmentItem.getDescription());
-               // editTextQty.setText(adjustmentItem.getActualQuantity());
-                //editTextReason.setText(adjustmentItem.getReason());
+                editTextQty.setText(adjustmentItem.getActualQuantity());
+                editTextReason.setText(adjustmentItem.getReason());
+                editTextQty.setEnabled(false);
+                editTextReason.setEnabled(false);
             }
 
         }
-
         Button btnSave=(Button) findViewById(R.id.btn_save_issue);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+               final String actQty=editTextQty.getText().toString();
+               final String reason=editTextReason.getText().toString();
+                if (isAdd){
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+
+                            String empId=employee.getEmployeeID();
+                            String itemId=adjustmentItem.getItemID();
+
+                            String adjustId=adjustment.getAdjustmentID();
+
+                            aDao.addNewItemIntoVoucher(empId,itemId,actQty,adjustId,reason);
+                            Toast.makeText(getApplicationContext(),"Add Item Successfully",Toast.LENGTH_LONG).show();
+
+                            Intent intent=new Intent(getApplicationContext(),ItemsVoucherIssue.class);
+                            intent.putExtra("data",adjustment);
+                            intent.putExtra("role",employee);
+                            intent.putExtra("id",adjustment.getAdjustmentID());
+                            startActivity(intent);
+                        return null;
+                        }
+
+
+                }.execute();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Can not Save for exist Item!",Toast.LENGTH_LONG).show();
+                }
+
+
             }
         });
 
@@ -70,8 +101,14 @@ public class AdjustItemQty extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                if(isAdd){
+                    Toast.makeText(getApplicationContext(),"Can not Delete when you add!",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    finish();
+                }
             }
         });
+
     }
 }
