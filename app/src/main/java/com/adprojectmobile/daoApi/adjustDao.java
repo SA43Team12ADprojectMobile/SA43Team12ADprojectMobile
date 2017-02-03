@@ -132,10 +132,15 @@ public class adjustDao {
         return itemApis;
     }
 
-    public void createNewVoucher(){
-
+    public void createNewVoucher(String eId){
+        JSONPaser.postStream(host+"/adjustments/"+eId,"");
     }
-    public void deleteVoucher(){}
+
+    public void deleteVoucher(String adjustId){
+        JSONPaser.postStream(host+"/adjustment/delete/"+adjustId,"");
+    }
+
+    public void deleteItemInVouchet(){}
 
     public void approveVoucher(String empId,String adjustId){
         JSONObject jAdj=new JSONObject();

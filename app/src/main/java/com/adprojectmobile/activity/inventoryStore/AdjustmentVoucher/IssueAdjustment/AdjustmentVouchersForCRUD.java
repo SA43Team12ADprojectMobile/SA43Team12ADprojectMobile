@@ -1,7 +1,9 @@
 package com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -64,7 +66,15 @@ public class AdjustmentVouchersForCRUD extends AppCompatActivity {
         btnCreateVoucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),CreateNewVoucher.class);
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        aDao.createNewVoucher(employee.EmployeeID);
+                        return null;
+                    }
+                }.execute();
+
+                Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersForCRUD.class);
                 intent.putExtra("role",employee);
                 startActivity(intent);
             }

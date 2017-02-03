@@ -58,7 +58,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="none"
                 android:ems="10"
                 android:layout_weight="1"
                 android:id="@+id/editText_delegate_employeeName"
@@ -92,14 +92,14 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="1"
                 android:id="@+id/editText_delegate_status"
                 android:enabled="false"
                 android:clickable="false"
                 android:longClickable="false"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:inputType="none" />
         </TableRow>
 
         <TableRow

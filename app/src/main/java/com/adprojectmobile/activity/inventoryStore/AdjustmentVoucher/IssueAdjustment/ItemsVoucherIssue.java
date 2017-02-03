@@ -94,7 +94,17 @@ public class ItemsVoucherIssue extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        aDao.deleteVoucher(adjustment.getAdjustmentID());
+                        return null;
+                    }
+                }.execute();
+                Toast.makeText(getApplicationContext(),"Delete Success",Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersForCRUD.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
             }
         });
 

@@ -40,8 +40,17 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
         final RequisitionApi requisition = getIntent().getParcelableExtra("requisition");
         final String id=getIntent().getStringExtra("data");
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
-        final String empId=employee.getEmployeeID();
         final String reqId=requisition.getId();
+
+        final String eid=getIntent().getStringExtra("eid");
+        String employeeId=new String();
+        if (employee.getPosition().equals("Employee")||employee.getPosition().equals("Representative")){
+            employeeId=eid;
+        }
+        else {
+            employeeId=employee.getEmployeeID();
+        }
+        final String empId=employeeId;
         // Toast.makeText(getApplicationContext(),requisition.getRequisitionDate().toString(),Toast.LENGTH_LONG).show();
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_approve_requisitions_items);

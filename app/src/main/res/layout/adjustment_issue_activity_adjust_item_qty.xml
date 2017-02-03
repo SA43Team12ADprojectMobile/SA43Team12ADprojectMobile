@@ -105,7 +105,6 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_weight="1"
                 android:id="@+id/editText_issue_itemAdjusted_qty"
@@ -113,7 +112,8 @@
                 android:clickable="true"
                 android:longClickable="true"
                 android:hint="Input Quantity"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:inputType="number" />
         </TableRow>
 
 
