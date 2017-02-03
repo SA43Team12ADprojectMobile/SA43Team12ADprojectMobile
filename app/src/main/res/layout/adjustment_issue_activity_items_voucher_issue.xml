@@ -25,8 +25,8 @@
 
     <ListView
 
-        android:layout_width="wrap_content"
-        android:layout_height="325dp"
+        android:layout_width="match_parent"
+        android:layout_height="359dp"
         android:id="@+id/listview_adjustment_voucher_issue_itemlist"
         android:background="@android:color/background_light"
         android:textColor="@color/colorAccent"
@@ -35,29 +35,50 @@
         style="@style/Widget.AppCompat.ListView.Menu"
         android:contextClickable="false"
         android:elevation="1dp"
-        android:layout_weight="2.63" />
-
+        android:layout_weight="0.34" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="horizontal" >
 
         <Button
-            android:text="Add New Adjustment Item"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:text="Add Item"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
             android:id="@+id/btn_add_new_item"
             android:background="@android:color/holo_green_dark"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:paddingBottom="15dp" />
 
         <Button
-            android:text="Delete This Voucher"
-            android:layout_width="match_parent"
+            android:text="Delete"
+            android:layout_width="wrap_content"
             android:id="@+id/btn_delete_voucher"
             android:textColor="@android:color/white"
             android:background="@android:color/holo_red_dark"
-            android:layout_height="60dp" />
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:paddingBottom="15dp"
+            android:textSize="20sp"/>
+        <Button
+            android:text="Submit"
+            android:layout_width="wrap_content"
+            android:id="@+id/btn_submit_voucher"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_purple"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:paddingBottom="15dp" />
     </LinearLayout>
 
 </LinearLayout>

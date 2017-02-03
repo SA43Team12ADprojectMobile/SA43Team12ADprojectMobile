@@ -63,7 +63,7 @@
                 android:paddingBottom="20dp"
                 android:layoutDirection="rtl"
                 android:textSize="16sp"
-                android:text="Qty Required:"
+                android:text="Actual Qty:"
                 android:layout_weight="0.8"
                 android:textColor="@android:color/black" />
 
@@ -97,7 +97,7 @@
                 android:layoutDirection="rtl"
 
                 android:textSize="16sp"
-                android:text="Qty Retrieved:"
+                android:text="Required Qty:"
                 android:textColor="@android:color/black" />
         </LinearLayout>
 

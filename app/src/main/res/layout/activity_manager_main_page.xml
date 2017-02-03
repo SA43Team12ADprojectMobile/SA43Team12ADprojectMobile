@@ -8,17 +8,6 @@
     tools:context="com.adprojectmobile.activity.inventoryStore.ManagerMainPage"
     android:background="@android:color/background_light">
 
-    <TextView
-        android:text="Welcome   "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_welcome_storemanager"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="250dp"
-        android:layout_marginTop="13dp" />
-
 
     <ImageView
         android:layout_width="wrap_content"
@@ -30,7 +19,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Authorize Adjustment"
+        android:text="Approve Adjustment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="61dp"
@@ -40,5 +29,17 @@
         android:textSize="20sp"
         android:layout_below="@+id/imageView6"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Welcome   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_welcome_storemanager"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -14,14 +14,14 @@
 
     <TextView
         android:text="Welcome   "
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView_welcome_departmentRepresentative"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:paddingLeft="220dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="13dp"/>
 
     <ImageView
         android:layout_width="wrap_content"

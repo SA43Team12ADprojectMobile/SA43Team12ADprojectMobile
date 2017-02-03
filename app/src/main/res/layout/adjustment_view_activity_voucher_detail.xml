@@ -151,7 +151,7 @@
             android:layout_weight="0">
 
             <TextView
-                android:text="Authorized By: "
+                android:text="Reason: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -178,7 +178,7 @@
             android:layout_weight="0"
             android:layout_height="match_parent" >
             <TextView
-                android:text="Reason: "
+                android:text="Approval Status: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
