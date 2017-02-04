@@ -103,7 +103,6 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:inputType="textPersonName"
                 android:hint="Input retrieved quantity"
                 android:ems="10"
                 android:layout_weight="1"
@@ -112,7 +111,8 @@
                 android:clickable="true"
                 android:longClickable="true"
                 android:textSize="20sp"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:inputType="number" />
 
         </TableRow>
 

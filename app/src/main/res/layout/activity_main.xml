@@ -10,83 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.adprojectmobile.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test Link" />
-
-    <Button
-        android:text="To Test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:id="@+id/btn_toTestCollectionList"
-
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="test button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_forTest"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Acknowledge Delivery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_toDelivery_firstPage"
-        android:layout_below="@+id/btn_toRetrieval_firstPage"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Read|Update Stationery Retrieval Form"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_toRetrieval_firstPage"
-        android:layout_below="@+id/btn_toTestCollectionList"
-        android:layout_alignParentStart="true" />
 
     <Button
         android:text="Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/btn_toLogin" />
-
-    <Button
-        android:text="Approve Stationery Requisition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:id="@+id/btn_approve_requisition"
-        android:layout_below="@+id/btn_toAdjustmentMainPage"
-        android:layout_alignEnd="@+id/btn_toRetrieval_firstPage" />
-
-    <Button
-        android:text="Adjustment Voucher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_toAdjustmentMainPage"
+        android:id="@+id/btn_toLogin"
         android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/btn_toDelivery_firstPage" />
-
-    <Button
-        android:text="Confirm Delivery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_forTest"
-        android:layout_marginBottom="16dp"
-        android:id="@+id/btn_confirm_disbursements" />
-
-    <Button
-        android:text="Delegate|Revoke Store Authority"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_toDelivery_firstPage"
         android:layout_alignParentStart="true"
-        android:id="@+id/btn_to_Delegate" />
+        android:layout_marginStart="75dp" />
 
 </RelativeLayout>

@@ -76,7 +76,7 @@ public class AdjustItemQty extends AppCompatActivity {
                             String adjustId=adjustment.getAdjustmentID();
 
                             aDao.addNewItemIntoVoucher(empId,itemId,actQty,adjustId,reason);
-                            Toast.makeText(getApplicationContext(),"Add Item Successfully",Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getApplicationContext(),"Add Item Successfully",Toast.LENGTH_LONG).show();
 
                             Intent intent=new Intent(getApplicationContext(),ItemsVoucherIssue.class);
                             intent.putExtra("data",adjustment);

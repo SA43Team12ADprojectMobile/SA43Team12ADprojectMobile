@@ -33,33 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(getApplicationContext(),Login.class);
         startActivity(intent);
 
-        Button btnToTestCollectionPoint=(Button)findViewById(R.id.btn_toTestCollectionList);
-        btnToTestCollectionPoint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,testCollectionList.class);
-                startActivity(intent);
-            }
-        });
 
-        Button btnToCollectionPoint=(Button)findViewById(R.id.btn_toRetrieval_firstPage);
-        btnToCollectionPoint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,CollectionPoints.class);
-                startActivity(intent);
-            }
-        });
-
-
-        Button btnToDelivery=(Button)findViewById(R.id.btn_toDelivery_firstPage);
-        btnToDelivery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
-                startActivity(intent);
-            }
-        });
 
         Button btnLogin=(Button)findViewById(R.id.btn_toLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -70,48 +44,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnToAdjust=(Button)findViewById(R.id.btn_toAdjustmentMainPage);
-        btnToAdjust.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,AdjustmentMainPage.class);
-                startActivity(intent);
-            }
-        });
-
-        Button btnToTest=(Button)findViewById(R.id.btn_forTest);
-        btnToTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,AdjustmentVouchersForCRUD.class);
-                startActivity(intent);
-            }
-        });
-
-        Button btnApprove=(Button)findViewById(R.id.btn_approve_requisition);
-        btnApprove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,Requisitions.class);
-                startActivity(intent);
-            }
-        });
-        Button btnConfirmDisbursements =(Button)findViewById(R.id.btn_confirm_disbursements);
-        btnConfirmDisbursements.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, Disbursements.class);
-                startActivity(intent);
-            }
-
-        });
-        Button btnToDelegate=(Button)findViewById(R.id.btn_to_Delegate);
-        btnToDelegate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, FindEmployee.class);
-                startActivity(intent);
-            }
-        });
     }
 }

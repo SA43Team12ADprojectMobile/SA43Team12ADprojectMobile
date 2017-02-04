@@ -105,9 +105,10 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:ems="10"
                 android:layout_weight="1"
+                android:maxLines="1"
                 android:id="@+id/editText_issue_itemAdjusted_qty"
                 android:enabled="true"
                 android:clickable="true"
@@ -162,7 +163,8 @@
             android:layout_gravity="bottom"
             android:id="@+id/btn_delete_issue"
             android:background="@android:color/holo_red_dark"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="20sp"/>
 
         <Button
             android:text="SAVE"
@@ -173,7 +175,8 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_gravity="bottom"
             android:background="@android:color/holo_green_dark"
-            android:layout_weight="0.90" />
+            android:layout_weight="0.90"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
