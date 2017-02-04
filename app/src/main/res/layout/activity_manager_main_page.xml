@@ -30,6 +30,18 @@
         android:layout_below="@+id/imageView6"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/btn_manager_logout"
+        android:background="@android:color/holo_purple"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="19dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/textView_welcome_storemanager" />
+
     <TextView
         android:text="Welcome   "
         android:layout_width="wrap_content"
@@ -37,9 +49,9 @@
         android:id="@+id/textView_welcome_storemanager"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="11dp" />
 
 </RelativeLayout>
