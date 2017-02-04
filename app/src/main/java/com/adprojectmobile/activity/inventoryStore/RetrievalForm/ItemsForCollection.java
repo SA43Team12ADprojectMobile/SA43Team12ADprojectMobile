@@ -106,7 +106,7 @@ public class ItemsForCollection extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Already Prepared",Toast.LENGTH_LONG).show();
                 }
                 else if(checkBoxPrepared.isChecked()){
-                    Boolean isAdjustExist=false;
+                    Boolean isAdjustExist=true;
 
                     new AsyncTask<String, Void, Void>() {
                         @Override

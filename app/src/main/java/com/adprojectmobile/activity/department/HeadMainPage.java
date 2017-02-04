@@ -69,6 +69,7 @@ public class HeadMainPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), Requisitions.class);
                 intent.putExtra("role",employeeApi);
+                intent.putExtra("password",password);
                 startActivity(intent);
             }
         });

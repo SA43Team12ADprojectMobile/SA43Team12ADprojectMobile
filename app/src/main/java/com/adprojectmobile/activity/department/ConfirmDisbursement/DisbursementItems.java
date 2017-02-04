@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.department.EmployeeMainPage;
+import com.adprojectmobile.activity.department.RepresentativeMainPage;
 import com.adprojectmobile.adapter.disbursementItemAdapter;
 import com.adprojectmobile.adapter.requisitionItemForApprovalAdapter;
 import com.adprojectmobile.apiModel.DisbursementApi;
@@ -87,6 +90,24 @@ public class DisbursementItems extends AppCompatActivity {
                     Intent intent=new Intent(getApplicationContext(),Disbursements.class);
                     intent.putExtra("role",employee);
                     startActivity(intent);
+
+            }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_confirm_disbursementItems);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (employee.getIsDelegated().equals("true")){
+                    Intent intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent=new Intent(getApplicationContext(), RepresentativeMainPage.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+                }
 
             }
         });

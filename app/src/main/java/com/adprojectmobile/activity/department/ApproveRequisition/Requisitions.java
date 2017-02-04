@@ -8,8 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.department.EmployeeMainPage;
+import com.adprojectmobile.activity.department.HeadMainPage;
+import com.adprojectmobile.activity.department.RepresentativeMainPage;
 import com.adprojectmobile.activity.inventoryStore.DeliveryInformation.RequisitionItems;
 import com.adprojectmobile.adapter.disbursementAdapter;
 import com.adprojectmobile.adapter.requisitionAdapter;
@@ -37,6 +41,13 @@ public class Requisitions extends AppCompatActivity {
         setContentView(R.layout.approve_req_activity_requisitions);
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
         final String eid=getIntent().getStringExtra("eid");
+
+        String pass=new String();
+        if (employee.getPosition().equals("Head")){
+            pass=getIntent().getStringExtra("password");
+        }
+       final  String password=pass;
+
         Log.e("isDelegated",employee.getIsDelegated());
         String empId=new String();
         if (employee.getPosition().equals("Employee")||employee.getPosition().equals("Representative")){
@@ -74,7 +85,27 @@ public class Requisitions extends AppCompatActivity {
                 intent.putExtra("data",requisition.getId());
                 intent.putExtra("role",employee);
                 intent.putExtra("eid",eid);
+                intent.putExtra("password",password);
                 startActivity(intent);
+            }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_requisitionList);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (employee.getIsDelegated().equals("true")){
+                        Intent intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
+                        intent.putExtra("role",employee);
+                        startActivity(intent);
+                }
+                else {
+                    Intent intent=new Intent(getApplicationContext(), HeadMainPage.class);
+                    intent.putExtra("role",employee);
+                    intent.putExtra("password",password);
+                    startActivity(intent);
+                }
+
             }
         });
     }

@@ -76,6 +76,26 @@ public class AddAdjustmentItem extends AppCompatActivity {
 
             }
         });
+
+        Button btnReset=(Button)findViewById(R.id.btn_reset_item);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncTask<Void,Void,List<AdjustmentItemApi>>(){
+                    @Override
+                    protected List<AdjustmentItemApi> doInBackground(Void...params){
+
+                        return aDao.getAllItemsForAdd();
+                    }
+
+                    @Override
+                    protected void onPostExecute(List<AdjustmentItemApi> items){
+                        itemView.setAdapter(new itemListAdapter(getApplicationContext(),R.layout.row_adjustment_item,items));
+                    }
+                }.execute();
+            }
+        });
+
         itemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
