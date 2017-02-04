@@ -8,18 +8,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.collectionAdapter;
 import com.adprojectmobile.adapter.departmentAdapter;
 import com.adprojectmobile.apiModel.DeliveryDisbursement;
 import com.adprojectmobile.apiModel.DepartmentApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.dao.Dao.departmentDao;
 import com.adprojectmobile.dao.DaoImpl.departmentDaoImpl;
 import com.adprojectmobile.daoApi.deliveryDao;
 import com.adprojectmobile.model.CollectionPoint;
 import com.adprojectmobile.model.Department;
+import com.adprojectmobile.model.Employee;
 
 import java.util.List;
 
@@ -32,6 +36,7 @@ public class DepartmentsInCollection extends AppCompatActivity {
         setContentView(R.layout.delivery_information_activity_departments_in_collection);
         //final CollectionPoint collectionPoint=getIntent().getParcelableExtra("data");
           final DeliveryDisbursement deliveryDisbursement=getIntent().getParcelableExtra("data");
+          final EmployeeApi employee=getIntent().getParcelableExtra("role");
         Log.e("delivery",deliveryDisbursement.getCollectionPointName());
 
         final ListView departmentView =(ListView)findViewById(R.id.listview_delivery_department);
@@ -59,10 +64,20 @@ public class DepartmentsInCollection extends AppCompatActivity {
                 intent.putExtra("data",department);
                 intent.putExtra("id",department.getDepartmentID());
                 intent.putExtra("dis",deliveryDisbursement);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });
 
+        TextView title=(TextView)findViewById(R.id.textView_title_acknowledgeDisbursements_departments);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
 
     }
 }

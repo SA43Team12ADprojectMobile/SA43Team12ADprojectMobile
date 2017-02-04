@@ -10,22 +10,18 @@ import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.apiModel.AdjustmentItemApi;
-import com.adprojectmobile.model.AdjustmentItem;
-import com.adprojectmobile.model.RequisitionItem;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 /**
- * Created by EvEr on 2017/1/24.
+ * Created by EvEr on 2017/2/4.
  */
 
-public class adjustmentItemAdapter extends ArrayAdapter<AdjustmentItemApi> {
-
+public class itemListAdapter extends ArrayAdapter<AdjustmentItemApi> {
     private List<AdjustmentItemApi> adjustmentItemList;
     int resource;
 
-    public adjustmentItemAdapter(Context context, int resource, List<AdjustmentItemApi> adjustmentItems) {
+    public itemListAdapter(Context context, int resource, List<AdjustmentItemApi> adjustmentItems) {
         super(context, resource, adjustmentItems);
         this.resource = resource;
         this.adjustmentItemList = adjustmentItems;
@@ -44,15 +40,7 @@ public class adjustmentItemAdapter extends ArrayAdapter<AdjustmentItemApi> {
             textViewCode.setText(adjustmentItem.getItemID());
             textViewName.setText(adjustmentItem.getDescription());
 
-            Double qty=Double.parseDouble( adjustmentItem.getActualQuantity());
-            Double price=Double.parseDouble(adjustmentItem.getTenderPrice());
-            Double totalPrice=qty*price;
-            DecimalFormat df=new DecimalFormat("0.00");
-
-            String tprice=df.format(totalPrice);
-
-
-            textViewPrice.setText("$"+tprice);
+            textViewPrice.setText("$"+adjustmentItem.getTenderPrice());
         }
         return v;
     }

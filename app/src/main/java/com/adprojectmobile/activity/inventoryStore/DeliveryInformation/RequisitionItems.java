@@ -8,13 +8,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.reqItemForDepAdapter;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
 import com.adprojectmobile.apiModel.DeliveryDisbursement;
 import com.adprojectmobile.apiModel.DepartmentApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.dao.Dao.requisitionItemDao;
 import com.adprojectmobile.dao.DaoImpl.requisitionItemDaoImpl;
@@ -37,6 +40,7 @@ public class RequisitionItems extends AppCompatActivity {
         final DepartmentApi department=getIntent().getParcelableExtra("data");
         final String id=getIntent().getStringExtra("id");
         final DeliveryDisbursement deliveryDisbursement=getIntent().getParcelableExtra("dis");
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
         Log.e("id2",id);
 
         final ListView itemList=(ListView)findViewById(R.id.listview_delivery_itemList);
@@ -98,6 +102,16 @@ public class RequisitionItems extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),"Rejected",Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_acknowledgeDisbursements_items);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });

@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.adjustmentAdapter;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.EmployeeApi;
@@ -54,6 +57,16 @@ public class AdjustmentVouchers extends AppCompatActivity {
                     intent.putExtra("data",adjustment);
                     intent.putExtra("role",employee);
                     intent.putExtra("id",adjustment.getAdjustmentID());
+                    startActivity(intent);
+                }
+            });
+
+            TextView title=(TextView)findViewById(R.id.textview_title_view_adjustmentVouchers);
+            title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                    intent.putExtra("role",employee);
                     startActivity(intent);
                 }
             });

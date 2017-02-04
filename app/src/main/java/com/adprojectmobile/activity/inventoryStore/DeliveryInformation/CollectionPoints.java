@@ -7,11 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.ConfirmCollection;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.collectionAdapter;
 import com.adprojectmobile.apiModel.DeliveryDisbursement;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.dao.Dao.collectionPointDao;
 import com.adprojectmobile.dao.DaoImpl.collectionPointDaoImpl;
 import com.adprojectmobile.daoApi.deliveryDao;
@@ -27,6 +30,7 @@ public class CollectionPoints extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delivery_information_activity_collection_points);
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
         final ListView collectionList=(ListView)findViewById(R.id.listview_delivery_collectionPoints);
 
@@ -50,10 +54,20 @@ public class CollectionPoints extends AppCompatActivity {
 
                 Intent intent=new Intent(getApplicationContext(),DepartmentsInCollection.class);
                 intent.putExtra("data",deliveryDisbursement);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });
 
+        TextView title=(TextView)findViewById(R.id.textView_title_acknowledgeDisbursements_collectionPoints);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
 
     }
 }

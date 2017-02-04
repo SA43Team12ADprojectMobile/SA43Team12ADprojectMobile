@@ -8,11 +8,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.CreateNewVoucher;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.ItemsVoucherIssue;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher;
+import com.adprojectmobile.activity.inventoryStore.ManagerMainPage;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
+import com.adprojectmobile.activity.inventoryStore.SupervisorMainPage;
 import com.adprojectmobile.adapter.adjustmentAdapter;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.EmployeeApi;
@@ -56,6 +60,30 @@ public class AdjustmentVouchersAuthorize extends AppCompatActivity {
                 intent.putExtra("id",adjustment.getAdjustmentID());
                 startActivity(intent);
             }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_authorizeAdjustment_vouchers);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                if(employee.getPosition().equals("Store Supervisor")){
+                    intent=new Intent(getApplicationContext(), SupervisorMainPage.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+                }
+                else  if(employee.getPosition().equals("Store Manager")){
+                    intent=new Intent(getApplicationContext(), ManagerMainPage.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+                }
+                else{
+
+                }
+            }
+
+
+
         });
 
     }

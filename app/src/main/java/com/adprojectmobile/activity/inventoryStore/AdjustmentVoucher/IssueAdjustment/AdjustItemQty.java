@@ -8,9 +8,11 @@ import android.text.method.NumberKeyListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.AdjustmentItemApi;
 import com.adprojectmobile.apiModel.EmployeeApi;
@@ -122,8 +124,32 @@ public class AdjustItemQty extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Can not Delete when you add!",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    finish();
+                    final String adjustItemId=adjustmentItem.getAdjustment_ItemsID();
+//                    final String adjustId=adjustment.getAdjustmentID();
+                    new AsyncTask<String, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(String... params) {
+                            aDao.deleteItemInVoucher(adjustItemId);
+                            return null;
+                        }
+                    }.execute();
+
+                    Intent intent=new Intent(getApplicationContext(),ItemsVoucherIssue.class);
+                    intent.putExtra("data",adjustment);
+                    intent.putExtra("role",employee);
+                    intent.putExtra("id",adjustment.getAdjustmentID());
+                    startActivity(intent);
                 }
+            }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_issueAdjustment_itemDetails);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
             }
         });
 

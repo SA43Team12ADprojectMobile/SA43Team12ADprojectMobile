@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RetrievalCollectionPoint;
@@ -91,6 +93,7 @@ public class ItemsForCollection extends AppCompatActivity {
                 intent.putExtra("id",id);
                 intent.putExtra("collection",retrievalCollectionPoint);
                 intent.putExtra("role",employee);
+                intent.putExtra("prepared",isPrepared);
                 startActivity(intent);
             }
         });
@@ -103,17 +106,28 @@ public class ItemsForCollection extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Already Prepared",Toast.LENGTH_LONG).show();
                 }
                 else if(checkBoxPrepared.isChecked()){
+                    Boolean isAdjustExist=false;
+
                     new AsyncTask<String, Void, Void>() {
                         @Override
                         protected Void doInBackground(String... params) {
-                            rDao.savePrepared(retrievalCollectionPoint.getCollectionPointID());
+                            String re= rDao.savePrepared(retrievalCollectionPoint.getCollectionPointID());
+                            Log.e("result",re);
                             return null;
                         }
                     }.execute();
 
-                    Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints.class);
-                    intent.putExtra("data",employee);
-                    startActivity(intent);
+                    if(isAdjustExist){
+                        Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersForCRUD.class);
+                        intent.putExtra("role",employee);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints.class);
+                        intent.putExtra("data",employee);
+                        startActivity(intent);
+                    }
+
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Sure to Save? Enable Check Box",Toast.LENGTH_LONG).show();
@@ -121,5 +135,14 @@ public class ItemsForCollection extends AppCompatActivity {
             }
         });
 
+        TextView title=(TextView)findViewById(R.id.textView_title_retrieval_disbursement_item_name);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
     }
 }
