@@ -74,6 +74,26 @@ public class FindEmployee extends AppCompatActivity {
 
             }
         });
+
+        Button btnReset =(Button)findViewById(R.id.btn_reset_employee);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncTask<Void,Void,List<EmployeeApi>>(){
+                    @Override
+                    protected List<EmployeeApi> doInBackground(Void...params){
+                        return  dDao.getEmployeeByDepartment(employeeApi.getDepartmentName());
+                        //return dDao.getAllEmployee();
+                    }
+
+                    @Override
+                    protected void onPostExecute(List<EmployeeApi> employees){
+                        employeeView.setAdapter(new employeeAdapter(getApplicationContext(),R.layout.row_employee,employees));
+                    }
+                }.execute();
+            }
+        });
+
         employeeView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
