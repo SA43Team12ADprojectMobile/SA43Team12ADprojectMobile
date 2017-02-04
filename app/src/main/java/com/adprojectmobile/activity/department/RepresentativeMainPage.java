@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.Login;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.Disbursements;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.model.Disbursement;
@@ -28,6 +29,15 @@ public class RepresentativeMainPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), Disbursements.class);
                 intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
+
+        Button btnLogout=(Button)findViewById(R.id.btn_representative_logout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
             }
         });

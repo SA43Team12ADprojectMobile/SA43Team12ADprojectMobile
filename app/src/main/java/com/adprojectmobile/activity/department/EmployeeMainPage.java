@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.Login;
 import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.Disbursements;
 import com.adprojectmobile.apiModel.EmployeeApi;
@@ -65,6 +66,15 @@ public class EmployeeMainPage extends AppCompatActivity {
                     }
                 }.execute();
 
+            }
+        });
+
+        Button btnLogout=(Button)findViewById(R.id.btn_employee_logout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
             }
         });
 
