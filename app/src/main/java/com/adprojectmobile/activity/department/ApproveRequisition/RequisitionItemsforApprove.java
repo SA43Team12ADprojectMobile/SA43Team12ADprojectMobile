@@ -83,15 +83,6 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
             }
         }.execute();
 
-//        requisitionItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                RequisitionItem requisitionItem = (RequisitionItem) parent.getAdapter().getItem(position);
-//
-//                Intent intent = new Intent(getApplicationContext(), RejectRequisition.class);
-//                intent.putExtra("data", requisitionItem);
-//                intent.putExtra("data1", requisition);
-//                startActivity(intent);
         Button btnApproveRequisition=(Button)findViewById(R.id.btn_approve_requisition);
         btnApproveRequisition.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +98,7 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Approved",Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getApplicationContext(),Requisitions.class);
                 intent.putExtra("role",employee);
+                intent.putExtra("eid",eid);
                 startActivity(intent);
             }
         });
@@ -118,6 +110,7 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
                 Intent intent=new Intent(RequisitionItemsforApprove.this, RejectRequisition.class);
                 intent.putExtra("data",requisition);
                 intent.putExtra("role",employee);
+                intent.putExtra("eid",eid);
                 startActivity(intent);
             }
         });

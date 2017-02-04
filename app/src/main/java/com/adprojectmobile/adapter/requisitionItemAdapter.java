@@ -38,11 +38,13 @@ public class requisitionItemAdapter extends ArrayAdapter<RetrievalItem> {
         RetrievalItem requisitionItems =requisitionItemList.get(position);
         if (requisitionItems!=null){
             TextView textViewItemName=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_name);
-//            TextView textViewItemCode=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_code);
+           // TextView textViewItemCode=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_code);
             TextView textViewQtyNeeded=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_qty_needed);
+            TextView textViewQtyRetr=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_qty_retrieved);
             textViewItemName.setText(requisitionItems.getName());
-          //  textViewItemCode.setText(requisitionItems.getQtyRetrieved());
+         //   textViewItemCode.setText(requisitionItems.getQtyRetrieved());
             textViewQtyNeeded.setText(requisitionItems.getQtyNeeded());
+            textViewQtyRetr.setText(requisitionItems.getQtyRetrieved());
         }
         return v;
     }
