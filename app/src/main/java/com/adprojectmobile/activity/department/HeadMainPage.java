@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.Login;
 import com.adprojectmobile.activity.department.ApproveRequisition.Requisitions;
 import com.adprojectmobile.activity.department.DelegateAuthority.DelegateAuthority;
 import com.adprojectmobile.activity.department.DelegateAuthority.FindEmployee;
@@ -70,6 +71,15 @@ public class HeadMainPage extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(), Requisitions.class);
                 intent.putExtra("role",employeeApi);
                 intent.putExtra("password",password);
+                startActivity(intent);
+            }
+        });
+
+        Button btnLogout=(Button)findViewById(R.id.btn_head_logout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
             }
         });
