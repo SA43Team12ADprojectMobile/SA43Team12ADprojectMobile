@@ -8,9 +8,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty;
+import com.adprojectmobile.activity.inventoryStore.ManagerMainPage;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
+import com.adprojectmobile.activity.inventoryStore.SupervisorMainPage;
 import com.adprojectmobile.adapter.adjustmentItemAdapter;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.AdjustmentItemApi;
@@ -100,6 +104,27 @@ public class ItemsInVoucherAuthorize extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersAuthorize.class);
                 intent.putExtra("role",employee);
                 startActivity(intent);
+            }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_authorizeAdjustment_adjustmentItems);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                if(employee.getPosition().equals("Store Supervisor")){
+                    intent=new Intent(getApplicationContext(), SupervisorMainPage.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+                }
+                else  if(employee.getPosition().equals("Store Manager")){
+                    intent=new Intent(getApplicationContext(), ManagerMainPage.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+                }
+                else{
+
+                }
             }
         });
 

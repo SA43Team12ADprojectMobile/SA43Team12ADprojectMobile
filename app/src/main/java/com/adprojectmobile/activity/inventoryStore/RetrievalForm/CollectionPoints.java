@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RetrievalCollectionPoint;
 import com.adprojectmobile.apiModel.RetrievalItem;
@@ -60,6 +62,16 @@ public class CollectionPoints extends AppCompatActivity  {
                 intent.putExtra("role",employee);
                 intent.putExtra("collection",retrievalCollectionPoint);
 
+                startActivity(intent);
+            }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textview_title_retrivalForm_disbursements);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });

@@ -73,6 +73,7 @@ public class Requisitions extends AppCompatActivity {
                 intent.putExtra("requisition", requisition);
                 intent.putExtra("data",requisition.getId());
                 intent.putExtra("role",employee);
+                intent.putExtra("eid",eid);
                 startActivity(intent);
             }
         });

@@ -76,8 +76,8 @@ public class adjustDao {
                 JSONObject jsonAdjustment=jsonArray.getJSONObject(i);
                 JSONArray adjustItemJson=new JSONArray();
                 AdjustmentApi adjustment=new AdjustmentApi();
-                if (jsonAdjustment.getString("AdjustmentItems")!="null") {
-                    adjustItemJson = jsonAdjustment.getJSONArray("AdjustmentItems");
+                if (jsonAdjustment.getString("AdjustmentItem")!="null") {
+                    adjustItemJson = jsonAdjustment.getJSONArray("AdjustmentItem");
                     adjustment = new AdjustmentApi(jsonAdjustment.getString("AdjustmentID"),jsonAdjustment.getString("DateIssued"),jsonAdjustment.getString("IssuedBy"),jsonAdjustment.getString("ApprovedBy"),adjustItemJson);
                     Log.e("AdjustJson",jsonAdjustment.toString());
                     Log.e("ItemJson",adjustItemJson.toString());
@@ -132,10 +132,18 @@ public class adjustDao {
         return itemApis;
     }
 
-    public void createNewVoucher(){
-
+    public void createNewVoucher(String eId){
+        JSONPaser.postStream(host+"/adjustments/"+eId,"");
     }
-    public void deleteVoucher(){}
+
+    public void deleteVoucher(String adjustId){
+        JSONPaser.postStream(host+"/adjustment/delete/"+adjustId,"");
+    }
+
+    public void deleteItemInVoucher(String adjustItemId){
+
+        JSONPaser.postStream(host+"/adjustmentitems/delete/"+adjustItemId,"");
+    }
 
     public void approveVoucher(String empId,String adjustId){
         JSONObject jAdj=new JSONObject();

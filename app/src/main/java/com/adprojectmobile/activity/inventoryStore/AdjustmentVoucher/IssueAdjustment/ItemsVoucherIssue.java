@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.VoucherDetail;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.adjustmentItemAdapter;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.AdjustmentItemApi;
@@ -94,7 +96,17 @@ public class ItemsVoucherIssue extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                new AsyncTask<String, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(String... params) {
+                        aDao.deleteVoucher(adjustment.getAdjustmentID());
+                        return null;
+                    }
+                }.execute();
+                Toast.makeText(getApplicationContext(),"Delete Success",Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersForCRUD.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
             }
         });
 
@@ -102,8 +114,18 @@ public class ItemsVoucherIssue extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getApplicationContext(), AdjustmentVouchersForCRUD.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_issueAdjustment_adjustmentItems);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
                 intent.putExtra("role",employee);
                 startActivity(intent);
             }

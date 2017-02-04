@@ -1,17 +1,22 @@
 package com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.adjustmentAdapter;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.EmployeeApi;
@@ -64,10 +69,30 @@ public class AdjustmentVouchersForCRUD extends AppCompatActivity {
         btnCreateVoucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),CreateNewVoucher.class);
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        aDao.createNewVoucher(employee.EmployeeID);
+                        return null;
+                    }
+                }.execute();
+
+                Toast.makeText(getApplicationContext(),"Creating Voucher, Please wait",Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersForCRUD.class);
                 intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_issueAdjustment_vouchers);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -11,8 +11,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.apiModel.DeliveryDisbursement;
 import com.adprojectmobile.apiModel.DepartmentApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.daoApi.deliveryDao;
 import com.adprojectmobile.model.Department;
@@ -28,6 +30,8 @@ deliveryDao dDao=new deliveryDao();
         final DepartmentApi department=getIntent().getParcelableExtra("data");
         final String id=getIntent().getStringExtra("id");
         final DeliveryDisbursement deliveryDisbursement=getIntent().getParcelableExtra("dis");
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
+
         List<RequisitionItemApi> t=dDao.getRequisitionItemByDisbursement(department.getItems());
 
         EditText textViewDepName=(EditText)findViewById(R.id.editText_delivery_departmentName);
@@ -46,7 +50,18 @@ deliveryDao dDao=new deliveryDao();
                 intent.putExtra("data",department);
                 intent.putExtra("id",id);
                 intent.putExtra("dis",deliveryDisbursement);
+                intent.putExtra("role",employee);
                 Log.e("id",id);
+                startActivity(intent);
+            }
+        });
+
+        TextView title=(TextView)findViewById(R.id.textView_title_acknowledgeDisbursements_departments_details);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });

@@ -16,6 +16,7 @@
         android:textColor="@android:color/white"
         android:textStyle="normal|bold"
         android:text="Items in Department"
+        android:id="@+id/textView_title_acknowledgeDisbursements_items"
         android:textAllCaps="true"
         android:gravity="center_horizontal"
         android:fitsSystemWindows="true" />

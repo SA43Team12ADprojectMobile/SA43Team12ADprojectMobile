@@ -35,6 +35,15 @@ public class RejectRequisition extends AppCompatActivity {
 
         final RequisitionApi requisition = getIntent().getParcelableExtra("data");
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
+        final String eid=getIntent().getStringExtra("eid");
+        String employeeId=new String();
+        if (employee.getPosition().equals("Employee")||employee.getPosition().equals("Representative")){
+            employeeId=eid;
+        }
+        else {
+            employeeId=employee.getEmployeeID();
+        }
+        final String emId=employeeId;
 
 
 
@@ -69,6 +78,7 @@ public class RejectRequisition extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Rejected",Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getApplicationContext(),Requisitions.class);
                 intent.putExtra("role",employee);
+                intent.putExtra("eid",eid);
                 startActivity(intent);
             }
         });

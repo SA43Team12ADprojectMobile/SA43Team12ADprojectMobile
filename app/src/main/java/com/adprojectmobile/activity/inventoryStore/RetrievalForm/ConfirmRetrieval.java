@@ -8,11 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adprojectmobile.MainActivity;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.ConfirmDisbursement.ConfirmCollection;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.apiModel.RetrievalCollectionPoint;
 import com.adprojectmobile.apiModel.RetrievalItem;
@@ -37,14 +40,11 @@ public class ConfirmRetrieval extends AppCompatActivity {
         final String cpId=getIntent().getStringExtra("id");
         final RetrievalCollectionPoint retrievalCollectionPoint=getIntent().getParcelableExtra("collection");
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
-
         final String colId=retrievalCollectionPoint.getCollectionPointID();
         Log.e("cpId",colId);
         final RetrievalItem retrievalItem = getIntent().getParcelableExtra("data");
-        //final ItemTransaction itemTransaction=requisitionItem.getItemTransaction();
-//        final Item item=itemTransaction.getItem();
+        final Boolean isPrepared =getIntent().getBooleanExtra("prepared",false);
 
-//        final EditText editTextItemCode = (EditText) findViewById(R.id.editText_itemCode_confirmCollection);
         final EditText editTextName = (EditText) findViewById(R.id.editText_itemName_confirmCollection);
         final EditText editTextQtyNeeded = (EditText) findViewById(R.id.editText_itemQtyNeeded_confirmCollection);
         final EditText editTextQtyRetri= (EditText) findViewById(R.id.editText_itemQtyRetrieval_confirmCollection);
@@ -59,30 +59,45 @@ public class ConfirmRetrieval extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-               final String itemID=retrievalItem.getId();
+                final String itemID=retrievalItem.getId();
                 final String itemName=retrievalItem.getName();
                 final String neededQty=retrievalItem.getQtyNeeded();
                 final String retriQty= editTextQtyRetri.getText().toString();
+                if(isPrepared){
+                    Toast.makeText(getApplicationContext(),"Already prepared, can't change",Toast.LENGTH_LONG).show();
+                }
 
-                new AsyncTask<String, Void, Void>() {
-                    @Override
-                    protected Void doInBackground(String... params) {
-                        rDao.updateRetrievalQty(colId,itemID,itemName,neededQty,retriQty);
-                        return null;
-                    }
-                }.execute();
+                else {
+                    new AsyncTask<String, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(String... params) {
+                            rDao.updateRetrievalQty(colId,itemID,itemName,neededQty,retriQty);
+                            return null;
+                        }
+                    }.execute();
 
-                Intent intent = new Intent(getApplicationContext(), ItemsForCollection.class);
+                    Intent intent = new Intent(getApplicationContext(), ItemsForCollection.class);
 
-                intent.putExtra("json",retrievalCollectionPoint.getCollectionPointID().toString() );
-                intent.putExtra("role",employee);
-                intent.putExtra("collection",retrievalCollectionPoint);
+                    intent.putExtra("json",retrievalCollectionPoint.getCollectionPointID().toString() );
+                    intent.putExtra("role",employee);
+                    intent.putExtra("collection",retrievalCollectionPoint);
 
-                startActivity(intent);
+                    startActivity(intent);
+                }
+
                 }
             }
         );
+
+        TextView title=(TextView)findViewById(R.id.textview_title_retrivalForm_confirmRetrieval);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
     }
 
 }

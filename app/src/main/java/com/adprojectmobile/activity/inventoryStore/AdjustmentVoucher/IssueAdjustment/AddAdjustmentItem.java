@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.adapter.adjustmentItemAdapter;
 import com.adprojectmobile.adapter.itemAdapter;
+import com.adprojectmobile.adapter.itemListAdapter;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.AdjustmentItemApi;
 import com.adprojectmobile.apiModel.EmployeeApi;
@@ -50,7 +51,7 @@ public class AddAdjustmentItem extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(List<AdjustmentItemApi> items){
-                itemView.setAdapter(new adjustmentItemAdapter(getApplicationContext(),R.layout.row_adjustment_item,items));
+                itemView.setAdapter(new itemListAdapter(getApplicationContext(),R.layout.row_adjustment_item,items));
             }
         }.execute();
 
@@ -69,7 +70,7 @@ public class AddAdjustmentItem extends AppCompatActivity {
 
                     @Override
                     protected void onPostExecute(List<AdjustmentItemApi> items){
-                        itemView.setAdapter(new adjustmentItemAdapter(getApplicationContext(),R.layout.row_adjustment_item,items));
+                        itemView.setAdapter(new itemListAdapter(getApplicationContext(),R.layout.row_adjustment_item,items));
                     }
                 }.execute();
 

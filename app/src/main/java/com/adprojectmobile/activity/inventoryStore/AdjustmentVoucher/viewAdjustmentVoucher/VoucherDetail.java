@@ -1,12 +1,17 @@
 package com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.apiModel.AdjustmentApi;
 import com.adprojectmobile.apiModel.AdjustmentItemApi;
+import com.adprojectmobile.apiModel.EmployeeApi;
 import com.adprojectmobile.dao.Dao.itemDao;
 import com.adprojectmobile.dao.Dao.itemTransactionDao;
 import com.adprojectmobile.dao.DaoImpl.itemDaoImpl;
@@ -25,6 +30,7 @@ public class VoucherDetail extends AppCompatActivity {
 
         AdjustmentItemApi adjustmentItem=getIntent().getParcelableExtra("data");
         AdjustmentApi adjustment=getIntent().getParcelableExtra("data1");
+        final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
         final EditText editTextItemCode=(EditText) findViewById(R.id.editText_itemAdjusted_item_code);
         final EditText editTextItemName=(EditText) findViewById(R.id.editText_itemAdjusted_item_name);
@@ -47,6 +53,15 @@ public class VoucherDetail extends AppCompatActivity {
             editTextItemAuthorizedBy.setText(adjustmentItem.getReason());
 
 
+        TextView title=(TextView)findViewById(R.id.textview_title_view_voucherDetails);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role",employee);
+                startActivity(intent);
+            }
+        });
 
     }
 }

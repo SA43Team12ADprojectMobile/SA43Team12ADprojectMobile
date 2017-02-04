@@ -81,13 +81,15 @@ public class retrievalDao {
 
         JSONPaser.postStream(host+"/collectionpoint/UpdateItemRetrievalQty",jRetrieval.toString());
     }
-    public void savePrepared(String collectionPointId){
+    public String savePrepared(String collectionPointId){
         JSONObject jCol=new JSONObject();
         try{
             jCol.put("CollectionPointID",collectionPointId);
 
         }catch (Exception e){}
-        JSONPaser.postStream(host+"/collectionpoint/UpdateStatusByCollectionPoint",jCol.toString());
 
+        String result=JSONPaser.postStream(host+"/collectionpoint/UpdateStatusByCollectionPoint",jCol.toString());
+
+        return result;
     }
 }
