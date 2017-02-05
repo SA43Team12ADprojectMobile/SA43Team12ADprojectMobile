@@ -22,7 +22,10 @@ public class StockClerkMainPage extends AppCompatActivity {
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
 
         TextView textViewWelcome=(TextView)findViewById(R.id.textView_welcome_storeclerk);
-        textViewWelcome.setText("Welcome "+employee.getName());
+        if(employee.getName()!=null){
+            textViewWelcome.setText("Welcome "+employee.getName());
+        }
+
 
         Button btnView=(Button)findViewById(R.id.btn_clerk_view_adjustment_voucher);
         Button btnIssue=(Button)findViewById(R.id.btn_clerk_issue_adjustment_voucher);

@@ -47,6 +47,9 @@ public class adjustmentItemAdapter extends ArrayAdapter<AdjustmentItemApi> {
             Double qty=Double.parseDouble( adjustmentItem.getActualQuantity());
             Double price=Double.parseDouble(adjustmentItem.getTenderPrice());
             Double totalPrice=qty*price;
+            if (totalPrice<0){
+                totalPrice=-totalPrice;
+            }
             DecimalFormat df=new DecimalFormat("0.00");
 
             String tprice=df.format(totalPrice);
