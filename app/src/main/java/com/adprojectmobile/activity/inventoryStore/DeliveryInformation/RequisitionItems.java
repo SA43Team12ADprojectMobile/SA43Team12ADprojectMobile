@@ -78,30 +78,35 @@ public class RequisitionItems extends AppCompatActivity {
             public void onClick(View v) {
                 Boolean isAdjustExist=true;
 
-                new AsyncTask<String, Void, Void>() {
+                new AsyncTask<String, Void, String>() {
                     @Override
-                    protected Void doInBackground(String... params) {
-                        dDao.acknowledgeDelivery(deliveryDisbursement);
-                        return null;
+                    protected String doInBackground(String... params) {
+                        String result=dDao.acknowledgeDelivery(deliveryDisbursement);
+
+                        return result;
+                    }
+                    @Override
+                    protected void onPostExecute(String result){
+                        if(result.contains("t")){
+
+                            Intent intent=new Intent(getApplicationContext(),AdjustmentVouchers.class);
+                            intent.putExtra("role",employee);
+                            startActivity(intent);
+
+                        }else {
+
+                            Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
+                            intent.putExtra("role",employee);
+                            startActivity(intent);
+                        }
                     }
                 }.execute();
 
                 Toast.makeText(getApplicationContext(),"Acknowledge Success",Toast.LENGTH_LONG).show();
 
-                if(isAdjustExist){
-
-                    Intent intent=new Intent(getApplicationContext(),AdjustmentVouchers.class);
-                    intent.putExtra("role",employee);
-                    startActivity(intent);
-
-                }else {
-
-                    Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
-                    intent.putExtra("role",employee);
-                    startActivity(intent);
-                }
             }
         });
+
         btnReject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

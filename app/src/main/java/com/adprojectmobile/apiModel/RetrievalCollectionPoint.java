@@ -16,24 +16,44 @@ public class RetrievalCollectionPoint implements Parcelable{
     private String collectionPointName;
    private JSONArray itemJson;
     private String prepared;
+    private String date;
 
-    public RetrievalCollectionPoint(String collectionPointID, String collectionPointName, JSONArray itemJson, String prepared) {
+    public RetrievalCollectionPoint(String collectionPointID, String collectionPointName, JSONArray itemJson, String prepared, String date) {
         this.collectionPointID = collectionPointID;
         this.collectionPointName = collectionPointName;
         this.itemJson = itemJson;
         this.prepared = prepared;
+        this.date = date;
     }
 
-    public RetrievalCollectionPoint(String collectionPointID, String collectionPointName, String prepared) {
+    public RetrievalCollectionPoint(String collectionPointID, String collectionPointName, String prepared, String date) {
         this.collectionPointID = collectionPointID;
         this.collectionPointName = collectionPointName;
         this.prepared = prepared;
+        this.date = date;
+    }
+
+    public RetrievalCollectionPoint() {
     }
 
     protected RetrievalCollectionPoint(Parcel in) {
         collectionPointID = in.readString();
         collectionPointName = in.readString();
         prepared = in.readString();
+        date = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(collectionPointID);
+        dest.writeString(collectionPointName);
+        dest.writeString(prepared);
+        dest.writeString(date);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<RetrievalCollectionPoint> CREATOR = new Creator<RetrievalCollectionPoint>() {
@@ -64,11 +84,7 @@ public class RetrievalCollectionPoint implements Parcelable{
         this.collectionPointName = collectionPointName;
     }
 
-    public RetrievalCollectionPoint() {
-    }
-
     public JSONArray getItemJson() {
-
         return itemJson;
     }
 
@@ -84,15 +100,11 @@ public class RetrievalCollectionPoint implements Parcelable{
         this.prepared = prepared;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getDate() {
+        return date;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(collectionPointID);
-        dest.writeString(collectionPointName);
-        dest.writeString(prepared);
+    public void setDate(String date) {
+        this.date = date;
     }
 }

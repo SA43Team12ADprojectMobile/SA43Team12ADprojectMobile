@@ -47,7 +47,7 @@ public class ItemsForCollection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieval_form_activity_collection_items);
         final EmployeeApi employee=getIntent().getParcelableExtra("role");
-        final String id = getIntent().getStringExtra("json");
+        final String id = getIntent().getStringExtra("id");
         final RetrievalCollectionPoint retrievalCollectionPoint=getIntent().getParcelableExtra("collection");
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_retrieval_disbursement_items);
@@ -66,15 +66,14 @@ public class ItemsForCollection extends AppCompatActivity {
                 RetrievalCollectionPoint retrievalCP = new RetrievalCollectionPoint();
                 for (RetrievalCollectionPoint rc :
                         collectionPoints) {
-                    if (rc.getCollectionPointID() != null) {
-                        if (rc.getCollectionPointID().toString().equals(id)) {
+                        if (rc.getCollectionPointID().equals(id)&&rc.getDate().equals(retrievalCollectionPoint.getDate())) {
                                 retrievalCP = rc;
-                        }
+                            Log.e("rc",rc.getCollectionPointID());
                     }
-
                 }
 
-                final List<RetrievalItem> retrievalItems = rDao.getItemsByCollection(retrievalCP);
+                //Log.e("retrival",retrievalCP.getCollectionPointID());
+                final List<RetrievalItem> retrievalItems = rDao.getItemsByCollection(retrievalCP.getItemJson());
                 return retrievalItems;
             }
 
@@ -109,26 +108,27 @@ public class ItemsForCollection extends AppCompatActivity {
                 else if(checkBoxPrepared.isChecked()){
                     Boolean isAdjustExist=true;
 
-                    new AsyncTask<String, Void, Void>() {
+                    new AsyncTask<String, Void, String>() {
                         @Override
-                        protected Void doInBackground(String... params) {
+                        protected String doInBackground(String... params) {
                             String re= rDao.savePrepared(retrievalCollectionPoint.getCollectionPointID());
                             Log.e("result",re);
-                            return null;
+                            return re;
+                        }
+                        @Override
+                        protected void onPostExecute(String result){
+                            if(result.contains("t")){
+                                Intent intent=new Intent(getApplicationContext(),AdjustmentVouchers.class);
+                                intent.putExtra("role",employee);
+                                startActivity(intent);
+                            }
+                            else {
+                                Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints.class);
+                                intent.putExtra("data",employee);
+                                startActivity(intent);
+                            }
                         }
                     }.execute();
-
-                    if(isAdjustExist){
-                        Intent intent=new Intent(getApplicationContext(),AdjustmentVouchers.class);
-                        intent.putExtra("role",employee);
-                        startActivity(intent);
-                    }
-                    else {
-                        Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints.class);
-                        intent.putExtra("data",employee);
-                        startActivity(intent);
-                    }
-
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Sure to Save? Enable Check Box",Toast.LENGTH_LONG).show();

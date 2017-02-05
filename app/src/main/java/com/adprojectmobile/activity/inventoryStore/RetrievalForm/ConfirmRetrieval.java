@@ -78,7 +78,7 @@ public class ConfirmRetrieval extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(), ItemsForCollection.class);
 
-                    intent.putExtra("json",retrievalCollectionPoint.getCollectionPointID().toString() );
+                    intent.putExtra("id",retrievalCollectionPoint.getCollectionPointID().toString() );
                     intent.putExtra("role",employee);
                     intent.putExtra("collection",retrievalCollectionPoint);
 
