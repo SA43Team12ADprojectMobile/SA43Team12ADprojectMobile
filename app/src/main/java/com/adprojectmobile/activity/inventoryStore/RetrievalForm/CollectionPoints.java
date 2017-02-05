@@ -58,7 +58,7 @@ public class CollectionPoints extends AppCompatActivity  {
 
                 Intent intent = new Intent(CollectionPoints.this, ItemsForCollection.class);
 
-                intent.putExtra("json",retrievalCollectionPoint.getCollectionPointID().toString() );
+                intent.putExtra("id",retrievalCollectionPoint.getCollectionPointID());
                 intent.putExtra("role",employee);
                 intent.putExtra("collection",retrievalCollectionPoint);
 

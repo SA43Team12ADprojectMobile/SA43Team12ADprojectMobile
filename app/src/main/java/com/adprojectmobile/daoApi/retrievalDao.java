@@ -24,24 +24,34 @@ public class retrievalDao {
     final String host= url.host;
     public List<RetrievalCollectionPoint> getAllCollectionPoint(String id){
         List<RetrievalCollectionPoint> retrievalCollectionPointList=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/collectionpoint?eId="+id);
+        JSONArray jsonArray=new JSONArray();
+        if(JSONPaser.getJSONArrayFromUrl(host+"/collectionpoint?eId="+id)!=null){
+            jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/collectionpoint?eId="+id);
+        }
 
+        Log.e("jsonArray",jsonArray.toString());
         try {
-            for(int i=0;i<jsonArray.length();i++){
-                JSONObject jsonCollectionPoint=jsonArray.getJSONObject(i);
-                JSONArray retrievalItemsJson=new JSONArray();
-                RetrievalCollectionPoint retrievalCollectionPoint=new RetrievalCollectionPoint();
-                if (jsonCollectionPoint.getString("Items")!="null") {
+        if (jsonArray.toString().equals("null")){}
+            else {
+            for(int i=0;i<jsonArray.length();i++) {
+                JSONObject jsonCollectionPoint = jsonArray.getJSONObject(i);
+                JSONArray retrievalItemsJson = new JSONArray();
+                RetrievalCollectionPoint retrievalCollectionPoint = new RetrievalCollectionPoint();
+                if (jsonCollectionPoint.getString("Items") != "null") {
                     retrievalItemsJson = jsonCollectionPoint.getJSONArray("Items");
-                    retrievalCollectionPoint = new RetrievalCollectionPoint(jsonCollectionPoint.getString("CollectionPointID"), jsonCollectionPoint.getString("CollectionPointName"), retrievalItemsJson, jsonCollectionPoint.getString("AreAllItemPrepared"));
+                    retrievalCollectionPoint = new RetrievalCollectionPoint(jsonCollectionPoint.getString("CollectionPointID"), jsonCollectionPoint.getString("CollectionPointName"), retrievalItemsJson, jsonCollectionPoint.getString("AreAllItemPrepared"), jsonCollectionPoint.getString("RetrievalTime"));
 
-                }
-                else {
-                    retrievalCollectionPoint = new RetrievalCollectionPoint(jsonCollectionPoint.getString("CollectionPointID"), jsonCollectionPoint.getString("CollectionPointName"), jsonCollectionPoint.getString("AreAllItemPrepared"));
+                } else {
+                    retrievalCollectionPoint = new RetrievalCollectionPoint(jsonCollectionPoint.getString("CollectionPointID"), jsonCollectionPoint.getString("CollectionPointName"), jsonCollectionPoint.getString("AreAllItemPrepared"), jsonCollectionPoint.getString("RetrievalTime"));
                 }
 
+//                if (retrievalCollectionPoint.getPrepared().equals("false")){
                 retrievalCollectionPointList.add(retrievalCollectionPoint);
+//            }
             }
+        }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -49,10 +59,10 @@ public class retrievalDao {
         return  retrievalCollectionPointList;
     }
 
-    public List<RetrievalItem> getItemsByCollection(RetrievalCollectionPoint r){
+    public List<RetrievalItem> getItemsByCollection(JSONArray jItems){
         List<RetrievalItem> retrievalItemList=new ArrayList<>();
-        if(r.getItemJson()!=null){
-            JSONArray jsonArray=r.getItemJson();
+        if(jItems!=null){
+            JSONArray jsonArray=jItems;
             try {
                 for (int i=0;i<jsonArray.length();i++){
                     JSONObject jsonObject= jsonArray.getJSONObject(i);

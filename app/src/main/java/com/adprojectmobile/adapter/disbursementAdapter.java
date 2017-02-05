@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.apiModel.RetrievalCollectionPoint;
+import com.adprojectmobile.daoApi.authenticationDao;
 import com.adprojectmobile.model.Disbursement;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 
 public class disbursementAdapter extends ArrayAdapter<RetrievalCollectionPoint> {
+    authenticationDao aDao=new authenticationDao();
     private List<RetrievalCollectionPoint> retrievalCollectionPointList;
     int resource;
 
@@ -38,11 +40,16 @@ public class disbursementAdapter extends ArrayAdapter<RetrievalCollectionPoint> 
 
         if (retrievalCollectionPoint!=null){
             TextView textViewDisbursementCollectionName=(TextView)v.findViewById(R.id.textView_bisburse_collection_name);
-           // TextView textViewDisbursementDate=(TextView)v.findViewById(R.id.textView_disburse_collection_date);
+           TextView textViewDisbursementDate=(TextView)v.findViewById(R.id.textView_disburse_date);
             TextView textViewDisbursementStatus=(TextView)v.findViewById(R.id.textView_disburse_status);
 
             textViewDisbursementCollectionName.setText(retrievalCollectionPoint.getCollectionPointName());
-           // textViewDisbursementDate.setText(retrievalCollectionPoint.get.getRetrievalTime());
+
+            if (!retrievalCollectionPoint.getDate().equals("null")){
+                String date= aDao.formatJsonDate(retrievalCollectionPoint.getDate());
+                textViewDisbursementDate.setText(date);
+            }
+
             if(retrievalCollectionPoint.getPrepared()!=null&&retrievalCollectionPoint.getPrepared().equals("true")){
                 textViewDisbursementStatus.setText("All Item Prepared");
             }else {

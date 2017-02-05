@@ -27,7 +27,11 @@ public class deliveryDao {
     public List<DeliveryDisbursement> getAllDeliveryDisbursements(){
         List<DeliveryDisbursement> deliveryDisbursements=new ArrayList<>();
         //List<RetrievalItem> retrievalItems=new ArrayList<>();
-        JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/ackdisbursement");
+        JSONArray jsonArray=new JSONArray();
+        if (JSONPaser.getJSONArrayFromUrl(host+"/ackdisbursement")!=null){
+            jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/ackdisbursement");
+        }
+
 
         try {
             for(int i=0;i<jsonArray.length();i++){
@@ -94,7 +98,8 @@ public class deliveryDao {
         return  retrievalItemList;
     }
 
-    public void acknowledgeDelivery(DeliveryDisbursement d){
+    public String acknowledgeDelivery(DeliveryDisbursement d){
+        String result;
         JSONObject jDis=new JSONObject();
         try{
             jDis.put("DisbursementID",d.getDisbursementID());
@@ -107,7 +112,9 @@ public class deliveryDao {
         }catch (Exception e){}
         Log.e("JsonDis",jDis.toString());
         Log.e("Ack","Acknowledge");
-        JSONPaser.postStream(host+"/ackdisbursement",jDis.toString());
+        result=JSONPaser.postStream(host+"/ackdisbursement",jDis.toString());
+        Log.e("result",result);
+        return result;
     }
 
     public void rejectDelivery(DeliveryDisbursement d){
