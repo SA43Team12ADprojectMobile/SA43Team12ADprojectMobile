@@ -27,24 +27,27 @@ public class approveDao {
         List<RequisitionApi> requisitionApis=new ArrayList<>();
         JSONArray jsonArray= JSONPaser.getJSONArrayFromUrl(host+"/requisition?eId="+id);
 
-        try {
-            for(int i=0;i<jsonArray.length();i++){
-                JSONObject jsonRequisition=jsonArray.getJSONObject(i);
-                JSONArray requisitionItemsJson=new JSONArray();
-                RequisitionApi requisitionApi=new RequisitionApi();
-                if (jsonRequisition.getString("Items")!="null") {
-                    requisitionItemsJson = jsonRequisition.getJSONArray("Items");
-                    requisitionApi = new RequisitionApi(jsonRequisition.getString("Id"),jsonRequisition.getString("CreatedBy"),jsonRequisition.getString("IssuedDate"),jsonRequisition.getString("ApprovedBy"),jsonRequisition.getString("ApprovementStatus"),jsonRequisition.getString("Remarks"),requisitionItemsJson,jsonRequisition.getString("NumberOfItem") );
+        if(jsonArray!=null){
+            try {
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonRequisition=jsonArray.getJSONObject(i);
+                    JSONArray requisitionItemsJson=new JSONArray();
+                    RequisitionApi requisitionApi=new RequisitionApi();
+                    if (jsonRequisition.getString("Items")!="null") {
+                        requisitionItemsJson = jsonRequisition.getJSONArray("Items");
+                        requisitionApi = new RequisitionApi(jsonRequisition.getString("Id"),jsonRequisition.getString("CreatedBy"),jsonRequisition.getString("IssuedDate"),jsonRequisition.getString("ApprovedBy"),jsonRequisition.getString("ApprovementStatus"),jsonRequisition.getString("Remarks"),requisitionItemsJson,jsonRequisition.getString("NumberOfItem") );
 
+                    }
+                    else {
+                        requisitionApi = new RequisitionApi(jsonRequisition.getString("Id"),jsonRequisition.getString("CreatedBy"),jsonRequisition.getString("IssuedDate"),jsonRequisition.getString("ApprovedBy"),jsonRequisition.getString("ApprovementStatus"),jsonRequisition.getString("Remarks"),jsonRequisition.getString("NumberOfItem") );
+                    }
+                    requisitionApis.add(requisitionApi);
                 }
-                else {
-                    requisitionApi = new RequisitionApi(jsonRequisition.getString("Id"),jsonRequisition.getString("CreatedBy"),jsonRequisition.getString("IssuedDate"),jsonRequisition.getString("ApprovedBy"),jsonRequisition.getString("ApprovementStatus"),jsonRequisition.getString("Remarks"),jsonRequisition.getString("NumberOfItem") );
-                }
-                requisitionApis.add(requisitionApi);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
+
         return requisitionApis;
     }
     public List<RequisitionItemApi> getItemByRequisition(RequisitionApi requisitionApi){
