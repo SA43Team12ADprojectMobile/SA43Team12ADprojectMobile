@@ -105,6 +105,7 @@ public class FindEmployee extends AppCompatActivity {
                             intent=new Intent(getApplicationContext(),DelegateAuthority.class);
                             intent.putExtra("data",employee);
                             intent.putExtra("delegate",delegateEmployee);
+                        intent.putExtra("role",employeeApi);
                             startActivity(intent);
                        return  null;
                     }
