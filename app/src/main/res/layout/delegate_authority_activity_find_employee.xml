@@ -34,7 +34,8 @@
                 android:enabled="true"
                 android:clickable="true"
                 android:longClickable="true"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:singleLine="true"/>
 
         </TableRow>
 
