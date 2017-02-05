@@ -80,8 +80,8 @@ public class DelegateAuthority extends AppCompatActivity {
                     }.execute();
                     Toast.makeText(getApplicationContext(),"Delegate Successfully",Toast.LENGTH_LONG).show();
                     Intent intent=new Intent(getApplicationContext(),HeadMainPage.class);
-                    intent.putExtra("role",head.getName());
-                    Log.e("HeadName",employee.getName());
+                    intent.putExtra("role",head);
+                    Log.e("HeadName",head.getName());
                     intent.putExtra("password",delegateEmployee.getPassword());
                     startActivity(intent);
                 }
