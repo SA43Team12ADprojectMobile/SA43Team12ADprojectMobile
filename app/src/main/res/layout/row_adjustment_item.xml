@@ -42,21 +42,22 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text=""
             android:textSize="20sp"
             android:layout_weight="1"
-            android:layoutDirection="ltr"/>
+            android:layoutDirection="ltr"
+            android:paddingTop="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/textview_adjustment_item_price"
             android:textSize="25sp"
-            android:paddingBottom="10dp"
             android:textColor="@android:color/black"
             android:layout_weight="1"
-            android:layoutDirection="rtl"/>
+            android:layoutDirection="rtl"
+            android:paddingTop="20dp" />
     </LinearLayout>
 
 
