@@ -70,7 +70,7 @@ public class RejectRequisition extends AppCompatActivity {
                 new AsyncTask<String, Void, Void>() {
                     @Override
                     protected Void doInBackground(String... params) {
-                        aDao.rejectRequisition(reqId,empId,remarks);
+                        aDao.rejectRequisition(reqId,employee.getEmployeeID(),remarks);
                         return null;
                     }
                 }.execute();

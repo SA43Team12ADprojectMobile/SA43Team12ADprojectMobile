@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -61,6 +62,7 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
             employeeId=employee.getEmployeeID();
         }
         final String empId=employeeId;
+        Log.e("apporveName",empId);
         // Toast.makeText(getApplicationContext(),requisition.getRequisitionDate().toString(),Toast.LENGTH_LONG).show();
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_approve_requisitions_items);
@@ -100,7 +102,7 @@ public class RequisitionItemsforApprove extends AppCompatActivity {
                 new AsyncTask<String, Void, Void>() {
                     @Override
                     protected Void doInBackground(String... params) {
-                        aDao.approveRequisition(reqId,empId);
+                        aDao.approveRequisition(reqId,employee.getEmployeeID());
                         return null;
                     }
                 }.execute();

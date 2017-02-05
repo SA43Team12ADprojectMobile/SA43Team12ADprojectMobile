@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
+import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
 import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.reqItemForDepAdapter;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
@@ -75,6 +76,7 @@ public class RequisitionItems extends AppCompatActivity {
         btnAcknowledge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Boolean isAdjustExist=true;
 
                 new AsyncTask<String, Void, Void>() {
                     @Override
@@ -85,9 +87,19 @@ public class RequisitionItems extends AppCompatActivity {
                 }.execute();
 
                 Toast.makeText(getApplicationContext(),"Acknowledge Success",Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
-                intent.putExtra("role",employee);
-                startActivity(intent);
+
+                if(isAdjustExist){
+
+                    Intent intent=new Intent(getApplicationContext(),AdjustmentVouchers.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+
+                }else {
+
+                    Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
+                    intent.putExtra("role",employee);
+                    startActivity(intent);
+                }
             }
         });
         btnReject.setOnClickListener(new View.OnClickListener() {

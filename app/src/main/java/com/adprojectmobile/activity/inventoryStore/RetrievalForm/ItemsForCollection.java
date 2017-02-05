@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
+import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
 import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
 import com.adprojectmobile.apiModel.EmployeeApi;
@@ -118,7 +119,7 @@ public class ItemsForCollection extends AppCompatActivity {
                     }.execute();
 
                     if(isAdjustExist){
-                        Intent intent=new Intent(getApplicationContext(),AdjustmentVouchersForCRUD.class);
+                        Intent intent=new Intent(getApplicationContext(),AdjustmentVouchers.class);
                         intent.putExtra("role",employee);
                         startActivity(intent);
                     }
