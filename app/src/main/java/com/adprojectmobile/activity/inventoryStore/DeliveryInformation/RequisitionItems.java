@@ -86,6 +86,7 @@ public class RequisitionItems extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),"Acknowledge Success",Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });
@@ -102,6 +103,7 @@ public class RequisitionItems extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),"Rejected",Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.DeliveryInformation.CollectionPoints.class);
+                intent.putExtra("role",employee);
                 startActivity(intent);
             }
         });
