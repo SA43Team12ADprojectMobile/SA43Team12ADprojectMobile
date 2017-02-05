@@ -87,6 +87,7 @@ public class RequisitionItems extends AppCompatActivity {
                     }
                     @Override
                     protected void onPostExecute(String result){
+                        Log.e("result",result);
                         if(result.contains("t")){
 
                             Intent intent=new Intent(getApplicationContext(),AdjustmentVouchers.class);
