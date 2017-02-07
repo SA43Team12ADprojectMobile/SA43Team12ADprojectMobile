@@ -10,8 +10,7 @@ import android.widget.TextView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.Login;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.AuthorizeAdjustment.AdjustmentVouchersAuthorize;
-import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
-import com.adprojectmobile.apiModel.EmployeeApi;
+import com.adprojectmobile.model.Employee;
 
 public class SupervisorMainPage extends AppCompatActivity {
 
@@ -19,28 +18,28 @@ public class SupervisorMainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supervisor_main_page);
-        final EmployeeApi employeeApi=getIntent().getParcelableExtra("role");
+        final Employee employee = getIntent().getParcelableExtra("role");
 
-        TextView textViewWelcome=(TextView)findViewById(R.id.textView_welcome_storesupervisor);
-        textViewWelcome.setText("Welcome "+employeeApi.getName());
+        TextView textViewWelcome = (TextView) findViewById(R.id.textView_welcome_storesupervisor);
+        textViewWelcome.setText("Welcome " + employee.getName());
 
 
-        Button btnApprove=(Button)findViewById(R.id.btn_supervisor_supervisor_authorize_adjustment);
+        Button btnApprove = (Button) findViewById(R.id.btn_supervisor_supervisor_authorize_adjustment);
 
         btnApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), AdjustmentVouchersAuthorize.class);
-                intent.putExtra("role",employeeApi);
+                Intent intent = new Intent(getApplicationContext(), AdjustmentVouchersAuthorize.class);
+                intent.putExtra("role", employee);
                 startActivity(intent);
             }
         });
 
-        Button btnLogout=(Button)findViewById(R.id.btn_supervisor_logout);
+        Button btnLogout = (Button) findViewById(R.id.btn_supervisor_logout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(), Login.class);
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
             }
         });

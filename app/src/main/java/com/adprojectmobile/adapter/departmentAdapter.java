@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.apiModel.DepartmentApi;
 import com.adprojectmobile.model.Department;
 
 import java.util.List;
@@ -18,14 +17,14 @@ import java.util.List;
  * Created by EvEr on 2017/1/24.
  */
 
-public class departmentAdapter extends ArrayAdapter<DepartmentApi> {
+public class departmentAdapter extends ArrayAdapter<Department> {
     int resource;
-    private List<DepartmentApi> departmentList;
+    private List<Department> departmentList;
 
-    public departmentAdapter(Context context, int resource, List<DepartmentApi> departments) {
+    public departmentAdapter(Context context, int resource, List<Department> departments) {
         super(context, resource, departments);
-        this.resource=resource;
-        this.departmentList=departments;
+        this.resource = resource;
+        this.departmentList = departments;
     }
 
     @Override
@@ -33,9 +32,9 @@ public class departmentAdapter extends ArrayAdapter<DepartmentApi> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        DepartmentApi department=departmentList.get(position);
-        if(department!=null){
-            TextView textViewName=(TextView)v.findViewById(R.id.textView_department_name);
+        Department department = departmentList.get(position);
+        if (department != null) {
+            TextView textViewName = (TextView) v.findViewById(R.id.textView_department_name);
 
             textViewName.setText(department.getDepartmentName());
         }

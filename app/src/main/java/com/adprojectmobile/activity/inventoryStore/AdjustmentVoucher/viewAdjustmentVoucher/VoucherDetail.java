@@ -9,17 +9,9 @@ import android.widget.TextView;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
-import com.adprojectmobile.apiModel.AdjustmentApi;
-import com.adprojectmobile.apiModel.AdjustmentItemApi;
-import com.adprojectmobile.apiModel.EmployeeApi;
-import com.adprojectmobile.dao.Dao.itemDao;
-import com.adprojectmobile.dao.Dao.itemTransactionDao;
-import com.adprojectmobile.dao.DaoImpl.itemDaoImpl;
-import com.adprojectmobile.dao.DaoImpl.itemTransactionDaoImpl;
 import com.adprojectmobile.model.Adjustment;
 import com.adprojectmobile.model.AdjustmentItem;
-import com.adprojectmobile.model.Item;
-import com.adprojectmobile.model.ItemTransaction;
+import com.adprojectmobile.model.Employee;
 
 public class VoucherDetail extends AppCompatActivity {
 
@@ -28,37 +20,36 @@ public class VoucherDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjustment_view_activity_voucher_detail);
 
-        AdjustmentItemApi adjustmentItem=getIntent().getParcelableExtra("data");
-        AdjustmentApi adjustment=getIntent().getParcelableExtra("data1");
-        final EmployeeApi employee=getIntent().getParcelableExtra("role");
+        AdjustmentItem adjustmentItem = getIntent().getParcelableExtra("data");
+        Adjustment adjustment = getIntent().getParcelableExtra("data1");
+        final Employee employee = getIntent().getParcelableExtra("role");
 
-        final EditText editTextItemCode=(EditText) findViewById(R.id.editText_itemAdjusted_item_code);
-        final EditText editTextItemName=(EditText) findViewById(R.id.editText_itemAdjusted_item_name);
-        final EditText editTextItemQty=(EditText) findViewById(R.id.editText_itemAdjusted_qty);
-        final EditText editTextItemIssueBy=(EditText) findViewById(R.id.editText_itemAdjusted_issued_by_employee_name);
-        final EditText editTextItemAuthorizedBy=(EditText) findViewById(R.id.editText_itemAdjusted_authorized_by_employee_name);
-        final EditText editTextReason=(EditText) findViewById(R.id.editText_itemAdjusted_reason);
+        final EditText editTextItemCode = (EditText) findViewById(R.id.editText_itemAdjusted_item_code);
+        final EditText editTextItemName = (EditText) findViewById(R.id.editText_itemAdjusted_item_name);
+        final EditText editTextItemQty = (EditText) findViewById(R.id.editText_itemAdjusted_qty);
+        final EditText editTextItemIssueBy = (EditText) findViewById(R.id.editText_itemAdjusted_issued_by_employee_name);
+        final EditText editTextItemAuthorizedBy = (EditText) findViewById(R.id.editText_itemAdjusted_authorized_by_employee_name);
+        final EditText editTextReason = (EditText) findViewById(R.id.editText_itemAdjusted_reason);
 
-           editTextItemCode.setText(adjustmentItem.getItemID());
-          editTextItemName.setText(adjustmentItem.getDescription());
-            editTextItemQty.setText(adjustmentItem.getActualQuantity());
-            editTextItemIssueBy.setText(adjustment.getIssuedBy());
-        if(adjustment.getApprovedBy()!=null){
+        editTextItemCode.setText(adjustmentItem.getItemID());
+        editTextItemName.setText(adjustmentItem.getDescription());
+        editTextItemQty.setText(adjustmentItem.getActualQuantity());
+        editTextItemIssueBy.setText(adjustment.getIssuedBy());
+        if (adjustment.getApprovedBy() != null) {
             editTextItemAuthorizedBy.setText(" ");
-        }
-        else {
+        } else {
             editTextItemAuthorizedBy.setText(adjustment.getApprovedBy());
         }
 
-            editTextItemAuthorizedBy.setText(adjustmentItem.getReason());
+        editTextItemAuthorizedBy.setText(adjustmentItem.getReason());
 
 
-        TextView title=(TextView)findViewById(R.id.textview_title_view_voucherDetails);
+        TextView title = (TextView) findViewById(R.id.textview_title_view_voucherDetails);
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
-                intent.putExtra("role",employee);
+                Intent intent = new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role", employee);
                 startActivity(intent);
             }
         });

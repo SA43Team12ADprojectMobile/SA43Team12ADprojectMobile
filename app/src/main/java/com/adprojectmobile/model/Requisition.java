@@ -3,53 +3,70 @@ package com.adprojectmobile.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
+import org.json.JSONArray;
 
 /**
- * Created by EvEr on 2017/1/19.
+ * Created by EvEr on 2017/1/30.
  */
 
-public class Requisition implements Parcelable {
-    private String requisitionId;
-    private Employee employee;
-    private Disbursement disbursement;
-    private String requisitionDate;
-    private String approvedBy;
-    private String approvementStatus;
-    private String remarks;
-    private String  previousRequisitionId;
-    private int requisitionQuantity;
-
-    public Requisition(String requisitionId, Employee employee, Disbursement disbursement, String requisitionDate) {
-        this.requisitionId = requisitionId;
-        this.employee = employee;
-        this.disbursement = disbursement;
-        this.requisitionDate = requisitionDate;
-    }
+public class Requisition implements Parcelable{
+    public String Id ;
+    public String CreatedBy ;
+    public String IssuedDate ;
+    public String ApprovedBy ;
+    public String ApprovementStatus ;
+    public String Remarks ;
+    public JSONArray Items ;
+    public String NumberOfItem ;
 
     public Requisition() {
     }
 
-    public Requisition(String requisitionId, Employee employee, Disbursement disbursement, String requisitionDate, String approvedBy, String approvementStatus, String remarks, String previousRequisitionId, int requisitionQuantity) {
-        this.requisitionId = requisitionId;
-        this.employee = employee;
-        this.disbursement = disbursement;
-        this.requisitionDate = requisitionDate;
-        this.approvedBy = approvedBy;
-        this.approvementStatus = approvementStatus;
-        this.remarks = remarks;
-        this.previousRequisitionId = previousRequisitionId;
-        this.requisitionQuantity = requisitionQuantity;
+    public Requisition(String id, String createdBy, String issuedDate, String approvedBy, String approvementStatus, String remarks, JSONArray items, String numberOfItem) {
+        Id = id;
+        CreatedBy = createdBy;
+        IssuedDate = issuedDate;
+        ApprovedBy = approvedBy;
+        ApprovementStatus = approvementStatus;
+        Remarks = remarks;
+        Items = items;
+        NumberOfItem = numberOfItem;
+    }
+
+    public Requisition(String id, String createdBy, String issuedDate, String approvedBy, String approvementStatus, String remarks, String numberOfItem) {
+        Id = id;
+        CreatedBy = createdBy;
+        IssuedDate = issuedDate;
+        ApprovedBy = approvedBy;
+        ApprovementStatus = approvementStatus;
+        Remarks = remarks;
+        NumberOfItem = numberOfItem;
     }
 
     protected Requisition(Parcel in) {
-        requisitionId = in.readString();
-        disbursement = in.readParcelable(Disbursement.class.getClassLoader());
-        requisitionDate = in.readString();
-        approvedBy = in.readString();
-        approvementStatus = in.readString();
-        remarks = in.readString();
-        previousRequisitionId = in.readString();
+        Id = in.readString();
+        CreatedBy = in.readString();
+        IssuedDate = in.readString();
+        ApprovedBy = in.readString();
+        ApprovementStatus = in.readString();
+        Remarks = in.readString();
+        NumberOfItem = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(Id);
+        dest.writeString(CreatedBy);
+        dest.writeString(IssuedDate);
+        dest.writeString(ApprovedBy);
+        dest.writeString(ApprovementStatus);
+        dest.writeString(Remarks);
+        dest.writeString(NumberOfItem);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Requisition> CREATOR = new Creator<Requisition>() {
@@ -64,91 +81,67 @@ public class Requisition implements Parcelable {
         }
     };
 
-    public String getRequisitionId() {
-        return requisitionId;
+    public String getId() {
+        return Id;
     }
 
-    public void setRequisitionId(String requisitionId) {
-        this.requisitionId = requisitionId;
+    public void setId(String id) {
+        Id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public String getCreatedBy() {
+        return CreatedBy;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setCreatedBy(String createdBy) {
+        CreatedBy = createdBy;
     }
 
-    public Disbursement getDisbursement() {
-        return disbursement;
+    public String getIssuedDate() {
+        return IssuedDate;
     }
 
-    public void setDisbursement(Disbursement disbursement) {
-        this.disbursement = disbursement;
-    }
-
-    public String getRequisitionDate() {
-        return requisitionDate;
-    }
-
-    public void setRequisitionDate(String requisitionDate) {
-        this.requisitionDate = requisitionDate;
+    public void setIssuedDate(String issuedDate) {
+        IssuedDate = issuedDate;
     }
 
     public String getApprovedBy() {
-        return approvedBy;
+        return ApprovedBy;
     }
 
     public void setApprovedBy(String approvedBy) {
-        this.approvedBy = approvedBy;
+        ApprovedBy = approvedBy;
     }
 
     public String getApprovementStatus() {
-        return approvementStatus;
+        return ApprovementStatus;
     }
 
     public void setApprovementStatus(String approvementStatus) {
-        this.approvementStatus = approvementStatus;
+        ApprovementStatus = approvementStatus;
     }
 
     public String getRemarks() {
-        return remarks;
+        return Remarks;
     }
 
     public void setRemarks(String remarks) {
-        this.remarks = remarks;
+        Remarks = remarks;
     }
 
-    public String getPreviousRequisitionId() {
-        return previousRequisitionId;
+    public JSONArray getItems() {
+        return Items;
     }
 
-    public void setPreviousRequisitionId(String previousRequisitionId) {
-        this.previousRequisitionId = previousRequisitionId;
-    }
-    public int getRequisitionQuantity(){
-        return requisitionQuantity;
-    }
-    @Override
-    public int describeContents() {
-        return 0;
+    public void setItems(JSONArray items) {
+        Items = items;
     }
 
-    public void setRequisitionQuantity(int requisitionQuantity) {
-        this.requisitionQuantity = requisitionQuantity;
+    public String getNumberOfItem() {
+        return NumberOfItem;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(requisitionId);
-        dest.writeParcelable(disbursement, flags);
-        dest.writeString(requisitionDate);
-        dest.writeString(approvedBy);
-        dest.writeString(approvementStatus);
-
-        dest.writeString(remarks);
-        dest.writeString(previousRequisitionId);
-        dest.writeInt(requisitionQuantity);
+    public void setNumberOfItem(String numberOfItem) {
+        NumberOfItem = numberOfItem;
     }
 }

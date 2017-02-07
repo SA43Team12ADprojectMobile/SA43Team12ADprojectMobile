@@ -9,8 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.apiModel.DepartmentApi;
-import com.adprojectmobile.apiModel.RequisitionItemApi;
 import com.adprojectmobile.model.RequisitionItem;
 
 import java.util.List;
@@ -19,14 +17,14 @@ import java.util.List;
  * Created by EvEr on 2017/1/24.
  */
 
-public class reqItemForDepAdapter extends ArrayAdapter<RequisitionItemApi> {
-    private List<RequisitionItemApi> requisitionItemList;
+public class reqItemForDepAdapter extends ArrayAdapter<RequisitionItem> {
+    private List<RequisitionItem> requisitionItemList;
     int resource;
 
-    public reqItemForDepAdapter(Context context, int resource, List<RequisitionItemApi> requisitionItems) {
+    public reqItemForDepAdapter(Context context, int resource, List<RequisitionItem> requisitionItems) {
         super(context, resource, requisitionItems);
-        this.resource=resource;
-        this.requisitionItemList=requisitionItems;
+        this.resource = resource;
+        this.requisitionItemList = requisitionItems;
     }
 
     @Override
@@ -34,17 +32,17 @@ public class reqItemForDepAdapter extends ArrayAdapter<RequisitionItemApi> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        RequisitionItemApi requisitionItem=requisitionItemList.get(position);
-        if (requisitionItem!=null){
-            TextView textViewItemName=(TextView)v.findViewById(R.id.textView_delivery_department_item_name);
-            TextView textViewItemCode=(TextView)v.findViewById(R.id.textView_delivery_department_item_code);
-            TextView textViewQtyNeeded=(TextView)v.findViewById(R.id.textView_delivery_department_item_qty_needed);
-            TextView textViewQtyActual=(TextView)v.findViewById(R.id.textView_delivery_department_item_qty_actual);
-//            textViewItemName.setText(requisitionItem.ItemID);
+        RequisitionItem requisitionItem = requisitionItemList.get(position);
+        if (requisitionItem != null) {
+            TextView textViewItemName = (TextView) v.findViewById(R.id.textView_delivery_department_item_name);
+            TextView textViewItemCode = (TextView) v.findViewById(R.id.textView_delivery_department_item_code);
+            TextView textViewQtyNeeded = (TextView) v.findViewById(R.id.textView_delivery_department_item_qty_needed);
+            TextView textViewQtyActual = (TextView) v.findViewById(R.id.textView_delivery_department_item_qty_actual);
+
             textViewItemCode.setText(requisitionItem.getItemCode());
             textViewItemName.setText(requisitionItem.getItemName());
             textViewQtyNeeded.setText(requisitionItem.getQuantity());
-            String rQty=requisitionItem.getRetrieveQuantity().substring(0,3);
+            String rQty = requisitionItem.getRetrieveQuantity().substring(0, 3);
             textViewQtyActual.setText(rQty);
         }
         return v;

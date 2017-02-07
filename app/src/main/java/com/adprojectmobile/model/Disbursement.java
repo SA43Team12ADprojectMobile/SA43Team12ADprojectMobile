@@ -4,47 +4,39 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by EvEr on 2017/1/19.
+ * Created by EvEr on 2017/1/31.
  */
 
-public class Disbursement implements Parcelable {
-    private String disbursementId;
-    private String retrievalTime;
-    private String deliveryStatus;
-    private String collectonPoint;
-    private String repName;
-    private boolean repChecked;
-    private boolean clerkChecked;
+public class Disbursement implements Parcelable{
+    public String DisbursementID ;
+    public String CollectionPointName ;
+    public String RetrievalDate ;
+    public String DeliveryStatus ;
+    public String RepName ;
+    public String RepChecked ;
+    public String ClerkChecked ;
 
     public Disbursement() {
     }
 
-    public Disbursement(String disbursementId, String retrievalTime, String deliveryStatus, String collectonPoint, String repName) {
-        this.disbursementId = disbursementId;
-        this.retrievalTime = retrievalTime;
-        this.deliveryStatus = deliveryStatus;
-        this.collectonPoint = collectonPoint;
-        this.repName = repName;
-    }
-
-    public Disbursement(String disbursementId, String retrievalTime, String deliveryStatus, String collectonPoint, String repName, boolean repChecked, boolean clerkChecked) {
-        this.disbursementId = disbursementId;
-        this.retrievalTime = retrievalTime;
-        this.deliveryStatus = deliveryStatus;
-        this.collectonPoint = collectonPoint;
-        this.repName = repName;
-        this.repChecked = repChecked;
-        this.clerkChecked = clerkChecked;
+    public Disbursement(String disbursementID, String collectionPointName, String retrievalDate, String deliveryStatus, String repName, String repChecked, String clerkChecked) {
+        DisbursementID = disbursementID;
+        CollectionPointName = collectionPointName;
+        RetrievalDate = retrievalDate;
+        DeliveryStatus = deliveryStatus;
+        RepName = repName;
+        RepChecked = repChecked;
+        ClerkChecked = clerkChecked;
     }
 
     protected Disbursement(Parcel in) {
-        disbursementId = in.readString();
-        retrievalTime = in.readString();
-        deliveryStatus = in.readString();
-        collectonPoint = in.readString();
-        repName = in.readString();
-        repChecked = in.readByte() != 0;
-        clerkChecked = in.readByte() != 0;
+        DisbursementID = in.readString();
+        CollectionPointName = in.readString();
+        RetrievalDate = in.readString();
+        DeliveryStatus = in.readString();
+        RepName = in.readString();
+        RepChecked = in.readString();
+        ClerkChecked = in.readString();
     }
 
     public static final Creator<Disbursement> CREATOR = new Creator<Disbursement>() {
@@ -59,60 +51,60 @@ public class Disbursement implements Parcelable {
         }
     };
 
-    public String getDisbursementId() {
-        return disbursementId;
+    public String getDisbursementID() {
+        return DisbursementID;
     }
 
-    public void setDisbursementId(String disbursementId) {
-        this.disbursementId = disbursementId;
+    public void setDisbursementID(String disbursementID) {
+        DisbursementID = disbursementID;
     }
 
-    public String getRetrievalTime() {
-        return retrievalTime;
+    public String getCollectionPointName() {
+        return CollectionPointName;
     }
 
-    public void setRetrievalTime(String retrievalTime) {
-        this.retrievalTime = retrievalTime;
+    public void setCollectionPointName(String collectionPointName) {
+        CollectionPointName = collectionPointName;
+    }
+
+    public String getRetrievalDate() {
+        return RetrievalDate;
+    }
+
+    public void setRetrievalDate(String retrievalDate) {
+        RetrievalDate = retrievalDate;
     }
 
     public String getDeliveryStatus() {
-        return deliveryStatus;
+        return DeliveryStatus;
     }
 
     public void setDeliveryStatus(String deliveryStatus) {
-        this.deliveryStatus = deliveryStatus;
-    }
-
-    public String getCollectonPoint() {
-        return collectonPoint;
-    }
-
-    public void setCollectonPoint(String collectonPoint) {
-        this.collectonPoint = collectonPoint;
+        DeliveryStatus = deliveryStatus;
     }
 
     public String getRepName() {
-        return repName;
+        return RepName;
     }
 
     public void setRepName(String repName) {
-        this.repName = repName;
+        RepName = repName;
     }
 
-    public boolean getRepChecked() {
-        return repChecked;
+    public String getRepChecked() {
+        return RepChecked;
     }
 
-    public void setRepChecked(boolean repChecked) {
-        this.repChecked = repChecked;
+    public void setRepChecked(String repChecked) {
+        RepChecked = repChecked;
     }
 
-    public boolean getClerkChecked() {
-        return clerkChecked;
+    public String getClerkChecked() {
+        return ClerkChecked;
     }
 
-    public void setClerkChecked(boolean clerkChecked) {
-        this.clerkChecked = clerkChecked;
+    public void setClerkChecked(String clerkChecked) {
+        ClerkChecked = clerkChecked;
     }
 
     @Override
@@ -122,12 +114,12 @@ public class Disbursement implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(disbursementId);
-        dest.writeString(retrievalTime);
-        dest.writeString(deliveryStatus);
-        dest.writeString(collectonPoint);
-        dest.writeString(repName);
-        dest.writeByte((byte) (repChecked ? 1 : 0));
-        dest.writeByte((byte) (clerkChecked ? 1 : 0));
+        dest.writeString(DisbursementID);
+        dest.writeString(CollectionPointName);
+        dest.writeString(RetrievalDate);
+        dest.writeString(DeliveryStatus);
+        dest.writeString(RepName);
+        dest.writeString(RepChecked);
+        dest.writeString(ClerkChecked);
     }
 }

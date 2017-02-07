@@ -3,47 +3,43 @@ package com.adprojectmobile.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
+import org.json.JSONArray;
 
 /**
- * Created by EvEr on 2017/1/19.
+ * Created by EvEr on 2017/1/30.
  */
 
-public class Adjustment implements Parcelable {
-    private String adjustmentId;
-    private String dateIssued;
-    private String issuedBy;
-    private String approvedBy;
-    private String approvementStatus;
-    private String remarks;
+public class Adjustment implements Parcelable{
+    private String AdjustmentID ;
+    private String DateIssued ;
+    private String IssuedBy ;
+    private String ApprovedBy ;
+    private JSONArray AdjustmentItems ;
 
     public Adjustment() {
+
     }
 
-    public Adjustment(String adjustmentId, String dateIssued, String issuedBy, String approvedBy, String approvementStatus, String remarks) {
-        this.adjustmentId = adjustmentId;
-        this.dateIssued = dateIssued;
-        this.issuedBy = issuedBy;
-        this.approvedBy = approvedBy;
-        this.approvementStatus = approvementStatus;
-        this.remarks = remarks;
+    public Adjustment(String adjustmentID, String dateIssued, String issuedBy, String approvedBy, JSONArray adjustmentItems) {
+        AdjustmentID = adjustmentID;
+        DateIssued = dateIssued;
+        IssuedBy = issuedBy;
+        ApprovedBy = approvedBy;
+        AdjustmentItems = adjustmentItems;
     }
 
-    public Adjustment(String adjustmentId, String dateIssued, String issuedBy, String approvedBy, String approvementStatus) {
-        this.adjustmentId = adjustmentId;
-        this.dateIssued = dateIssued;
-        this.issuedBy = issuedBy;
-        this.approvedBy = approvedBy;
-        this.approvementStatus = approvementStatus;
+    public Adjustment(String adjustmentID, String dateIssued, String issuedBy, String approvedBy) {
+        AdjustmentID = adjustmentID;
+        DateIssued = dateIssued;
+        IssuedBy = issuedBy;
+        ApprovedBy = approvedBy;
     }
 
     protected Adjustment(Parcel in) {
-        adjustmentId = in.readString();
-        dateIssued = in.readString();
-        issuedBy = in.readString();
-        approvedBy = in.readString();
-        approvementStatus = in.readString();
-        remarks = in.readString();
+        AdjustmentID = in.readString();
+        DateIssued = in.readString();
+        IssuedBy = in.readString();
+        ApprovedBy = in.readString();
     }
 
     public static final Creator<Adjustment> CREATOR = new Creator<Adjustment>() {
@@ -58,52 +54,44 @@ public class Adjustment implements Parcelable {
         }
     };
 
-    public String getAdjustmentId() {
-        return adjustmentId;
+    public String getAdjustmentID() {
+        return AdjustmentID;
     }
 
-    public void setAdjustmentId(String adjustmentId) {
-        this.adjustmentId = adjustmentId;
+    public void setAdjustmentID(String adjustmentID) {
+        AdjustmentID = adjustmentID;
     }
 
     public String getDateIssued() {
-        return dateIssued;
+        return DateIssued;
     }
 
     public void setDateIssued(String dateIssued) {
-        this.dateIssued = dateIssued;
+        DateIssued = dateIssued;
     }
 
     public String getIssuedBy() {
-        return issuedBy;
+        return IssuedBy;
     }
 
     public void setIssuedBy(String issuedBy) {
-        this.issuedBy = issuedBy;
+        IssuedBy = issuedBy;
     }
 
     public String getApprovedBy() {
-        return approvedBy;
+        return ApprovedBy;
     }
 
     public void setApprovedBy(String approvedBy) {
-        this.approvedBy = approvedBy;
+        ApprovedBy = approvedBy;
     }
 
-    public String getApprovementStatus() {
-        return approvementStatus;
+    public JSONArray getAdjustmentItems() {
+        return AdjustmentItems;
     }
 
-    public void setApprovementStatus(String approvementStatus) {
-        this.approvementStatus = approvementStatus;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
+    public void setAdjustmentItems(JSONArray adjustmentItems) {
+        AdjustmentItems = adjustmentItems;
     }
 
     @Override
@@ -113,11 +101,10 @@ public class Adjustment implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(adjustmentId);
-        dest.writeString(dateIssued);
-        dest.writeString(issuedBy);
-        dest.writeString(approvedBy);
-        dest.writeString(approvementStatus);
-        dest.writeString(remarks);
+        dest.writeString(AdjustmentID);
+        dest.writeString(DateIssued);
+        dest.writeString(IssuedBy);
+        dest.writeString(ApprovedBy);
     }
 }
+

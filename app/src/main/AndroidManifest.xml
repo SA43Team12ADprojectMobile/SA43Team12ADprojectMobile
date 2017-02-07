@@ -26,16 +26,15 @@
         <activity android:name=".activity.inventoryStore.RetrievalForm.ItemsForCollection" />
         <activity android:name=".activity.inventoryStore.RetrievalForm.CollectionPoints" />
         <activity android:name=".activity.inventoryStore.RetrievalForm.ConfirmRetrieval" />
-        <activity android:name=".activity.inventoryStore.DeliveryInformation.CollectionPoints" />
-        <activity android:name=".activity.inventoryStore.DeliveryInformation.DepartmentsInCollection" />
-        <activity android:name=".activity.inventoryStore.DeliveryInformation.DepartmentDetail" />
-        <activity android:name=".activity.inventoryStore.DeliveryInformation.RequisitionItems" />
+        <activity android:name=".activity.inventoryStore.AcknowledgeDisbursement.CollectionPoints" />
+        <activity android:name=".activity.inventoryStore.AcknowledgeDisbursement.DepartmentsInCollection" />
+        <activity android:name=".activity.inventoryStore.AcknowledgeDisbursement.DepartmentDetail" />
+        <activity android:name=".activity.inventoryStore.AcknowledgeDisbursement.RequisitionItems" />
         <activity android:name=".activity.inventoryStore.AdjustmentVoucher.AdjustmentMainPage" />
         <activity android:name=".activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers" />
         <activity android:name=".activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher" />
         <activity android:name=".activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.VoucherDetail" />
         <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD" />
-        <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.CreateNewVoucher" />
         <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.ItemsVoucherIssue" />
         <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustItemQty" />
         <activity android:name=".activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AddAdjustmentItem" />
@@ -53,15 +52,6 @@
         <activity android:name=".activity.department.DelegateAuthority.RevokeAuthority" />
         <activity android:name=".activity.inventoryStore.StockClerkMainPage" />
         <activity android:name=".activity.department.EmployeeMainPage" />
-        <activity
-            android:name=".activity.inventoryStore.RetrievalForm.RequisitionsInDisbursement"
-            android:label="@string/title_activity_requisitions_in_disbursement">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activity.Login" />
         <activity android:name=".activity.department.RepresentativeMainPage" />
         <activity android:name=".activity.department.HeadMainPage" />

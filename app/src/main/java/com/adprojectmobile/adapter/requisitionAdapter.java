@@ -9,9 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.apiModel.DisbursementApi;
-import com.adprojectmobile.apiModel.RequisitionApi;
 import com.adprojectmobile.model.Requisition;
+
 
 import java.util.List;
 
@@ -19,15 +18,14 @@ import java.util.List;
  * Created by EvEr on 2017/1/23.
  */
 
-public class requisitionAdapter extends ArrayAdapter<RequisitionApi> {
-    private List<RequisitionApi> requisitionList;
+public class requisitionAdapter extends ArrayAdapter<Requisition> {
+    private List<Requisition> requisitionList;
     int resource;
 
-    public requisitionAdapter(Context context, int resource, List<RequisitionApi> requisitions) {
+    public requisitionAdapter(Context context, int resource, List<Requisition> requisitions) {
         super(context, resource, requisitions);
-
-        this.resource=resource;
-        this.requisitionList=requisitions;
+        this.resource = resource;
+        this.requisitionList = requisitions;
     }
 
     @Override
@@ -35,14 +33,14 @@ public class requisitionAdapter extends ArrayAdapter<RequisitionApi> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        RequisitionApi requisition=requisitionList.get(position);
-        if (requisition!=null){
-            TextView textViewEmployeeName=(TextView)v.findViewById(R.id.textView_requisition_employee_name);
-            TextView textViewDate=(TextView)v.findViewById(R.id.textView_requisition_requisition_date);
-            TextView textViewQuantitiy = (TextView)v.findViewById(R.id.textview_requisition_requisition_quantity);
+        Requisition requisition = requisitionList.get(position);
+        if (requisition != null) {
+            TextView textViewEmployeeName = (TextView) v.findViewById(R.id.textView_requisition_employee_name);
+            TextView textViewDate = (TextView) v.findViewById(R.id.textView_requisition_requisition_date);
+            TextView textViewQuantity = (TextView) v.findViewById(R.id.textview_requisition_requisition_quantity);
             textViewEmployeeName.setText(requisition.getCreatedBy());
             textViewDate.setText(requisition.getIssuedDate());
-           textViewQuantitiy.setText(requisition.getNumberOfItem());
+            textViewQuantity.setText(requisition.getNumberOfItem());
         }
         return v;
     }

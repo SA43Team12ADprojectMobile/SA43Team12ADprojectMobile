@@ -3,68 +3,46 @@ package com.adprojectmobile.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
- * Created by EvEr on 2017/1/19.
+ * Created by EvEr on 2017/1/30.
  */
 
-public class Employee implements Parcelable {
-    private String employeeId;
-    private Department department;
-    private String password;
-    private String name;
-    private String position;
-    private String number;
-    private String emailAddress;
-    private boolean isDelegated;
-    private String delegationStartDate;
-    private String delegationEndDate;
+public class Employee implements Parcelable{
+    public String EmployeeID;
+    public String DepartmentName;
+    public String Name;
+    public String Position ;
+    public String Number ;
+    public String EmailAddress ;
+    public String IsDelegated ;
+    public String DelegationStartDate;
+    public String DelegationEndDate ;
 
     public Employee() {
     }
 
-    public Employee(String employeeId, Department department, String password, String name, String position, String number, String emailAddress, boolean isDelegated) {
-        this.employeeId = employeeId;
-        this.department = department;
-        this.password = password;
-        this.name = name;
-        this.position = position;
-        this.number = number;
-        this.emailAddress = emailAddress;
-        this.isDelegated = isDelegated;
+    public Employee(String employeeID, String departmentName, String name, String position, String number, String emailAddress, String isDelegated, String delegationStartDate, String delegationEndDate) {
+        EmployeeID = employeeID;
+        DepartmentName = departmentName;
+        Name = name;
+        Position = position;
+        Number = number;
+        EmailAddress = emailAddress;
+        IsDelegated = isDelegated;
+        DelegationStartDate = delegationStartDate;
+        DelegationEndDate = delegationEndDate;
     }
 
     protected Employee(Parcel in) {
-        employeeId = in.readString();
-        department = in.readParcelable(Department.class.getClassLoader());
-        password = in.readString();
-        name = in.readString();
-        position = in.readString();
-        number = in.readString();
-        emailAddress = in.readString();
-        isDelegated = in.readByte() != 0;
-        delegationStartDate = in.readString();
-        delegationEndDate = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(employeeId);
-        dest.writeParcelable(department, flags);
-        dest.writeString(password);
-        dest.writeString(name);
-        dest.writeString(position);
-        dest.writeString(number);
-        dest.writeString(emailAddress);
-        dest.writeByte((byte) (isDelegated ? 1 : 0));
-        dest.writeString(delegationStartDate);
-        dest.writeString(delegationEndDate);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        EmployeeID = in.readString();
+        DepartmentName = in.readString();
+        Name = in.readString();
+        Position = in.readString();
+        Number = in.readString();
+        EmailAddress = in.readString();
+        IsDelegated = in.readString();
+        DelegationStartDate = in.readString();
+        DelegationEndDate = in.readString();
     }
 
     public static final Creator<Employee> CREATOR = new Creator<Employee>() {
@@ -79,83 +57,93 @@ public class Employee implements Parcelable {
         }
     };
 
-    public String getEmployeeId() {
-        return employeeId;
+    public String getEmployeeID() {
+        return EmployeeID;
     }
 
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeID(String employeeID) {
+        EmployeeID = employeeID;
     }
 
-    public Department getDepartment() {
-        return department;
+    public String getDepartmentName() {
+        return DepartmentName;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDepartmentName(String departmentName) {
+        DepartmentName = departmentName;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
     public String getPosition() {
-        return position;
+        return Position;
     }
 
     public void setPosition(String position) {
-        this.position = position;
+        Position = position;
     }
 
     public String getNumber() {
-        return number;
+        return Number;
     }
 
     public void setNumber(String number) {
-        this.number = number;
+        Number = number;
     }
 
     public String getEmailAddress() {
-        return emailAddress;
+        return EmailAddress;
     }
 
     public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+        EmailAddress = emailAddress;
     }
 
-    public boolean isDelegated() {
-        return isDelegated;
+    public String getIsDelegated() {
+        return IsDelegated;
     }
 
-    public void setDelegated(boolean delegated) {
-        isDelegated = delegated;
+    public void setIsDelegated(String isDelegated) {
+        IsDelegated = isDelegated;
     }
 
     public String getDelegationStartDate() {
-        return delegationStartDate;
+        return DelegationStartDate;
     }
 
     public void setDelegationStartDate(String delegationStartDate) {
-        this.delegationStartDate = delegationStartDate;
+        DelegationStartDate = delegationStartDate;
     }
 
     public String getDelegationEndDate() {
-        return delegationEndDate;
+        return DelegationEndDate;
     }
 
     public void setDelegationEndDate(String delegationEndDate) {
-        this.delegationEndDate = delegationEndDate;
+        DelegationEndDate = delegationEndDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(EmployeeID);
+        dest.writeString(DepartmentName);
+        dest.writeString(Name);
+        dest.writeString(Position);
+        dest.writeString(Number);
+        dest.writeString(EmailAddress);
+        dest.writeString(IsDelegated);
+        dest.writeString(DelegationStartDate);
+        dest.writeString(DelegationEndDate);
     }
 }

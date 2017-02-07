@@ -12,56 +12,48 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
-import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher;
-import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.VoucherDetail;
 import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.adjustmentItemAdapter;
-import com.adprojectmobile.apiModel.AdjustmentApi;
-import com.adprojectmobile.apiModel.AdjustmentItemApi;
-import com.adprojectmobile.apiModel.EmployeeApi;
-import com.adprojectmobile.dao.Dao.adjustmentItemDao;
-import com.adprojectmobile.dao.DaoImpl.adjustmentItemDaoImpl;
-import com.adprojectmobile.daoApi.adjustDao;
 import com.adprojectmobile.model.Adjustment;
 import com.adprojectmobile.model.AdjustmentItem;
+import com.adprojectmobile.model.Employee;
+import com.adprojectmobile.dao.adjustDao;
 
 import java.util.List;
 
 public class ItemsVoucherIssue extends AppCompatActivity {
     adjustDao aDao = new adjustDao();
 
-    adjustmentItemDao adjItemDao=new adjustmentItemDaoImpl();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjustment_issue_activity_items_voucher_issue);
 
-        final AdjustmentApi adjustment=getIntent().getParcelableExtra("data");
-        final EmployeeApi employee=getIntent().getParcelableExtra("role");
+        final Adjustment adjustment=getIntent().getParcelableExtra("data");
+        final Employee employee=getIntent().getParcelableExtra("role");
         final  String id=getIntent().getStringExtra("id");
 
         final ListView adjustmentItemView=(ListView)findViewById(R.id.listview_adjustment_voucher_issue_itemlist);
 
-        new AsyncTask<AdjustmentApi,Void,List<AdjustmentItemApi>>(){
+        new AsyncTask<Adjustment,Void,List<AdjustmentItem>>(){
             @Override
-            protected List<AdjustmentItemApi> doInBackground(AdjustmentApi...params){
-                List<AdjustmentApi> adjustmentApis = aDao.getAllAdjustment(employee.getEmployeeID());
-                AdjustmentApi adjustmentApi = new AdjustmentApi();
-                for (AdjustmentApi rc :
-                        adjustmentApis) {
+            protected List<AdjustmentItem> doInBackground(Adjustment...params){
+                List<Adjustment> adjustments = aDao.getAllAdjustment(employee.getEmployeeID());
+                Adjustment adjustment = new Adjustment();
+                for (Adjustment rc :
+                        adjustments) {
                     if (rc.getAdjustmentID() != null) {
                         if (rc.getAdjustmentID().toString().equals(id)) {
-                            adjustmentApi = rc;
+                            adjustment = rc;
                         }
                     }
 
                 }
-                return aDao.getAllAdjustItem(adjustmentApi);
+                return aDao.getAllAdjustItem(adjustment);
             }
 
             @Override
-            protected void onPostExecute(List<AdjustmentItemApi> adjustmentItems){
+            protected void onPostExecute(List<AdjustmentItem> adjustmentItems){
                 adjustmentItemView.setAdapter(new adjustmentItemAdapter(getApplicationContext(),R.layout.row_adjustment_item,adjustmentItems));
             }
         }.execute();
@@ -69,7 +61,7 @@ public class ItemsVoucherIssue extends AppCompatActivity {
         adjustmentItemView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AdjustmentItemApi adjustmentItem=(AdjustmentItemApi) parent.getAdapter().getItem(position);
+                AdjustmentItem adjustmentItem=(AdjustmentItem) parent.getAdapter().getItem(position);
 
                 Intent intent=new Intent(getApplicationContext(),AdjustItemQty.class);
                 intent.putExtra("data",adjustmentItem);

@@ -13,63 +13,50 @@ import android.widget.TextView;
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.EmployeeMainPage;
 import com.adprojectmobile.activity.department.HeadMainPage;
-import com.adprojectmobile.activity.department.RepresentativeMainPage;
-import com.adprojectmobile.activity.inventoryStore.DeliveryInformation.RequisitionItems;
-import com.adprojectmobile.adapter.disbursementAdapter;
 import com.adprojectmobile.adapter.requisitionAdapter;
-import com.adprojectmobile.apiModel.EmployeeApi;
-import com.adprojectmobile.apiModel.RequisitionApi;
-import com.adprojectmobile.dao.Dao.disbursementDao;
-import com.adprojectmobile.dao.Dao.requisitionDao;
-import com.adprojectmobile.dao.DaoImpl.requisitionDaoImpl;
-import com.adprojectmobile.daoApi.approveDao;
-import com.adprojectmobile.daoApi.delegateDao;
-import com.adprojectmobile.model.Disbursement;
 import com.adprojectmobile.model.Employee;
 import com.adprojectmobile.model.Requisition;
+import com.adprojectmobile.dao.approveDao;
 
 import java.util.List;
 
 public class Requisitions extends AppCompatActivity {
-    requisitionDao requisitionDao = new requisitionDaoImpl();
-    approveDao aDao=new approveDao();
-    delegateDao dDao=new delegateDao();
+    approveDao aDao = new approveDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.approve_req_activity_requisitions);
-        final EmployeeApi employee=getIntent().getParcelableExtra("role");
-        final String eid=getIntent().getStringExtra("eid");
+        final Employee employee = getIntent().getParcelableExtra("role");
+        final String eid = getIntent().getStringExtra("eid");
 
-        String pass=new String();
-        if (employee.getPosition().equals("Head")){
-            pass=getIntent().getStringExtra("password");
+        String pass = new String();
+        if (employee.getPosition().equals("Head")) {
+            pass = getIntent().getStringExtra("password");
         }
-       final  String password=pass;
+        final String password = pass;
 
-        Log.e("isDelegated",employee.getIsDelegated());
-        String empId=new String();
-        if (employee.getPosition().equals("Employee")||employee.getPosition().equals("Representative")){
-            empId=eid;
+        Log.e("isDelegated", employee.getIsDelegated());
+        String empId = new String();
+        if (employee.getPosition().equals("Employee") || employee.getPosition().equals("Representative")) {
+            empId = eid;
+        } else {
+            empId = employee.getEmployeeID();
         }
-        else {
-            empId=employee.getEmployeeID();
-        }
 
-        final String employeeId=empId;
+        final String employeeId = empId;
 
-        final ListView requisitionList =(ListView)findViewById(R.id.listview_approve_requisitions);
+        final ListView requisitionList = (ListView) findViewById(R.id.listview_approve_requisitions);
 
-        new AsyncTask<Void,Void,List<RequisitionApi>>(){
+        new AsyncTask<Void, Void, List<Requisition>>() {
             @Override
-            protected List<RequisitionApi> doInBackground(Void...params){
+            protected List<Requisition> doInBackground(Void... params) {
                 return aDao.getAllRequisition(employeeId);
             }
 
             @Override
-            protected void onPostExecute(List<RequisitionApi> requisitionses){
-                requisitionList.setAdapter(new requisitionAdapter(Requisitions.this,R.layout.row_approve_requisition_list, requisitionses));
+            protected void onPostExecute(List<Requisition> requisitionses) {
+                requisitionList.setAdapter(new requisitionAdapter(Requisitions.this, R.layout.row_approve_requisition_list, requisitionses));
 
             }
         }.execute();
@@ -77,32 +64,31 @@ public class Requisitions extends AppCompatActivity {
         requisitionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RequisitionApi requisition = (RequisitionApi) parent.getAdapter().getItem(position);
+                Requisition requisition = (Requisition) parent.getAdapter().getItem(position);
 
                 Intent intent = new Intent(Requisitions.this, RequisitionItemsforApprove.class);
 
                 intent.putExtra("requisition", requisition);
-                intent.putExtra("data",requisition.getId());
-                intent.putExtra("role",employee);
-                intent.putExtra("eid",eid);
-                intent.putExtra("password",password);
+                intent.putExtra("data", requisition.getId());
+                intent.putExtra("role", employee);
+                intent.putExtra("eid", eid);
+                intent.putExtra("password", password);
                 startActivity(intent);
             }
         });
 
-        TextView title=(TextView)findViewById(R.id.textView_title_requisitionList);
+        TextView title = (TextView) findViewById(R.id.textView_title_requisitionList);
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (employee.getIsDelegated().equals("true")){
-                        Intent intent=new Intent(getApplicationContext(), EmployeeMainPage.class);
-                        intent.putExtra("role",employee);
-                        startActivity(intent);
-                }
-                else {
-                    Intent intent=new Intent(getApplicationContext(), HeadMainPage.class);
-                    intent.putExtra("role",employee);
-                    intent.putExtra("password",password);
+                if (employee.getIsDelegated().equals("true")) {
+                    Intent intent = new Intent(getApplicationContext(), EmployeeMainPage.class);
+                    intent.putExtra("role", employee);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), HeadMainPage.class);
+                    intent.putExtra("role", employee);
+                    intent.putExtra("password", password);
                     startActivity(intent);
                 }
 

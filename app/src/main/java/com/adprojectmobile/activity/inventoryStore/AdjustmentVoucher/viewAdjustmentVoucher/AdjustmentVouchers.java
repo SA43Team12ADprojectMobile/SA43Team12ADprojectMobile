@@ -9,68 +9,63 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.adjustmentAdapter;
-import com.adprojectmobile.apiModel.AdjustmentApi;
-import com.adprojectmobile.apiModel.EmployeeApi;
-import com.adprojectmobile.dao.Dao.adjustmentDao;
-import com.adprojectmobile.dao.DaoImpl.adjustmentDaoImpl;
-import com.adprojectmobile.daoApi.adjustDao;
 import com.adprojectmobile.model.Adjustment;
+import com.adprojectmobile.model.Employee;
+import com.adprojectmobile.dao.adjustDao;
 
 import java.util.List;
 
 public class AdjustmentVouchers extends AppCompatActivity {
-         adjustmentDao adDao=new adjustmentDaoImpl();
-    adjustDao aDao=new adjustDao();
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.adjustment_view_activity_adjustment_vouchers);
-            final EmployeeApi employee=getIntent().getParcelableExtra("role");
-            Log.e("role",employee.getName());
+    adjustDao aDao = new adjustDao();
 
-            final ListView adjustmentView=(ListView)findViewById(R.id.listview_adjustment_voucher);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.adjustment_view_activity_adjustment_vouchers);
+        final Employee employee = getIntent().getParcelableExtra("role");
+        Log.e("role", employee.getName());
 
-            new AsyncTask<String,Void,List<AdjustmentApi>>(){
-                @Override
-                protected List<AdjustmentApi> doInBackground(String...params){
-                    return aDao.getAllAdjustment(employee.getEmployeeID());
-                }
+        final ListView adjustmentView = (ListView) findViewById(R.id.listview_adjustment_voucher);
 
-                @Override
-                protected void onPostExecute(List<AdjustmentApi> adjustments){
-                    adjustmentView.setAdapter(new adjustmentAdapter(AdjustmentVouchers.this,R.layout.row_adjustment_voucher,adjustments));
+        new AsyncTask<String, Void, List<Adjustment>>() {
+            @Override
+            protected List<Adjustment> doInBackground(String... params) {
+                return aDao.getAllAdjustment(employee.getEmployeeID());
+            }
+            @Override
+            protected void onPostExecute(List<Adjustment> adjustments) {
+                adjustmentView.setAdapter(new adjustmentAdapter(AdjustmentVouchers.this, R.layout.row_adjustment_voucher, adjustments));
 
-                }
-            }.execute();
+            }
+        }.execute();
 
-            adjustmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    AdjustmentApi adjustment=(AdjustmentApi) parent.getAdapter().getItem(position);
+        adjustmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Adjustment adjustment = (Adjustment) parent.getAdapter().getItem(position);
 
-                    Intent intent=new Intent(getApplicationContext(),ItemsInVoucher.class);
-                    intent.putExtra("data",adjustment);
-                    intent.putExtra("role",employee);
-                    intent.putExtra("id",adjustment.getAdjustmentID());
-                    startActivity(intent);
-                }
-            });
+                Intent intent = new Intent(getApplicationContext(), ItemsInVoucher.class);
+                intent.putExtra("data", adjustment);
+                intent.putExtra("role", employee);
+                intent.putExtra("id", adjustment.getAdjustmentID());
+                startActivity(intent);
+            }
+        });
 
-            TextView title=(TextView)findViewById(R.id.textview_title_view_adjustmentVouchers);
-            title.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
-                    intent.putExtra("role",employee);
-                    startActivity(intent);
-                }
-            });
+        TextView title = (TextView) findViewById(R.id.textview_title_view_adjustmentVouchers);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role", employee);
+                startActivity(intent);
+            }
+        });
 
 
-        }
+    }
 }

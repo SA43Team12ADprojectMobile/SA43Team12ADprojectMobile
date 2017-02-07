@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.apiModel.AdjustmentItemApi;
+import com.adprojectmobile.model.AdjustmentItem;
 
 import java.util.List;
 
@@ -17,11 +17,11 @@ import java.util.List;
  * Created by EvEr on 2017/2/4.
  */
 
-public class itemListAdapter extends ArrayAdapter<AdjustmentItemApi> {
-    private List<AdjustmentItemApi> adjustmentItemList;
+public class itemListAdapter extends ArrayAdapter<AdjustmentItem> {
+    private List<AdjustmentItem> adjustmentItemList;
     int resource;
 
-    public itemListAdapter(Context context, int resource, List<AdjustmentItemApi> adjustmentItems) {
+    public itemListAdapter(Context context, int resource, List<AdjustmentItem> adjustmentItems) {
         super(context, resource, adjustmentItems);
         this.resource = resource;
         this.adjustmentItemList = adjustmentItems;
@@ -32,15 +32,15 @@ public class itemListAdapter extends ArrayAdapter<AdjustmentItemApi> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        AdjustmentItemApi adjustmentItem = adjustmentItemList.get(position);
+        AdjustmentItem adjustmentItem = adjustmentItemList.get(position);
         if (adjustmentItem != null) {
             TextView textViewCode = (TextView) v.findViewById(R.id.textview_adjustment_item_code);
             TextView textViewName = (TextView) v.findViewById(R.id.textview_adjustment_item_name);
-            TextView textViewPrice=(TextView) v.findViewById(R.id.textview_adjustment_item_price);
+            TextView textViewPrice = (TextView) v.findViewById(R.id.textview_adjustment_item_price);
+
             textViewCode.setText(adjustmentItem.getItemID());
             textViewName.setText(adjustmentItem.getDescription());
-
-            textViewPrice.setText("$"+adjustmentItem.getTenderPrice());
+            textViewPrice.setText("$" + adjustmentItem.getTenderPrice());
         }
         return v;
     }

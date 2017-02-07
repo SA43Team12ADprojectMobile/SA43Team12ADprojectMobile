@@ -4,30 +4,48 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by EvEr on 2017/1/19.
+ * Created by EvEr on 2017/1/30.
  */
 
 public class RequisitionItem implements Parcelable{
-    private String requisitionItemId;
-    private String transactionID;
-    private String name;
-    private String neededQuantity;
-    private String retrievedQuantity;
+    public String ItemCode ;
+    public String ItemName ;
+    public String Quantity ;
+    public String NeededQuantity ;
+    public String RetrieveQuantity;
 
-    public RequisitionItem(String transactionID, String name, String neededQuantity, String retrievedQuantity) {
-        this.transactionID = transactionID;
-        this.name = name;
-        this.neededQuantity = neededQuantity;
-        this.retrievedQuantity = retrievedQuantity;
 
+    public RequisitionItem() {
+    }
+
+    public RequisitionItem(String itemCode, String itemName, String quantity, String neededQuantity, String retrieveQuantity) {
+        ItemCode = itemCode;
+        ItemName = itemName;
+        Quantity = quantity;
+        NeededQuantity = neededQuantity;
+        RetrieveQuantity = retrieveQuantity;
     }
 
     protected RequisitionItem(Parcel in) {
-        requisitionItemId = in.readString();
-        transactionID = in.readString();
-        name = in.readString();
-        neededQuantity = in.readString();
-        retrievedQuantity = in.readString();
+        ItemCode = in.readString();
+        ItemName = in.readString();
+        Quantity = in.readString();
+        NeededQuantity = in.readString();
+        RetrieveQuantity = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(ItemCode);
+        dest.writeString(ItemName);
+        dest.writeString(Quantity);
+        dest.writeString(NeededQuantity);
+        dest.writeString(RetrieveQuantity);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<RequisitionItem> CREATOR = new Creator<RequisitionItem>() {
@@ -42,57 +60,43 @@ public class RequisitionItem implements Parcelable{
         }
     };
 
-    public String getRequisitionItemId() {
-        return requisitionItemId;
+    public String getItemCode() {
+        return ItemCode;
     }
 
-    public void setRequisitionItemId(String requisitionItemId) {
-        this.requisitionItemId = requisitionItemId;
+    public void setItemCode(String itemCode) {
+        ItemCode = itemCode;
     }
 
-    public String getTransactionID() {
-        return transactionID;
+    public String getItemName() {
+        return ItemName;
     }
 
-    public void setTransactionID(String transactionID) {
-        this.transactionID = transactionID;
+    public void setItemName(String itemName) {
+        ItemName = itemName;
     }
 
-    public String getName() {
-        return name;
+    public String getQuantity() {
+        return Quantity;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setQuantity(String quantity) {
+        Quantity = quantity;
     }
 
     public String getNeededQuantity() {
-        return neededQuantity;
+        return NeededQuantity;
     }
 
     public void setNeededQuantity(String neededQuantity) {
-        this.neededQuantity = neededQuantity;
+        NeededQuantity = neededQuantity;
     }
 
-    public String getRetrievedQuantity() {
-        return retrievedQuantity;
+    public String getRetrieveQuantity() {
+        return RetrieveQuantity;
     }
 
-    public void setRetrievedQuantity(String retrievedQuantity) {
-        this.retrievedQuantity = retrievedQuantity;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(requisitionItemId);
-        dest.writeString(transactionID);
-        dest.writeString(name);
-        dest.writeString(neededQuantity);
-        dest.writeString(retrievedQuantity);
+    public void setRetrieveQuantity(String retrieveQuantity) {
+        RetrieveQuantity = retrieveQuantity;
     }
 }

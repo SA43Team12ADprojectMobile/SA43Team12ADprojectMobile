@@ -9,9 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.apiModel.AdjustmentItemApi;
 import com.adprojectmobile.model.AdjustmentItem;
-import com.adprojectmobile.model.RequisitionItem;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -20,12 +18,12 @@ import java.util.List;
  * Created by EvEr on 2017/1/24.
  */
 
-public class adjustmentItemAdapter extends ArrayAdapter<AdjustmentItemApi> {
+public class adjustmentItemAdapter extends ArrayAdapter<AdjustmentItem> {
 
-    private List<AdjustmentItemApi> adjustmentItemList;
+    private List<AdjustmentItem> adjustmentItemList;
     int resource;
 
-    public adjustmentItemAdapter(Context context, int resource, List<AdjustmentItemApi> adjustmentItems) {
+    public adjustmentItemAdapter(Context context, int resource, List<AdjustmentItem> adjustmentItems) {
         super(context, resource, adjustmentItems);
         this.resource = resource;
         this.adjustmentItemList = adjustmentItems;
@@ -36,26 +34,26 @@ public class adjustmentItemAdapter extends ArrayAdapter<AdjustmentItemApi> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        AdjustmentItemApi adjustmentItem = adjustmentItemList.get(position);
+        AdjustmentItem adjustmentItem = adjustmentItemList.get(position);
         if (adjustmentItem != null) {
             TextView textViewCode = (TextView) v.findViewById(R.id.textview_adjustment_item_code);
             TextView textViewName = (TextView) v.findViewById(R.id.textview_adjustment_item_name);
-            TextView textViewPrice=(TextView) v.findViewById(R.id.textview_adjustment_item_price);
+            TextView textViewPrice = (TextView) v.findViewById(R.id.textview_adjustment_item_price);
             textViewCode.setText(adjustmentItem.getItemID());
             textViewName.setText(adjustmentItem.getDescription());
 
-            Double qty=Double.parseDouble( adjustmentItem.getActualQuantity());
-            Double price=Double.parseDouble(adjustmentItem.getTenderPrice());
-            Double totalPrice=qty*price;
-            if (totalPrice<0){
-                totalPrice=-totalPrice;
+            Double qty = Double.parseDouble(adjustmentItem.getActualQuantity());
+            Double price = Double.parseDouble(adjustmentItem.getTenderPrice());
+            Double totalPrice = qty * price;
+            if (totalPrice < 0) {
+                totalPrice = -totalPrice;
             }
-            DecimalFormat df=new DecimalFormat("0.00");
+            DecimalFormat df = new DecimalFormat("0.00");
 
-            String tprice=df.format(totalPrice);
+            String tprice = df.format(totalPrice);
 
 
-            textViewPrice.setText("$"+tprice);
+            textViewPrice.setText("$" + tprice);
         }
         return v;
     }

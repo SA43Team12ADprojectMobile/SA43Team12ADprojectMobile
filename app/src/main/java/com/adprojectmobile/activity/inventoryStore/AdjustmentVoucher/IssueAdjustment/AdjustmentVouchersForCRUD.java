@@ -1,9 +1,7 @@
 package com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,40 +12,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
-import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.ItemsInVoucher;
 import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.adjustmentAdapter;
-import com.adprojectmobile.apiModel.AdjustmentApi;
-import com.adprojectmobile.apiModel.EmployeeApi;
-import com.adprojectmobile.dao.Dao.adjustmentDao;
-import com.adprojectmobile.dao.DaoImpl.adjustmentDaoImpl;
-import com.adprojectmobile.daoApi.adjustDao;
 import com.adprojectmobile.model.Adjustment;
+import com.adprojectmobile.model.Employee;
+import com.adprojectmobile.dao.adjustDao;
 
 import java.util.List;
 
 public class AdjustmentVouchersForCRUD extends AppCompatActivity {
-    adjustmentDao adDao=new adjustmentDaoImpl();
     adjustDao aDao=new adjustDao();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adjustment_issue_activity_adjustment_vouchers);
-        final EmployeeApi employee=getIntent().getParcelableExtra("role");
+        final Employee employee=getIntent().getParcelableExtra("role");
 
             final ListView adjustmentView=(ListView)findViewById(R.id.listview_adjustment_voucher_for_CRUD);
 
-            new AsyncTask<Void,Void,List<AdjustmentApi>>(){
+            new AsyncTask<Void,Void,List<Adjustment>>(){
                 @Override
-                protected List<AdjustmentApi> doInBackground(Void...params){
+                protected List<Adjustment> doInBackground(Void...params){
                     return aDao.getAllAdjustment(employee.getEmployeeID());
 
                     //return null;
                 }
 
                 @Override
-                protected void onPostExecute(List<AdjustmentApi> adjustments){
+                protected void onPostExecute(List<Adjustment> adjustments){
                     adjustmentView.setAdapter(new adjustmentAdapter(getApplicationContext(),R.layout.row_adjustment_voucher,adjustments));
                 }
             }.execute();
@@ -55,7 +47,7 @@ public class AdjustmentVouchersForCRUD extends AppCompatActivity {
             adjustmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    AdjustmentApi adjustment=(AdjustmentApi) parent.getAdapter().getItem(position);
+                    Adjustment adjustment=(Adjustment) parent.getAdapter().getItem(position);
 
                     Intent intent=new Intent(getApplicationContext(),ItemsVoucherIssue.class);
                     intent.putExtra("data",adjustment);

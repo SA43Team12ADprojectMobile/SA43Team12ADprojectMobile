@@ -3,39 +3,48 @@ package com.adprojectmobile.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
- * Created by EvEr on 2017/1/19.
+ * Created by EvEr on 2017/1/30.
  */
 
 public class AdjustmentItem implements Parcelable{
-    private int adjustmentItemsId;
-    private Adjustment adjustment;
-    private ItemTransaction itemTransaction;
-    private String reason;
-
+    private String Adjustment_ItemsID ;
+    private String AdjustmentID ;
+    private String ItemTransactionID ;
+    private String ItemID ;
+    private String Description ;
+    private String TenderPrice ;
+    private String ActualQuantity ;
+    private String Reason ;
     public AdjustmentItem() {
     }
 
-    public AdjustmentItem(int adjustmentItemsId,Adjustment adjustment, ItemTransaction itemTransaction, String reason) {
-        this.adjustmentItemsId=adjustmentItemsId;
-        this.adjustment = adjustment;
-        this.itemTransaction = itemTransaction;
-        this.reason = reason;
+    public AdjustmentItem(String itemID, String description, String tenderPrice) {
+        ItemID = itemID;
+        Description = description;
+        TenderPrice = tenderPrice;
     }
 
-    public AdjustmentItem(int adjustmentItemsId,Adjustment adjustment, ItemTransaction itemTransaction) {
-        this.adjustmentItemsId=adjustmentItemsId;
-        this.adjustment = adjustment;
-        this.itemTransaction = itemTransaction;
+    public AdjustmentItem(String adjustment_ItemsID, String adjustmentID, String itemTransactionID, String itemID, String description, String tenderPrice, String actualQuantity, String reason) {
+        Adjustment_ItemsID = adjustment_ItemsID;
+        AdjustmentID = adjustmentID;
+        ItemTransactionID = itemTransactionID;
+        ItemID = itemID;
+        Description = description;
+        TenderPrice = tenderPrice;
+        ActualQuantity = actualQuantity;
+        Reason = reason;
     }
 
     protected AdjustmentItem(Parcel in) {
-        adjustmentItemsId = in.readInt();
-        adjustment = in.readParcelable(Adjustment.class.getClassLoader());
-        itemTransaction = in.readParcelable(ItemTransaction.class.getClassLoader());
-        reason = in.readString();
+        Adjustment_ItemsID = in.readString();
+        AdjustmentID = in.readString();
+        ItemTransactionID = in.readString();
+        ItemID = in.readString();
+        Description = in.readString();
+        TenderPrice = in.readString();
+        ActualQuantity = in.readString();
+        Reason = in.readString();
     }
 
     public static final Creator<AdjustmentItem> CREATOR = new Creator<AdjustmentItem>() {
@@ -50,28 +59,68 @@ public class AdjustmentItem implements Parcelable{
         }
     };
 
-    public Adjustment getAdjustment() {
-        return adjustment;
+    public String getAdjustment_ItemsID() {
+        return Adjustment_ItemsID;
     }
 
-    public void setAdjustment(Adjustment adjustment) {
-        this.adjustment = adjustment;
+    public void setAdjustment_ItemsID(String adjustment_ItemsID) {
+        Adjustment_ItemsID = adjustment_ItemsID;
     }
 
-    public ItemTransaction getItemTransaction() {
-        return itemTransaction;
+    public String getAdjustmentID() {
+        return AdjustmentID;
     }
 
-    public void setItemTransaction(ItemTransaction itemTransaction) {
-        this.itemTransaction = itemTransaction;
+    public void setAdjustmentID(String adjustmentID) {
+        AdjustmentID = adjustmentID;
+    }
+
+    public String getItemTransactionID() {
+        return ItemTransactionID;
+    }
+
+    public void setItemTransactionID(String itemTransactionID) {
+        ItemTransactionID = itemTransactionID;
+    }
+
+    public String getItemID() {
+        return ItemID;
+    }
+
+    public void setItemID(String itemID) {
+        ItemID = itemID;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getTenderPrice() {
+        return TenderPrice;
+    }
+
+    public void setTenderPrice(String tenderPrice) {
+        TenderPrice = tenderPrice;
+    }
+
+    public String getActualQuantity() {
+        return ActualQuantity;
+    }
+
+    public void setActualQuantity(String actualQuantity) {
+        ActualQuantity = actualQuantity;
     }
 
     public String getReason() {
-        return reason;
+        return Reason;
     }
 
     public void setReason(String reason) {
-        this.reason = reason;
+        Reason = reason;
     }
 
     @Override
@@ -81,9 +130,13 @@ public class AdjustmentItem implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(adjustmentItemsId);
-        dest.writeParcelable(adjustment, flags);
-        dest.writeParcelable(itemTransaction, flags);
-        dest.writeString(reason);
+        dest.writeString(Adjustment_ItemsID);
+        dest.writeString(AdjustmentID);
+        dest.writeString(ItemTransactionID);
+        dest.writeString(ItemID);
+        dest.writeString(Description);
+        dest.writeString(TenderPrice);
+        dest.writeString(ActualQuantity);
+        dest.writeString(Reason);
     }
 }

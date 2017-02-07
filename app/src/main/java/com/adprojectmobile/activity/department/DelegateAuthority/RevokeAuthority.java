@@ -12,44 +12,42 @@ import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.HeadMainPage;
-import com.adprojectmobile.apiModel.DelegateEmployee;
-import com.adprojectmobile.apiModel.EmployeeApi;
-import com.adprojectmobile.daoApi.delegateDao;
+import com.adprojectmobile.model.DelegateEmployee;
 import com.adprojectmobile.model.Employee;
-
-import java.util.List;
+import com.adprojectmobile.dao.delegateDao;
 
 public class RevokeAuthority extends AppCompatActivity {
-    delegateDao dDao=new delegateDao();
+    delegateDao dDao = new delegateDao();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delegate_authority_activity_revoke_authority);
-        final EmployeeApi employee=getIntent().getParcelableExtra("data");
-        final EmployeeApi authorEmp=getIntent().getParcelableExtra("auth");
-        final DelegateEmployee delegateEmployee=getIntent().getParcelableExtra("delegate");
-        Log.e("emp",employee.getDepartmentName());
-        Log.e("authEmp",authorEmp.getName());
+        final Employee employee = getIntent().getParcelableExtra("data");
+        final Employee authorEmp = getIntent().getParcelableExtra("auth");
+        final DelegateEmployee delegateEmployee = getIntent().getParcelableExtra("delegate");
+        Log.e("emp", employee.getDepartmentName());
+        Log.e("authEmp", authorEmp.getName());
 
-        final EditText editTextName=(EditText)findViewById(R.id.editText_revoke_employeeName);
-        final EditText editTextStatus=(EditText)findViewById(R.id.editText_revoke_status);
-        final EditText editTextStartDate=(EditText)findViewById(R.id.editText_revoke_startDate);
-        final EditText editTextEndDate=(EditText)findViewById(R.id.editText_revoke_enDate);
+        final EditText editTextName = (EditText) findViewById(R.id.editText_revoke_employeeName);
+        final EditText editTextStatus = (EditText) findViewById(R.id.editText_revoke_status);
+        final EditText editTextStartDate = (EditText) findViewById(R.id.editText_revoke_startDate);
+        final EditText editTextEndDate = (EditText) findViewById(R.id.editText_revoke_enDate);
 
         editTextName.setText(authorEmp.getName());
         editTextStatus.setText("Authorized");
-        String date=authorEmp.DelegationStartDate.substring(0,10);
-        String time=authorEmp.DelegationStartDate.substring(11,16);
-        String dateTime=date+" "+time;
+        String date = authorEmp.DelegationStartDate.substring(0, 10);
+        String time = authorEmp.DelegationStartDate.substring(11, 16);
+        String dateTime = date + " " + time;
         editTextStartDate.setText(dateTime);
-        if (authorEmp.DelegationEndDate!="null"){
-            String dateEnd=authorEmp.DelegationEndDate.substring(0,10);
-            String timeEnd=authorEmp.DelegationEndDate.substring(11,16);
-            String dateTimeEnd=dateEnd+" "+timeEnd;
+        if (authorEmp.DelegationEndDate != "null") {
+            String dateEnd = authorEmp.DelegationEndDate.substring(0, 10);
+            String timeEnd = authorEmp.DelegationEndDate.substring(11, 16);
+            String dateTimeEnd = dateEnd + " " + timeEnd;
             editTextEndDate.setText(dateTimeEnd);
         }
 
-        Button btnConfirmDelegate=(Button) findViewById(R.id.btn_revoke_confirm);
+        Button btnConfirmDelegate = (Button) findViewById(R.id.btn_revoke_confirm);
 
         btnConfirmDelegate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +66,11 @@ public class RevokeAuthority extends AppCompatActivity {
                     }
                 }.execute();
 
-                Toast.makeText(getApplicationContext(),"Revoke Successfully",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Revoke Successfully", Toast.LENGTH_LONG).show();
 
-                Intent intent=new Intent(getApplicationContext(), HeadMainPage.class);
-                intent.putExtra("role",employee);
-                intent.putExtra("password",delegateEmployee.getPassword());
+                Intent intent = new Intent(getApplicationContext(), HeadMainPage.class);
+                intent.putExtra("role", employee);
+                intent.putExtra("password", delegateEmployee.getPassword());
                 startActivity(intent);
             }
         });

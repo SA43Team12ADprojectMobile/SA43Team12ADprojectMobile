@@ -9,9 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.apiModel.AdjustmentApi;
-import com.adprojectmobile.daoApi.adjustDao;
 import com.adprojectmobile.model.Adjustment;
+import com.adprojectmobile.dao.adjustDao;
 
 import java.util.List;
 
@@ -19,12 +18,12 @@ import java.util.List;
  * Created by EvEr on 2017/1/24.
  */
 
-public class adjustmentAdapter extends ArrayAdapter<AdjustmentApi> {
-    adjustDao aDao=new adjustDao();
-    private List<AdjustmentApi> adjustmentList;
+public class adjustmentAdapter extends ArrayAdapter<Adjustment> {
+    adjustDao aDao = new adjustDao();
+    private List<Adjustment> adjustmentList;
     int resource;
 
-    public adjustmentAdapter(Context context, int resource, List<AdjustmentApi> adjustments) {
+    public adjustmentAdapter(Context context, int resource, List<Adjustment> adjustments) {
         super(context, resource, adjustments);
         this.resource = resource;
         this.adjustmentList = adjustments;
@@ -35,13 +34,13 @@ public class adjustmentAdapter extends ArrayAdapter<AdjustmentApi> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        AdjustmentApi adjustment=adjustmentList.get(position);
-        if (adjustment!=null){
-            TextView textViewDate=(TextView)v.findViewById(R.id.textView_adjustment_date);
-            TextView textViewIssueBy=(TextView)v.findViewById(R.id.textView_adjustment_employeeName);
+        Adjustment adjustment = adjustmentList.get(position);
+        if (adjustment != null) {
+            TextView textViewDate = (TextView) v.findViewById(R.id.textView_adjustment_date);
+            TextView textViewIssueBy = (TextView) v.findViewById(R.id.textView_adjustment_employeeName);
 
             textViewDate.setText(aDao.formatJsonDate(adjustment.getDateIssued()));
-            textViewIssueBy.setText("Issued By "+ adjustment.getIssuedBy());
+            textViewIssueBy.setText("Issued By " + adjustment.getIssuedBy());
         }
         return v;
 

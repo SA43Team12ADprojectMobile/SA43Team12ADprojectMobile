@@ -13,7 +13,6 @@ import com.adprojectmobile.R;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.AuthorizeAdjustment.AdjustmentVouchersAuthorize;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
-import com.adprojectmobile.model.Adjustment;
 
 import java.util.ArrayList;
 import java.util.List;

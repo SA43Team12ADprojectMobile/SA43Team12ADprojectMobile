@@ -9,9 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.apiModel.RetrievalItem;
-import com.adprojectmobile.model.Requisition;
-import com.adprojectmobile.model.RequisitionItem;
+import com.adprojectmobile.model.RetrievalItem;
 
 import java.util.List;
 
@@ -21,13 +19,13 @@ import java.util.List;
 
 public class requisitionItemAdapter extends ArrayAdapter<RetrievalItem> {
 
-    private  List<RetrievalItem> requisitionItemList;
+    private List<RetrievalItem> requisitionItemList;
     int resource;
 
     public requisitionItemAdapter(Context context, int resource, List<RetrievalItem> requisitionItems) {
         super(context, resource, requisitionItems);
-        this.resource=resource;
-        this.requisitionItemList=requisitionItems;
+        this.resource = resource;
+        this.requisitionItemList = requisitionItems;
     }
 
     @Override
@@ -35,14 +33,13 @@ public class requisitionItemAdapter extends ArrayAdapter<RetrievalItem> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        RetrievalItem requisitionItems =requisitionItemList.get(position);
-        if (requisitionItems!=null){
-            TextView textViewItemName=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_name);
-           // TextView textViewItemCode=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_code);
-            TextView textViewQtyNeeded=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_qty_needed);
-            TextView textViewQtyRetr=(TextView)v.findViewById(R.id.textView_retrieval_disbursement_item_qty_retrieved);
+        RetrievalItem requisitionItems = requisitionItemList.get(position);
+        if (requisitionItems != null) {
+            TextView textViewItemName = (TextView) v.findViewById(R.id.textView_retrieval_disbursement_item_name);
+            TextView textViewQtyNeeded = (TextView) v.findViewById(R.id.textView_retrieval_disbursement_item_qty_needed);
+            TextView textViewQtyRetr = (TextView) v.findViewById(R.id.textView_retrieval_disbursement_item_qty_retrieved);
+
             textViewItemName.setText(requisitionItems.getName());
-         //   textViewItemCode.setText(requisitionItems.getQtyRetrieved());
             textViewQtyNeeded.setText(requisitionItems.getQtyNeeded());
             textViewQtyRetr.setText(requisitionItems.getQtyRetrieved());
         }

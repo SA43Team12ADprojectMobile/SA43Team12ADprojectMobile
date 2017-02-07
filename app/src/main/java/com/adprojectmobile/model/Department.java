@@ -3,37 +3,54 @@ package com.adprojectmobile.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONArray;
+
 /**
- * Created by EvEr on 2017/1/19.
+ * Created by EvEr on 2017/1/30.
  */
 
 public class Department implements Parcelable {
-    private String departmentId;
-    private String departmentName;
-    private String contactName;
-    private int telephoneNumber;
-    private int faxNumber;
-    private CollectionPoint collectionPoint;
+    public String DepartmentID ;
+    public String DepartmentName ;
+    public String ContactName ;
+    public String TelephoneNumber ;
+    public String FaxNumber ;
+    public String CollectionPointID ;
+    public String CollectionPointName ;
+    public JSONArray Items;
 
     public Department() {
     }
 
-    public Department(String departmentId, String departmentName, String contactName, int telephoneNumber, int faxNumber, CollectionPoint collectionPoint) {
-        this.departmentId = departmentId;
-        this.departmentName = departmentName;
-        this.contactName = contactName;
-        this.telephoneNumber = telephoneNumber;
-        this.faxNumber = faxNumber;
-        this.collectionPoint = collectionPoint;
+    public Department(String departmentID, String departmentName, String contactName, String telephoneNumber, String faxNumber, String collectionPointID, String collectionPointName) {
+        DepartmentID = departmentID;
+        DepartmentName = departmentName;
+        ContactName = contactName;
+        TelephoneNumber = telephoneNumber;
+        FaxNumber = faxNumber;
+        CollectionPointID = collectionPointID;
+        CollectionPointName = collectionPointName;
+    }
+
+    public Department(String departmentID, String departmentName, String contactName, String telephoneNumber, String faxNumber, String collectionPointID, String collectionPointName, JSONArray items) {
+        DepartmentID = departmentID;
+        DepartmentName = departmentName;
+        ContactName = contactName;
+        TelephoneNumber = telephoneNumber;
+        FaxNumber = faxNumber;
+        CollectionPointID = collectionPointID;
+        CollectionPointName = collectionPointName;
+        Items = items;
     }
 
     protected Department(Parcel in) {
-        departmentId = in.readString();
-        departmentName = in.readString();
-        contactName = in.readString();
-        telephoneNumber = in.readInt();
-        faxNumber = in.readInt();
-        collectionPoint = in.readParcelable(CollectionPoint.class.getClassLoader());
+        DepartmentID = in.readString();
+        DepartmentName = in.readString();
+        ContactName = in.readString();
+        TelephoneNumber = in.readString();
+        FaxNumber = in.readString();
+        CollectionPointID = in.readString();
+        CollectionPointName = in.readString();
     }
 
     public static final Creator<Department> CREATOR = new Creator<Department>() {
@@ -48,61 +65,68 @@ public class Department implements Parcelable {
         }
     };
 
-    public String getDepartmentId() {
-        return departmentId;
+    public String getDepartmentID() {
+        return DepartmentID;
     }
 
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentID(String departmentID) {
+        DepartmentID = departmentID;
     }
 
     public String getDepartmentName() {
-        return departmentName;
+        return DepartmentName;
     }
 
     public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+        DepartmentName = departmentName;
     }
 
     public String getContactName() {
-        return contactName;
+        return ContactName;
     }
 
     public void setContactName(String contactName) {
-        this.contactName = contactName;
+        ContactName = contactName;
     }
 
-    public int getTelephoneNumber() {
-        return telephoneNumber;
-    }
-    public String getTelephoneNumberStr() {
-        Integer integer=telephoneNumber;
-        String str=integer.toString();
-        return str;
-    }
-    public void setTelephoneNumber(int telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
+    public String getTelephoneNumber() {
+        return TelephoneNumber;
     }
 
-    public int getFaxNumber() {
-        return faxNumber;
-    }
-    public String getFaxNumberStr() {
-        Integer integer=faxNumber;
-        String str=integer.toString();
-        return str;
+    public void setTelephoneNumber(String telephoneNumber) {
+        TelephoneNumber = telephoneNumber;
     }
 
-    public void setFaxNumber(int faxNumber) {
-        this.faxNumber = faxNumber;
+    public String getFaxNumber() {
+        return FaxNumber;
     }
 
-    public CollectionPoint getCollectionPoint() {
-        return collectionPoint;
+    public void setFaxNumber(String faxNumber) {
+        FaxNumber = faxNumber;
     }
 
-    public void setCollectionPoint(CollectionPoint collectionPoint) {
-        this.collectionPoint = collectionPoint;
+    public String getCollectionPointID() {
+        return CollectionPointID;
+    }
+
+    public void setCollectionPointID(String collectionPointID) {
+        CollectionPointID = collectionPointID;
+    }
+
+    public String getCollectionPointName() {
+        return CollectionPointName;
+    }
+
+    public void setCollectionPointName(String collectionPointName) {
+        CollectionPointName = collectionPointName;
+    }
+
+    public JSONArray getItems() {
+        return Items;
+    }
+
+    public void setItems(JSONArray items) {
+        Items = items;
     }
 
     @Override
@@ -112,11 +136,12 @@ public class Department implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(departmentId);
-        dest.writeString(departmentName);
-        dest.writeString(contactName);
-        dest.writeInt(telephoneNumber);
-        dest.writeInt(faxNumber);
-        dest.writeParcelable(collectionPoint, flags);
+        dest.writeString(DepartmentID);
+        dest.writeString(DepartmentName);
+        dest.writeString(ContactName);
+        dest.writeString(TelephoneNumber);
+        dest.writeString(FaxNumber);
+        dest.writeString(CollectionPointID);
+        dest.writeString(CollectionPointName);
     }
 }

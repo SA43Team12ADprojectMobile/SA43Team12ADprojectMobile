@@ -13,38 +13,38 @@ import android.widget.Toast;
 
 import com.adprojectmobile.R;
 import com.adprojectmobile.activity.department.HeadMainPage;
-import com.adprojectmobile.apiModel.DelegateEmployee;
-import com.adprojectmobile.apiModel.EmployeeApi;
-import com.adprojectmobile.daoApi.authenticationDao;
-import com.adprojectmobile.daoApi.delegateDao;
+import com.adprojectmobile.model.DelegateEmployee;
 import com.adprojectmobile.model.Employee;
+import com.adprojectmobile.dao.authenticationDao;
+import com.adprojectmobile.dao.delegateDao;
+
 
 import java.util.Date;
 
 public class DelegateAuthority extends AppCompatActivity {
-    delegateDao dDao=new delegateDao();
-    authenticationDao aDao=new authenticationDao();
+    delegateDao dDao = new delegateDao();
+    authenticationDao aDao = new authenticationDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delegate_authority_activity_delegate_authority);
 
-        final EmployeeApi employee=getIntent().getParcelableExtra("data");
-        final DelegateEmployee delegateEmployee=getIntent().getParcelableExtra("delegate");
-        final EmployeeApi head=getIntent().getParcelableExtra("role");
+        final Employee employee = getIntent().getParcelableExtra("data");
+        final DelegateEmployee delegateEmployee = getIntent().getParcelableExtra("delegate");
+        final Employee head = getIntent().getParcelableExtra("role");
 
-        EditText editTextName=(EditText)findViewById(R.id.editText_delegate_employeeName);
-        EditText editTextStatus=(EditText)findViewById(R.id.editText_delegate_status);
+        EditText editTextName = (EditText) findViewById(R.id.editText_delegate_employeeName);
+        EditText editTextStatus = (EditText) findViewById(R.id.editText_delegate_status);
 
-        final DatePicker datePickerStartDate =(DatePicker)findViewById(R.id.datePicker_delegate_startDate);
+        final DatePicker datePickerStartDate = (DatePicker) findViewById(R.id.datePicker_delegate_startDate);
 
-        final DatePicker datePickerEndDate=(DatePicker) findViewById(R.id.datePicker_delegate_endDate);
+        final DatePicker datePickerEndDate = (DatePicker) findViewById(R.id.datePicker_delegate_endDate);
 
-        Button btnConfirmDelegate=(Button) findViewById(R.id.btn_delegate_confirm);
+        Button btnConfirmDelegate = (Button) findViewById(R.id.btn_delegate_confirm);
 
         editTextName.setText(employee.getName());
-            editTextStatus.setText("UnAuthorized");
+        editTextStatus.setText("UnAuthorized");
 
         btnConfirmDelegate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +56,8 @@ public class DelegateAuthority extends AppCompatActivity {
                 final int monthE = datePickerEndDate.getMonth();
                 final int yearE = datePickerEndDate.getYear();
 
-                String startDate=dDao.dateFormat(yearS,monthS,dayS);
-                String endDate=dDao.dateFormat(yearE,monthE,dayE);
+                String startDate = dDao.dateFormat(yearS, monthS, dayS);
+                String endDate = dDao.dateFormat(yearE, monthE, dayE);
 
                 delegateEmployee.setEmployeeID(employee.getEmployeeID());
                 delegateEmployee.setName(employee.getName());
@@ -67,10 +67,10 @@ public class DelegateAuthority extends AppCompatActivity {
                 delegateEmployee.setNumber(employee.getNumber());
                 delegateEmployee.setEmailAddress(employee.getEmailAddress());
 
-                Date start =aDao.parseDate(startDate);
+                Date start = aDao.parseDate(startDate);
                 Date end = aDao.parseDate(endDate);
 
-                if(start.before(end)){
+                if (start.before(end)) {
                     new AsyncTask<DelegateEmployee, Void, Void>() {
                         @Override
                         protected Void doInBackground(DelegateEmployee... params) {
@@ -78,15 +78,14 @@ public class DelegateAuthority extends AppCompatActivity {
                             return null;
                         }
                     }.execute();
-                    Toast.makeText(getApplicationContext(),"Delegate Successfully",Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(getApplicationContext(),HeadMainPage.class);
-                    intent.putExtra("role",head);
-                    Log.e("HeadName",head.getName());
-                    intent.putExtra("password",delegateEmployee.getPassword());
+                    Toast.makeText(getApplicationContext(), "Delegate Successfully", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), HeadMainPage.class);
+                    intent.putExtra("role", head);
+                    Log.e("HeadName", head.getName());
+                    intent.putExtra("password", delegateEmployee.getPassword());
                     startActivity(intent);
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Start date must later than End Date!",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Start date must later than End Date!", Toast.LENGTH_LONG).show();
                 }
 
 

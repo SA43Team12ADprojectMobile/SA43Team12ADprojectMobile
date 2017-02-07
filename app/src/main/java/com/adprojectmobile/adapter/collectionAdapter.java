@@ -9,8 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.apiModel.DeliveryDisbursement;
-import com.adprojectmobile.model.CollectionPoint;
+import com.adprojectmobile.model.DeliveryDisbursement;
 
 
 import java.util.List;
@@ -34,21 +33,21 @@ public class collectionAdapter extends ArrayAdapter<DeliveryDisbursement> {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(resource, null);
-        DeliveryDisbursement collectionPoint=collectionPoints.get(position);
-        if (collectionPoint!=null){
-            TextView textViewCollectionName=(TextView)v.findViewById(R.id.textView_collectionpoint_name);
+        DeliveryDisbursement collectionPoint = collectionPoints.get(position);
+        if (collectionPoint != null) {
+            TextView textViewCollectionName = (TextView) v.findViewById(R.id.textView_collectionpoint_name);
             //TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionp);
-            TextView textViewCollectionDate=(TextView)v.findViewById(R.id.textView_collectionpoint_date);
+            TextView textViewCollectionDate = (TextView) v.findViewById(R.id.textView_collectionpoint_date);
 
             textViewCollectionName.setText(collectionPoint.getCollectionPointName());
-            String dateTime=new String();
-            if (collectionPoint.getRetrievalDate()!=null){
-                try{
-                    String date=collectionPoint.getRetrievalDate().substring(0,10);
-                    String time=collectionPoint.getRetrievalDate().substring(11,16);
-                    dateTime=time+" "+date;
-                }catch (Exception e){
-                    dateTime=null;
+            String dateTime = new String();
+            if (collectionPoint.getRetrievalDate() != null) {
+                try {
+                    String date = collectionPoint.getRetrievalDate().substring(0, 10);
+                    String time = collectionPoint.getRetrievalDate().substring(11, 16);
+                    dateTime = time + " " + date;
+                } catch (Exception e) {
+                    dateTime = null;
                 }
 
             }

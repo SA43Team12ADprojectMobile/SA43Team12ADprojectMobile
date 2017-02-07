@@ -14,50 +14,35 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adprojectmobile.R;
-import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.IssueAdjustment.AdjustmentVouchersForCRUD;
 import com.adprojectmobile.activity.inventoryStore.AdjustmentVoucher.viewAdjustmentVoucher.AdjustmentVouchers;
 import com.adprojectmobile.activity.inventoryStore.StockClerkMainPage;
 import com.adprojectmobile.adapter.requisitionItemAdapter;
-import com.adprojectmobile.apiModel.EmployeeApi;
-import com.adprojectmobile.apiModel.RetrievalCollectionPoint;
-import com.adprojectmobile.apiModel.RetrievalItem;
-import com.adprojectmobile.daoApi.retrievalDao;
-import com.adprojectmobile.model.Disbursement;
-import com.adprojectmobile.dao.Dao.*;
-import com.adprojectmobile.dao.DaoImpl.*;
-import com.adprojectmobile.model.Requisition;
-import com.adprojectmobile.model.RequisitionItem;
-import com.adprojectmobile.testdata.testAdapter;
-import com.adprojectmobile.testdata.testCollectionList;
-import com.adprojectmobile.testdata.testCollectionPoint;
-import com.adprojectmobile.testdata.testDao;
-import com.adprojectmobile.testdata.testDaoImpl;
-import com.adprojectmobile.util.DummyData;
+import com.adprojectmobile.model.Employee;
+import com.adprojectmobile.model.RetrievalCollectionPoint;
+import com.adprojectmobile.model.RetrievalItem;
+import com.adprojectmobile.dao.retrievalDao;
 
-import org.json.JSONArray;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsForCollection extends AppCompatActivity {
-    retrievalDao rDao=new retrievalDao();
+    retrievalDao rDao = new retrievalDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.retrieval_form_activity_collection_items);
-        final EmployeeApi employee=getIntent().getParcelableExtra("role");
+
+        final Employee employee = getIntent().getParcelableExtra("role");
         final String id = getIntent().getStringExtra("id");
-        final RetrievalCollectionPoint retrievalCollectionPoint=getIntent().getParcelableExtra("collection");
+        final RetrievalCollectionPoint retrievalCollectionPoint = getIntent().getParcelableExtra("collection");
 
         final ListView requisitionItemView = (ListView) findViewById(R.id.listview_retrieval_disbursement_items);
-        final CheckBox checkBoxPrepared=(CheckBox)findViewById(R.id.checkBox_prepared);
+        final CheckBox checkBoxPrepared = (CheckBox) findViewById(R.id.checkBox_prepared);
         checkBoxPrepared.setChecked(retrievalCollectionPoint.getPrepared().contains("true"));
-        final Boolean isPrepared=checkBoxPrepared.isChecked();
-        if (isPrepared){
+        final Boolean isPrepared = checkBoxPrepared.isChecked();
+        if (isPrepared) {
             checkBoxPrepared.setEnabled(false);
         }
-
 
         new AsyncTask<RetrievalCollectionPoint, Void, List<RetrievalItem>>() {
             @Override
@@ -66,13 +51,12 @@ public class ItemsForCollection extends AppCompatActivity {
                 RetrievalCollectionPoint retrievalCP = new RetrievalCollectionPoint();
                 for (RetrievalCollectionPoint rc :
                         collectionPoints) {
-                        if (rc.getCollectionPointID().equals(id)&&rc.getDate().equals(retrievalCollectionPoint.getDate())) {
-                                retrievalCP = rc;
-                            Log.e("rc",rc.getCollectionPointID());
+                    if (rc.getCollectionPointID().equals(id) && rc.getDate().equals(retrievalCollectionPoint.getDate())) {
+                        retrievalCP = rc;
+                        Log.e("rc", rc.getCollectionPointID());
                     }
                 }
 
-                //Log.e("retrival",retrievalCP.getCollectionPointID());
                 final List<RetrievalItem> retrievalItems = rDao.getItemsByCollection(retrievalCP.getItemJson());
                 return retrievalItems;
             }
@@ -90,58 +74,54 @@ public class ItemsForCollection extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), ConfirmRetrieval.class);
                 intent.putExtra("data", retrievalItem);
-                intent.putExtra("id",id);
-                intent.putExtra("collection",retrievalCollectionPoint);
-                intent.putExtra("role",employee);
-                intent.putExtra("prepared",isPrepared);
+                intent.putExtra("id", id);
+                intent.putExtra("collection", retrievalCollectionPoint);
+                intent.putExtra("role", employee);
+                intent.putExtra("prepared", isPrepared);
                 startActivity(intent);
             }
         });
 
-        Button btnSave=(Button) findViewById(R.id.btn_save_retrieval_info);
+        Button btnSave = (Button) findViewById(R.id.btn_save_retrieval_info);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isPrepared){
-                    Toast.makeText(getApplicationContext(),"Already Prepared",Toast.LENGTH_LONG).show();
-                }
-                else if(checkBoxPrepared.isChecked()){
-                    Boolean isAdjustExist=true;
-
+                if (isPrepared) {
+                    Toast.makeText(getApplicationContext(), "Already Prepared", Toast.LENGTH_LONG).show();
+                } else if (checkBoxPrepared.isChecked()) {
                     new AsyncTask<String, Void, String>() {
                         @Override
                         protected String doInBackground(String... params) {
-                            String re= rDao.savePrepared(retrievalCollectionPoint.getCollectionPointID());
-                            Log.e("result",re);
+                            String re = rDao.savePrepared(retrievalCollectionPoint.getCollectionPointID());
+                            Log.e("result", re);
                             return re;
                         }
+
                         @Override
-                        protected void onPostExecute(String result){
-                            if(result.contains("t")){
-                                Intent intent=new Intent(getApplicationContext(),AdjustmentVouchers.class);
-                                intent.putExtra("role",employee);
+                        protected void onPostExecute(String result) {
+                            if (result.contains("t")) {
+                                Intent intent = new Intent(getApplicationContext(), AdjustmentVouchers.class);
+                                intent.putExtra("role", employee);
                                 startActivity(intent);
-                            }
-                            else {
-                                Intent intent=new Intent(getApplicationContext(),com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints.class);
-                                intent.putExtra("data",employee);
+                            } else {
+                                Intent intent = new Intent(getApplicationContext(), com.adprojectmobile.activity.inventoryStore.RetrievalForm.CollectionPoints.class);
+                                intent.putExtra("data", employee);
                                 startActivity(intent);
                             }
                         }
                     }.execute();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Sure to Save? Enable Check Box",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Sure to Save? Enable Check Box", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        TextView title=(TextView)findViewById(R.id.textView_title_retrieval_disbursement_item_name);
+        TextView title = (TextView) findViewById(R.id.textView_title_retrieval_disbursement_item_name);
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), StockClerkMainPage.class);
-                intent.putExtra("role",employee);
+                Intent intent = new Intent(getApplicationContext(), StockClerkMainPage.class);
+                intent.putExtra("role", employee);
                 startActivity(intent);
             }
         });
